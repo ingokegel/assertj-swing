@@ -13,7 +13,6 @@
 package org.assertj.swing.test.swing;
 
 import static org.assertj.swing.edt.GuiActionRunner.execute;
-import static org.assertj.swing.test.swing.TestWindow.DEFAULT_WINDOW_LOCATION;
 import static org.assertj.swing.test.task.DialogShowTask.packAndShow;
 import static org.assertj.swing.test.task.DialogShowTask.waitForShowing;
 import static org.assertj.swing.test.task.WindowDestroyTask.hideAndDispose;
@@ -22,7 +21,6 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Frame;
-import java.awt.Point;
 import java.awt.Window;
 
 import javax.swing.JDialog;
@@ -30,6 +28,7 @@ import javax.swing.JDialog;
 import org.assertj.swing.annotation.RunsInCurrentThread;
 import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.test.task.FrameShowTask;
+import org.assertj.swing.util.RobotFactory;
 
 /**
  * Base dialog for all GUI tests.
@@ -39,8 +38,6 @@ import org.assertj.swing.test.task.FrameShowTask;
  */
 public class TestDialog extends JDialog {
   private static final Dimension DEFAULT_PREFERRED_SIZE = new Dimension(200, 100);
-
-  static final Point DEFAULT_DIALOG_LOCATION = new Point(200, 200);
 
   /**
    * Creates a new {@link TestDialog} and displays it on the screen with the given frame as its owner. This constructor
@@ -140,7 +137,7 @@ public class TestDialog extends JDialog {
   protected static void display(final TestDialog dialog, final Dimension preferredSize) {
     execute(() -> {
       showOwnerIfPossible(dialog.getOwner());
-      dialog.setLocation(DEFAULT_DIALOG_LOCATION);
+      dialog.setLocation(RobotFactory.DEFAULT_WINDOW_LOCATION);
       packAndShow(dialog, preferredSize);
     });
     waitForShowing(dialog);
@@ -152,7 +149,7 @@ public class TestDialog extends JDialog {
       return;
     }
     Frame dialogOwner = (Frame) owner;
-    dialogOwner.setLocation(DEFAULT_WINDOW_LOCATION);
+    dialogOwner.setLocation(RobotFactory.DEFAULT_WINDOW_LOCATION);
     FrameShowTask.packAndShow(dialogOwner);
   }
 

@@ -18,6 +18,7 @@ import java.awt.Point;
 
 import org.assertj.swing.test.core.RobotBasedTestCase;
 import org.assertj.swing.test.swing.TestWindow;
+import org.assertj.swing.util.RobotFactory;
 import org.junit.Test;
 
 /**
@@ -34,7 +35,9 @@ public class ComponentMoveTask_moveComponent_Test extends RobotBasedTestCase {
   protected void onSetUp() {
     window = TestWindow.createNewWindow(getClass());
     robot.showWindow(window);
-    location = new Point(80, 60);
+
+    location = new Point(RobotFactory.DEFAULT_WINDOW_LOCATION);
+    location.translate(80, 100);
     assertThat(location).isNotEqualTo(window.getLocationOnScreen());
   }
 

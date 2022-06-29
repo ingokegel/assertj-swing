@@ -60,7 +60,6 @@ public class Scrolling_scrollToVisible_Test extends RobotBasedTestCase {
         protected MyWindow executeInEDT() {
           MyWindow w = new MyWindow();
           display(w);
-          w.setLocation(0, 0);
           w.setSize(w.getToolkit().getScreenSize());
           return w;
         }

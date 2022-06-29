@@ -67,7 +67,6 @@ public class FEST284_scrollToVisibleAutomatically_Test extends RobotBasedTestCas
         protected MyWindow executeInEDT() {
           MyWindow w = new MyWindow();
           display(w);
-          w.setLocation(0, 0);
           w.setSize(new Dimension(800, 600));
           return w;
         }
@@ -79,6 +78,8 @@ public class FEST284_scrollToVisibleAutomatically_Test extends RobotBasedTestCas
       setLayout(new BorderLayout());
       add(buildNestedScrollPanes(32, 1000), CENTER);
     }
+
+
 
     Component buildNestedScrollPanes(int levelCount, int pixelCount) {
       // if no more levels to build, just return the button

@@ -26,6 +26,8 @@ import javax.swing.JPopupMenu;
 
 import org.assertj.swing.core.Robot;
 import org.assertj.swing.driver.WindowDriver;
+import org.assertj.swing.test.awt.FluentPoint;
+import org.assertj.swing.util.RobotFactory;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -44,7 +46,7 @@ public class AbstractWindowFixture_withMocks_Test {
 
   @Test
   public void should_Call_MoveTo_In_Driver_And_Return_Self() {
-    Point p = new Point(6, 8);
+    Point p = new FluentPoint(RobotFactory.DEFAULT_WINDOW_LOCATION).addToX(6).addToY(8);
     assertThat(fixture.moveTo(p)).isSameAs(fixture);
     verify(fixture.driver()).moveTo(fixture.target(), p);
   }

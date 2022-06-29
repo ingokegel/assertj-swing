@@ -17,6 +17,8 @@ import static org.assertj.swing.query.ComponentLocationOnScreenQuery.locationOnS
 
 import java.awt.Point;
 
+import org.assertj.swing.test.awt.FluentPoint;
+import org.assertj.swing.util.RobotFactory;
 import org.junit.Test;
 
 /**
@@ -28,7 +30,7 @@ public class WindowDriver_moveTo_Test extends WindowDriver_TestCase {
   @Test
   public void should_Move_Window() {
     showWindow();
-    Point newPosition = new Point(200, 200);
+    Point newPosition = new FluentPoint(RobotFactory.DEFAULT_WINDOW_LOCATION).addToX(100).addToY(100);
     driver.moveTo(window, newPosition);
     assertThat(locationOnScreen(window)).isEqualTo(newPosition);
   }
@@ -37,12 +39,12 @@ public class WindowDriver_moveTo_Test extends WindowDriver_TestCase {
   public void should_Throw_Error_If_Window_Is_Disabled() {
     disableWindow();
     thrown.expectIllegalStateIsDisabledComponent();
-    driver.moveTo(window, new Point(100, 100));
+    driver.moveTo(window, new FluentPoint(RobotFactory.DEFAULT_WINDOW_LOCATION).addToX(100).addToY(100));
   }
 
   @Test
   public void should_Throw_Error_If_Window_Is_Not_Showing_On_The_Screen() {
     thrown.expectIllegalStateIsNotShowingComponent();
-    driver.moveTo(window, new Point(100, 100));
+    driver.moveTo(window, new FluentPoint(RobotFactory.DEFAULT_WINDOW_LOCATION).addToX(100).addToY(100));
   }
 }

@@ -32,7 +32,6 @@ import static org.assertj.swing.test.task.WindowDestroyTask.hideAndDispose;
  * @author Alex Ruiz
  */
 public class TestWindow extends JFrame {
-  static final Point DEFAULT_WINDOW_LOCATION = RobotFactory.DEFAULT_WINDOW_LOCATION;
 
   /**
    * Creates a new {@link TestWindow} and displays it on the screen. This method is executed in the event dispatch
@@ -134,7 +133,7 @@ public class TestWindow extends JFrame {
    */
   @RunsInCurrentThread
   @Nonnull protected static <T extends TestWindow> T display(@Nonnull T w) {
-    w.setLocation(DEFAULT_WINDOW_LOCATION);
+    w.setLocation(RobotFactory.DEFAULT_WINDOW_LOCATION);
     packAndShow(w);
     return w;
   }
@@ -165,7 +164,7 @@ public class TestWindow extends JFrame {
    */
   @RunsInCurrentThread
   protected static void display(@Nonnull TestWindow window, @Nonnull Dimension preferredSize) {
-    window.setLocation(DEFAULT_WINDOW_LOCATION);
+    window.setLocation(RobotFactory.DEFAULT_WINDOW_LOCATION);
     packAndShow(window, preferredSize);
   }
 
