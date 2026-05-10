@@ -26,38 +26,39 @@
         </configuration>
       </plugin>
       <plugin>
-        <groupId>org.sonatype.plugins</groupId>
-        <artifactId>jarjar-maven-plugin</artifactId>
-        <version>1.9</version>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-shade-plugin</artifactId>
+        <version>3.6.2</version>
         <executions>
           <execution>
             <phase>package</phase>
             <goals>
-              <goal>jarjar</goal>
+              <goal>shade</goal>
             </goals>
             <configuration>
-              <includes>
-                <include>com.google.code.findbugs:jsr305</include>
-                <include>org.easytesting:fest-reflect</include>
-                <include>org.easytesting:fest-util</include>
-              </includes>
-              <rules>
-                <rule>
-                  <pattern>javax.annotation.**</pattern>
-                  <result>org.assertj.swing.dependency.jsr305.@1</result>
-                </rule>
-                <rule>
-                  <pattern>org.fest.reflect.**</pattern>
-                  <result>org.assertj.swing.dependency.fest_reflect.@1</result>
-                </rule>
-                <rule>
-                  <pattern>org.fest.util.**</pattern>
-                  <result>org.assertj.swing.dependency.fest_util.@1</result>
-                </rule>
-                <keep>
-                  <pattern>org.assertj.swing.**</pattern>
-                </keep>
-              </rules>
+              <createDependencyReducedPom>false</createDependencyReducedPom>
+              <shadedArtifactAttached>false</shadedArtifactAttached>
+              <artifactSet>
+                <includes>
+                  <include>com.google.code.findbugs:jsr305</include>
+                  <include>org.easytesting:fest-reflect</include>
+                  <include>org.easytesting:fest-util</include>
+                </includes>
+              </artifactSet>
+              <relocations>
+                <relocation>
+                  <pattern>javax.annotation</pattern>
+                  <shadedPattern>org.assertj.swing.dependency.jsr305</shadedPattern>
+                </relocation>
+                <relocation>
+                  <pattern>org.fest.reflect</pattern>
+                  <shadedPattern>org.assertj.swing.dependency.fest_reflect</shadedPattern>
+                </relocation>
+                <relocation>
+                  <pattern>org.fest.util</pattern>
+                  <shadedPattern>org.assertj.swing.dependency.fest_util</shadedPattern>
+                </relocation>
+              </relocations>
             </configuration>
           </execution>
         </executions>
