@@ -17,11 +17,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Files.newFolder;
 import static org.assertj.core.util.Files.newTemporaryFolder;
 import static org.assertj.core.util.Strings.concat;
-import static org.easymock.EasyMock.expect;
-import static org.easymock.classextension.EasyMock.createMock;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import java.io.File;
-import org.fest.mocks.EasyMockTemplate;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -41,7 +40,7 @@ public class OutputDirectory_createIfNecessary_Test {
 
   @Before
   public void setUp() {
-    context = createMock(ITestContext.class);
+    context = mock(ITestContext.class);
     parentPath = newTemporaryFolder().getAbsolutePath();
     unwritablePath = concat(parentPath, separator, "notwritable");
     path = concat(parentPath, separator, "abc");
@@ -60,37 +59,19 @@ public class OutputDirectory_createIfNecessary_Test {
   @Test
   public void should_Not_Create_Output_Folder_If_It_Already_Exists() {
     assertThat(new File(parentPath)).exists();
-    new EasyMockTemplate(context) {
-      @Override
-      protected void expectations() {
-        expect(context.getOutputDirectory()).andReturn(parentPath);
-      }
-
-      @Override
-      protected void codeToTest() {
-        OutputDirectory output = new OutputDirectory(context);
-        output.createIfNecessary();
-        assertThat(new File(parentPath)).exists();
-      }
-    }.run();
+    when(context.getOutputDirectory()).thenReturn(parentPath);
+    OutputDirectory output = new OutputDirectory(context);
+    output.createIfNecessary();
+    assertThat(new File(parentPath)).exists();
   }
 
   @Test
   public void should_Create_Output_Folder_If_It_Does_Not_Exist() {
     assertThat(new File(path)).doesNotExist();
-    new EasyMockTemplate(context) {
-      @Override
-      protected void expectations() {
-        expect(context.getOutputDirectory()).andReturn(path);
-      }
-
-      @Override
-      protected void codeToTest() {
-        OutputDirectory output = new OutputDirectory(context);
-        output.createIfNecessary();
-        assertThat(new File(path)).exists();
-      }
-    }.run();
+    when(context.getOutputDirectory()).thenReturn(path);
+    OutputDirectory output = new OutputDirectory(context);
+    output.createIfNecessary();
+    assertThat(new File(path)).exists();
   }
 
   @Test(expected = RuntimeException.class)
@@ -98,18 +79,9 @@ public class OutputDirectory_createIfNecessary_Test {
     File folder = newFolder(unwritablePath);
     assertThat(folder.setReadOnly()).isTrue();
     try {
-      new EasyMockTemplate(context) {
-        @Override
-        protected void expectations() {
-          expect(context.getOutputDirectory()).andReturn(concat(unwritablePath, separator, "zz:-//"));
-        }
-
-        @Override
-        protected void codeToTest() {
-          OutputDirectory output = new OutputDirectory(context);
-          output.createIfNecessary();
-        }
-      }.run();
+      when(context.getOutputDirectory()).thenReturn(concat(unwritablePath, separator, "zz:-//"));
+      OutputDirectory output = new OutputDirectory(context);
+      output.createIfNecessary();
     } finally {
       assertThat(folder.setWritable(true)).isTrue();
     }

@@ -17,8 +17,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.swing.junit.ant.ImageHandler.encodeBase64;
 import static org.assertj.swing.junit.ant.Tests.testClassNameFrom;
 import static org.assertj.swing.junit.ant.Tests.testMethodNameFrom;
-import static org.easymock.EasyMock.expect;
-import static org.easymock.classextension.EasyMock.createMock;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import java.awt.image.BufferedImage;
 
@@ -27,13 +27,12 @@ import junit.framework.TestResult;
 import org.assertj.swing.image.ScreenshotTaker;
 import org.assertj.swing.junit.xml.XmlDocument;
 import org.assertj.swing.junit.xml.XmlNode;
-import org.fest.mocks.EasyMockTemplate;
 import org.junit.Before;
 import org.junit.Test;
 
 /**
  * Tests for <code>{@link ScreenshotXmlWriter}</code>.
- * 
+ *
  * @author Alex Ruiz
  */
 public class ScreenshotXmlWriter_writeScreenshot_Test {
@@ -50,8 +49,8 @@ public class ScreenshotXmlWriter_writeScreenshot_Test {
     XmlDocument document = new XmlDocument();
     root = document.newRoot("root");
     errorNode = root.addNewNode("error");
-    screenshotTaker = createMock(ScreenshotTaker.class);
-    guiTestRecognizer = createMock(GUITestRecognizer.class);
+    screenshotTaker = mock(ScreenshotTaker.class);
+    guiTestRecognizer = mock(GUITestRecognizer.class);
     test = new MyTest();
     writer = new ScreenshotXmlWriter(screenshotTaker, guiTestRecognizer);
   }
@@ -59,40 +58,22 @@ public class ScreenshotXmlWriter_writeScreenshot_Test {
   @Test
   public void should_Add_Screenshot_Element_Test_Is_GUI_Test() {
     final BufferedImage image = new BufferedImage(10, 10, TYPE_BYTE_BINARY);
-    new EasyMockTemplate(screenshotTaker, guiTestRecognizer) {
-      @Override
-      protected void expectations() {
-        expect(guiTestRecognizer.isGUITest(testClassNameFrom(test), testMethodNameFrom(test))).andReturn(true);
-        expect(screenshotTaker.takeDesktopScreenshot()).andReturn(image);
-      }
-
-      @Override
-      protected void codeToTest() {
-        writer.writeScreenshot(errorNode, test);
-        assertThat(root.size()).isEqualTo(2);
-        assertThat(root.child(0)).isEqualTo(errorNode);
-        XmlNode secondChild = root.child(1);
-        assertThat(secondChild.name()).isEqualTo("screenshot");
-        assertThat(secondChild.text()).isEqualTo(encodeBase64(image));
-      }
-    }.run();
+    when(guiTestRecognizer.isGUITest(testClassNameFrom(test), testMethodNameFrom(test))).thenReturn(true);
+    when(screenshotTaker.takeDesktopScreenshot()).thenReturn(image);
+    writer.writeScreenshot(errorNode, test);
+    assertThat(root.size()).isEqualTo(2);
+    assertThat(root.child(0)).isEqualTo(errorNode);
+    XmlNode secondChild = root.child(1);
+    assertThat(secondChild.name()).isEqualTo("screenshot");
+    assertThat(secondChild.text()).isEqualTo(encodeBase64(image));
   }
 
   @Test
   public void should_Not_Add_Screenshot_Element_Test_Is_Not_GUI_Test() {
-    new EasyMockTemplate(screenshotTaker, guiTestRecognizer) {
-      @Override
-      protected void expectations() {
-        expect(guiTestRecognizer.isGUITest(testClassNameFrom(test), testMethodNameFrom(test))).andReturn(false);
-      }
-
-      @Override
-      protected void codeToTest() {
-        writer.writeScreenshot(errorNode, test);
-        assertThat(root.size()).isEqualTo(1);
-        assertThat(root.child(0)).isEqualTo(errorNode);
-      }
-    }.run();
+    when(guiTestRecognizer.isGUITest(testClassNameFrom(test), testMethodNameFrom(test))).thenReturn(false);
+    writer.writeScreenshot(errorNode, test);
+    assertThat(root.size()).isEqualTo(1);
+    assertThat(root.child(0)).isEqualTo(errorNode);
   }
 
   private static class MyTest implements junit.framework.Test {

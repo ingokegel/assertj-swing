@@ -13,15 +13,14 @@
 package org.assertj.swing.junit.ant;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.easymock.EasyMock.expect;
+import static org.mockito.Mockito.when;
 
-import org.fest.mocks.EasyMockTemplate;
 import org.junit.Before;
 import org.junit.Test;
 
 /**
  * Tests for <code>{@link ImageHandler#decodeBase64(String, ImageDecoder)}</code>.
- * 
+ *
  * @author Alex Ruiz
  */
 public class ImageHandler_decodeBase64_withImageDecoder_Test extends ImageHandler_TestCase {
@@ -36,17 +35,8 @@ public class ImageHandler_decodeBase64_withImageDecoder_Test extends ImageHandle
   }
 
   @Test
-  public void should_Not_Rethrow_Error() {
-    new EasyMockTemplate(decoder) {
-      @Override
-      protected void expectations() throws Throwable {
-        expect(decoder.decodeBase64(encoded)).andThrow(thrownOnPurpose());
-      }
-
-      @Override
-      protected void codeToTest() {
-        assertThat(ImageHandler.decodeBase64(encoded, decoder)).isNull();
-      }
-    }.run();
+  public void should_Not_Rethrow_Error() throws Throwable {
+    when(decoder.decodeBase64(encoded)).thenThrow(thrownOnPurpose());
+    assertThat(ImageHandler.decodeBase64(encoded, decoder)).isNull();
   }
 }

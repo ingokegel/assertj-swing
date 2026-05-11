@@ -14,7 +14,7 @@ package org.assertj.swing.junit.ant;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Fail.fail;
-import static org.easymock.classextension.EasyMock.createMock;
+import static org.mockito.Mockito.mock;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -37,7 +37,7 @@ public class XmlOutputWriter_writeWithDOMElementWriter_Test extends XmlOutputWri
 
   @Test
   public void should_Throw_BuildException_If_Something_Goes_Wrong() {
-    XmlNode xmlNode = createMock(XmlNode.class);
+    XmlNode xmlNode = mock(XmlNode.class);
     MyDOMElementWriter xmlWriter = new MyDOMElementWriter();
     try {
       writer.write(xmlNode, new ByteArrayOutputStream(), xmlWriter);

@@ -29,6 +29,8 @@ public class GUITestRunnerTest {
   public void resetProperty() {
     if (javaAwtHeadlessBefore != null) {
       System.setProperty("java.awt.headless", javaAwtHeadlessBefore);
+    } else {
+      System.clearProperty("java.awt.headless");
     }
   }
 

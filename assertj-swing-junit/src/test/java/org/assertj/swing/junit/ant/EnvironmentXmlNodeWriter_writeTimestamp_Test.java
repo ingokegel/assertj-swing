@@ -14,20 +14,19 @@ package org.assertj.swing.junit.ant;
 
 import static org.apache.tools.ant.taskdefs.optional.junit.XMLConstants.TIMESTAMP;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.easymock.EasyMock.expect;
-import static org.easymock.EasyMock.expectLastCall;
-import static org.easymock.EasyMock.reportMatcher;
+import static org.mockito.ArgumentMatchers.argThat;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import java.util.Date;
 
 import org.assertj.swing.junit.xml.XmlAttribute;
-import org.easymock.IArgumentMatcher;
-import org.fest.mocks.EasyMockTemplate;
 import org.junit.Test;
+import org.mockito.ArgumentMatcher;
 
 /**
  * Test for <code>{@link EnvironmentXmlNodeWriter#writeTimestamp(org.assertj.swing.junit.xml.XmlNode)}</code>.
- * 
+ *
  * @author Alex Ruiz
  */
 public class EnvironmentXmlNodeWriter_writeTimestamp_Test extends EnvironmentXmlNodeWriter_TestCase {
@@ -39,27 +38,16 @@ public class EnvironmentXmlNodeWriter_writeTimestamp_Test extends EnvironmentXml
   void onSetUp() {
     date = new Date();
     formatted = "2009-06-13T15:06:10";
-    reportMatcher(new BeforeOrEqualDateMatcher(date));
   }
 
   @Test
   public void shouldWriteFormattedCurrentDateAsAttribute() {
-    new EasyMockTemplate(timeStampFormatter, hostNameReader, targetNode) {
-      @Override
-      protected void expectations() {
-        expect(timeStampFormatter.format(date)).andReturn(formatted);
-        targetNode.addAttribute(XmlAttribute.name(TIMESTAMP).value(formatted));
-        expectLastCall().once();
-      }
-
-      @Override
-      protected void codeToTest() {
-        assertThat(writer.writeTimestamp(targetNode)).isSameAs(writer);
-      }
-    }.run();
+    when(timeStampFormatter.format(argThat(new BeforeOrEqualDateMatcher(date)))).thenReturn(formatted);
+    assertThat(writer.writeTimestamp(targetNode)).isSameAs(writer);
+    verify(targetNode).addAttribute(XmlAttribute.name(TIMESTAMP).value(formatted));
   }
 
-  private static class BeforeOrEqualDateMatcher implements IArgumentMatcher {
+  private static class BeforeOrEqualDateMatcher implements ArgumentMatcher<Date> {
     private final Date date;
 
     BeforeOrEqualDateMatcher(Date date) {
@@ -67,16 +55,15 @@ public class EnvironmentXmlNodeWriter_writeTimestamp_Test extends EnvironmentXml
     }
 
     @Override
-    public boolean matches(Object argument) {
-      if (!(argument instanceof Date))
+    public boolean matches(Date other) {
+      if (other == null)
         return false;
-      Date other = (Date) argument;
       return date.before(other) || date.equals(other);
     }
 
     @Override
-    public void appendTo(StringBuffer buffer) {
-      buffer.append(date);
+    public String toString() {
+      return String.valueOf(date);
     }
   }
 }

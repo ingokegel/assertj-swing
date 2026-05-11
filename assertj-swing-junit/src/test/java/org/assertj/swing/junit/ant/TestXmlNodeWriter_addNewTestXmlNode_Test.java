@@ -18,17 +18,16 @@ import static org.apache.tools.ant.taskdefs.optional.junit.XMLConstants.TESTCASE
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.swing.junit.xml.XmlAttribute.name;
 import static org.assertj.swing.junit.xml.XmlAttributes.attributes;
-import static org.easymock.EasyMock.expect;
+import static org.mockito.Mockito.when;
 
 import org.assertj.swing.junit.xml.XmlAttributes;
 import org.assertj.swing.junit.xml.XmlNode;
-import org.fest.mocks.EasyMockTemplate;
 import org.junit.Test;
 
 /**
  * Tests for
  * <code>{@link TestXmlNodeWriter#addNewTestXmlNode(org.assertj.swing.junit.xml.XmlNode, junit.framework.Test)}</code>
- * 
+ *
  * @author Alex Ruiz
  */
 public class TestXmlNodeWriter_addNewTestXmlNode_Test extends TestXmlNodeWriter_TestCase {
@@ -37,37 +36,19 @@ public class TestXmlNodeWriter_addNewTestXmlNode_Test extends TestXmlNodeWriter_
   public void should_Add_Test_Node_As_Child() {
     final TestStub test = new TestStub("hello");
     final XmlNode newNode = mockXmlNode();
-    new EasyMockTemplate(targetNode) {
-      @Override
-      protected void expectations() {
-        XmlAttributes attributes = attributes(name(ATTR_NAME).value("hello"),
-            name(ATTR_CLASSNAME).value(TestStub.class.getName()));
-        expect(targetNode.addNewNode(TESTCASE, attributes)).andReturn(newNode);
-      }
-
-      @Override
-      protected void codeToTest() {
-        assertThat(writer.addNewTestXmlNode(targetNode, test)).isSameAs(newNode);
-      }
-    }.run();
+    XmlAttributes attributes = attributes(name(ATTR_NAME).value("hello"),
+        name(ATTR_CLASSNAME).value(TestStub.class.getName()));
+    when(targetNode.addNewNode(TESTCASE, attributes)).thenReturn(newNode);
+    assertThat(writer.addNewTestXmlNode(targetNode, test)).isSameAs(newNode);
   }
 
   @Test
   public void should_Add_Test_Node_As_Child_And_Set_Test_Name_To_Unknown_If_Test_Name_Is_Null() {
     final TestStub test = new TestStub(null);
     final XmlNode newNode = mockXmlNode();
-    new EasyMockTemplate(targetNode) {
-      @Override
-      protected void expectations() {
-        XmlAttributes attributes = attributes(name(ATTR_NAME).value("unknown"),
-            name(ATTR_CLASSNAME).value(TestStub.class.getName()));
-        expect(targetNode.addNewNode(TESTCASE, attributes)).andReturn(newNode);
-      }
-
-      @Override
-      protected void codeToTest() {
-        assertThat(writer.addNewTestXmlNode(targetNode, test)).isSameAs(newNode);
-      }
-    }.run();
+    XmlAttributes attributes = attributes(name(ATTR_NAME).value("unknown"),
+        name(ATTR_CLASSNAME).value(TestStub.class.getName()));
+    when(targetNode.addNewNode(TESTCASE, attributes)).thenReturn(newNode);
+    assertThat(writer.addNewTestXmlNode(targetNode, test)).isSameAs(newNode);
   }
 }

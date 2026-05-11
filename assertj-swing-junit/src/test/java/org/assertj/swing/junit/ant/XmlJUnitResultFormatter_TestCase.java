@@ -14,7 +14,7 @@ package org.assertj.swing.junit.ant;
 
 import static org.apache.tools.ant.util.DateUtils.parseIso8601DateTimeOrDate;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.easymock.EasyMock.createMock;
+import static org.mockito.Mockito.mock;
 
 import java.io.ByteArrayOutputStream;
 import java.net.UnknownHostException;
@@ -95,7 +95,7 @@ public abstract class XmlJUnitResultFormatter_TestCase {
   }
 
   static junit.framework.Test mockTest() {
-    return createMock(junit.framework.Test.class);
+    return mock(junit.framework.Test.class);
   }
 
   final void assertThatTestWasStarted(junit.framework.Test test) {

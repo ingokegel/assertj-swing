@@ -13,18 +13,17 @@
 package org.assertj.swing.junit.ant;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.easymock.EasyMock.expect;
-import static org.easymock.classextension.EasyMock.createMock;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import java.awt.image.BufferedImage;
 
-import org.fest.mocks.EasyMockTemplate;
 import org.junit.Before;
 import org.junit.Test;
 
 /**
  * Tests for <code>{@link ImageHandler#encodeBase64(BufferedImage, ImageEncoder)}</code>.
- * 
+ *
  * @author Alex Ruiz
  */
 public class ImageHandler_encodeBase64_withImageEncoder_Test extends ImageHandler_TestCase {
@@ -34,22 +33,13 @@ public class ImageHandler_encodeBase64_withImageEncoder_Test extends ImageHandle
 
   @Before
   public void setUp() {
-    encoder = createMock(ImageEncoder.class);
+    encoder = mock(ImageEncoder.class);
     image = mockImage();
   }
 
   @Test
-  public void should_Not_Rethrow_Error() {
-    new EasyMockTemplate(encoder) {
-      @Override
-      protected void expectations() throws Throwable {
-        expect(encoder.encodeBase64(image)).andThrow(thrownOnPurpose());
-      }
-
-      @Override
-      protected void codeToTest() {
-        assertThat(ImageHandler.encodeBase64(image, encoder)).isNull();
-      }
-    }.run();
+  public void should_Not_Rethrow_Error() throws Throwable {
+    when(encoder.encodeBase64(image)).thenThrow(thrownOnPurpose());
+    assertThat(ImageHandler.encodeBase64(image, encoder)).isNull();
   }
 }

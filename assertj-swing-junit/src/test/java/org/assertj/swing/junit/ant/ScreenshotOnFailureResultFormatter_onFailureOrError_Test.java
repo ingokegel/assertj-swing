@@ -15,15 +15,14 @@ package org.assertj.swing.junit.ant;
 import static java.lang.String.valueOf;
 import static java.security.AccessController.doPrivileged;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.easymock.EasyMock.expectLastCall;
-import static org.easymock.classextension.EasyMock.createMock;
 import static org.fest.reflect.core.Reflection.field;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 import java.security.PrivilegedAction;
 
 import org.apache.tools.ant.taskdefs.optional.junit.JUnitTest;
 import org.assertj.swing.junit.xml.XmlNode;
-import org.fest.mocks.EasyMockTemplate;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -31,7 +30,7 @@ import org.junit.Test;
 /**
  * Tests for
  * <code>{@link ScreenshotOnFailureResultFormatter#onFailureOrError(junit.framework.Test, Throwable, XmlNode)}</code>.
- * 
+ *
  * @author Alex Ruiz
  */
 public class ScreenshotOnFailureResultFormatter_onFailureOrError_Test {
@@ -71,28 +70,18 @@ public class ScreenshotOnFailureResultFormatter_onFailureOrError_Test {
 
   @Test
   public void should_Take_Screenshot_When_Test_Fails() {
-    final ScreenshotXmlWriter writer = createMock(ScreenshotXmlWriter.class);
+    final ScreenshotXmlWriter writer = mock(ScreenshotXmlWriter.class);
     updateWriterInFormatter(writer);
     final junit.framework.Test test = failingTest();
-    final XmlNode errorElement = createMock(XmlNode.class);
-    new EasyMockTemplate(writer) {
-      @Override
-      protected void expectations() {
-        writer.writeScreenshot(errorElement, test);
-        expectLastCall().once();
-      }
-
-      @Override
-      protected void codeToTest() {
-        formatter.onFailureOrError(test, new Throwable(), errorElement);
-      }
-    }.run();
+    final XmlNode errorElement = mock(XmlNode.class);
+    formatter.onFailureOrError(test, new Throwable(), errorElement);
+    verify(writer).writeScreenshot(errorElement, test);
   }
 
   @Test
   public void should_Not_Take_Screenshot_When_Test_Fails_If_ScreenshotWriter_Is_Null() {
     updateWriterInFormatter(null);
-    formatter.onFailureOrError(failingTest(), new Throwable(), createMock(XmlNode.class));
+    formatter.onFailureOrError(failingTest(), new Throwable(), mock(XmlNode.class));
     // no assertions to be made...are we sure this test is meaningful?
   }
 
@@ -101,6 +90,6 @@ public class ScreenshotOnFailureResultFormatter_onFailureOrError_Test {
   }
 
   private junit.framework.Test failingTest() {
-    return createMock(junit.framework.Test.class);
+    return mock(junit.framework.Test.class);
   }
 }

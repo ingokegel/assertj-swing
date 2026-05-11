@@ -16,9 +16,8 @@ import static org.apache.tools.ant.taskdefs.optional.junit.XMLConstants.ATTR_MES
 import static org.apache.tools.ant.taskdefs.optional.junit.XMLConstants.ATTR_TYPE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.swing.junit.xml.XmlAttribute.name;
-import static org.easymock.EasyMock.expectLastCall;
+import static org.mockito.Mockito.verify;
 
-import org.fest.mocks.EasyMockTemplate;
 import org.junit.Test;
 
 /**
@@ -32,36 +31,15 @@ public class TestXmlNodeWriter_writeError_Test extends TestXmlNodeWriter_TestCas
   public void should_Write_Error_Type_And_Message_As_Attributes() {
     final String errorMsg = "Thrown on purpose";
     final Exception e = new Exception(errorMsg);
-    new EasyMockTemplate(targetNode) {
-      @Override
-      protected void expectations() {
-        targetNode.addAttribute(name(ATTR_MESSAGE).value(errorMsg));
-        expectLastCall().once();
-        targetNode.addAttribute(name(ATTR_TYPE).value(Exception.class.getName()));
-        expectLastCall().once();
-      }
-
-      @Override
-      protected void codeToTest() {
-        assertThat(writer.writeError(targetNode, e)).isSameAs(writer);
-      }
-    }.run();
+    assertThat(writer.writeError(targetNode, e)).isSameAs(writer);
+    verify(targetNode).addAttribute(name(ATTR_MESSAGE).value(errorMsg));
+    verify(targetNode).addAttribute(name(ATTR_TYPE).value(Exception.class.getName()));
   }
 
   @Test
   public void should_Write_Only_Error_Type_As_Attribute_When_Error_Message_Is_Empty() {
     final Exception e = new Exception("");
-    new EasyMockTemplate(targetNode) {
-      @Override
-      protected void expectations() {
-        targetNode.addAttribute(name(ATTR_TYPE).value(Exception.class.getName()));
-        expectLastCall().once();
-      }
-
-      @Override
-      protected void codeToTest() {
-        assertThat(writer.writeError(targetNode, e)).isSameAs(writer);
-      }
-    }.run();
+    assertThat(writer.writeError(targetNode, e)).isSameAs(writer);
+    verify(targetNode).addAttribute(name(ATTR_TYPE).value(Exception.class.getName()));
   }
 }

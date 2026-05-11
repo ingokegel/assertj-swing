@@ -52,6 +52,9 @@
         <version>3.5.5</version>
         <configuration>
           <rerunFailingTestsCount>3</rerunFailingTestsCount>
+          <!-- The xvfb wrapper gives the JVM a real DISPLAY; ensure Surefire doesn't
+               override that with headless=true. -->
+          <argLine>-Djava.awt.headless=false</argLine>
         </configuration>
       </plugin>
       <plugin>
@@ -160,6 +163,11 @@
             <artifactId>fest-util</artifactId>
           </exclusion>
       </exclusions>
+      </dependency>
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>4.13.2</version>
       </dependency>
       <dependency>
         <groupId>nl.jqno.equalsverifier</groupId>

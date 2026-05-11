@@ -14,12 +14,11 @@ package org.assertj.swing.junit.runner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Files.currentFolder;
-import static org.easymock.EasyMock.expect;
-import static org.easymock.classextension.EasyMock.createMock;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import java.io.File;
 
-import org.fest.mocks.EasyMockTemplate;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -35,23 +34,14 @@ public class ImageFolderCreator_createImageFolder_Test {
 
   @Before
   public void setUp() {
-    folderCreator = createMock(FolderCreator.class);
+    folderCreator = mock(FolderCreator.class);
     imageFolderCreator = new ImageFolderCreator(folderCreator);
   }
 
   @Test
   public void should_Create_Image_Folder() {
     final File createdFolder = new File("fake");
-    new EasyMockTemplate(folderCreator) {
-      @Override
-      protected void expectations() {
-        expect(folderCreator.createFolder(currentFolder(), "failed-gui-tests", true)).andReturn(createdFolder);
-      }
-
-      @Override
-      protected void codeToTest() {
-        assertThat(imageFolderCreator.createImageFolder()).isSameAs(createdFolder);
-      }
-    }.run();
+    when(folderCreator.createFolder(currentFolder(), "failed-gui-tests", true)).thenReturn(createdFolder);
+    assertThat(imageFolderCreator.createImageFolder()).isSameAs(createdFolder);
   }
 }

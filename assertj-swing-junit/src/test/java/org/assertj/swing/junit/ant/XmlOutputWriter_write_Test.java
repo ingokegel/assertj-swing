@@ -14,15 +14,14 @@ package org.assertj.swing.junit.ant;
 
 import static java.lang.System.lineSeparator;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.easymock.EasyMock.expect;
-import static org.easymock.classextension.EasyMock.createMock;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 import org.assertj.swing.junit.xml.XmlDocument;
 import org.assertj.swing.junit.xml.XmlNode;
-import org.fest.mocks.EasyMockTemplate;
 import org.junit.Test;
 
 /**
@@ -42,21 +41,12 @@ public class XmlOutputWriter_write_Test extends XmlOutputWriter_TestCase {
   }
 
   @Test
-  public void should_Not_Close_OutputStream_When_Using_SystemOut_Or_SystemErr() {
-    final StandardOutputStreams streams = createMock(StandardOutputStreams.class);
+  public void should_Not_Close_OutputStream_When_Using_SystemOut_Or_SystemErr() throws Exception {
+    final StandardOutputStreams streams = mock(StandardOutputStreams.class);
     writer = new XmlOutputWriter(streams);
     final MyOutputStream out = new MyOutputStream();
-    new EasyMockTemplate(streams) {
-      @Override
-      protected void expectations() {
-        expect(streams.isStandardOutOrErr(out)).andReturn(true);
-      }
-
-      @Override
-      protected void codeToTest() throws Exception {
-        writer.write(xml(), out);
-      }
-    }.run();
+    when(streams.isStandardOutOrErr(out)).thenReturn(true);
+    writer.write(xml(), out);
     String actual = new String(out.toByteArray());
     assertThat(actual).isEqualTo(expectedXml());
     assertThat(out.closed).isFalse();

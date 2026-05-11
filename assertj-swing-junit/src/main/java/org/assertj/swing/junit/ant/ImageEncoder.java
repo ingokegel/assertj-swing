@@ -13,19 +13,17 @@
 package org.assertj.swing.junit.ant;
 
 import static org.assertj.swing.image.ImageFileExtensions.PNG;
-import static org.assertj.swing.junit.ant.CommonConstants.UTF_8;
 
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.Base64;
 
 import javax.imageio.ImageIO;
 
-import org.apache.commons.codec.binary.Base64;
-
 /**
  * Understands how to encode a given image using the base64 algorithm.
- * 
+ *
  * @author Alex Ruiz
  */
 class ImageEncoder {
@@ -33,8 +31,7 @@ class ImageEncoder {
   String encodeBase64(BufferedImage image) throws IOException {
     try (ByteArrayOutputStream out = new ByteArrayOutputStream()) {
       ImageIO.write(image, PNG, out);
-      byte[] encoded = Base64.encodeBase64(out.toByteArray());
-      return new String(encoded, UTF_8);
+      return Base64.getEncoder().encodeToString(out.toByteArray());
     }
   }
 }

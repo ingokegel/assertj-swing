@@ -12,27 +12,21 @@
  */
 package org.assertj.swing.junit.ant;
 
-import static org.assertj.swing.junit.ant.CommonConstants.UTF_8;
-
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.util.Base64;
 
 import javax.imageio.ImageIO;
 
-import org.apache.commons.codec.binary.Base64;
-
 /**
  * Understands how to decode base64 characters into an image.
- * 
+ *
  * @author Alex Ruiz
  */
 class ImageDecoder {
 
   BufferedImage decodeBase64(String encoded) throws IOException {
-    ByteArrayInputStream in = null;
-    byte[] toDecode = encoded.getBytes(UTF_8);
-    in = new ByteArrayInputStream(Base64.decodeBase64(toDecode));
-    return ImageIO.read(in);
+    return ImageIO.read(new ByteArrayInputStream(Base64.getDecoder().decode(encoded)));
   }
 }

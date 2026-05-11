@@ -12,14 +12,14 @@
  */
 package org.assertj.swing.junit.ant;
 
-import static org.easymock.classextension.EasyMock.createMock;
+import static org.mockito.Mockito.mock;
 
 import org.assertj.swing.junit.xml.XmlNode;
 import org.junit.Before;
 
 /**
  * Base test case for <code>{@link EnvironmentXmlNodeWriter}</code>.
- * 
+ *
  * @author Alex Ruiz
  */
 public abstract class EnvironmentXmlNodeWriter_TestCase {
@@ -31,9 +31,9 @@ public abstract class EnvironmentXmlNodeWriter_TestCase {
 
   @Before
   public final void setUp() {
-    targetNode = createMock(XmlNode.class);
-    timeStampFormatter = createMock(TimestampFormatter.class);
-    hostNameReader = createMock(HostNameReader.class);
+    targetNode = mock(XmlNode.class);
+    timeStampFormatter = mock(TimestampFormatter.class);
+    hostNameReader = mock(HostNameReader.class);
     writer = new EnvironmentXmlNodeWriter(timeStampFormatter, hostNameReader);
     onSetUp();
   }

@@ -15,15 +15,14 @@ package org.assertj.swing.junit.ant;
 import static org.apache.tools.ant.taskdefs.optional.junit.XMLConstants.ATTR_NAME;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.swing.junit.xml.XmlAttribute.name;
-import static org.easymock.EasyMock.expectLastCall;
+import static org.mockito.Mockito.verify;
 
 import org.apache.tools.ant.taskdefs.optional.junit.JUnitTest;
-import org.fest.mocks.EasyMockTemplate;
 import org.junit.Test;
 
 /**
  * Tests for <code>{@link SuiteXmlNodeWriter#writeSuiteName(org.assertj.swing.junit.xml.XmlNode, JUnitTest)}</code>.
- * 
+ *
  * @author Alex Ruiz
  */
 public class SuiteXmlNodeWriter_writeSuiteName_Test extends SuiteXmlNodeWriter_TestCase {
@@ -31,34 +30,15 @@ public class SuiteXmlNodeWriter_writeSuiteName_Test extends SuiteXmlNodeWriter_T
   @Test
   public void should_Write_Suite_Name_As_Attribute() {
     final JUnitTest suite = new JUnitTest("Hello");
-    new EasyMockTemplate(targetNode) {
-      @Override
-      protected void expectations() throws Exception {
-        targetNode.addAttribute(name(ATTR_NAME).value("Hello"));
-        expectLastCall().once();
-      }
-
-      @Override
-      protected void codeToTest() {
-        assertThat(writer.writeSuiteName(targetNode, suite)).isSameAs(writer);
-      }
-    }.run();
+    assertThat(writer.writeSuiteName(targetNode, suite)).isSameAs(writer);
+    verify(targetNode).addAttribute(name(ATTR_NAME).value("Hello"));
   }
 
   @Test
   public void should_Write_Word_Unknown_As_Attribute_If_Suite_Does_Not_Have_Name() {
     final JUnitTest suite = new JUnitTest(null);
-    new EasyMockTemplate(targetNode) {
-      @Override
-      protected void expectations() throws Exception {
-        targetNode.addAttribute(name(ATTR_NAME).value("unknown"));
-      }
-
-      @Override
-      protected void codeToTest() {
-        assertThat(writer.writeSuiteName(targetNode, suite)).isSameAs(writer);
-      }
-    }.run();
+    assertThat(writer.writeSuiteName(targetNode, suite)).isSameAs(writer);
+    verify(targetNode).addAttribute(name(ATTR_NAME).value("unknown"));
   }
 
 }
