@@ -98,9 +98,8 @@ class Context {
   }
 
   /**
-   * Return the event queue corresponding to the given AWT or Swing {@code Component}. In most cases, this is the same
-   * as {@link java.awt.Toolkit#getSystemEventQueue()}, but in the case of applets will bypass the {@code AppContext}
-   * and provide the real event queue.
+   * Return the event queue corresponding to the given AWT or Swing {@code Component}, which is the same as
+   * {@link java.awt.Toolkit#getSystemEventQueue()} for the component's top-level ancestor.
    *
    * @param c the given {@code Component}.
    * @return the event queue corresponding to the given {@code Component}.
@@ -121,8 +120,7 @@ class Context {
   @Nullable private static Component topParentOf(final @Nonnull Component c) {
     return execute(() -> {
       Component parent = c;
-      // Components above the applet in the hierarchy may or may not share the same context with the applet itself.
-      while (!(parent instanceof java.applet.Applet) && parent.getParent() != null) {
+      while (parent.getParent() != null) {
         parent = parent.getParent();
       }
       return parent;
