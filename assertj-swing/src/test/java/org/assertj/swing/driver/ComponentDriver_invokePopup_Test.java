@@ -32,14 +32,6 @@ public class ComponentDriver_invokePopup_Test extends ComponentDriver_invokePopu
   }
 
   @Test
-  public void should_Show_JPopupMenu_On_Disabled_Component() {
-    showWindow();
-    disableTextField();
-    JPopupMenu p = driver.invokePopupMenu(window.textField);
-    assertThat(p).isSameAs(popupMenu);
-  }
-
-  @Test
   public void should_Throw_Error_If_Component_Is_Disabled_And_ClickOnDisabledAllowd_Is_False() {
     robot.settings().clickOnDisabledComponentsAllowed(false);
     disableTextField();

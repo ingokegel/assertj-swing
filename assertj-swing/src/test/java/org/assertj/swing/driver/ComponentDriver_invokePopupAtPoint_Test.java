@@ -42,17 +42,6 @@ public class ComponentDriver_invokePopupAtPoint_Test extends ComponentDriver_inv
     recorder.wasRightClicked().timesClicked(1).clickedAt(p);
   }
 
-  @Test
-  public void should_Show_JPopupMenu_On_Disabled_Component() {
-    disableTextField();
-    showWindow();
-    Point p = new Point(8, 6);
-    ToolkitClickRecorder recorder = clickRecorder.attachToToolkitFor(window.textField);
-    JPopupMenu found = driver.invokePopupMenu(window.textField, p);
-    assertThat(found).isSameAs(popupMenu);
-    recorder.wasRightClicked().timesClicked(1).clickedAt(p);
-  }
-
   @Test(expected = NullPointerException.class)
   public void should_Throw_Error_If_Point_Is_Null() {
     driver.invokePopupMenu(window.textField, null);

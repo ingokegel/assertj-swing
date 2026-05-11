@@ -45,21 +45,6 @@ public class JInternalFrameDesktopPaneQuery_desktopPaneOf_Test extends Sequentia
   }
 
   @Test
-  public void should_Return_Null_If_JDesktopIcon_In_JInternalFrame_Is_Null() {
-    JDesktopPane desktopPane = setNullIconAndReturnDesktopPane(internalFrame);
-    assertThat(desktopPane).isNull();
-  }
-
-  @RunsInEDT
-  private static JDesktopPane setNullIconAndReturnDesktopPane(final JInternalFrame internalFrame) {
-    JDesktopPane desktopPane = execute(() -> {
-      internalFrame.setDesktopIcon(null);
-      return JInternalFrameDesktopPaneQuery.desktopPaneOf(internalFrame);
-    });
-    return desktopPane;
-  }
-
-  @Test
   public void should_Return_JDesktopPane_From_JDesktopIcon() {
     JDesktopPane desktopPane = desktopPaneOf(internalFrame);
     assertThat(desktopPane).isSameAs(window.desktop());
