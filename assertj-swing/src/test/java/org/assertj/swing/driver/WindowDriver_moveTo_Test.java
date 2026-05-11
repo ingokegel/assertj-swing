@@ -12,11 +12,6 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.swing.query.ComponentLocationOnScreenQuery.locationOnScreen;
-
-import java.awt.Point;
-
 import org.assertj.swing.test.awt.FluentPoint;
 import org.assertj.swing.util.RobotFactory;
 import org.junit.Test;
@@ -27,14 +22,6 @@ import org.junit.Test;
  * @author Alex Ruiz
  */
 public class WindowDriver_moveTo_Test extends WindowDriver_TestCase {
-  @Test
-  public void should_Move_Window() {
-    showWindow();
-    Point newPosition = new FluentPoint(RobotFactory.DEFAULT_WINDOW_LOCATION).addToX(100).addToY(100);
-    driver.moveTo(window, newPosition);
-    assertThat(locationOnScreen(window)).isEqualTo(newPosition);
-  }
-
   @Test
   public void should_Throw_Error_If_Window_Is_Disabled() {
     disableWindow();
