@@ -18,11 +18,12 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
         <configuration>
-          <forkMode>always</forkMode>
+          <forkCount>1</forkCount>
+          <reuseForks>false</reuseForks>
           <includes>
             <include>**/*Test.java</include>
           </includes>
-          <argLine>-Xms512m -Xmx512m</argLine>
+          <argLine>-Xms512m -Xmx512m --add-opens java.base/java.util=ALL-UNNAMED --add-opens java.desktop/java.awt=ALL-UNNAMED</argLine>
         </configuration>
       </plugin>
       <plugin>
