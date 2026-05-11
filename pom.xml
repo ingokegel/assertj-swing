@@ -9,7 +9,7 @@
   </parent>
 
   <artifactId>assertj-swing-parent-pom</artifactId>
-  <version>3.17.2-PRE2</version>
+  <version>3.17.2-PRE5</version>
   <packaging>pom</packaging>
   <name>AssertJ Swing: Fluent assertions for java unit testing</name>
   <description>Parent POM for all AssertJ-Swing modules</description>
@@ -38,6 +38,15 @@
         <configuration>
           <arguments>-DskipTests</arguments>
         </configuration>
+      </plugin>
+      <!-- This fork deploys to GitHub Packages, not to OSSRH. Setting extensions=false on the
+           inherited nexus-staging-maven-plugin removes its lifecycle injection; the deploy
+           phase then falls back to the standard maven-deploy-plugin binding, which honors
+           -DaltDeploymentRepository. -->
+      <plugin>
+        <groupId>org.sonatype.plugins</groupId>
+        <artifactId>nexus-staging-maven-plugin</artifactId>
+        <extensions>false</extensions>
       </plugin>
     </plugins>
   </build>
