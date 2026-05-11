@@ -169,4 +169,32 @@
   <properties>
     <maven.compiler.release>25</maven.compiler.release>
   </properties>
+
+  <!-- Auto-activated on Linux when DISPLAY is unset: runs Surefire-forked JVMs under xvfb-run.
+       Force off by exporting DISPLAY (or running under a real X session). -->
+  <profiles>
+    <profile>
+      <id>xvfb</id>
+      <activation>
+        <os><family>unix</family></os>
+        <property><name>!env.DISPLAY</name></property>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <configuration>
+              <jvm>${maven.multiModuleProjectDirectory}/.mvn/xvfb-jdk/bin/java</jvm>
+              <!-- The wrapper script needs the real JDK; can't use JAVA_HOME because
+                   Surefire overrides it to the wrapper's parent dir. -->
+              <environmentVariables>
+                <XVFB_REAL_JAVA>${java.home}/bin/java</XVFB_REAL_JAVA>
+              </environmentVariables>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 </project>

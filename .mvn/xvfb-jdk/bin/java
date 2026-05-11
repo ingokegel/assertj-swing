@@ -1,0 +1,41 @@
+#!/bin/bash
+# Wraps the JVM in xvfb-run + a lightweight window manager so Swing/AWT
+# tests can run on a headless Linux host. A real WM is required because
+# assertj-swing relies on focus events, window activation, and decoration
+# insets that the bare Xvfb server does not provide.
+#
+# Invoked by Surefire via <jvm> when the 'xvfb' profile is active.
+#
+# Surefire derives JAVA_HOME from the parent of <jvm>, so JAVA_HOME inside
+# this script points at .mvn/xvfb-jdk. The real JDK is passed in via XVFB_REAL_JAVA,
+# set by the surefire <environmentVariables> block in the xvfb profile.
+
+set -e
+
+REAL_JAVA="${XVFB_REAL_JAVA:?XVFB_REAL_JAVA must point to a real java executable}"
+SCREEN="${XVFB_SCREEN:-1920x1200x24}"
+WM="${XVFB_WM:-metacity}"
+
+for tool in xvfb-run "$WM"; do
+  if ! command -v "$tool" >/dev/null 2>&1; then
+    echo "ERROR: $tool not found on PATH" >&2
+    exit 1
+  fi
+done
+
+if [ ! -x "$REAL_JAVA" ]; then
+  echo "ERROR: XVFB_REAL_JAVA=$REAL_JAVA not executable" >&2
+  exit 1
+fi
+
+# Refuse to run if the resolved real java would land back in this wrapper dir.
+WRAPPER_DIR="$(cd "$(dirname "$0")/.." && pwd)"
+REAL_DIR="$(cd "$(dirname "$REAL_JAVA")/.." && pwd)"
+if [ "$WRAPPER_DIR" = "$REAL_DIR" ]; then
+  echo "ERROR: XVFB_REAL_JAVA points at the wrapper itself ($REAL_JAVA) — would recurse" >&2
+  exit 1
+fi
+
+exec xvfb-run --auto-servernum --server-args="-screen 0 $SCREEN" \
+  bash -c "$WM >/dev/null 2>&1 & sleep 0.5; exec \"\$@\"" \
+  bash "$REAL_JAVA" "$@"
