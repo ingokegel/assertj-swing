@@ -56,6 +56,7 @@ import java.awt.*;
 import java.awt.event.InvocationEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
+import java.lang.reflect.Method;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
@@ -117,6 +118,16 @@ public class BasicRobot implements Robot {
   private static Toolkit toolkit = ToolkitProvider.instance().defaultToolkit();
   private static WindowMonitor windowMonitor = WindowMonitor.instance();
   private static InputState inputState = new InputState(toolkit);
+
+  private static final Method EVENT_QUEUE_GET_DISPATCH_THREAD;
+  static {
+    try {
+      EVENT_QUEUE_GET_DISPATCH_THREAD = EventQueue.class.getDeclaredMethod("getDispatchThread");
+      EVENT_QUEUE_GET_DISPATCH_THREAD.setAccessible(true);
+    } catch (NoSuchMethodException e) {
+      throw new ExceptionInInitializerError(e);
+    }
+  }
 
   private final ComponentHierarchy hierarchy;
   private final Object screenLockOwner;
@@ -794,9 +805,10 @@ public class BasicRobot implements Robot {
         waitForIdle(checkNotNull(toolkit.getSystemEventQueue()));
         return;
       }
-      // FIXME this resurrects dead event queues
       for (EventQueue queue : queues) {
-        waitForIdle(checkNotNull(queue));
+        if (!isOrphanedQueue(queue)) {
+          waitForIdle(checkNotNull(queue));
+        }
       }
     }
   }
@@ -817,6 +829,25 @@ public class BasicRobot implements Robot {
       EventQueue.invokeAndWait(EMPTY_RUNNABLE);
     } catch (Exception e) {
       throw new UnexpectedException("could not invokeAndWait", e);
+    }
+  }
+
+  // Without filtering orphaned queues, every waitForIdle after a heavyweight popup interaction from a submenu blocks
+  // for the full idleTimeout on an idle probe to a queue that no thread is dispatching to.
+  private boolean isOrphanedQueue(@Nonnull EventQueue eventQueue) {
+    EventQueue systemQueue = toolkit.getSystemEventQueue();
+    if (eventQueue == systemQueue) {
+      return false;
+    }
+    try {
+      Thread dispatchThread = (Thread) EVENT_QUEUE_GET_DISPATCH_THREAD.invoke(eventQueue);
+      if (dispatchThread == null || !dispatchThread.isAlive()) {
+        return true;
+      }
+      Thread systemDispatchThread = (Thread) EVENT_QUEUE_GET_DISPATCH_THREAD.invoke(systemQueue);
+      return dispatchThread == systemDispatchThread;
+    } catch (ReflectiveOperationException e) {
+      throw new IllegalStateException("Reflective access to EventQueue.getDispatchThread failed", e);
     }
   }
 
