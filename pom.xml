@@ -9,7 +9,7 @@
   </parent>
 
   <artifactId>assertj-swing-parent-pom</artifactId>
-  <version>3.17.2-PRE5</version>
+  <version>3.17.2-PRE6</version>
   <packaging>pom</packaging>
   <name>AssertJ Swing: Fluent assertions for java unit testing</name>
   <description>Parent POM for all AssertJ-Swing modules</description>

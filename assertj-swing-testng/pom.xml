@@ -6,7 +6,7 @@
   <parent>
     <groupId>org.assertj</groupId>
     <artifactId>assertj-swing-parent-pom</artifactId>
-    <version>3.17.2-PRE5</version>
+    <version>3.17.2-PRE6</version>
   </parent>
 
   <artifactId>assertj-swing-testng</artifactId>
@@ -61,7 +61,7 @@
     <dependency>
       <groupId>org.assertj</groupId>
       <artifactId>assertj-swing</artifactId>
-      <version>3.17.2-PRE5</version>
+      <version>3.17.2-PRE6</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
