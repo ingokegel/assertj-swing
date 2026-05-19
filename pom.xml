@@ -172,7 +172,7 @@
       <dependency>
         <groupId>nl.jqno.equalsverifier</groupId>
         <artifactId>equalsverifier</artifactId>
-        <version>4.5</version>
+        <version>3.19.4</version>
         <scope>test</scope>
       </dependency>
       <!-- needed to read Java 25 class files. -->
@@ -191,7 +191,7 @@
     </dependencies>
   </dependencyManagement>
   <properties>
-    <maven.compiler.release>25</maven.compiler.release>
+    <maven.compiler.release>8</maven.compiler.release>
   </properties>
 
   <!-- Auto-activated on Linux when DISPLAY is unset: runs Surefire-forked JVMs under xvfb-run.

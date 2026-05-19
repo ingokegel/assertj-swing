@@ -16,12 +16,16 @@ import java.awt.Dialog.ModalExclusionType;
 import java.awt.Dialog.ModalityType;
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
+import java.awt.dnd.DragGestureEvent;
+import java.awt.dnd.InvalidDnDOperationException;
+import java.awt.dnd.peer.DragSourceContextPeer;
 import java.awt.event.AWTEventListener;
 import java.awt.font.TextAttribute;
 import java.awt.im.InputMethodHighlight;
 import java.awt.image.ColorModel;
 import java.awt.image.ImageObserver;
 import java.awt.image.ImageProducer;
+import java.awt.peer.*;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -204,6 +208,122 @@ public class ToolkitStub extends Toolkit {
 
   @Override
   public void sync() {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  protected ButtonPeer createButton(Button target) throws HeadlessException {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  protected CanvasPeer createCanvas(Canvas target) {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  protected CheckboxPeer createCheckbox(Checkbox target) throws HeadlessException {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  protected CheckboxMenuItemPeer createCheckboxMenuItem(CheckboxMenuItem target) throws HeadlessException {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  protected ChoicePeer createChoice(Choice target) throws HeadlessException {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  protected DesktopPeer createDesktopPeer(Desktop target) throws HeadlessException {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  protected DialogPeer createDialog(Dialog target) throws HeadlessException {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  public DragSourceContextPeer createDragSourceContextPeer(DragGestureEvent dge) throws InvalidDnDOperationException {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  protected FileDialogPeer createFileDialog(FileDialog target) throws HeadlessException {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  protected FramePeer createFrame(Frame target) throws HeadlessException {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  protected LabelPeer createLabel(Label target) throws HeadlessException {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  protected ListPeer createList(java.awt.List target) throws HeadlessException {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  protected MenuPeer createMenu(Menu target) throws HeadlessException {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  protected MenuBarPeer createMenuBar(MenuBar target) throws HeadlessException {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  protected MenuItemPeer createMenuItem(MenuItem target) throws HeadlessException {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  protected PanelPeer createPanel(Panel target) {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  protected PopupMenuPeer createPopupMenu(PopupMenu target) throws HeadlessException {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  protected ScrollPanePeer createScrollPane(ScrollPane target) throws HeadlessException {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  protected ScrollbarPeer createScrollbar(Scrollbar target) throws HeadlessException {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  protected TextAreaPeer createTextArea(TextArea target) throws HeadlessException {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  protected TextFieldPeer createTextField(TextField target) throws HeadlessException {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  protected WindowPeer createWindow(Window target) throws HeadlessException {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  @Deprecated
+  protected FontPeer getFontPeer(String name, int style) {
     throw new UnsupportedOperationException();
   }
 }
