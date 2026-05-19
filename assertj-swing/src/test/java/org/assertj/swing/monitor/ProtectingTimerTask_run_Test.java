@@ -47,13 +47,6 @@ public class ProtectingTimerTask_run_Test {
     assertThat(underProtection.executed).isTrue();
   }
 
-  @Test
-  public void shouldNotExecuteIfTaskUnderProtectionIsCancelled() {
-    underProtection.cancel();
-    protecting.run();
-    assertThat(underProtection.executed).isFalse();
-  }
-
   private static class MyTimerTask extends TimerTask {
     boolean executed;
     RuntimeException exceptionToThrow;

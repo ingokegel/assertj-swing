@@ -120,12 +120,17 @@ public class BasicRobot implements Robot {
 
   private static final Method EVENT_QUEUE_GET_DISPATCH_THREAD;
   static {
+    Method method;
     try {
-      EVENT_QUEUE_GET_DISPATCH_THREAD = EventQueue.class.getDeclaredMethod("getDispatchThread");
-      EVENT_QUEUE_GET_DISPATCH_THREAD.setAccessible(true);
+      method = EventQueue.class.getDeclaredMethod("getDispatchThread");
+      method.setAccessible(true);
     } catch (NoSuchMethodException e) {
       throw new ExceptionInInitializerError(e);
+    } catch (RuntimeException e) {
+      // InaccessibleObjectException when java.desktop/java.awt is not opened.
+      method = null;
     }
+    EVENT_QUEUE_GET_DISPATCH_THREAD = method;
   }
 
   private final ComponentHierarchy hierarchy;
@@ -818,6 +823,11 @@ public class BasicRobot implements Robot {
   private boolean isOrphanedQueue(@Nonnull EventQueue eventQueue) {
     EventQueue systemQueue = toolkit.getSystemEventQueue();
     if (eventQueue == systemQueue) {
+      return false;
+    }
+    if (EVENT_QUEUE_GET_DISPATCH_THREAD == null) {
+      // No reflective access; can't tell orphan apart from a live private queue. Treating it
+      // as not-orphaned is safe for callers that don't use heavyweight popups.
       return false;
     }
     try {
