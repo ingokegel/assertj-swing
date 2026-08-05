@@ -6,7 +6,7 @@
   <parent>
     <groupId>org.assertj</groupId>
     <artifactId>assertj-swing-parent-pom</artifactId>
-    <version>3.18.1</version>
+    <version>3.18.2</version>
   </parent>
 
   <artifactId>assertj-swing-testng</artifactId>
@@ -61,17 +61,13 @@
     <dependency>
       <groupId>org.assertj</groupId>
       <artifactId>assertj-swing</artifactId>
-      <version>3.18.1</version>
+      <version>3.18.2</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>org.mockito</groupId>
       <artifactId>mockito-core</artifactId>
       <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.easytesting</groupId>
-      <artifactId>fest-reflect</artifactId>
     </dependency>
   </dependencies>
   <reporting>
