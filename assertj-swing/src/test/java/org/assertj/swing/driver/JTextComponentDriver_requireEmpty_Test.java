@@ -37,7 +37,7 @@ public class JTextComponentDriver_requireEmpty_Test extends JTextComponentDriver
   public void should_Fail_If_JTexComponent_Is_Not_Empty() {
     setTextFieldText("Hi");
     thrown.expect(AssertionError.class);
-    thrown.expectMessageToContain("property:'text'", "Expecting empty but was:<\"Hi\">");
+    thrown.expectMessageToContain("property:'text'", "Expecting empty but was: \"Hi\"");
     driver.requireEmpty(textField);
   }
 }

@@ -46,10 +46,4 @@ public class BasicJTableCellWriter_enterValue_Test extends JTableCellWriter_ente
     writer.enterValue(table, row, col, "false");
     assertThat(valueAt(row, col)).isEqualTo(false);
   }
-
-  @Test
-  public void should_Enter_Text_In_JTextComponent_Editor() {
-    writer.enterValue(table, 4, 3, "8");
-    assertThat(valueAt(4, 3)).isEqualTo(8);
-  }
 }

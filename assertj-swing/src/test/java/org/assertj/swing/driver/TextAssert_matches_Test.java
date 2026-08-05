@@ -32,14 +32,14 @@ public class TextAssert_matches_Test {
   @Test
   public void should_Fail_If_Actual_Does_Not_Match_Regex_Pattern() {
     thrown.expect(AssertionError.class);
-    thrown.expectMessage("Expecting:\n \"hello\"\nto match pattern:\n \"bye\"");
+    thrown.expectMessage("Expecting actual:\n  \"hello\"\nto match pattern:\n  \"bye\"");
     new TextAssert("hello").matches(Pattern.compile("bye"));
   }
 
   @Test
   public void should_Fail_Showing_Description_If_Actual_Does_Not_Match_Regex_Pattern() {
     thrown.expect(AssertionError.class);
-    thrown.expectMessage("[A Test] \nExpecting:\n \"hello\"\nto match pattern:\n \"bye\"");
+    thrown.expectMessage("[A Test] \nExpecting actual:\n  \"hello\"\nto match pattern:\n  \"bye\"");
     new TextAssert("hello").as("A Test").matches(Pattern.compile("bye"));
   }
 

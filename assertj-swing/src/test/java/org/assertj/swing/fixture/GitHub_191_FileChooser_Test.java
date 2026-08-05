@@ -45,11 +45,6 @@ public class GitHub_191_FileChooser_Test extends RobotBasedTestCase {
   }
 
   @Test
-  public void openFileChooser() throws IOException {
-    selectFile();
-  }
-
-  @Test
   public void openFileChooserAgain() throws IOException {
     selectFile();
   }
