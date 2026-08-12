@@ -14,7 +14,6 @@ package org.assertj.swing.keystroke;
 
 import static java.lang.Thread.currentThread;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.util.Closeables.closeQuietly;
 import static org.assertj.core.util.Lists.newArrayList;
 import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.core.util.Preconditions.checkNotNullOrEmpty;
@@ -41,6 +40,7 @@ import javax.annotation.Nonnull;
 
 import org.assertj.core.util.VisibleForTesting;
 import org.assertj.swing.exception.ParsingException;
+import org.assertj.swing.logging.Logger;
 import org.fest.reflect.exception.ReflectionError;
 
 /**
@@ -96,6 +96,8 @@ import org.fest.reflect.exception.ReflectionError;
  * @author Alex Ruiz
  */
 public class KeyStrokeMappingsParser {
+  private static final Logger logger = Logger.getLogger(KeyStrokeMappingsParser.class);
+
   private static final Map<String, Character> SPECIAL_MAPPINGS = newHashMap();
 
   static {
@@ -175,7 +177,11 @@ public class KeyStrokeMappingsParser {
       }
       return new ParsedKeyStrokeMappingProvider(mappings);
     } finally {
-      closeQuietly(reader);
+      try {
+        reader.close();
+      } catch (IOException e) {
+        logger.warning("Unable to close reader for key stroke mappings", e);
+      }
     }
   }
 
