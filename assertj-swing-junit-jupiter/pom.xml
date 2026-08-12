@@ -6,7 +6,7 @@
   <parent>
     <groupId>org.assertj</groupId>
     <artifactId>assertj-swing-parent-pom</artifactId>
-    <version>3.18.3</version>
+    <version>3.18.4</version>
   </parent>
 
   <artifactId>assertj-swing-junit-jupiter</artifactId>
@@ -22,7 +22,7 @@
     <dependency>
       <groupId>org.assertj</groupId>
       <artifactId>assertj-swing</artifactId>
-      <version>3.18.3</version>
+      <version>3.18.4</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
