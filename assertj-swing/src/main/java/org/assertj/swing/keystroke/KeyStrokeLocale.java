@@ -14,7 +14,8 @@ package org.assertj.swing.keystroke;
 
 import java.awt.im.InputContext;
 import java.util.Locale;
-import java.util.logging.Logger;
+
+import org.assertj.swing.logging.Logger;
 
 /**
  * The locale to use for mapping keystrokes.

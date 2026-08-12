@@ -13,18 +13,17 @@
 package org.assertj.swing.junit.runner;
 
 import static java.io.File.separator;
-import static java.util.logging.Level.WARNING;
 import static org.assertj.core.util.Strings.concat;
 import static org.assertj.core.util.Strings.quote;
 import static org.assertj.swing.image.ImageFileExtensions.PNG;
 
 import java.awt.GraphicsEnvironment;
 import java.io.File;
-import java.util.logging.Logger;
 
 import org.assertj.swing.image.NoopScreenshotTaker;
 import org.assertj.swing.image.ScreenshotTaker;
 import org.assertj.swing.image.ScreenshotTakerIF;
+import org.assertj.swing.logging.Logger;
 
 /**
  * Understands taking a screenshot of the desktop when a GUI test fails.
@@ -33,7 +32,7 @@ import org.assertj.swing.image.ScreenshotTakerIF;
  */
 public class FailureScreenshotTaker {
 
-  private static Logger logger = Logger.getAnonymousLogger();
+  private static Logger logger = Logger.getLogger(FailureScreenshotTaker.class);
 
   private final File imageFolder;
   private final ScreenshotTakerIF screenshotTaker;
@@ -63,7 +62,7 @@ public class FailureScreenshotTaker {
       screenshotTaker.saveDesktopAsPng(fileName);
       logger.info(concat("Screenshot of failed test saved as ", quote(fileName)));
     } catch (Exception e) {
-      logger.log(WARNING, concat("Unable to take screenshot of failed test ", quote(failedTest)), e);
+      logger.warning(concat("Unable to take screenshot of failed test ", quote(failedTest)), e);
     }
   }
 }

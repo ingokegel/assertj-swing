@@ -12,16 +12,14 @@
  */
 package org.assertj.swing.input;
 
-import static java.util.logging.Level.WARNING;
-
 import java.awt.Toolkit;
 import java.awt.event.AWTEventListener;
 import java.util.EmptyStackException;
-import java.util.logging.Logger;
 
 import javax.annotation.Nonnull;
 
 import org.assertj.core.util.VisibleForTesting;
+import org.assertj.swing.logging.Logger;
 
 /**
  * AWT event listener which normalizes the event stream:
@@ -46,7 +44,7 @@ class DragAwareEventNormalizer extends EventNormalizer {
       // execute(pushDragAwareEventQueueTask(toolkit, dragAwareEventQueue));
     } catch (RuntimeException e) {
       String msg = String.format("Ignoring error when starting up %s", DragAwareEventNormalizer.class.getName());
-      logger.log(WARNING, msg, e);
+      logger.warning(msg, e);
     }
   }
 

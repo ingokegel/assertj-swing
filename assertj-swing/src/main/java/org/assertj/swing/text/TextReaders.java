@@ -20,13 +20,13 @@ import static org.assertj.swing.util.Maps.newConcurrentHashMap;
 import java.awt.Component;
 import java.awt.Container;
 import java.util.concurrent.ConcurrentMap;
-import java.util.logging.Logger;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import org.assertj.core.util.VisibleForTesting;
 import org.assertj.swing.annotation.RunsInEDT;
+import org.assertj.swing.logging.Logger;
 
 /**
  * Registry of {@link TextReader}s.

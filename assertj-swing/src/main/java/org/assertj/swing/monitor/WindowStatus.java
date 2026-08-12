@@ -12,7 +12,6 @@
  */
 package org.assertj.swing.monitor;
 
-import static java.util.logging.Level.WARNING;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 import static org.assertj.swing.monitor.WindowMetrics.absoluteCenterOf;
 import static org.assertj.swing.query.ComponentSizeQuery.sizeOf;
@@ -23,12 +22,12 @@ import java.awt.Insets;
 import java.awt.Point;
 import java.awt.Robot;
 import java.awt.Window;
-import java.util.logging.Logger;
 
 import javax.annotation.Nonnull;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
 import org.assertj.swing.annotation.RunsInEDT;
+import org.assertj.swing.logging.Logger;
 import org.assertj.swing.util.RobotFactory;
 
 /**
@@ -56,7 +55,7 @@ class WindowStatus {
     try {
       r = robotFactory.newRobotInLeftScreen();
     } catch (AWTException ignored) {
-      logger.log(WARNING, "Error ocurred when creating a new Robot", ignored);
+      logger.warning("Error ocurred when creating a new Robot", ignored);
     }
     robot = r;
   }
@@ -81,7 +80,7 @@ class WindowStatus {
     } catch (Exception ignored) {
       // TODO We are getting InterruptedException in Xwnc
       // http://groups.google.com/group/easytesting/browse_frm/thread/116cc070ab7b22e6
-      logger.log(WARNING, "Error ocurred when checking if window is ready", ignored);
+      logger.warning("Error ocurred when checking if window is ready", ignored);
     }
   }
 

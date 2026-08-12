@@ -12,10 +12,9 @@
  */
 package org.assertj.swing.monitor;
 
-import static java.util.logging.Level.WARNING;
-
 import java.util.TimerTask;
-import java.util.logging.Logger;
+
+import org.assertj.swing.logging.Logger;
 
 /**
  * Prevents misbehaving {@code TimerTask}s from canceling the timer thread by throwing exceptions and/or errors.
@@ -42,6 +41,6 @@ class ProtectingTimerTask extends TimerTask {
   }
 
   private void handleException(Throwable thrown) {
-    logger.log(WARNING, "Exception thrown by a TimerTask", thrown);
+    logger.warning("Exception thrown by a TimerTask", thrown);
   }
 }

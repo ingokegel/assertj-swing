@@ -23,15 +23,14 @@
 package org.assertj.swing.junit.jupiter.screenshot;
 
 import static java.io.File.separator;
-import static java.util.logging.Level.SEVERE;
 
 import java.awt.GraphicsEnvironment;
 import java.io.File;
-import java.util.logging.Logger;
 
 import org.assertj.swing.image.NoopScreenshotTaker;
 import org.assertj.swing.image.ScreenshotTaker;
 import org.assertj.swing.image.ScreenshotTakerIF;
+import org.assertj.swing.logging.Logger;
 import org.jspecify.annotations.NonNull;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.TestWatcher;
@@ -62,7 +61,7 @@ public class ScreenshotOnFailureExtension implements TestWatcher {
 
     private static final String DEFAULT_OUTPUT_DIR = "target" + separator + "failed-gui-test-screenshots";
 
-    private static final Logger logger = Logger.getAnonymousLogger();
+    private static final Logger logger = Logger.getLogger(ScreenshotOnFailureExtension.class);
 
     private final ScreenshotTakerIF screenshotTaker;
 
@@ -91,7 +90,7 @@ public class ScreenshotOnFailureExtension implements TestWatcher {
             screenshotTaker.saveDesktopAsPng(imagePath);
             logger.info("Screenshot of desktop saved as: " + imagePath);
         } catch (RuntimeException e) {
-            logger.log(SEVERE, "Unable to take screenshot of failed test", e);
+            logger.severe("Unable to take screenshot of failed test", e);
         }
     }
 

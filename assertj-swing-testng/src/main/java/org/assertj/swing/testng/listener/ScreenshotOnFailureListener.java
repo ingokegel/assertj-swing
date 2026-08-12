@@ -13,7 +13,6 @@
 package org.assertj.swing.testng.listener;
 
 import static java.io.File.separator;
-import static java.util.logging.Level.SEVERE;
 import static org.assertj.core.util.Strings.concat;
 import static org.assertj.core.util.Strings.quote;
 import static org.assertj.swing.testng.listener.ScreenshotFileNameGenerator.screenshotFileNameFrom;
@@ -21,7 +20,6 @@ import static org.assertj.swing.util.Strings.isNullOrEmpty;
 
 import java.awt.GraphicsEnvironment;
 import java.lang.reflect.Method;
-import java.util.logging.Logger;
 
 import org.assertj.core.util.VisibleForTesting;
 import org.assertj.swing.annotation.GUITestFinder;
@@ -29,6 +27,7 @@ import org.assertj.swing.image.ImageException;
 import org.assertj.swing.image.NoopScreenshotTaker;
 import org.assertj.swing.image.ScreenshotTaker;
 import org.assertj.swing.image.ScreenshotTakerIF;
+import org.assertj.swing.logging.Logger;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.Reporter;
@@ -62,7 +61,7 @@ import org.testng.Reporter;
  */
 public class ScreenshotOnFailureListener extends AbstractTestListener {
 
-  private static Logger logger = Logger.getAnonymousLogger();
+  private static Logger logger = Logger.getLogger(ScreenshotOnFailureListener.class);
 
   private ScreenshotTakerIF screenshotTaker;
   private OutputDirectory output;
@@ -75,7 +74,7 @@ public class ScreenshotOnFailureListener extends AbstractTestListener {
     try {
       screenshotTaker = GraphicsEnvironment.isHeadless() ? new NoopScreenshotTaker() : new ScreenshotTaker();
     } catch (ImageException e) {
-      logger.log(SEVERE, "Unable to create ScreenshotTaker", e);
+      logger.severe("Unable to create ScreenshotTaker", e);
     }
   }
 
@@ -128,7 +127,7 @@ public class ScreenshotOnFailureListener extends AbstractTestListener {
       output.createIfNecessary();
       screenshotTaker.saveDesktopAsPng(imagePath);
     } catch (Exception e) {
-      logger.log(SEVERE, e.getMessage(), e);
+      logger.severe(e.getMessage(), e);
       return null;
     }
     return imageName;

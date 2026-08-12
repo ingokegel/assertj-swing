@@ -21,7 +21,6 @@ import java.awt.Component;
 import java.awt.Dialog;
 import java.awt.Frame;
 import java.util.concurrent.ConcurrentMap;
-import java.util.logging.Logger;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -45,6 +44,7 @@ import javax.swing.text.JTextComponent;
 import org.assertj.core.util.VisibleForTesting;
 import org.assertj.swing.annotation.RunsInCurrentThread;
 import org.assertj.swing.annotation.RunsInEDT;
+import org.assertj.swing.logging.Logger;
 
 /**
  * Utility methods related to formatting.

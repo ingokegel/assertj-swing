@@ -16,11 +16,11 @@ import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.keystroke.KeyStrokeMappingProviderNames.generateNamesFrom;
 
 import java.util.Locale;
-import java.util.logging.Logger;
 
 import javax.annotation.Nonnull;
 
 import org.assertj.core.util.VisibleForTesting;
+import org.assertj.swing.logging.Logger;
 import org.assertj.swing.util.OSFamily;
 
 /**
