@@ -12,15 +12,15 @@
  */
 package org.assertj.swing.keystroke;
 
-import static java.awt.event.InputEvent.SHIFT_MASK;
-import static java.awt.event.KeyEvent.CHAR_UNDEFINED;
-import static org.assertj.swing.util.Platform.osFamily;
+import org.assertj.swing.annotation.VisibleForTesting;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import javax.swing.KeyStroke;
+import javax.swing.*;
 
-import org.assertj.core.util.VisibleForTesting;
+import static java.awt.event.InputEvent.SHIFT_MASK;
+import static java.awt.event.KeyEvent.CHAR_UNDEFINED;
+import static org.assertj.swing.util.Platform.osFamily;
 
 /**
  * A collection of {@link KeyStrokeMapping}.

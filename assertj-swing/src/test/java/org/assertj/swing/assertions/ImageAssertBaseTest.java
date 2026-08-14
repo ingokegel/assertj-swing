@@ -12,35 +12,23 @@
  */
 package org.assertj.swing.assertions;
 
-import static org.assertj.swing.test.awt.AwtTestData.fivePixelBlueImage;
-import static org.mockito.Mockito.mock;
+import org.assertj.swing.internal.assertions.Images;
+import org.junit.Before;
 
 import java.awt.image.BufferedImage;
 
-import org.assertj.core.api.BaseTestTemplate;
-import org.assertj.swing.internal.assertions.Images;
+import static org.assertj.swing.test.awt.AwtTestData.fivePixelBlueImage;
+import static org.mockito.Mockito.mock;
 
-/**
- * Base class for {@link ImageAssert} tests.
- * 
- * @author Olivier Michallat
- */
-public abstract class ImageAssertBaseTest extends BaseTestTemplate<ImageAssert, BufferedImage> {
+public abstract class ImageAssertBaseTest {
+  protected final BufferedImage actual = fivePixelBlueImage();
   protected Images images;
+  protected ImageAssert assertions;
 
-  @Override
-  protected ImageAssert create_assertions() {
-    return new ImageAssert(fivePixelBlueImage());
-  }
-
-  @Override
-  protected void inject_internal_objects() {
-    super.inject_internal_objects();
+  @Before
+  public void setUp() {
     images = mock(Images.class);
+    assertions = new ImageAssert(actual);
     assertions.images = images;
-  }
-
-  protected Images getImages(ImageAssert someAssertions) {
-    return someAssertions.images;
   }
 }

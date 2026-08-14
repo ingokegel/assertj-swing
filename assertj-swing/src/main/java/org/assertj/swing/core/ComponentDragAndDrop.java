@@ -12,21 +12,18 @@
  */
 package org.assertj.swing.core;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
+import org.assertj.swing.annotation.RunsInEDT;
+import org.assertj.swing.util.TimeoutWatch;
+
+import javax.annotation.Nonnull;
+import java.awt.*;
+
 import static org.assertj.swing.exception.ActionFailedException.actionFailure;
 import static org.assertj.swing.timing.Pause.pause;
 import static org.assertj.swing.util.Platform.isMacintosh;
 import static org.assertj.swing.util.Platform.isWindows;
+import static org.assertj.swing.util.Preconditions.checkNotNull;
 import static org.assertj.swing.util.TimeoutWatch.startWatchWithTimeoutOf;
-
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.Point;
-
-import javax.annotation.Nonnull;
-
-import org.assertj.swing.annotation.RunsInEDT;
-import org.assertj.swing.util.TimeoutWatch;
 
 /**
  * Simulates a user performing drag-and-drop.

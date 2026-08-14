@@ -12,10 +12,10 @@
  */
 package org.assertj.swing.junit.runner;
 
-import static org.assertj.core.util.Files.currentFolder;
-import static org.assertj.swing.core.Settings.shouldPreserveScreenshots;
-
 import java.io.File;
+
+import static org.assertj.swing.core.Settings.shouldPreserveScreenshots;
+import static org.assertj.swing.util.Files.currentFolder;
 
 /**
  * Understands creation of the folder where screenshots of failed GUI tests will be saved to.

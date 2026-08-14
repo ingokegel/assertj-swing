@@ -12,13 +12,12 @@
  */
 package org.assertj.swing.util;
 
-import static org.assertj.core.util.Preconditions.checkNotNullOrEmpty;
-import static org.assertj.core.util.Strings.concat;
-import static org.assertj.core.util.Strings.quote;
-
-import java.awt.Color;
-
 import javax.annotation.Nonnull;
+import java.awt.*;
+
+import static org.assertj.swing.util.Preconditions.checkNotNullOrEmpty;
+import static org.assertj.swing.util.Strings.concat;
+import static org.assertj.swing.util.Strings.quote;
 
 /**
  * Utility methods related to colors.

@@ -12,16 +12,14 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.core.util.Lists.newArrayList;
-import static org.assertj.swing.exception.ActionFailedException.actionFailure;
-
-import java.util.List;
+import org.assertj.swing.annotation.RunsInCurrentThread;
 
 import javax.annotation.Nonnull;
-import javax.swing.InputMap;
-import javax.swing.KeyStroke;
+import javax.swing.*;
+import java.util.List;
 
-import org.assertj.swing.annotation.RunsInCurrentThread;
+import static org.assertj.swing.exception.ActionFailedException.actionFailure;
+import static org.assertj.swing.util.Lists.newArrayList;
 
 /**
  * <p>

@@ -12,9 +12,16 @@
  */
 package org.assertj.swing.driver;
 
+import org.assertj.swing.annotation.RunsInEDT;
+import org.assertj.swing.core.Robot;
+import org.assertj.swing.internal.annotation.InternalApi;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import javax.swing.*;
+import java.awt.*;
+
 import static java.lang.Boolean.getBoolean;
-import static org.assertj.core.util.Preconditions.checkNotNull;
-import static org.assertj.core.util.Strings.concat;
 import static org.assertj.swing.core.WindowAncestorFinder.windowAncestorOf;
 import static org.assertj.swing.driver.ComponentPreconditions.checkEnabledAndShowing;
 import static org.assertj.swing.driver.JMenuPopupMenuQuery.popupMenuOf;
@@ -24,19 +31,8 @@ import static org.assertj.swing.exception.ActionFailedException.actionFailure;
 import static org.assertj.swing.format.Formatting.format;
 import static org.assertj.swing.timing.Pause.pause;
 import static org.assertj.swing.util.Platform.isOSX;
-
-import java.awt.Component;
-import java.awt.Window;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
-import javax.swing.JPopupMenu;
-
-import org.assertj.swing.annotation.RunsInEDT;
-import org.assertj.swing.core.Robot;
-import org.assertj.swing.internal.annotation.InternalApi;
+import static org.assertj.swing.util.Preconditions.checkNotNull;
+import static org.assertj.swing.util.Strings.concat;
 
 /**
  * <p>

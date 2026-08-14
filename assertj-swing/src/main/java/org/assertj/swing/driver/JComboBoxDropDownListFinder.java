@@ -12,24 +12,21 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.core.util.Lists.newArrayList;
-import static org.assertj.swing.timing.Pause.pause;
-import static org.assertj.swing.util.TimeoutWatch.startWatchWithTimeoutOf;
-
-import java.awt.Component;
-import java.awt.Container;
-import java.util.List;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import javax.swing.JList;
-import javax.swing.JPopupMenu;
-
 import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.core.ComponentMatcher;
 import org.assertj.swing.core.Robot;
 import org.assertj.swing.core.TypeMatcher;
 import org.assertj.swing.util.TimeoutWatch;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import javax.swing.*;
+import java.awt.*;
+import java.util.List;
+
+import static org.assertj.swing.timing.Pause.pause;
+import static org.assertj.swing.util.Lists.newArrayList;
+import static org.assertj.swing.util.TimeoutWatch.startWatchWithTimeoutOf;
 
 /**
  * Looks up the {@code JList} in the pop-up raised by a {@code JComboBox}, if the LAF actually uses one.

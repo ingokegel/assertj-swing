@@ -12,18 +12,17 @@
  */
 package org.assertj.swing.edt;
 
-import static javax.swing.SwingUtilities.invokeLater;
-import static javax.swing.SwingUtilities.isEventDispatchThread;
-import static org.assertj.core.util.Throwables.appendStackTraceInCurrentThreadToThrowable;
-import static org.assertj.swing.exception.UnexpectedException.unexpected;
-
-import java.util.concurrent.Callable;
-import java.util.concurrent.CountDownLatch;
-
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.concurrent.GuardedBy;
 import javax.annotation.concurrent.ThreadSafe;
+import java.util.concurrent.Callable;
+import java.util.concurrent.CountDownLatch;
+
+import static javax.swing.SwingUtilities.invokeLater;
+import static javax.swing.SwingUtilities.isEventDispatchThread;
+import static org.assertj.swing.exception.UnexpectedException.unexpected;
+import static org.assertj.swing.util.Throwables.appendStackTraceInCurrentThreadToThrowable;
 
 /**
  * Executes instances of {@link GuiQuery} and {@link GuiTask}.

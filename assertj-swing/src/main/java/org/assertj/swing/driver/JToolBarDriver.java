@@ -12,23 +12,6 @@
  */
 package org.assertj.swing.driver;
 
-import static javax.swing.SwingUtilities.getWindowAncestor;
-import static org.assertj.core.util.Preconditions.checkNotNull;
-import static org.assertj.swing.driver.ComponentPreconditions.checkEnabledAndShowing;
-import static org.assertj.swing.driver.JToolBarIsFloatingQuery.isJToolBarFloating;
-import static org.assertj.swing.edt.GuiActionRunner.execute;
-import static org.assertj.swing.exception.ActionFailedException.actionFailure;
-import static org.assertj.swing.format.Formatting.format;
-import static org.fest.reflect.core.Reflection.field;
-
-import java.awt.Container;
-import java.awt.Point;
-import java.awt.Window;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import javax.swing.JToolBar;
-
 import org.assertj.swing.annotation.RunsInCurrentThread;
 import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.core.Robot;
@@ -36,6 +19,20 @@ import org.assertj.swing.edt.GuiQuery;
 import org.assertj.swing.internal.annotation.InternalApi;
 import org.assertj.swing.util.GenericRange;
 import org.assertj.swing.util.Pair;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import javax.swing.*;
+import java.awt.*;
+
+import static javax.swing.SwingUtilities.getWindowAncestor;
+import static org.assertj.swing.driver.ComponentPreconditions.checkEnabledAndShowing;
+import static org.assertj.swing.driver.JToolBarIsFloatingQuery.isJToolBarFloating;
+import static org.assertj.swing.edt.GuiActionRunner.execute;
+import static org.assertj.swing.exception.ActionFailedException.actionFailure;
+import static org.assertj.swing.format.Formatting.format;
+import static org.assertj.swing.util.Preconditions.checkNotNull;
+import static org.fest.reflect.core.Reflection.field;
 
 /**
  * <p>

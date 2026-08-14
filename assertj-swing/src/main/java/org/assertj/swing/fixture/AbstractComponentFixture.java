@@ -12,19 +12,6 @@
  */
 package org.assertj.swing.fixture;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.util.Preconditions.checkNotNull;
-import static org.assertj.swing.driver.ComponentDriver.propertyName;
-import static org.assertj.swing.format.Formatting.format;
-
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Font;
-import java.util.Objects;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
 import org.assertj.swing.core.KeyPressInfo;
 import org.assertj.swing.core.MouseButton;
 import org.assertj.swing.core.MouseClickInfo;
@@ -32,6 +19,16 @@ import org.assertj.swing.core.Robot;
 import org.assertj.swing.driver.ComponentDriver;
 import org.assertj.swing.query.ComponentEnabledQuery;
 import org.assertj.swing.timing.Timeout;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.awt.*;
+import java.util.Objects;
+
+import static org.assertj.swing.driver.ComponentDriver.propertyName;
+import static org.assertj.swing.format.Formatting.format;
+import static org.assertj.swing.util.Preconditions.checkNotNull;
+import static org.assertj.swing.util.Require.assertThat;
 
 /**
  * Supports functional testing of AWT and Swing {@code Component}s.

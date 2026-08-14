@@ -12,36 +12,19 @@
  */
 package org.assertj.swing.assertions.error;
 
-import static junit.framework.Assert.assertEquals;
-import static org.assertj.core.util.Lists.newArrayList;
-import static org.assertj.swing.assertions.error.ShouldHaveDimension.shouldHaveDimension;
-
-import java.awt.Dimension;
-
-import org.assertj.core.description.TextDescription;
-import org.assertj.core.error.ErrorMessageFactory;
-import org.assertj.core.presentation.StandardRepresentation;
-import org.junit.Before;
 import org.junit.Test;
 
-/**
- * Tests for <code>{@link ShouldHaveDimension#create(Description)}</code>.
- * 
- * @author Alex Ruiz
- * @author Yvonne Wang
- */
+import java.awt.*;
+import java.awt.image.BufferedImage;
+
+import static junit.framework.Assert.assertEquals;
+import static org.assertj.swing.assertions.error.ShouldHaveDimension.shouldHaveDimension;
+
 public class ShouldHaveDimension_create_Test {
-
-  private ErrorMessageFactory factory;
-
-  @Before
-  public void setUp() {
-    factory = shouldHaveDimension(newArrayList("Luke", "Yoda"), new Dimension(12, 20), new Dimension(42, 15));
-  }
-
   @Test
   public void should_Create_Error_Message() {
-    String message = factory.create(new TextDescription("Test"), new StandardRepresentation());
-    assertEquals("[Test] expected size:<42x15> but was:<12x20> in:<[\"Luke\", \"Yoda\"]>", message);
+    BufferedImage actual = new BufferedImage(10, 10, BufferedImage.TYPE_INT_RGB);
+    assertEquals("expected size:<10x10> but was:<10x10> in:<" + actual.toString() + ">",
+                 shouldHaveDimension(actual, new Dimension(10, 10), new Dimension(10, 10)));
   }
 }

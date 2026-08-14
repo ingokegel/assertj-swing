@@ -12,39 +12,22 @@
  */
 package org.assertj.swing.format;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
-import static org.assertj.core.util.Strings.isNullOrEmpty;
-import static org.assertj.swing.edt.GuiActionRunner.execute;
-import static org.assertj.swing.util.Maps.newConcurrentHashMap;
-
-import java.awt.Component;
-import java.awt.Dialog;
-import java.awt.Frame;
-import java.util.concurrent.ConcurrentMap;
+import org.assertj.swing.annotation.RunsInCurrentThread;
+import org.assertj.swing.annotation.RunsInEDT;
+import org.assertj.swing.annotation.VisibleForTesting;
+import org.assertj.swing.logging.Logger;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import javax.swing.AbstractButton;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JLayeredPane;
-import javax.swing.JMenuBar;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JPopupMenu;
-import javax.swing.JProgressBar;
-import javax.swing.JRootPane;
-import javax.swing.JScrollBar;
-import javax.swing.JScrollPane;
-import javax.swing.JSlider;
-import javax.swing.JSpinner;
-import javax.swing.JToolBar;
+import javax.swing.*;
 import javax.swing.text.JTextComponent;
+import java.awt.*;
+import java.util.concurrent.ConcurrentMap;
 
-import org.assertj.core.util.VisibleForTesting;
-import org.assertj.swing.annotation.RunsInCurrentThread;
-import org.assertj.swing.annotation.RunsInEDT;
-import org.assertj.swing.logging.Logger;
+import static org.assertj.swing.edt.GuiActionRunner.execute;
+import static org.assertj.swing.util.Maps.newConcurrentHashMap;
+import static org.assertj.swing.util.Preconditions.checkNotNull;
+import static org.assertj.swing.util.Strings.isNullOrEmpty;
 
 /**
  * Utility methods related to formatting.

@@ -12,11 +12,11 @@
  */
 package org.assertj.swing.security;
 
-import static org.assertj.core.util.Strings.concat;
+import org.assertj.swing.annotation.VisibleForTesting;
 
 import java.security.Permission;
 
-import org.assertj.core.util.VisibleForTesting;
+import static org.assertj.swing.util.Strings.concat;
 
 /**
  * {@code SecurityManager} that does not allow an application under test to terminate the current JVM. Adapted from

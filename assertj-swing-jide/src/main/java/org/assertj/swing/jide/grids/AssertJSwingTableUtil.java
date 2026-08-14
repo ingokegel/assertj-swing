@@ -20,7 +20,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-import org.assertj.core.api.Fail;
+import org.assertj.swing.util.Fail;
 
 /**
  * Utility methods for tables when using AssertJ-Swing..

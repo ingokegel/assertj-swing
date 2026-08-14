@@ -12,14 +12,13 @@
  */
 package org.assertj.swing.core;
 
-import static org.assertj.swing.edt.GuiActionRunner.execute;
-
-import java.awt.Component;
+import org.assertj.swing.annotation.RunsInEDT;
+import org.assertj.swing.util.Preconditions;
 
 import javax.annotation.Nonnull;
+import java.awt.*;
 
-import org.assertj.core.util.Preconditions;
-import org.assertj.swing.annotation.RunsInEDT;
+import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 /**
  * Indicates whether an AWT or Swing {@code Component} is focusable or not.

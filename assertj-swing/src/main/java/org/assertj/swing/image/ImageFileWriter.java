@@ -12,14 +12,13 @@
  */
 package org.assertj.swing.image;
 
-import static org.assertj.core.util.Files.newFile;
-import static org.assertj.swing.image.ImageFileExtensions.PNG;
-
+import javax.annotation.Nonnull;
+import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-import javax.annotation.Nonnull;
-import javax.imageio.ImageIO;
+import static org.assertj.swing.image.ImageFileExtensions.PNG;
+import static org.assertj.swing.util.Files.newFile;
 
 /**
  * Writes an image as a file in the file system.

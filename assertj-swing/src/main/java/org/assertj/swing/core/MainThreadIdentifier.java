@@ -12,10 +12,10 @@
  */
 package org.assertj.swing.core;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
-
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+
+import static org.assertj.swing.util.Preconditions.checkNotNull;
 
 /**
  * Identifies the "main" thread.

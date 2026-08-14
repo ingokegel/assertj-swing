@@ -12,23 +12,22 @@
  */
 package org.assertj.swing.driver;
 
+import org.assertj.swing.annotation.RunsInCurrentThread;
+import org.assertj.swing.annotation.RunsInEDT;
+
+import javax.annotation.Nonnull;
+import javax.swing.*;
+import javax.swing.tree.TreePath;
+import java.util.Arrays;
+import java.util.function.Supplier;
+
 import static java.util.Arrays.sort;
-import static org.assertj.core.api.Fail.fail;
-import static org.assertj.core.util.Objects.areEqual;
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.driver.JTreeMatchingPathQuery.matchingPathWithRootIfInvisible;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 import static org.assertj.swing.util.Arrays.format;
-
-import java.util.Arrays;
-
-import javax.annotation.Nonnull;
-import javax.swing.JTree;
-import javax.swing.tree.TreePath;
-
-import org.assertj.core.description.Description;
-import org.assertj.swing.annotation.RunsInCurrentThread;
-import org.assertj.swing.annotation.RunsInEDT;
+import static org.assertj.swing.util.Fail.fail;
+import static org.assertj.swing.util.Objects.areEqual;
+import static org.assertj.swing.util.Preconditions.checkNotNull;
 
 /**
  * Verifies that a {@code JTree} has the expected selection.
@@ -38,12 +37,12 @@ import org.assertj.swing.annotation.RunsInEDT;
 final class JTreeVerifySelectionTask {
   @RunsInEDT
   static void checkHasSelection(final @Nonnull JTree tree, final @Nonnull int[] selection,
-                                final @Nonnull Description errMsg) {
+                                final @Nonnull Supplier<String> errMsg) {
     execute(() -> checkSelection(tree, selection, errMsg));
   }
 
   @RunsInCurrentThread
-  private static void checkSelection(@Nonnull JTree tree, @Nonnull int[] selection, @Nonnull Description errMsg) {
+  private static void checkSelection(@Nonnull JTree tree, @Nonnull int[] selection, @Nonnull Supplier<String> errMsg) {
     int[] selectionRows = tree.getSelectionRows();
     if (selectionRows == null || selectionRows.length == 0) {
       failNoSelection(errMsg);
@@ -56,21 +55,21 @@ final class JTreeVerifySelectionTask {
     failNotEqualSelection(errMsg, selection, selectionRows);
   }
 
-  private static void failNotEqualSelection(@Nonnull Description errMsg, @Nonnull int[] expected, @Nonnull int[] actual) {
+  private static void failNotEqualSelection(@Nonnull Supplier<String> errMsg, @Nonnull int[] expected, @Nonnull int[] actual) {
     String format = "[%s] expecting selection:<%s> but was:<%s>";
-    String msg = String.format(format, errMsg.value(), format(expected), format(actual));
+    String msg = String.format(format, errMsg.get(), format(expected), format(actual));
     fail(msg);
   }
 
   @RunsInEDT
   static void checkHasSelection(final @Nonnull JTree tree, final @Nonnull String[] selection,
-                                final @Nonnull JTreePathFinder pathFinder, final @Nonnull Description errMsg) {
+                                final @Nonnull JTreePathFinder pathFinder, final @Nonnull Supplier<String> errMsg) {
     execute(() -> checkSelection(tree, selection, pathFinder, errMsg));
   }
 
   @RunsInCurrentThread
   private static void checkSelection(@Nonnull JTree tree, @Nonnull String[] selection,
-                                     @Nonnull JTreePathFinder pathFinder, @Nonnull Description errMsg) {
+                                     @Nonnull JTreePathFinder pathFinder, @Nonnull Supplier<String> errMsg) {
     TreePath[] selectionPaths = tree.getSelectionPaths();
     if (selectionPaths == null || selectionPaths.length == 0) {
       failNoSelection(errMsg);
@@ -89,25 +88,25 @@ final class JTreeVerifySelectionTask {
     }
   }
 
-  private static void failNotEqualSelection(@Nonnull Description errMsg, @Nonnull String[] expected,
+  private static void failNotEqualSelection(@Nonnull Supplier<String> errMsg, @Nonnull String[] expected,
                                             @Nonnull TreePath[] actual) {
     String format = "[%s] expecting selection:<%s> but was:<%s>";
-    String msg = String.format(format, errMsg.value(), format(expected), format(actual));
+    String msg = String.format(format, errMsg.get(), format(expected), format(actual));
     fail(msg);
   }
 
-  private static void failNoSelection(final @Nonnull Description errMessage) {
-    fail(String.format("[%s] No selection", errMessage.value()));
+  private static void failNoSelection(final @Nonnull Supplier<String> errMessage) {
+    fail(String.format("[%s] No selection", errMessage.get()));
   }
 
   @RunsInEDT
-  static void checkNoSelection(final @Nonnull JTree tree, final @Nonnull Description errMsg) {
+  static void checkNoSelection(final @Nonnull JTree tree, final @Nonnull Supplier<String> errMsg) {
     execute(() -> {
       if (tree.getSelectionCount() == 0) {
         return;
       }
       String format = "[%s] expected no selection but was:<%s>";
-      String message = String.format(format, errMsg.value(), format(tree.getSelectionPaths()));
+      String message = String.format(format, errMsg.get(), format(tree.getSelectionPaths()));
       fail(message);
     });
   }

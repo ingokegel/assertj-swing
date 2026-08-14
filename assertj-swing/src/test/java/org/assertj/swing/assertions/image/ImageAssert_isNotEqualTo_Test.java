@@ -12,30 +12,24 @@
  */
 package org.assertj.swing.assertions.image;
 
-import static org.assertj.swing.test.awt.AwtTestData.fivePixelBlueImage;
-import static org.mockito.Mockito.verify;
+import org.assertj.swing.assertions.ImageAssert;
+import org.assertj.swing.assertions.ImageAssertBaseTest;
+import org.junit.Test;
 
 import java.awt.image.BufferedImage;
 
-import org.assertj.swing.assertions.ImageAssert;
-import org.assertj.swing.assertions.ImageAssertBaseTest;
+import static org.assertj.swing.test.awt.AwtTestData.fivePixelBlueImage;
+import static org.junit.Assert.assertSame;
+import static org.mockito.Mockito.verify;
 
-/**
- * Tests for <code>{@link ImageAssert#isNotEqualTo(BufferedImage)}</code>.
- * 
- * @author Yvonne Wang
- */
 public class ImageAssert_isNotEqualTo_Test extends ImageAssertBaseTest {
 
   private final BufferedImage expected = fivePixelBlueImage();
 
-  @Override
-  protected ImageAssert invoke_api_method() {
-    return assertions.isNotEqualTo(expected);
-  }
-
-  @Override
-  protected void verify_internal_effects() {
-    verify(images).assertNotEqual(getInfo(assertions), getActual(assertions), expected);
+  @Test
+  public void should_Delegate_To_Images() {
+    ImageAssert result = assertions.isNotEqualTo(expected);
+    assertSame(assertions, result);
+    verify(images).assertNotEqual(actual, expected);
   }
 }

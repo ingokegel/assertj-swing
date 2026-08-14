@@ -12,7 +12,21 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
+import org.assertj.swing.annotation.RunsInCurrentThread;
+import org.assertj.swing.annotation.RunsInEDT;
+import org.assertj.swing.annotation.VisibleForTesting;
+import org.assertj.swing.core.Robot;
+import org.assertj.swing.edt.GuiQuery;
+import org.assertj.swing.internal.annotation.InternalApi;
+import org.assertj.swing.util.Pair;
+import org.assertj.swing.util.Triple;
+import org.fest.reflect.exception.ReflectionError;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import javax.swing.*;
+import java.awt.*;
+
 import static org.assertj.swing.driver.ComponentMovableQuery.isUserMovable;
 import static org.assertj.swing.driver.ComponentMoveTask.moveComponent;
 import static org.assertj.swing.driver.ComponentPreconditions.checkEnabledAndShowing;
@@ -20,27 +34,8 @@ import static org.assertj.swing.driver.ComponentPreconditions.checkShowing;
 import static org.assertj.swing.driver.ComponentSetSizeTask.setComponentSize;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 import static org.assertj.swing.format.Formatting.format;
+import static org.assertj.swing.util.Preconditions.checkNotNull;
 import static org.fest.reflect.core.Reflection.method;
-
-import java.awt.Container;
-import java.awt.Dimension;
-import java.awt.IllegalComponentStateException;
-import java.awt.Insets;
-import java.awt.Point;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import javax.swing.JInternalFrame;
-
-import org.assertj.core.util.VisibleForTesting;
-import org.assertj.swing.annotation.RunsInCurrentThread;
-import org.assertj.swing.annotation.RunsInEDT;
-import org.assertj.swing.core.Robot;
-import org.assertj.swing.edt.GuiQuery;
-import org.assertj.swing.internal.annotation.InternalApi;
-import org.assertj.swing.util.Pair;
-import org.assertj.swing.util.Triple;
-import org.fest.reflect.exception.ReflectionError;
 
 /**
  * <p>

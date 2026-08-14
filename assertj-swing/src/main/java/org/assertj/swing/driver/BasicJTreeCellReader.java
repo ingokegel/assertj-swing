@@ -12,18 +12,17 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
-import static org.assertj.swing.util.Strings.isDefaultToString;
-
-import java.awt.Component;
+import org.assertj.swing.annotation.RunsInCurrentThread;
+import org.assertj.swing.cell.JTreeCellReader;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import javax.swing.JTree;
+import javax.swing.*;
 import javax.swing.tree.TreeCellRenderer;
+import java.awt.*;
 
-import org.assertj.swing.annotation.RunsInCurrentThread;
-import org.assertj.swing.cell.JTreeCellReader;
+import static org.assertj.swing.util.Preconditions.checkNotNull;
+import static org.assertj.swing.util.Strings.isDefaultToString;
 
 /**
  * Default implementation of {@link JTreeCellReader}.

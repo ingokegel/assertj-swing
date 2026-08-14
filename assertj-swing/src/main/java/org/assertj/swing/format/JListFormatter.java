@@ -12,19 +12,17 @@
  */
 package org.assertj.swing.format;
 
-import static org.assertj.core.util.Lists.newArrayList;
-import static org.assertj.core.util.Strings.quote;
-import static org.assertj.swing.format.SwingIntEnums.SELECTION_MODES;
-
-import java.awt.Component;
-import java.util.List;
-
-import javax.annotation.Nonnull;
-import javax.swing.JList;
-import javax.swing.ListModel;
-
 import org.assertj.swing.annotation.RunsInCurrentThread;
 import org.assertj.swing.util.Arrays;
+
+import javax.annotation.Nonnull;
+import javax.swing.*;
+import java.awt.*;
+import java.util.List;
+
+import static org.assertj.swing.format.SwingIntEnums.SELECTION_MODES;
+import static org.assertj.swing.util.Lists.newArrayList;
+import static org.assertj.swing.util.Strings.quote;
 
 /**
  * Formatter for {@code JList}s.

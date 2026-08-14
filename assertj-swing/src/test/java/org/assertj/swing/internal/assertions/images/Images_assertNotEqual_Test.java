@@ -12,71 +12,46 @@
  */
 package org.assertj.swing.internal.assertions.images;
 
-import static java.awt.Color.BLUE;
-import static org.assertj.swing.assertions.error.ShouldNotBeEqualImages.shouldNotBeEqualImages;
-import static org.assertj.swing.test.awt.AwtTestData.fivePixelBlueImage;
-import static org.assertj.swing.test.awt.AwtTestData.fivePixelYellowImage;
-import static org.assertj.swing.test.awt.AwtTestData.newImage;
-import static org.mockito.Mockito.verify;
-
-import java.awt.image.BufferedImage;
-
-import org.assertj.core.api.AssertionInfo;
 import org.assertj.swing.internal.assertions.ImagesBaseTest;
 import org.junit.Test;
 
-/**
- * Tests for <code>{@link Images#assertNotEqual(AssertionInfo, BufferedImage, BufferedImage)}</code>.
- * 
- * @author Yvonne Wang
- * @author Joel Costigliola
- */
+import java.awt.image.BufferedImage;
+
+import static java.awt.Color.BLUE;
+import static org.assertj.swing.test.awt.AwtTestData.*;
+
 public class Images_assertNotEqual_Test extends ImagesBaseTest {
 
   @Test
   public void should_Pass_If_Actual_Is_Null_And_Expected_Is_Not() {
-    images.assertNotEqual(someInfo(), null, fivePixelBlueImage());
+    images.assertNotEqual(null, fivePixelBlueImage());
   }
 
   @Test
   public void should_Pass_If_Expected_Is_Null_And_Actual_Is_Not() {
-    images.assertNotEqual(someInfo(), actual, null);
+    images.assertNotEqual(actual, null);
   }
 
   @Test
   public void should_Pass_If_Images_Have_Different_Size() {
-    images.assertNotEqual(someInfo(), actual, newImage(3, 3, BLUE));
+    images.assertNotEqual(actual, newImage(3, 3, BLUE));
   }
 
   @Test
   public void should_Pass_If_Images_Have_Different_Color() {
-    images.assertNotEqual(someInfo(), actual, fivePixelYellowImage());
+    images.assertNotEqual(actual, fivePixelYellowImage());
   }
 
   @Test
   public void should_Fail_If_Images_Are_Equal() {
-    AssertionInfo info = someInfo();
     BufferedImage other = newImage(5, 5, BLUE);
-    thrown.expect(AssertionError.class);
-    try {
-      images.assertNotEqual(info, actual, other);
-    } finally {
-      verifyFailureThrownWhenImagesAreEqual(info);
-    }
+    Images_assertEqual_Test.assertFailureMessage("expecting images not to be equal",
+                                                 () -> images.assertNotEqual(actual, other));
   }
 
   @Test
   public void should_Fail_If_Images_Are_Same() {
-    AssertionInfo info = someInfo();
-    thrown.expect(AssertionError.class);
-    try {
-      images.assertNotEqual(info, actual, actual);
-    } finally {
-      verifyFailureThrownWhenImagesAreEqual(info);
-    }
-  }
-
-  private void verifyFailureThrownWhenImagesAreEqual(AssertionInfo info) {
-    verify(failures).failure(info, shouldNotBeEqualImages());
+    Images_assertEqual_Test.assertFailureMessage("expecting images not to be equal",
+                                                 () -> images.assertNotEqual(actual, actual));
   }
 }

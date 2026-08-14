@@ -12,15 +12,13 @@
  */
 package org.assertj.swing.query;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
-import static org.assertj.swing.edt.GuiActionRunner.execute;
-
-import java.awt.Component;
-import java.awt.Point;
+import org.assertj.swing.annotation.RunsInEDT;
 
 import javax.annotation.Nonnull;
+import java.awt.*;
 
-import org.assertj.swing.annotation.RunsInEDT;
+import static org.assertj.swing.edt.GuiActionRunner.execute;
+import static org.assertj.swing.util.Preconditions.checkNotNull;
 
 /**
  * Returns the location of an AWT or Swing {@code Component} on screen. This query is executed in the event dispatch

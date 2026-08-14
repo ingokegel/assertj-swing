@@ -12,19 +12,14 @@
  */
 package org.assertj.swing.core;
 
-import static javax.swing.SwingUtilities.convertRectangle;
-import static org.assertj.core.util.Preconditions.checkNotNull;
-import static org.assertj.swing.edt.GuiActionRunner.execute;
-
-import java.awt.Component;
-import java.awt.Container;
-import java.awt.Rectangle;
-
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import javax.swing.JComponent;
-import javax.swing.JInternalFrame;
-import javax.swing.JViewport;
+import javax.swing.*;
+import java.awt.*;
+
+import static javax.swing.SwingUtilities.convertRectangle;
+import static org.assertj.swing.edt.GuiActionRunner.execute;
+import static org.assertj.swing.util.Preconditions.checkNotNull;
 
 /**
  * Utility methods related to scrolling.

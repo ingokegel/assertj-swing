@@ -12,11 +12,11 @@
  */
 package org.assertj.swing.util;
 
-import static org.fest.reflect.core.Reflection.constructor;
+import org.assertj.swing.annotation.VisibleForTesting;
 
 import javax.annotation.Nonnull;
 
-import org.assertj.core.util.VisibleForTesting;
+import static org.fest.reflect.core.Reflection.constructor;
 
 /**
  * <p>

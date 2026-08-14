@@ -12,24 +12,22 @@
  */
 package org.assertj.swing.core;
 
+import org.assertj.swing.annotation.VisibleForTesting;
+import org.assertj.swing.util.ToolkitProvider;
+
+import javax.annotation.Nonnull;
+import java.awt.*;
+import java.awt.event.AWTEventListener;
+import java.awt.event.KeyEvent;
+
 import static java.awt.AWTEvent.KEY_EVENT_MASK;
 import static java.awt.event.InputEvent.CTRL_MASK;
 import static java.awt.event.InputEvent.SHIFT_MASK;
 import static java.awt.event.KeyEvent.KEY_PRESSED;
 import static java.awt.event.KeyEvent.VK_A;
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.core.InputModifiers.modifiersMatch;
 import static org.assertj.swing.core.InputModifiers.unify;
-
-import java.awt.AWTEvent;
-import java.awt.Toolkit;
-import java.awt.event.AWTEventListener;
-import java.awt.event.KeyEvent;
-
-import javax.annotation.Nonnull;
-
-import org.assertj.core.util.VisibleForTesting;
-import org.assertj.swing.util.ToolkitProvider;
+import static org.assertj.swing.util.Preconditions.checkNotNull;
 
 /**
  * <p>

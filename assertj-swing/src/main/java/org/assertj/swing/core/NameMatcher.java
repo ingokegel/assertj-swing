@@ -12,16 +12,15 @@
  */
 package org.assertj.swing.core;
 
-import static org.assertj.core.util.Objects.areEqual;
-import static org.assertj.core.util.Preconditions.checkNotNull;
-import static org.assertj.core.util.Preconditions.checkNotNullOrEmpty;
-
-import java.awt.Component;
+import org.assertj.swing.annotation.RunsInCurrentThread;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.awt.*;
 
-import org.assertj.swing.annotation.RunsInCurrentThread;
+import static org.assertj.swing.util.Objects.areEqual;
+import static org.assertj.swing.util.Preconditions.checkNotNull;
+import static org.assertj.swing.util.Preconditions.checkNotNullOrEmpty;
 
 /**
  * Matches an AWT or Swing {@code Component} by name and (optionally) by type.

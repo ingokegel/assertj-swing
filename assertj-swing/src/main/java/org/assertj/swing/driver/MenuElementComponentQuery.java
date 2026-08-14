@@ -12,15 +12,14 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
-import static org.assertj.swing.edt.GuiActionRunner.execute;
-
-import java.awt.Component;
+import org.assertj.swing.annotation.RunsInEDT;
 
 import javax.annotation.Nonnull;
-import javax.swing.MenuElement;
+import javax.swing.*;
+import java.awt.*;
 
-import org.assertj.swing.annotation.RunsInEDT;
+import static org.assertj.swing.edt.GuiActionRunner.execute;
+import static org.assertj.swing.util.Preconditions.checkNotNull;
 
 /**
  * Returns the AWT or Swing {@code Component} used to paint a Swing {@code MenuElement}. This query is executed in the

@@ -12,16 +12,15 @@
  */
 package org.assertj.swing.keystroke;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
-import static org.assertj.swing.keystroke.KeyStrokeMappingProviderNames.generateNamesFrom;
-
-import java.util.Locale;
-
-import javax.annotation.Nonnull;
-
-import org.assertj.core.util.VisibleForTesting;
+import org.assertj.swing.annotation.VisibleForTesting;
 import org.assertj.swing.logging.Logger;
 import org.assertj.swing.util.OSFamily;
+
+import javax.annotation.Nonnull;
+import java.util.Locale;
+
+import static org.assertj.swing.keystroke.KeyStrokeMappingProviderNames.generateNamesFrom;
+import static org.assertj.swing.util.Preconditions.checkNotNull;
 
 /**
  * Chooses a {@link KeyStrokeMappingProvider} based on OS family and locale.

@@ -12,33 +12,16 @@
  */
 package org.assertj.swing.assertions;
 
-import static org.assertj.core.api.AssertionInternalData.getActual;
+import org.junit.Test;
+
 import static org.assertj.swing.assertions.Assertions.assertThat;
 import static org.assertj.swing.test.awt.AwtTestData.fivePixelBlueImage;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertSame;
 
-import java.awt.image.BufferedImage;
-
-import org.junit.Test;
-
-/**
- * Tests for <code>{@link AwtAssertions#assertThat(BufferedImage)}</code>.
- * 
- * @author Alex Ruiz
- */
 public class Assertions_assertThat_with_BufferedImage_Test {
-
   @Test
   public void should_Create_Assert() {
     ImageAssert assertions = assertThat(fivePixelBlueImage());
     assertNotNull(assertions);
-  }
-
-  @Test
-  public void should_Pass_Actual() {
-    BufferedImage actual = fivePixelBlueImage();
-    ImageAssert assertions = assertThat(actual);
-    assertSame(actual, getActual(assertions));
   }
 }

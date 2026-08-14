@@ -12,18 +12,17 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.fest.reflect.core.Reflection.method;
-
-import java.awt.Point;
+import org.assertj.swing.annotation.RunsInCurrentThread;
 
 import javax.annotation.Nonnull;
-import javax.swing.JTree;
+import javax.swing.*;
 import javax.swing.plaf.TreeUI;
 import javax.swing.plaf.basic.BasicTreeUI;
 import javax.swing.tree.TreePath;
+import java.awt.*;
 
-import org.assertj.swing.annotation.RunsInCurrentThread;
+import static org.assertj.swing.util.Require.assertThat;
+import static org.fest.reflect.core.Reflection.method;
 
 /**
  * Uses reflection to toggle the "expand state" of a node in a given {@code JTextComponent}. This task is executed in

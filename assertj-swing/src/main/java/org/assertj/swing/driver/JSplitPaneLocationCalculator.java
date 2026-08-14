@@ -12,23 +12,21 @@
  */
 package org.assertj.swing.driver;
 
+import org.assertj.swing.annotation.RunsInCurrentThread;
+import org.assertj.swing.annotation.RunsInEDT;
+
+import javax.annotation.Nonnull;
+import javax.swing.*;
+import java.awt.*;
+import java.util.Map;
+
 import static java.lang.Math.max;
 import static java.lang.Math.min;
 import static javax.swing.JSplitPane.HORIZONTAL_SPLIT;
 import static javax.swing.JSplitPane.VERTICAL_SPLIT;
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 import static org.assertj.swing.util.Maps.newHashMap;
-
-import java.awt.Component;
-import java.awt.Insets;
-import java.util.Map;
-
-import javax.annotation.Nonnull;
-import javax.swing.JSplitPane;
-
-import org.assertj.swing.annotation.RunsInCurrentThread;
-import org.assertj.swing.annotation.RunsInEDT;
+import static org.assertj.swing.util.Preconditions.checkNotNull;
 
 /**
  * Calculates a valid position of a {@code JSplitPane}'s divider, while respecting the minimum sizes of the right and

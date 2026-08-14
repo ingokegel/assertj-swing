@@ -12,15 +12,15 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.swing.edt.GuiActionRunner.execute;
-
-import javax.annotation.Nonnull;
-import javax.swing.JComboBox;
-
-import org.assertj.core.util.Preconditions;
 import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.cell.JComboBoxCellReader;
+import org.assertj.swing.util.Preconditions;
 import org.assertj.swing.util.TextMatcher;
+
+import javax.annotation.Nonnull;
+import javax.swing.*;
+
+import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 /**
  * Looks up the first item in a {@code JComboBox} whose value matches a given one.

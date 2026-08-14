@@ -12,20 +12,18 @@
  */
 package org.assertj.swing.monitor;
 
-import static org.assertj.swing.util.Maps.newWeakHashMap;
-
-import java.awt.Component;
-import java.awt.Window;
-import java.util.Map;
-import java.util.Timer;
-import java.util.TimerTask;
+import org.assertj.swing.annotation.RunsInCurrentThread;
+import org.assertj.swing.annotation.VisibleForTesting;
 
 import javax.annotation.Nonnull;
 import javax.annotation.concurrent.GuardedBy;
 import javax.annotation.concurrent.ThreadSafe;
+import java.awt.*;
+import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 
-import org.assertj.core.util.VisibleForTesting;
-import org.assertj.swing.annotation.RunsInCurrentThread;
+import static org.assertj.swing.util.Maps.newWeakHashMap;
 
 /**
  * Information collected by the monitors in this package.

@@ -12,8 +12,20 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.util.Preconditions.checkNotNull;
+import org.assertj.swing.annotation.RunsInCurrentThread;
+import org.assertj.swing.annotation.RunsInEDT;
+import org.assertj.swing.core.*;
+import org.assertj.swing.core.Robot;
+import org.assertj.swing.edt.GuiLazyLoadingDescription;
+import org.assertj.swing.internal.annotation.InternalApi;
+import org.assertj.swing.timing.Timeout;
+import org.assertj.swing.util.TimeoutWatch;
+
+import javax.annotation.Nonnull;
+import javax.swing.*;
+import java.awt.*;
+import java.util.function.Supplier;
+
 import static org.assertj.swing.awt.AWT.visibleCenterOf;
 import static org.assertj.swing.core.MouseButton.LEFT_BUTTON;
 import static org.assertj.swing.core.MouseButton.RIGHT_BUTTON;
@@ -28,31 +40,9 @@ import static org.assertj.swing.query.ComponentHasFocusQuery.hasFocus;
 import static org.assertj.swing.query.ComponentSizeQuery.sizeOf;
 import static org.assertj.swing.query.ComponentVisibleQuery.isVisible;
 import static org.assertj.swing.timing.Pause.pause;
+import static org.assertj.swing.util.Preconditions.checkNotNull;
+import static org.assertj.swing.util.Require.assertThat;
 import static org.assertj.swing.util.TimeoutWatch.startWatchWithTimeoutOf;
-
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Point;
-
-import javax.annotation.Nonnull;
-import javax.swing.JMenu;
-import javax.swing.JPopupMenu;
-
-import org.assertj.core.description.Description;
-import org.assertj.swing.annotation.RunsInCurrentThread;
-import org.assertj.swing.annotation.RunsInEDT;
-import org.assertj.swing.core.ComponentDragAndDrop;
-import org.assertj.swing.core.KeyPressInfo;
-import org.assertj.swing.core.MouseButton;
-import org.assertj.swing.core.MouseClickInfo;
-import org.assertj.swing.core.Robot;
-import org.assertj.swing.core.Settings;
-import org.assertj.swing.edt.GuiLazyLoadingDescription;
-import org.assertj.swing.internal.annotation.InternalApi;
-import org.assertj.swing.timing.Timeout;
-import org.assertj.swing.util.TimeoutWatch;
 
 /**
  * <p>
@@ -231,7 +221,7 @@ public class ComponentDriver {
 
   @RunsInEDT
   @Nonnull
-  private static Description visibleProperty(@Nonnull Component c) {
+  private static Supplier<String> visibleProperty(@Nonnull Component c) {
     return propertyName(c, VISIBLE_PROPERTY);
   }
 
@@ -247,7 +237,7 @@ public class ComponentDriver {
   }
 
   @Nonnull
-  private static Description requiredFocusedErrorMessage(final Component c) {
+  private static Supplier<String> requiredFocusedErrorMessage(final Component c) {
     return new GuiLazyLoadingDescription() {
       @Override
       @Nonnull
@@ -293,7 +283,7 @@ public class ComponentDriver {
 
   @RunsInEDT
   @Nonnull
-  private static Description enabledProperty(@Nonnull Component c) {
+  private static Supplier<String> enabledProperty(@Nonnull Component c) {
     return propertyName(c, ENABLED_PROPERTY);
   }
 
@@ -633,7 +623,7 @@ public class ComponentDriver {
    */
   @RunsInEDT
   @Nonnull
-  public static Description propertyName(final @Nonnull Component c, final @Nonnull String propertyName) {
+  public static Supplier<String> propertyName(final @Nonnull Component c, final @Nonnull String propertyName) {
     return new GuiLazyLoadingDescription() {
       @Override
       @Nonnull

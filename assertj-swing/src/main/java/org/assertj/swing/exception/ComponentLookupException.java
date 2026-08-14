@@ -12,13 +12,12 @@
  */
 package org.assertj.swing.exception;
 
-import static java.util.Collections.unmodifiableCollection;
-import static org.assertj.core.util.Lists.newArrayList;
-
-import java.awt.Component;
+import javax.annotation.Nonnull;
+import java.awt.*;
 import java.util.Collection;
 
-import javax.annotation.Nonnull;
+import static java.util.Collections.unmodifiableCollection;
+import static org.assertj.swing.util.Lists.newArrayList;
 
 /**
  * Error thrown when looking up a component using a {@link org.assertj.swing.core.ComponentFinder}.

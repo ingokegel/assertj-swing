@@ -12,21 +12,19 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.swing.driver.JTabbedPaneTabIndexQuery.indexOfTab;
-
-import java.awt.Point;
-import java.awt.Rectangle;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import javax.swing.JTabbedPane;
-
-import org.assertj.core.util.VisibleForTesting;
 import org.assertj.swing.annotation.RunsInCurrentThread;
+import org.assertj.swing.annotation.VisibleForTesting;
 import org.assertj.swing.exception.LocationUnavailableException;
 import org.assertj.swing.internal.annotation.InternalApi;
 import org.assertj.swing.util.StringTextMatcher;
 import org.assertj.swing.util.TextMatcher;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import javax.swing.*;
+import java.awt.*;
+
+import static org.assertj.swing.driver.JTabbedPaneTabIndexQuery.indexOfTab;
 
 /**
  * A location on a {@code JTabbedPane} (notably a tab).

@@ -12,20 +12,19 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.core.util.Lists.newArrayList;
-import static org.assertj.core.util.Strings.quote;
-
-import java.util.List;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import javax.swing.JTree;
-import javax.swing.tree.TreeModel;
-import javax.swing.tree.TreePath;
-
 import org.assertj.swing.annotation.RunsInCurrentThread;
 import org.assertj.swing.cell.JTreeCellReader;
 import org.assertj.swing.exception.LocationUnavailableException;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import javax.swing.*;
+import javax.swing.tree.TreeModel;
+import javax.swing.tree.TreePath;
+import java.util.List;
+
+import static org.assertj.swing.util.Lists.newArrayList;
+import static org.assertj.swing.util.Strings.quote;
 
 /**
  * Lookup of {@code TreePath}s which text matches the given one.

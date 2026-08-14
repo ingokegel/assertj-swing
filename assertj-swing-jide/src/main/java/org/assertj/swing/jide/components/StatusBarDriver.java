@@ -12,7 +12,7 @@
  */
 package org.assertj.swing.jide.components;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.swing.util.Require.assertThat;
 
 import java.awt.Component;
 

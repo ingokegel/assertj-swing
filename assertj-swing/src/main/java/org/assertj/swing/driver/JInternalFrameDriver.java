@@ -12,43 +12,35 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.util.Preconditions.checkNotNull;
-import static org.assertj.swing.driver.ComponentPreconditions.checkShowing;
-import static org.assertj.swing.driver.JInternalFrameAction.DEICONIFY;
-import static org.assertj.swing.driver.JInternalFrameAction.ICONIFY;
-import static org.assertj.swing.driver.JInternalFrameAction.MAXIMIZE;
-import static org.assertj.swing.driver.JInternalFrameAction.NORMALIZE;
-import static org.assertj.swing.driver.JInternalFrameIconQuery.isIconified;
-import static org.assertj.swing.driver.JInternalFrameSetIconTask.setIcon;
-import static org.assertj.swing.driver.JInternalFrameSetMaximumTask.setMaximum;
-import static org.assertj.swing.driver.JInternalFrameTitleQuery.titleOf;
-import static org.assertj.swing.driver.WindowLikeContainers.closeButtonLocation;
-import static org.assertj.swing.driver.WindowLikeContainers.iconifyButtonLocation;
-import static org.assertj.swing.driver.WindowLikeContainers.maximizeButtonLocation;
-import static org.assertj.swing.edt.GuiActionRunner.execute;
-import static org.assertj.swing.exception.ActionFailedException.actionFailure;
-import static org.assertj.swing.format.Formatting.format;
-
-import java.awt.Container;
-import java.awt.Dimension;
-import java.awt.Point;
-import java.beans.PropertyVetoException;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import javax.swing.JInternalFrame;
-import javax.swing.JInternalFrame.JDesktopIcon;
-
-import org.assertj.core.util.VisibleForTesting;
 import org.assertj.swing.annotation.RunsInCurrentThread;
 import org.assertj.swing.annotation.RunsInEDT;
+import org.assertj.swing.annotation.VisibleForTesting;
 import org.assertj.swing.core.Robot;
 import org.assertj.swing.edt.GuiQuery;
 import org.assertj.swing.exception.UnexpectedException;
 import org.assertj.swing.internal.annotation.InternalApi;
 import org.assertj.swing.util.Pair;
 import org.assertj.swing.util.Triple;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import javax.swing.*;
+import javax.swing.JInternalFrame.JDesktopIcon;
+import java.awt.*;
+import java.beans.PropertyVetoException;
+
+import static org.assertj.swing.driver.ComponentPreconditions.checkShowing;
+import static org.assertj.swing.driver.JInternalFrameAction.*;
+import static org.assertj.swing.driver.JInternalFrameIconQuery.isIconified;
+import static org.assertj.swing.driver.JInternalFrameSetIconTask.setIcon;
+import static org.assertj.swing.driver.JInternalFrameSetMaximumTask.setMaximum;
+import static org.assertj.swing.driver.JInternalFrameTitleQuery.titleOf;
+import static org.assertj.swing.driver.WindowLikeContainers.*;
+import static org.assertj.swing.edt.GuiActionRunner.execute;
+import static org.assertj.swing.exception.ActionFailedException.actionFailure;
+import static org.assertj.swing.format.Formatting.format;
+import static org.assertj.swing.util.Preconditions.checkNotNull;
+import static org.assertj.swing.util.Require.assertThat;
 
 /**
  * <p>

@@ -12,24 +12,19 @@
  */
 package org.assertj.swing.monitor;
 
-import static org.assertj.core.util.Lists.newArrayList;
-import static org.assertj.core.util.Sets.newLinkedHashSet;
-import static org.assertj.swing.edt.GuiActionRunner.execute;
-
-import java.awt.Component;
-import java.awt.EventQueue;
-import java.awt.Frame;
-import java.awt.Toolkit;
-import java.awt.Window;
-import java.util.Collection;
-import java.util.Set;
+import org.assertj.swing.annotation.RunsInEDT;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.concurrent.GuardedBy;
 import javax.annotation.concurrent.ThreadSafe;
+import java.awt.*;
+import java.util.Collection;
+import java.util.Set;
 
-import org.assertj.swing.annotation.RunsInEDT;
+import static org.assertj.swing.edt.GuiActionRunner.execute;
+import static org.assertj.swing.util.Lists.newArrayList;
+import static org.assertj.swing.util.Sets.newLinkedHashSet;
 
 /**
  * Monitor that maps event queues to GUI components and GUI components to event event queues.

@@ -12,33 +12,26 @@
  */
 package org.assertj.swing.image;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
-import static org.assertj.swing.core.FocusOwnerFinder.focusOwner;
-import static org.assertj.swing.edt.GuiActionRunner.execute;
-import static org.assertj.swing.image.ImageFileExtensions.PNG;
-import static org.assertj.swing.query.ComponentLocationOnScreenQuery.locationOnScreen;
-import static org.assertj.swing.query.ComponentSizeQuery.sizeOf;
-
-import java.awt.AWTException;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.Point;
-import java.awt.Rectangle;
-import java.awt.Robot;
-import java.awt.Toolkit;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
+import org.assertj.swing.annotation.RunsInEDT;
+import org.assertj.swing.annotation.VisibleForTesting;
+import org.assertj.swing.internal.annotation.IORuntimeException;
+import org.assertj.swing.util.Preconditions;
+import org.assertj.swing.util.RobotFactory;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.swing.text.Caret;
 import javax.swing.text.JTextComponent;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
-import org.assertj.core.util.Preconditions;
-import org.assertj.core.util.VisibleForTesting;
-import org.assertj.swing.annotation.RunsInEDT;
-import org.assertj.swing.internal.annotation.IORuntimeException;
-import org.assertj.swing.util.RobotFactory;
+import static org.assertj.swing.core.FocusOwnerFinder.focusOwner;
+import static org.assertj.swing.edt.GuiActionRunner.execute;
+import static org.assertj.swing.image.ImageFileExtensions.PNG;
+import static org.assertj.swing.query.ComponentLocationOnScreenQuery.locationOnScreen;
+import static org.assertj.swing.query.ComponentSizeQuery.sizeOf;
+import static org.assertj.swing.util.Preconditions.checkNotNull;
 
 /**
  * Takes screenshots of the desktop and AWT or Swing {@code Component}s.

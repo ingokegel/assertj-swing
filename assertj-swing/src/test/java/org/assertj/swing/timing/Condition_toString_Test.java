@@ -12,27 +12,17 @@
  */
 package org.assertj.swing.timing;
 
+import org.junit.Test;
+
+import java.util.function.Supplier;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Strings.concat;
 
-import org.assertj.core.description.Description;
-import org.junit.Test;
-
-/**
- * Tests for {@link Condition#toString()}.
- * 
- * @author Alex Ruiz
- * @author Yvonne Wang
- */
 public class Condition_toString_Test {
   @Test
   public void should_Return_Description_Text() {
-    Description description = new Description() {
-      @Override
-      public String value() {
-        return "Hello World!";
-      }
-    };
+    Supplier<String> description = () -> "Hello World!";
     MyCondition condition = new MyCondition(description);
     assertThat(condition.toString()).isEqualTo("Hello World!");
   }
@@ -45,8 +35,7 @@ public class Condition_toString_Test {
 
   @Test
   public void should_Return_Condition_Type_If_Description_Is_Null() {
-    Description noDescription = null;
-    MyCondition condition = new MyCondition(noDescription);
+    MyCondition condition = new MyCondition((Supplier<String>) null);
     assertThat(condition.toString()).isEqualTo(concat("condition of type [", MyCondition.class.getName(), "]"));
   }
 
@@ -66,8 +55,8 @@ public class Condition_toString_Test {
       super(description);
     }
 
-    MyCondition(Description lazyLoadingDescription) {
-      super(lazyLoadingDescription);
+    MyCondition(Supplier<String> description) {
+      super(description);
     }
 
     @Override

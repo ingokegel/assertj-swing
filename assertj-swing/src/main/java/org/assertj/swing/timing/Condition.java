@@ -12,58 +12,56 @@
  */
 package org.assertj.swing.timing;
 
-import static org.assertj.core.util.Strings.concat;
-
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.function.Supplier;
 
-import org.assertj.core.description.Description;
-import org.assertj.core.description.TextDescription;
+import static org.assertj.swing.util.Strings.concat;
 
 /**
  * A condition to verify, usually used in the method {@link Pause#pause(Condition)}.
- * 
+ *
  * @author Yvonne Wang
  * @author Alex Ruiz
  */
 public abstract class Condition {
   protected static final String EMPTY_TEXT = "";
 
-  private final Description description;
+  private final Supplier<String> description;
 
   /**
    * Creates a new {@link Condition}.
-   * 
+   *
    * @param description describes this condition.
    */
   public Condition(@Nonnull String description) {
-    this(new TextDescription(description));
+    this(() -> description);
   }
 
   /**
    * Creates a new {@link Condition}.
-   * 
+   *
    * @param description describes this condition.
    */
-  public Condition(@Nullable Description description) {
+  public Condition(@Nullable Supplier<String> description) {
     this.description = description;
   }
 
   /**
    * Checks if the condition has been satisfied.
-   * 
+   *
    * @return {@code true} if the condition has been satisfied, otherwise {@code false}.
    */
   public abstract boolean test();
 
   /**
    * Returns the {@code String} representation of this condition, which is its description.
-   * 
+   *
    * @return the description of this condition.
    */
   @Override
   public final @Nonnull String toString() {
-    String descriptionText = description != null ? description.value() : defaultDescription();
+    String descriptionText = description != null ? description.get() : defaultDescription();
     String addendum = descriptionAddendum();
     return concat(descriptionText, addendum);
   }

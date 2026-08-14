@@ -12,20 +12,17 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
-import static org.assertj.swing.driver.MenuElementComponentQuery.componentIn;
-import static org.assertj.swing.edt.GuiActionRunner.execute;
-
-import java.awt.Component;
+import org.assertj.swing.annotation.RunsInEDT;
+import org.assertj.swing.edt.GuiQuery;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import javax.swing.JMenuItem;
-import javax.swing.JPopupMenu;
-import javax.swing.MenuElement;
+import javax.swing.*;
+import java.awt.*;
 
-import org.assertj.swing.annotation.RunsInEDT;
-import org.assertj.swing.edt.GuiQuery;
+import static org.assertj.swing.driver.MenuElementComponentQuery.componentIn;
+import static org.assertj.swing.edt.GuiActionRunner.execute;
+import static org.assertj.swing.util.Preconditions.checkNotNull;
 
 /**
  * Returns the contents of a {@code JPopupMenu} as a {@code String} array. This query is executed in the event dispatch

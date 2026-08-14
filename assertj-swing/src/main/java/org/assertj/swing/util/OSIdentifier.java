@@ -12,16 +12,13 @@
  */
 package org.assertj.swing.util;
 
-import static java.util.Locale.ENGLISH;
-import static org.assertj.core.util.Preconditions.checkNotNull;
-import static org.assertj.swing.util.OSFamily.LINUX;
-import static org.assertj.swing.util.OSFamily.MAC;
-import static org.assertj.swing.util.OSFamily.UNIX;
-import static org.assertj.swing.util.OSFamily.WINDOWS;
+import org.assertj.swing.annotation.VisibleForTesting;
 
 import javax.annotation.Nonnull;
 
-import org.assertj.core.util.VisibleForTesting;
+import static java.util.Locale.ENGLISH;
+import static org.assertj.swing.util.OSFamily.*;
+import static org.assertj.swing.util.Preconditions.checkNotNull;
 
 /**
  * Identifies the current Operating System.

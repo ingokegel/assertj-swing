@@ -12,17 +12,17 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
+import org.assertj.swing.annotation.RunsInCurrentThread;
+import org.assertj.swing.annotation.RunsInEDT;
+
+import javax.annotation.Nonnull;
+import javax.swing.*;
+import javax.swing.table.TableCellEditor;
+
 import static org.assertj.swing.driver.JTableCellPreconditions.checkCellIndicesInBounds;
 import static org.assertj.swing.driver.JTableCellPreconditions.validateCellIsEditable;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
-
-import javax.annotation.Nonnull;
-import javax.swing.JTable;
-import javax.swing.table.TableCellEditor;
-
-import org.assertj.swing.annotation.RunsInCurrentThread;
-import org.assertj.swing.annotation.RunsInEDT;
+import static org.assertj.swing.util.Preconditions.checkNotNull;
 
 /**
  * Stops editing of a cell in a {@code JTable}. This task is executed in the event dispatch thread (EDT).

@@ -12,18 +12,16 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.core.util.Lists.newArrayList;
-import static org.assertj.swing.driver.JComboBoxEditableQuery.isEditable;
-import static org.assertj.swing.driver.JTableStopCellEditingTask.stopEditing;
-
-import java.awt.Point;
-
-import javax.annotation.Nonnull;
-import javax.swing.JComboBox;
-import javax.swing.JTable;
-
 import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.core.Robot;
+
+import javax.annotation.Nonnull;
+import javax.swing.*;
+import java.awt.*;
+
+import static org.assertj.swing.driver.JComboBoxEditableQuery.isEditable;
+import static org.assertj.swing.driver.JTableStopCellEditingTask.stopEditing;
+import static org.assertj.swing.util.Lists.newArrayList;
 
 /**
  * {@link org.assertj.swing.cell.JTableCellWriter} that knows how to use {@code JComboBox}es as cell editors.

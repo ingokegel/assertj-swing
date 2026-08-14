@@ -13,7 +13,7 @@
 package org.assertj.swing.jide.grids.driver;
 
 import static java.lang.String.valueOf;
-import static org.assertj.core.util.Strings.concat;
+import static org.assertj.swing.util.Strings.concat;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
 

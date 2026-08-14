@@ -14,7 +14,7 @@ package org.assertj.swing.jide.action.format;
 
 import java.awt.Component;
 
-import org.assertj.core.util.Strings;
+import org.assertj.swing.util.Strings;
 import org.assertj.swing.format.ComponentFormatterTemplate;
 
 import com.jidesoft.action.CommandBar;

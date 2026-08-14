@@ -12,13 +12,12 @@
  */
 package org.assertj.swing.format;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
-
-import java.awt.Component;
+import org.assertj.swing.annotation.RunsInCurrentThread;
 
 import javax.annotation.Nonnull;
+import java.awt.*;
 
-import org.assertj.swing.annotation.RunsInCurrentThread;
+import static org.assertj.swing.util.Preconditions.checkNotNull;
 
 /**
  * Template for implementations of {@link ComponentFormatter}.

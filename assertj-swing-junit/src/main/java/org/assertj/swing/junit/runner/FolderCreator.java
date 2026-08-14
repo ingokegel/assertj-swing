@@ -12,14 +12,14 @@
  */
 package org.assertj.swing.junit.runner;
 
-import static java.io.File.separator;
-import static org.assertj.core.util.Files.delete;
-import static org.assertj.core.util.Strings.concat;
-import static org.assertj.core.util.Strings.quote;
-
 import java.io.File;
 import java.io.IOException;
 import java.io.UncheckedIOException;
+
+import static java.io.File.separator;
+import static org.assertj.swing.util.Files.delete;
+import static org.assertj.swing.util.Strings.concat;
+import static org.assertj.swing.util.Strings.quote;
 
 /**
  * Understands creation of folders.

@@ -12,19 +12,19 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
-import static org.assertj.swing.data.TableCell.row;
-import static org.assertj.swing.edt.GuiActionRunner.execute;
-import static org.assertj.swing.exception.ActionFailedException.actionFailure;
-
-import javax.annotation.Nonnull;
-import javax.swing.JTable;
-
 import org.assertj.swing.annotation.RunsInCurrentThread;
 import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.cell.JTableCellReader;
 import org.assertj.swing.data.TableCell;
 import org.assertj.swing.util.TextMatcher;
+
+import javax.annotation.Nonnull;
+import javax.swing.*;
+
+import static org.assertj.swing.data.TableCell.row;
+import static org.assertj.swing.edt.GuiActionRunner.execute;
+import static org.assertj.swing.exception.ActionFailedException.actionFailure;
+import static org.assertj.swing.util.Preconditions.checkNotNull;
 
 /**
  * Returns the first cell in a {@code JTable} whose value matches the given one. This query is executed in the event

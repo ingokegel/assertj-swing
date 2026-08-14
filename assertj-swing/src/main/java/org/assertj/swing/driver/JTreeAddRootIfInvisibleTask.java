@@ -12,15 +12,14 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.core.util.Lists.newArrayList;
-
-import java.util.List;
+import org.assertj.swing.annotation.RunsInCurrentThread;
 
 import javax.annotation.Nonnull;
-import javax.swing.JTree;
+import javax.swing.*;
 import javax.swing.tree.TreePath;
+import java.util.List;
 
-import org.assertj.swing.annotation.RunsInCurrentThread;
+import static org.assertj.swing.util.Lists.newArrayList;
 
 /**
  * <p>

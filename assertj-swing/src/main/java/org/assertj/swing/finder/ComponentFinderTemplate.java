@@ -12,24 +12,19 @@
  */
 package org.assertj.swing.finder;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
-import static org.assertj.core.util.Strings.concat;
-import static org.assertj.swing.timing.Pause.pause;
-
-import java.awt.Component;
-import java.util.concurrent.TimeUnit;
+import org.assertj.swing.core.*;
+import org.assertj.swing.core.Robot;
+import org.assertj.swing.fixture.AbstractComponentFixture;
 
 import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.awt.*;
+import java.util.concurrent.TimeUnit;
 
-import org.assertj.swing.core.ComponentFoundCondition;
-import org.assertj.swing.core.ComponentMatcher;
-import org.assertj.swing.core.GenericTypeMatcher;
-import org.assertj.swing.core.NameMatcher;
-import org.assertj.swing.core.Robot;
-import org.assertj.swing.core.TypeMatcher;
-import org.assertj.swing.fixture.AbstractComponentFixture;
+import static org.assertj.swing.timing.Pause.pause;
+import static org.assertj.swing.util.Preconditions.checkNotNull;
+import static org.assertj.swing.util.Strings.concat;
 
 /**
  * Template for AWT or Swing {@code Component} finders.

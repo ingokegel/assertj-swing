@@ -12,7 +12,7 @@
  */
 package org.assertj.swing.jide.action;
 
-import org.assertj.core.util.Strings;
+import org.assertj.swing.util.Strings;
 import org.assertj.swing.core.Robot;
 import org.assertj.swing.fixture.AbstractContainerFixture;
 import org.assertj.swing.jide.action.driver.CommandBarDriver;

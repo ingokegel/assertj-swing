@@ -12,21 +12,6 @@
  */
 package org.assertj.swing.fixture;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
-import static org.assertj.core.util.Strings.concat;
-import static org.assertj.swing.driver.ComponentDriver.propertyName;
-
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Point;
-import java.util.regex.Pattern;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import javax.swing.JTable;
-import javax.swing.table.JTableHeader;
-
-import org.assertj.core.description.Description;
 import org.assertj.swing.cell.JTableCellReader;
 import org.assertj.swing.cell.JTableCellWriter;
 import org.assertj.swing.core.MouseButton;
@@ -35,6 +20,18 @@ import org.assertj.swing.core.Robot;
 import org.assertj.swing.data.TableCell;
 import org.assertj.swing.data.TableCellFinder;
 import org.assertj.swing.driver.JTableDriver;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import javax.swing.*;
+import javax.swing.table.JTableHeader;
+import java.awt.*;
+import java.util.function.Supplier;
+import java.util.regex.Pattern;
+
+import static org.assertj.swing.driver.ComponentDriver.propertyName;
+import static org.assertj.swing.util.Preconditions.checkNotNull;
+import static org.assertj.swing.util.Strings.concat;
 
 /**
  * <p>
@@ -123,7 +120,7 @@ public class JTableFixture extends AbstractJPopupMenuInvokerFixture<JTableFixtur
     return new ColorFixture(checkNotNull(foreground), cellProperty(cell, FOREGROUND_PROPERTY));
   }
 
-  @Nonnull private Description cellProperty(TableCell cell, String propertyName) {
+  @Nonnull private Supplier<String> cellProperty(TableCell cell, String propertyName) {
     return propertyName(target(), concat(propertyName, " ", cell));
   }
 

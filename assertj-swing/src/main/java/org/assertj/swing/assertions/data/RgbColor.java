@@ -13,9 +13,7 @@
 package org.assertj.swing.assertions.data;
 
 import static java.lang.Math.abs;
-import static org.assertj.core.util.Objects.HASH_CODE_PRIME;
-
-import org.assertj.core.data.Offset;
+import static org.assertj.swing.util.Objects.HASH_CODE_PRIME;
 
 /**
  * A color.

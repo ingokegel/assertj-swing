@@ -12,14 +12,14 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
-import static org.assertj.swing.edt.GuiActionRunner.execute;
-
-import javax.annotation.Nonnull;
-import javax.swing.JProgressBar;
-
 import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.util.Pair;
+
+import javax.annotation.Nonnull;
+import javax.swing.*;
+
+import static org.assertj.swing.edt.GuiActionRunner.execute;
+import static org.assertj.swing.util.Preconditions.checkNotNull;
 
 /**
  * Returns the minimum and maximum values of a {@code JProgressBar}. This query is executed in the event dispatch thread

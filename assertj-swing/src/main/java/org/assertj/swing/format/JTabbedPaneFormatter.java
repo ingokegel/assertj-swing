@@ -12,14 +12,13 @@
  */
 package org.assertj.swing.format;
 
-import static org.assertj.core.util.Strings.quote;
-
-import java.awt.Component;
+import org.assertj.swing.util.Arrays;
 
 import javax.annotation.Nonnull;
-import javax.swing.JTabbedPane;
+import javax.swing.*;
+import java.awt.*;
 
-import org.assertj.swing.util.Arrays;
+import static org.assertj.swing.util.Strings.quote;
 
 /**
  * Formatter for {@code JTabbedPane}s.

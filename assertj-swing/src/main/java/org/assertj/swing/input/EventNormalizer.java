@@ -12,16 +12,14 @@
  */
 package org.assertj.swing.input;
 
-import static org.assertj.swing.listener.WeakEventListener.attachAsWeakEventListener;
-
-import java.awt.AWTEvent;
-import java.awt.Toolkit;
-import java.awt.event.AWTEventListener;
+import org.assertj.swing.annotation.VisibleForTesting;
+import org.assertj.swing.listener.WeakEventListener;
 
 import javax.annotation.Nonnull;
+import java.awt.*;
+import java.awt.event.AWTEventListener;
 
-import org.assertj.core.util.VisibleForTesting;
-import org.assertj.swing.listener.WeakEventListener;
+import static org.assertj.swing.listener.WeakEventListener.attachAsWeakEventListener;
 
 /**
  * AWT event listener which normalizes the event stream by sending a single {@code WINDOW_CLOSED}, instead of one every

@@ -12,18 +12,16 @@
  */
 package org.assertj.swing.fixture;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.swing.format.Formatting.format;
-
-import java.awt.Component;
-import java.awt.Container;
-
-import javax.annotation.Nonnull;
-import javax.swing.JMenuItem;
-
 import org.assertj.swing.core.ComponentMatcher;
 import org.assertj.swing.core.Robot;
 import org.assertj.swing.driver.JMenuItemMatcher;
+
+import javax.annotation.Nonnull;
+import javax.swing.*;
+import java.awt.*;
+
+import static org.assertj.swing.format.Formatting.format;
+import static org.assertj.swing.util.Require.assertThat;
 
 /**
  * Looks up of {@code JMenuItem}s.

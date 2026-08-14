@@ -12,17 +12,16 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.swing.driver.TextAssert.verifyThat;
-
-import java.util.regex.Pattern;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import javax.swing.JLabel;
-
 import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.core.Robot;
 import org.assertj.swing.internal.annotation.InternalApi;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import javax.swing.*;
+import java.util.regex.Pattern;
+
+import static org.assertj.swing.util.Require.verifyThat;
 
 /**
  * <p>

@@ -12,11 +12,12 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.swing.test.ExpectedException.none;
-
 import org.assertj.swing.test.ExpectedException;
 import org.junit.Rule;
 import org.junit.Test;
+
+import static org.assertj.swing.test.ExpectedException.none;
+import static org.assertj.swing.util.Require.assertThat;
 
 /**
  * Tests for {@link TextAssert#isEqualOrMatches(String)}.
@@ -30,27 +31,27 @@ public class TextAssert_isEqualOrMatches_Test {
   @Test
   public void should_Fail_If_Actual_Is_Not_Equal_To_Expected() {
     thrown.expectAssertionError("Expecting actual:\n  \"hello\"\nto match pattern:\n  \"bye\"");
-    new TextAssert("hello").isEqualOrMatches("bye");
+    assertThat("hello").isEqualOrMatches("bye");
   }
 
   @Test
   public void should_Fail_Showing_Description_If_Actual_Is_Not_Equal_To_Expected() {
     thrown.expectAssertionError("[A Test] \nExpecting actual:\n  \"hello\"\nto match pattern:\n  \"bye\"");
-    new TextAssert("hello").as("A Test").isEqualOrMatches("bye");
+    assertThat("hello").as("A Test").isEqualOrMatches("bye");
   }
 
   @Test
   public void should_Pass_If_Actual_Is_Equal_To_Expected_But_No_Valid_Pattern() {
-    new TextAssert("[He$$o").isEqualOrMatches("[He$$o");
+    assertThat("[He$$o").isEqualOrMatches("[He$$o");
   }
 
   @Test
   public void should_Pass_If_Actual_Is_Equal_To_Expected() {
-    new TextAssert("Hello").isEqualOrMatches("Hello");
+    assertThat("Hello").isEqualOrMatches("Hello");
   }
 
   @Test
   public void should_Pass_If_Actual_Matches_Regex_Pattern() {
-    new TextAssert("Hello").isEqualOrMatches("Hell.");
+    assertThat("Hello").isEqualOrMatches("Hell.");
   }
 }

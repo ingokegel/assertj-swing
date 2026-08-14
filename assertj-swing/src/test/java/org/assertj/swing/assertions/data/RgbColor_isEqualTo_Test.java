@@ -12,17 +12,17 @@
  */
 package org.assertj.swing.assertions.data;
 
-import static junit.framework.Assert.assertFalse;
-import static junit.framework.Assert.assertTrue;
-import static org.assertj.core.data.Offset.offset;
-import static org.assertj.swing.assertions.data.RgbColor.color;
-import static org.assertj.swing.test.ErrorMessages.offsetIsNull;
-import static org.assertj.swing.test.ExpectedException.none;
-
 import org.assertj.swing.test.ExpectedException;
 import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
+
+import static junit.framework.Assert.assertFalse;
+import static junit.framework.Assert.assertTrue;
+import static org.assertj.swing.assertions.data.Offset.offset;
+import static org.assertj.swing.assertions.data.RgbColor.color;
+import static org.assertj.swing.test.ErrorMessages.offsetIsNull;
+import static org.assertj.swing.test.ExpectedException.none;
 
 /**
  * Tests for <code>{@link RgbColor#isEqualTo(RgbColor, Offset)}</code>.

@@ -12,31 +12,30 @@
  */
 package org.assertj.swing.driver;
 
+import org.assertj.swing.annotation.RunsInCurrentThread;
+import org.assertj.swing.annotation.RunsInEDT;
+import org.assertj.swing.core.ComponentFinder;
+import org.assertj.swing.core.Robot;
+import org.assertj.swing.core.TypeMatcher;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import javax.swing.*;
+import javax.swing.text.JTextComponent;
+import java.awt.*;
+import java.util.List;
+
 import static javax.swing.text.DefaultEditorKit.selectAllAction;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.util.Lists.newArrayList;
-import static org.assertj.core.util.Strings.concat;
-import static org.assertj.core.util.Strings.quote;
 import static org.assertj.swing.driver.ComponentPreconditions.checkEnabledAndShowing;
 import static org.assertj.swing.driver.JSpinnerSetValueTask.setValue;
 import static org.assertj.swing.driver.JSpinnerValueQuery.valueOf;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 import static org.assertj.swing.exception.ActionFailedException.actionFailure;
 import static org.assertj.swing.format.Formatting.format;
-
-import java.awt.Component;
-import java.util.List;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import javax.swing.JSpinner;
-import javax.swing.text.JTextComponent;
-
-import org.assertj.swing.annotation.RunsInCurrentThread;
-import org.assertj.swing.annotation.RunsInEDT;
-import org.assertj.swing.core.ComponentFinder;
-import org.assertj.swing.core.Robot;
-import org.assertj.swing.core.TypeMatcher;
+import static org.assertj.swing.util.Lists.newArrayList;
+import static org.assertj.swing.util.Require.assertThat;
+import static org.assertj.swing.util.Strings.concat;
+import static org.assertj.swing.util.Strings.quote;
 
 /**
  * <p>

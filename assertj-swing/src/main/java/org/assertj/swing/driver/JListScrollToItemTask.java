@@ -12,27 +12,25 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
-import static org.assertj.swing.driver.ComponentPreconditions.checkEnabledAndShowing;
-import static org.assertj.swing.driver.JListCellBoundsQuery.cellBounds;
-import static org.assertj.swing.driver.JListCellCenterQuery.cellCenter;
-import static org.assertj.swing.driver.JListItemPreconditions.checkIndexInBounds;
-import static org.assertj.swing.driver.JListMatchingItemQuery.matchingItemIndex;
-import static org.assertj.swing.edt.GuiActionRunner.execute;
-
-import java.awt.Point;
-import java.awt.Rectangle;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import javax.swing.JList;
-
 import org.assertj.swing.annotation.RunsInCurrentThread;
 import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.cell.JListCellReader;
 import org.assertj.swing.edt.GuiQuery;
 import org.assertj.swing.util.Pair;
 import org.assertj.swing.util.TextMatcher;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import javax.swing.*;
+import java.awt.*;
+
+import static org.assertj.swing.driver.ComponentPreconditions.checkEnabledAndShowing;
+import static org.assertj.swing.driver.JListCellBoundsQuery.cellBounds;
+import static org.assertj.swing.driver.JListCellCenterQuery.cellCenter;
+import static org.assertj.swing.driver.JListItemPreconditions.checkIndexInBounds;
+import static org.assertj.swing.driver.JListMatchingItemQuery.matchingItemIndex;
+import static org.assertj.swing.edt.GuiActionRunner.execute;
+import static org.assertj.swing.util.Preconditions.checkNotNull;
 
 /**
  * Performs scrolling to a specific element in a {@code JList}.

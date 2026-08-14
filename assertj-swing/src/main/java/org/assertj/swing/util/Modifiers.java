@@ -12,25 +12,16 @@
  */
 package org.assertj.swing.util;
 
-import static java.awt.event.InputEvent.ALT_GRAPH_MASK;
-import static java.awt.event.InputEvent.ALT_MASK;
-import static java.awt.event.InputEvent.CTRL_MASK;
-import static java.awt.event.InputEvent.META_MASK;
-import static java.awt.event.InputEvent.SHIFT_MASK;
-import static java.awt.event.KeyEvent.VK_ALT;
-import static java.awt.event.KeyEvent.VK_ALT_GRAPH;
-import static java.awt.event.KeyEvent.VK_CONTROL;
-import static java.awt.event.KeyEvent.VK_META;
-import static java.awt.event.KeyEvent.VK_SHIFT;
-import static java.lang.String.valueOf;
-import static org.assertj.core.util.Lists.newArrayList;
-import static org.assertj.core.util.Strings.concat;
-
+import javax.annotation.Nonnull;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Nonnull;
+import static java.awt.event.InputEvent.*;
+import static java.awt.event.KeyEvent.*;
+import static java.lang.String.valueOf;
+import static org.assertj.swing.util.Lists.newArrayList;
+import static org.assertj.swing.util.Strings.concat;
 
 /**
  * Utility methods related to input modifiers. This class also maps modifier masks to key codes for the following

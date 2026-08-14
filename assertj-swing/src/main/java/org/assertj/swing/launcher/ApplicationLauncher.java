@@ -12,15 +12,15 @@
  */
 package org.assertj.swing.launcher;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
-import static org.assertj.core.util.Strings.concat;
-import static org.assertj.core.util.Strings.quote;
-import static org.assertj.swing.util.Arrays.copyOf;
-import static org.fest.reflect.core.Reflection.method;
+import org.assertj.swing.exception.UnexpectedException;
 
 import javax.annotation.Nonnull;
 
-import org.assertj.swing.exception.UnexpectedException;
+import static org.assertj.swing.util.Arrays.copyOf;
+import static org.assertj.swing.util.Preconditions.checkNotNull;
+import static org.assertj.swing.util.Strings.concat;
+import static org.assertj.swing.util.Strings.quote;
+import static org.fest.reflect.core.Reflection.method;
 
 /**
  * <p>

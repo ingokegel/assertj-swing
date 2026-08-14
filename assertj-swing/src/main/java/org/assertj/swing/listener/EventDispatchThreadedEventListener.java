@@ -12,18 +12,17 @@
  */
 package org.assertj.swing.listener;
 
-import static javax.swing.SwingUtilities.invokeLater;
-import static javax.swing.SwingUtilities.isEventDispatchThread;
-import static org.assertj.core.util.Lists.newArrayList;
-import static org.assertj.core.util.Preconditions.checkNotNull;
-
-import java.awt.AWTEvent;
-import java.awt.event.AWTEventListener;
-import java.util.List;
-
 import javax.annotation.Nonnull;
 import javax.annotation.concurrent.GuardedBy;
 import javax.annotation.concurrent.ThreadSafe;
+import java.awt.*;
+import java.awt.event.AWTEventListener;
+import java.util.List;
+
+import static javax.swing.SwingUtilities.invokeLater;
+import static javax.swing.SwingUtilities.isEventDispatchThread;
+import static org.assertj.swing.util.Lists.newArrayList;
+import static org.assertj.swing.util.Preconditions.checkNotNull;
 
 /**
  * <p>

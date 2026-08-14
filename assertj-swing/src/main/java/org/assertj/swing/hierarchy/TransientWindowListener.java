@@ -12,20 +12,16 @@
  */
 package org.assertj.swing.hierarchy;
 
-import static javax.swing.SwingUtilities.invokeLater;
-import static org.assertj.core.util.Preconditions.checkNotNull;
-import static org.assertj.swing.util.AWTEvents.wasWindowClosed;
-import static org.assertj.swing.util.AWTEvents.wasWindowOpened;
-import static org.assertj.swing.util.AWTEvents.wasWindowShown;
-
-import java.awt.AWTEvent;
-import java.awt.Window;
-import java.awt.event.AWTEventListener;
+import org.assertj.swing.annotation.RunsInEDT;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.awt.*;
+import java.awt.event.AWTEventListener;
 
-import org.assertj.swing.annotation.RunsInEDT;
+import static javax.swing.SwingUtilities.invokeLater;
+import static org.assertj.swing.util.AWTEvents.*;
+import static org.assertj.swing.util.Preconditions.checkNotNull;
 
 /**
  * Automatic filtering of auto-generated Swing dialogs.

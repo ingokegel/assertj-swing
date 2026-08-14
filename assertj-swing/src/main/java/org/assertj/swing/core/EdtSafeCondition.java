@@ -12,15 +12,15 @@
  */
 package org.assertj.swing.core;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
-import static org.assertj.swing.edt.GuiActionRunner.execute;
+import org.assertj.swing.annotation.RunsInEDT;
+import org.assertj.swing.timing.Condition;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.function.Supplier;
 
-import org.assertj.core.description.Description;
-import org.assertj.swing.annotation.RunsInEDT;
-import org.assertj.swing.timing.Condition;
+import static org.assertj.swing.edt.GuiActionRunner.execute;
+import static org.assertj.swing.util.Preconditions.checkNotNull;
 
 /**
  * {@link Condition} that is evaluated in the event dispatch thread (EDT).
@@ -42,7 +42,7 @@ public abstract class EdtSafeCondition extends Condition {
    * 
    * @param description describes this condition.
    */
-  public EdtSafeCondition(@Nullable Description description) {
+  public EdtSafeCondition(@Nullable Supplier<String> description) {
     super(description);
   }
 

@@ -12,34 +12,20 @@
  */
 package org.assertj.swing.awt;
 
-import static java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment;
-import static java.awt.event.InputEvent.BUTTON3_MASK;
-import static org.assertj.core.util.Preconditions.checkNotNull;
-import static org.assertj.swing.edt.GuiActionRunner.execute;
-import static org.assertj.swing.util.Platform.isWindows;
-
-import java.awt.Component;
-import java.awt.Container;
-import java.awt.Dialog;
-import java.awt.Dimension;
-import java.awt.Frame;
-import java.awt.GraphicsConfiguration;
-import java.awt.GraphicsDevice;
-import java.awt.Insets;
-import java.awt.Point;
-import java.awt.Rectangle;
-import java.awt.Window;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import javax.swing.JComponent;
-import javax.swing.JOptionPane;
-import javax.swing.JPopupMenu;
-import javax.swing.SwingUtilities;
-
 import org.assertj.swing.annotation.RunsInCurrentThread;
 import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.util.ToolkitProvider;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import javax.swing.*;
+import java.awt.*;
+
+import static java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment;
+import static java.awt.event.InputEvent.BUTTON3_MASK;
+import static org.assertj.swing.edt.GuiActionRunner.execute;
+import static org.assertj.swing.util.Platform.isWindows;
+import static org.assertj.swing.util.Preconditions.checkNotNull;
 
 /**
  * Utility methods related to AWT.

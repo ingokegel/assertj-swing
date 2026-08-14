@@ -12,21 +12,19 @@
  */
 package org.assertj.swing.text;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
-import static org.assertj.core.util.Strings.concat;
-import static org.assertj.swing.edt.GuiActionRunner.execute;
-import static org.assertj.swing.util.Maps.newConcurrentHashMap;
-
-import java.awt.Component;
-import java.awt.Container;
-import java.util.concurrent.ConcurrentMap;
+import org.assertj.swing.annotation.RunsInEDT;
+import org.assertj.swing.annotation.VisibleForTesting;
+import org.assertj.swing.logging.Logger;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.awt.*;
+import java.util.concurrent.ConcurrentMap;
 
-import org.assertj.core.util.VisibleForTesting;
-import org.assertj.swing.annotation.RunsInEDT;
-import org.assertj.swing.logging.Logger;
+import static org.assertj.swing.edt.GuiActionRunner.execute;
+import static org.assertj.swing.util.Maps.newConcurrentHashMap;
+import static org.assertj.swing.util.Preconditions.checkNotNull;
+import static org.assertj.swing.util.Strings.concat;
 
 /**
  * Registry of {@link TextReader}s.

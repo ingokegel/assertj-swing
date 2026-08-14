@@ -12,7 +12,7 @@
  */
 package org.assertj.swing.assertions.data;
 
-import static org.assertj.core.util.Objects.HASH_CODE_PRIME;
+import static org.assertj.swing.util.Objects.HASH_CODE_PRIME;
 
 /**
  * Represents a location in (x, y) coordinate space, specified in integer precision.

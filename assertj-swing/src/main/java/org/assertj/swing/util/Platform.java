@@ -12,16 +12,14 @@
  */
 package org.assertj.swing.util;
 
-import static java.lang.String.valueOf;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.util.Strings.concat;
-import static org.assertj.swing.util.Modifiers.keysFor;
-
-import java.awt.Toolkit;
+import org.assertj.swing.annotation.VisibleForTesting;
 
 import javax.annotation.Nonnull;
+import java.awt.*;
 
-import org.assertj.core.util.VisibleForTesting;
+import static java.lang.String.valueOf;
+import static org.assertj.swing.util.Modifiers.keysFor;
+import static org.assertj.swing.util.Strings.concat;
 
 /**
  * Platform-specific functionality.
@@ -58,7 +56,9 @@ public final class Platform {
   public static int controlOrCommandKey() {
     int menuShortcutKeyMask = controlOrCommandMask();
     int[] keys = keysFor(menuShortcutKeyMask);
-    assertThat(keys).as(concat("Key code for mask ", valueOf(menuShortcutKeyMask))).isNotNull().hasSize(1);
+    if (keys == null || keys.length != 1)
+      throw new AssertionError(concat("[Key code for mask ", valueOf(menuShortcutKeyMask),
+                                      "] expected exactly one key code but was: ", java.util.Arrays.toString(keys)));
     return keys[0];
   }
 

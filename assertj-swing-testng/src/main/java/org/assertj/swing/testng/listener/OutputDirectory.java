@@ -12,11 +12,12 @@
  */
 package org.assertj.swing.testng.listener;
 
-import static org.assertj.core.util.Strings.concat;
-import static org.assertj.swing.util.Strings.isNullOrEmpty;
+import org.testng.ITestContext;
 
 import java.io.File;
-import org.testng.ITestContext;
+
+import static org.assertj.swing.util.Strings.concat;
+import static org.assertj.swing.util.Strings.isNullOrEmpty;
 
 /**
  * Understands TestNG's output directory.

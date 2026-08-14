@@ -12,14 +12,13 @@
  */
 package org.assertj.swing.assertions;
 
-import java.awt.Dimension;
+import org.assertj.swing.annotation.VisibleForTesting;
+import org.assertj.swing.assertions.data.Offset;
+import org.assertj.swing.internal.assertions.Images;
+
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.Comparator;
-
-import org.assertj.core.api.AbstractAssert;
-import org.assertj.core.data.Offset;
-import org.assertj.core.util.VisibleForTesting;
-import org.assertj.swing.internal.assertions.Images;
 
 /**
  * Assertion methods for images.
@@ -33,13 +32,15 @@ import org.assertj.swing.internal.assertions.Images;
  * @author Joel Costigliola
  * @author Mikhail Mazursky
  */
-public class ImageAssert extends AbstractAssert<ImageAssert, BufferedImage> {
+public class ImageAssert {
 
   @VisibleForTesting
   Images images = Images.instance();
 
+  protected final BufferedImage actual;
+
   protected ImageAssert(BufferedImage actual) {
-    super(actual, ImageAssert.class);
+    this.actual = actual;
   }
 
   /**
@@ -54,7 +55,7 @@ public class ImageAssert extends AbstractAssert<ImageAssert, BufferedImage> {
    * @throws AssertionError if the actual image is not equal to the given one.
    */
   public ImageAssert isEqualTo(BufferedImage expected) {
-    images.assertEqual(info, actual, expected);
+    images.assertEqual(actual, expected);
     return this;
   }
 
@@ -74,12 +75,12 @@ public class ImageAssert extends AbstractAssert<ImageAssert, BufferedImage> {
    * @throws AssertionError if the actual image is not equal to the given one.
    */
   public ImageAssert isEqualTo(BufferedImage expected, Offset<Integer> offset) {
-    images.assertEqual(info, actual, expected, offset);
+    images.assertEqual(actual, expected, offset);
     return this;
   }
 
   public ImageAssert isNotEqualTo(BufferedImage other) {
-    images.assertNotEqual(info, actual, other);
+    images.assertNotEqual(actual, other);
     return this;
   }
 
@@ -92,19 +93,11 @@ public class ImageAssert extends AbstractAssert<ImageAssert, BufferedImage> {
    * @throws AssertionError if the size of the actual image is not equal to the given size.
    */
   public ImageAssert hasSize(Dimension expected) {
-    images.assertHasSize(info, actual, expected);
+    images.assertHasSize(actual, expected);
     return this;
   }
 
-  @Override
   public ImageAssert usingComparator(Comparator<? super BufferedImage> customComparator) {
     throw new UnsupportedOperationException("custom Comparator is not supported for image comparison");
-  }
-
-  @Override
-  public ImageAssert usingDefaultComparator() {
-    super.usingDefaultComparator();
-    images = Images.instance();
-    return myself;
   }
 }

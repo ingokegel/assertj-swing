@@ -12,15 +12,14 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.swing.util.Platform.controlOrCommandKey;
-
-import java.util.function.Consumer;
-
-import javax.annotation.Nonnull;
-
-import org.assertj.core.api.Fail;
 import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.core.Robot;
+import org.assertj.swing.util.Fail;
+
+import javax.annotation.Nonnull;
+import java.util.function.Consumer;
+
+import static org.assertj.swing.util.Platform.controlOrCommandKey;
 
 /**
  * Simulates multiple selection on a GUI component.

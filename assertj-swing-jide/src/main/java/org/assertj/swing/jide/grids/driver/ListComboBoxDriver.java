@@ -12,9 +12,9 @@
  */
 package org.assertj.swing.jide.grids.driver;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.util.Strings.concat;
-import static org.assertj.core.util.Strings.quote;
+import static org.assertj.swing.util.Require.assertThat;
+import static org.assertj.swing.util.Strings.concat;
+import static org.assertj.swing.util.Strings.quote;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import java.awt.Component;
@@ -24,7 +24,7 @@ import javax.swing.ComboBoxModel;
 import javax.swing.JList;
 import javax.swing.text.JTextComponent;
 
-import org.assertj.core.presentation.StandardRepresentation;
+import static org.assertj.swing.util.ToString.toStringOf;
 import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.core.Robot;
 import org.assertj.swing.driver.ComponentPreconditions;
@@ -122,7 +122,7 @@ public class ListComboBoxDriver extends AbstractComboBoxDriver {
     // match sufficiently, so we need to throw an appropriate exception that can be used to diagnose the problem.
     throw new LocationUnavailableException(concat("Unable to find item ", quote(toSelect),
                                                   " among the ListComboBox contents (",
-                                                  new StandardRepresentation().toStringOf(contentsOf(comboBox)),
+                                                  toStringOf(contentsOf(comboBox)),
                                                   ")"));
   }
 

@@ -12,28 +12,22 @@
  */
 package org.assertj.swing.assertions.error;
 
-import org.assertj.core.error.BasicErrorMessageFactory;
-import org.assertj.core.error.ErrorMessageFactory;
-
 /**
- * Creates an error message that indicates an assertion that verifies that two images should not be {@code null} failed.
- * 
+ * Creates an error message indicating that an assertion that expected two images not to be equal failed.
+ *
  * @author Yvonne Wang
  */
-public class ShouldNotBeEqualImages extends BasicErrorMessageFactory {
-
-  private static final ShouldNotBeEqualImages INSTANCE = new ShouldNotBeEqualImages();
+public final class ShouldNotBeEqualImages {
 
   /**
-   * Returns the singleton instance of this class.
-   * 
-   * @return the singleton instance of this class.
+   * Creates a new error message.
+   *
+   * @return the created error message.
    */
-  public static ErrorMessageFactory shouldNotBeEqualImages() {
-    return INSTANCE;
+  public static String shouldNotBeEqualImages() {
+    return "expecting images not to be equal";
   }
 
   private ShouldNotBeEqualImages() {
-    super("expecting images not to be equal");
   }
 }

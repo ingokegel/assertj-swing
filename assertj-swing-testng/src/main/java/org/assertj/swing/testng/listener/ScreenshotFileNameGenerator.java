@@ -12,13 +12,13 @@
  */
 package org.assertj.swing.testng.listener;
 
-import static org.assertj.core.util.Strings.join;
-import static org.assertj.swing.image.ImageFileExtensions.PNG;
+import org.testng.ITestResult;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.testng.ITestResult;
+import static org.assertj.swing.image.ImageFileExtensions.PNG;
+import static org.assertj.swing.util.Strings.join;
 
 /**
  * Understands generation of the name of the image file containing the screenshot of the desktop.

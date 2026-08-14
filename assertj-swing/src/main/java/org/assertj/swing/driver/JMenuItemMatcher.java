@@ -12,21 +12,17 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.core.util.Objects.areEqual;
-import static org.assertj.core.util.Strings.concat;
-import static org.assertj.core.util.Strings.join;
-import static org.assertj.core.util.Strings.quote;
-import static org.assertj.swing.driver.AbstractButtonTextQuery.textOf;
-
-import java.awt.Component;
+import org.assertj.swing.annotation.RunsInCurrentThread;
+import org.assertj.swing.core.ComponentMatcher;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import javax.swing.JMenuItem;
-import javax.swing.JPopupMenu;
+import javax.swing.*;
+import java.awt.*;
 
-import org.assertj.swing.annotation.RunsInCurrentThread;
-import org.assertj.swing.core.ComponentMatcher;
+import static org.assertj.swing.driver.AbstractButtonTextQuery.textOf;
+import static org.assertj.swing.util.Objects.areEqual;
+import static org.assertj.swing.util.Strings.*;
 
 /**
  * Matches a {@code JMenuItem} given a simple label or a menu path of the format "menu|submenu|menuitem", for example

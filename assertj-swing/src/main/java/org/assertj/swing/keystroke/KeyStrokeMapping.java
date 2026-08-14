@@ -12,11 +12,11 @@
  */
 package org.assertj.swing.keystroke;
 
-import static org.assertj.core.util.Objects.HASH_CODE_PRIME;
-import static org.assertj.core.util.Preconditions.checkNotNull;
-
 import javax.annotation.Nonnull;
-import javax.swing.KeyStroke;
+import javax.swing.*;
+
+import static org.assertj.swing.util.Objects.HASH_CODE_PRIME;
+import static org.assertj.swing.util.Preconditions.checkNotNull;
 
 /**
  * A mapping between a character and a {@code javax.swing.KeyStroke}.

@@ -12,22 +12,18 @@
  */
 package org.assertj.swing.monitor;
 
-import static java.lang.Boolean.TRUE;
-import static org.assertj.core.util.Sets.newHashSet;
-import static org.assertj.swing.query.ComponentParentQuery.parentOf;
-import static org.assertj.swing.util.Maps.newWeakHashMap;
+import org.assertj.swing.annotation.RunsInCurrentThread;
 
-import java.awt.Component;
-import java.awt.EventQueue;
-import java.awt.Toolkit;
-import java.awt.Window;
+import javax.annotation.Nonnull;
+import java.awt.*;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
 
-import javax.annotation.Nonnull;
-
-import org.assertj.swing.annotation.RunsInCurrentThread;
+import static java.lang.Boolean.TRUE;
+import static org.assertj.swing.query.ComponentParentQuery.parentOf;
+import static org.assertj.swing.util.Maps.newWeakHashMap;
+import static org.assertj.swing.util.Sets.newHashSet;
 
 /**
  * A mapping of unique event queues to the set of root windows found on each queue.

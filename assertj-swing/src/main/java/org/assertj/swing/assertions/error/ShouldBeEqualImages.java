@@ -12,30 +12,27 @@
  */
 package org.assertj.swing.assertions.error;
 
-import org.assertj.core.data.Offset;
-import org.assertj.core.error.BasicErrorMessageFactory;
-import org.assertj.core.error.ErrorMessageFactory;
+import org.assertj.swing.assertions.data.Offset;
 
 /**
- * Creates an error message that indicates an assertion that verifies that two images are equal failed.
- * 
+ * Creates an error message indicating that an assertion that expected two images to be equal failed.
+ *
  * @author Yvonne Wang
  */
-public class ShouldBeEqualImages extends BasicErrorMessageFactory {
+public final class ShouldBeEqualImages {
 
   /**
-   * Creates a new <code>{@link ShouldBeEqualImages}</code>.
-   * 
+   * Creates a new error message.
+   *
    * @param offset helps decide if the color of two pixels are similar: two pixels that are identical to the human eye
    *          may still have slightly different color values. For example, by using an offset of 1 we can indicate that
    *          a blue value of 60 is similar to a blue value of 61.
-   * @return the created {@code ErrorMessageFactory}.
+   * @return the created error message.
    */
-  public static ErrorMessageFactory shouldBeEqualImages(Offset<Integer> offset) {
-    return new ShouldBeEqualImages(offset);
+  public static String shouldBeEqualImages(Offset<Integer> offset) {
+    return String.format("expecting images to be equal within offset:<%s>", offset.value);
   }
 
-  private ShouldBeEqualImages(Offset<Integer> offset) {
-    super("expecting images to be equal within offset:<%s>", offset.value);
+  private ShouldBeEqualImages() {
   }
 }

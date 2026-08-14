@@ -12,22 +12,19 @@
  */
 package org.assertj.swing.core;
 
-import static java.lang.Math.max;
-import static java.lang.Math.min;
-import static org.assertj.swing.core.ComponentLookupScope.DEFAULT;
-import static org.assertj.swing.core.MouseButton.LEFT_BUTTON;
-import static org.assertj.swing.util.Platform.isOSX;
-import static org.assertj.swing.util.Platform.isWindows;
-import static org.assertj.swing.util.Platform.isX11;
+import org.assertj.swing.annotation.VisibleForTesting;
 
+import javax.annotation.Nonnull;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 import java.util.function.Function;
 
-import javax.annotation.Nonnull;
-
-import org.assertj.core.util.VisibleForTesting;
+import static java.lang.Math.max;
+import static java.lang.Math.min;
+import static org.assertj.swing.core.ComponentLookupScope.DEFAULT;
+import static org.assertj.swing.core.MouseButton.LEFT_BUTTON;
+import static org.assertj.swing.util.Platform.*;
 
 /**
  * <p>

@@ -12,18 +12,18 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.swing.driver.JProgressBarValueQuery.valueOf;
-import static org.assertj.swing.format.Formatting.format;
-import static org.assertj.swing.timing.Pause.pause;
-
-import javax.annotation.Nonnull;
-import javax.swing.JProgressBar;
-
-import org.assertj.core.description.Description;
 import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.edt.GuiLazyLoadingDescription;
 import org.assertj.swing.timing.Condition;
 import org.assertj.swing.timing.Timeout;
+
+import javax.annotation.Nonnull;
+import javax.swing.*;
+import java.util.function.Supplier;
+
+import static org.assertj.swing.driver.JProgressBarValueQuery.valueOf;
+import static org.assertj.swing.format.Formatting.format;
+import static org.assertj.swing.timing.Pause.pause;
 
 /**
  * Waits until the value of a {@code JProgressBar} is equal to the given expected value. This task is executed in the
@@ -43,7 +43,7 @@ final class JProgressBarWaitUntilValueIsEqualToExpectedTask {
     }, timeout);
   }
 
-  private static Description untilValueIsEqualTo(final @Nonnull JProgressBar progressBar, final int expected) {
+  private static Supplier<String> untilValueIsEqualTo(final @Nonnull JProgressBar progressBar, final int expected) {
     return new GuiLazyLoadingDescription() {
       @Override
       @Nonnull protected String loadDescription() {

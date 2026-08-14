@@ -12,22 +12,21 @@
  */
 package org.assertj.swing.fixture;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
-import static org.assertj.swing.core.MouseButton.LEFT_BUTTON;
-import static org.assertj.swing.core.MouseButton.RIGHT_BUTTON;
-
-import java.awt.Component;
-import java.util.regex.Pattern;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import javax.swing.JTable;
-
-import org.assertj.core.util.VisibleForTesting;
+import org.assertj.swing.annotation.VisibleForTesting;
 import org.assertj.swing.core.MouseButton;
 import org.assertj.swing.core.MouseClickInfo;
 import org.assertj.swing.data.TableCell;
 import org.assertj.swing.driver.JTableDriver;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import javax.swing.*;
+import java.awt.*;
+import java.util.regex.Pattern;
+
+import static org.assertj.swing.core.MouseButton.LEFT_BUTTON;
+import static org.assertj.swing.core.MouseButton.RIGHT_BUTTON;
+import static org.assertj.swing.util.Preconditions.checkNotNull;
 
 /**
  * <p>

@@ -12,10 +12,30 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.util.Preconditions.checkNotNull;
-import static org.assertj.core.util.Preconditions.checkNotNullOrEmpty;
-import static org.assertj.core.util.Strings.concat;
+import org.assertj.swing.annotation.RunsInCurrentThread;
+import org.assertj.swing.annotation.RunsInEDT;
+import org.assertj.swing.annotation.VisibleForTesting;
+import org.assertj.swing.cell.JTreeCellReader;
+import org.assertj.swing.core.MouseButton;
+import org.assertj.swing.core.MouseClickInfo;
+import org.assertj.swing.core.Robot;
+import org.assertj.swing.edt.GuiQuery;
+import org.assertj.swing.exception.LocationUnavailableException;
+import org.assertj.swing.exception.WaitTimedOutError;
+import org.assertj.swing.internal.annotation.InternalApi;
+import org.assertj.swing.util.ArrayPreconditions;
+import org.assertj.swing.util.Pair;
+import org.assertj.swing.util.Triple;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import javax.swing.*;
+import javax.swing.plaf.TreeUI;
+import javax.swing.plaf.basic.BasicTreeUI;
+import javax.swing.tree.TreePath;
+import java.awt.*;
+import java.util.function.Supplier;
+
 import static org.assertj.swing.core.MouseButton.LEFT_BUTTON;
 import static org.assertj.swing.core.MouseButton.RIGHT_BUTTON;
 import static org.assertj.swing.driver.ComponentPreconditions.checkEnabledAndShowing;
@@ -33,33 +53,10 @@ import static org.assertj.swing.edt.GuiActionRunner.execute;
 import static org.assertj.swing.exception.ActionFailedException.actionFailure;
 import static org.assertj.swing.timing.Pause.pause;
 import static org.assertj.swing.util.Platform.controlOrCommandKey;
-
-import java.awt.Point;
-import java.awt.Rectangle;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import javax.swing.JPopupMenu;
-import javax.swing.JTree;
-import javax.swing.plaf.TreeUI;
-import javax.swing.plaf.basic.BasicTreeUI;
-import javax.swing.tree.TreePath;
-
-import org.assertj.core.description.Description;
-import org.assertj.core.util.VisibleForTesting;
-import org.assertj.swing.annotation.RunsInCurrentThread;
-import org.assertj.swing.annotation.RunsInEDT;
-import org.assertj.swing.cell.JTreeCellReader;
-import org.assertj.swing.core.MouseButton;
-import org.assertj.swing.core.MouseClickInfo;
-import org.assertj.swing.core.Robot;
-import org.assertj.swing.edt.GuiQuery;
-import org.assertj.swing.exception.LocationUnavailableException;
-import org.assertj.swing.exception.WaitTimedOutError;
-import org.assertj.swing.internal.annotation.InternalApi;
-import org.assertj.swing.util.ArrayPreconditions;
-import org.assertj.swing.util.Pair;
-import org.assertj.swing.util.Triple;
+import static org.assertj.swing.util.Preconditions.checkNotNull;
+import static org.assertj.swing.util.Preconditions.checkNotNullOrEmpty;
+import static org.assertj.swing.util.Require.assertThat;
+import static org.assertj.swing.util.Strings.concat;
 
 /**
  * <p>
@@ -936,7 +933,7 @@ public class JTreeDriver extends JComponentDriver {
   }
 
   @RunsInEDT
-  @Nonnull private Description selectionProperty(@Nonnull JTree tree) {
+  @Nonnull private Supplier<String> selectionProperty(@Nonnull JTree tree) {
     return propertyName(tree, SELECTION_PROPERTY);
   }
 
@@ -968,7 +965,7 @@ public class JTreeDriver extends JComponentDriver {
   }
 
   @RunsInEDT
-  @Nonnull private static Description editableProperty(@Nonnull JTree tree) {
+  @Nonnull private static Supplier<String> editableProperty(@Nonnull JTree tree) {
     return propertyName(tree, EDITABLE_PROPERTY);
   }
 

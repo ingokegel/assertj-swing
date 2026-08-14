@@ -12,12 +12,11 @@
  */
 package org.assertj.swing.format;
 
-import static org.assertj.core.util.Strings.quote;
-
-import java.awt.Component;
-
 import javax.annotation.Nonnull;
-import javax.swing.JTable;
+import javax.swing.*;
+import java.awt.*;
+
+import static org.assertj.swing.util.Strings.quote;
 
 /**
  * Formatter for {@code JTable}s.

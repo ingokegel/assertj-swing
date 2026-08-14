@@ -12,21 +12,18 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
-import static org.assertj.swing.driver.ModelValueToString.asText;
-import static org.assertj.swing.edt.GuiActionRunner.execute;
-
-import java.awt.Component;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import javax.swing.JComboBox;
-import javax.swing.JList;
-import javax.swing.ListCellRenderer;
-
 import org.assertj.swing.annotation.RunsInCurrentThread;
 import org.assertj.swing.cell.JComboBoxCellReader;
 import org.assertj.swing.edt.GuiQuery;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import javax.swing.*;
+import java.awt.*;
+
+import static org.assertj.swing.driver.ModelValueToString.asText;
+import static org.assertj.swing.edt.GuiActionRunner.execute;
+import static org.assertj.swing.util.Preconditions.checkNotNull;
 
 /**
  * Default implementation of {@link JComboBoxCellReader}.

@@ -12,14 +12,13 @@
  */
 package org.assertj.swing.keystroke;
 
-import static java.util.Collections.unmodifiableList;
-import static org.assertj.core.util.Lists.newArrayList;
-import static org.assertj.swing.keystroke.KeyStrokeMappings.defaultMappings;
-
+import javax.annotation.Nonnull;
 import java.util.Collection;
 import java.util.List;
 
-import javax.annotation.Nonnull;
+import static java.util.Collections.unmodifiableList;
+import static org.assertj.swing.keystroke.KeyStrokeMappings.defaultMappings;
+import static org.assertj.swing.util.Lists.newArrayList;
 
 /**
  * {@link KeyStrokeMappingProvider} created by parsing a text file containing all the key mappings.

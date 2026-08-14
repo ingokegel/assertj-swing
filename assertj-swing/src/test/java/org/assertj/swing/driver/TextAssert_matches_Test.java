@@ -12,13 +12,14 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.swing.test.ExpectedException.none;
-
-import java.util.regex.Pattern;
-
 import org.assertj.swing.test.ExpectedException;
 import org.junit.Rule;
 import org.junit.Test;
+
+import java.util.regex.Pattern;
+
+import static org.assertj.swing.test.ExpectedException.none;
+import static org.assertj.swing.util.Require.assertThat;
 
 /**
  * Tests for {@link TextAssert#matches(java.util.regex.Pattern)}.
@@ -33,18 +34,18 @@ public class TextAssert_matches_Test {
   public void should_Fail_If_Actual_Does_Not_Match_Regex_Pattern() {
     thrown.expect(AssertionError.class);
     thrown.expectMessage("Expecting actual:\n  \"hello\"\nto match pattern:\n  \"bye\"");
-    new TextAssert("hello").matches(Pattern.compile("bye"));
+    assertThat("hello").matches(Pattern.compile("bye"));
   }
 
   @Test
   public void should_Fail_Showing_Description_If_Actual_Does_Not_Match_Regex_Pattern() {
     thrown.expect(AssertionError.class);
     thrown.expectMessage("[A Test] \nExpecting actual:\n  \"hello\"\nto match pattern:\n  \"bye\"");
-    new TextAssert("hello").as("A Test").matches(Pattern.compile("bye"));
+    assertThat("hello").as("A Test").matches(Pattern.compile("bye"));
   }
 
   @Test
   public void should_Pass_If_Actual_Matches_Regex_Pattern() {
-    new TextAssert("Hello").matches(Pattern.compile("Hel.*"));
+    assertThat("Hello").matches(Pattern.compile("Hel.*"));
   }
 }

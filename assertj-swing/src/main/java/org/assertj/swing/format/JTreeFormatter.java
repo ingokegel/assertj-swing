@@ -12,20 +12,17 @@
  */
 package org.assertj.swing.format;
 
-import static javax.swing.tree.TreeSelectionModel.CONTIGUOUS_TREE_SELECTION;
-import static javax.swing.tree.TreeSelectionModel.DISCONTIGUOUS_TREE_SELECTION;
-import static javax.swing.tree.TreeSelectionModel.SINGLE_TREE_SELECTION;
-import static org.assertj.core.util.Strings.quote;
-
-import java.awt.Component;
+import org.assertj.swing.util.Arrays;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import javax.swing.JTree;
+import javax.swing.*;
 import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
+import java.awt.*;
 
-import org.assertj.swing.util.Arrays;
+import static javax.swing.tree.TreeSelectionModel.*;
+import static org.assertj.swing.util.Strings.quote;
 
 /**
  * Formatter for {@code JTree}s.

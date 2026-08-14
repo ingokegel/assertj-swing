@@ -12,32 +12,29 @@
  */
 package org.assertj.swing.assertions.error;
 
-import java.awt.Dimension;
-
-import org.assertj.core.error.BasicErrorMessageFactory;
-import org.assertj.core.error.ErrorMessageFactory;
+import java.awt.*;
 
 /**
- * Creates an error message indicating that an assertion that verifies that a value have certain dimension failed.
+ * Creates an error message indicating that an assertion that expected the size of an image to be equal to a given
+ * size failed.
  *
- * @author Alex Ruiz
+ * @author Yvonne Wang
  */
-public class ShouldHaveDimension extends BasicErrorMessageFactory {
+public final class ShouldHaveDimension {
 
   /**
-   * Creates a new <code>{@link ShouldHaveDimension}</code>.
+   * Creates a new error message.
    *
    * @param actual the actual value in the failed assertion.
    * @param actualSize the size of {@code actual}.
    * @param expectedSize the expected size.
-   * @return the created {@code ErrorMessageFactory}.
+   * @return the created error message.
    */
-  public static ErrorMessageFactory shouldHaveDimension(Object actual, Dimension actualSize, Dimension expectedSize) {
-    return new ShouldHaveDimension(actual, actualSize, expectedSize);
+  public static String shouldHaveDimension(Object actual, Dimension actualSize, Dimension expectedSize) {
+    return String.format("expected size:<%sx%s> but was:<%sx%s> in:<%s>", expectedSize.width, expectedSize.height,
+                         actualSize.width, actualSize.height, actual);
   }
 
-  private ShouldHaveDimension(Object actual, Dimension actualSize, Dimension expectedSize) {
-    super("expected size:<%sx%s> but was:<%sx%s> in:<%s>", expectedSize.width, expectedSize.height, actualSize.width,
-          actualSize.height, actual);
+  private ShouldHaveDimension() {
   }
 }

@@ -12,22 +12,19 @@
  */
 package org.assertj.swing.assertions.image;
 
-import static org.assertj.core.data.Offset.offset;
-import static org.assertj.swing.test.awt.AwtTestData.fivePixelYellowImage;
-import static org.mockito.Mockito.verify;
+import org.assertj.swing.assertions.ImageAssert;
+import org.assertj.swing.assertions.ImageAssertBaseTest;
+import org.assertj.swing.assertions.data.Offset;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
 import java.awt.image.BufferedImage;
 
-import org.assertj.core.data.Offset;
-import org.assertj.swing.assertions.ImageAssert;
-import org.assertj.swing.assertions.ImageAssertBaseTest;
-import org.junit.BeforeClass;
+import static org.assertj.swing.assertions.data.Offset.offset;
+import static org.assertj.swing.test.awt.AwtTestData.fivePixelYellowImage;
+import static org.junit.Assert.assertSame;
+import static org.mockito.Mockito.verify;
 
-/**
- * Tests for <code>{@link ImageAssert#isEqualTo(BufferedImage, Offset)}</code>.
- * 
- * @author Yvonne Wang
- */
 public class ImageAssert_isEqualTo_WithOffset_Test extends ImageAssertBaseTest {
 
   private static Offset<Integer> offset;
@@ -39,13 +36,10 @@ public class ImageAssert_isEqualTo_WithOffset_Test extends ImageAssertBaseTest {
 
   private final BufferedImage expected = fivePixelYellowImage();
 
-  @Override
-  protected ImageAssert invoke_api_method() {
-    return assertions.isEqualTo(expected, offset);
-  }
-
-  @Override
-  protected void verify_internal_effects() {
-    verify(images).assertEqual(getInfo(assertions), getActual(assertions), expected, offset);
+  @Test
+  public void should_Delegate_To_Images() {
+    ImageAssert result = assertions.isEqualTo(expected, offset);
+    assertSame(assertions, result);
+    verify(images).assertEqual(actual, expected, offset);
   }
 }

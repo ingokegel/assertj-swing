@@ -12,11 +12,10 @@
  */
 package org.assertj.swing.util;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
-
+import javax.annotation.Nonnull;
 import java.util.regex.Pattern;
 
-import javax.annotation.Nonnull;
+import static org.assertj.swing.util.Preconditions.checkNotNull;
 
 /**
  * Utility methods for regular expression patterns.

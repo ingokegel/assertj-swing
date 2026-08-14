@@ -12,18 +12,16 @@
  */
 package org.assertj.swing.fixture;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.util.Preconditions.checkNotNull;
-import static org.assertj.core.util.Strings.concat;
-import static org.assertj.core.util.Strings.isNullOrEmpty;
-
-import java.awt.Font;
-
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.awt.*;
+import java.util.function.Supplier;
 
-import org.assertj.core.description.Description;
-import org.assertj.core.description.TextDescription;
+import static org.assertj.swing.util.Preconditions.checkNotNull;
+import static org.assertj.swing.util.Require.assertThat;
+import static org.assertj.swing.util.Strings.concat;
+import static org.assertj.swing.util.Strings.isNullOrEmpty;
+
 
 /**
  * Verifies the state of {@code Font}s.
@@ -42,7 +40,7 @@ public class FontFixture {
   private static final String SIZE_PROPERTY = "size";
 
   private final Font target;
-  private final Description description;
+  private final Supplier<String> description;
 
   /**
    * Creates a new {@link FontFixture}.
@@ -51,7 +49,7 @@ public class FontFixture {
    * @throws NullPointerException if {@code target} is {@code null}.
    */
   public FontFixture(@Nonnull Font target) {
-    this(target, (Description) null);
+    this(target, (Supplier<String>) null);
   }
 
   /**
@@ -62,7 +60,7 @@ public class FontFixture {
    * @throws NullPointerException if {@code target} is {@code null}.
    */
   public FontFixture(@Nonnull Font target, @Nonnull String description) {
-    this(target, new TextDescription(description));
+    this(target, () -> description);
   }
 
   /**
@@ -72,7 +70,7 @@ public class FontFixture {
    * @param description this fixture's description.
    * @throws NullPointerException if {@code target} is {@code null}.
    */
-  public FontFixture(@Nonnull Font target, @Nullable Description description) {
+  public FontFixture(@Nonnull Font target, @Nullable Supplier<String> description) {
     this.target = checkNotNull(target);
     this.description = description;
   }
@@ -199,7 +197,7 @@ public class FontFixture {
 
   @Nonnull private String property(@Nonnull String s) {
     if (!isNullOrEmpty(description())) {
-      return concat(description.value(), PROPERTY_SEPARATOR, s);
+      return concat(description.get(), PROPERTY_SEPARATOR, s);
     }
     return s;
   }
@@ -215,6 +213,6 @@ public class FontFixture {
    * @return this fixture's description.
    */
   public final @Nullable String description() {
-    return description != null ? description.value() : null;
+    return description != null ? description.get() : null;
   }
 }

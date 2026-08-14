@@ -12,15 +12,12 @@
  */
 package org.assertj.swing.util;
 
-import static org.assertj.core.util.Objects.areEqual;
-
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
-import org.assertj.core.util.Preconditions;
+import static org.assertj.swing.util.Objects.areEqual;
 
 /**
  * Utility methods related to {@code String}s.
@@ -110,12 +107,88 @@ public final class Strings {
 
   /**
    * Indicates whether the given {@code String} is {@code null} or empty.
-   * 
+   *
    * @param s the {@code String} to check.
    * @return {@code true} if the given {@code String} is {@code null} or empty, otherwise {@code false}.
    */
   public static boolean isNullOrEmpty(String s) {
     return s == null || s.isEmpty();
+  }
+
+  /**
+   * Concatenates the given objects into a single {@code String}.
+   *
+   * @param objects the objects to concatenate.
+   * @return a {@code String} containing the given objects, or an empty {@code String} if the array of objects is
+   *         {@code null}.
+   */
+  public static @Nullable String concat(Object... objects) {
+    if (objects == null)
+      return null;
+    StringBuilder sb = new StringBuilder();
+    for (Object o : objects)
+      sb.append(o);
+    return sb.toString();
+  }
+
+  /**
+   * Returns the given object surrounded by single quotes, if it is a {@code String}. Any other object is returned
+   * unchanged.
+   *
+   * @param o the given object.
+   * @return the given object surrounded by single quotes if it is a {@code String}, the object itself otherwise.
+   */
+  public static @Nullable Object quote(@Nullable Object o) {
+    return o instanceof String ? quote((String) o) : o;
+  }
+
+  /**
+   * Returns the given {@code String} surrounded by single quotes.
+   *
+   * @param s the given {@code String}.
+   * @return the given {@code String} surrounded by single quotes.
+   */
+  public static @Nullable String quote(@Nullable String s) {
+    return s == null ? null : "'" + s + "'";
+  }
+
+  /**
+   * Joins the given objects, to be separated by a delimiter.
+   *
+   * @param objects the objects to join.
+   * @return an object that joins the given objects using the delimiter specified with {@code Join#with(String)}.
+   */
+  public static @Nullable Join join(Object... objects) {
+    return objects == null ? null : new Join(objects);
+  }
+
+  /**
+   * Joins formatted objects using a delimiter.
+   */
+  public static final class Join {
+    private final Object[] objects;
+
+    Join(Object... objects) {
+      this.objects = objects;
+    }
+
+    /**
+     * Specifies the delimiter to use to join the objects.
+     *
+     * @param delimiter the delimiter to use.
+     * @return the {@code String} containing the joined objects.
+     */
+    public @Nullable String with(String delimiter) {
+      if (delimiter == null)
+        return null;
+      StringBuilder sb = new StringBuilder();
+      for (int i = 0; i < objects.length; i++) {
+        sb.append(objects[i] != null ? objects[i].toString() : "null");
+        if (i < objects.length - 1)
+          sb.append(delimiter);
+      }
+      return sb.toString();
+    }
   }
 
   private Strings() {

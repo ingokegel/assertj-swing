@@ -12,45 +12,9 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Fail.fail;
-import static org.assertj.core.util.Preconditions.checkNotNull;
-import static org.assertj.core.util.Preconditions.checkNotNullOrEmpty;
-import static org.assertj.core.util.Strings.concat;
-import static org.assertj.swing.core.MouseButton.LEFT_BUTTON;
-import static org.assertj.swing.driver.JTableCellEditableQuery.isCellEditable;
-import static org.assertj.swing.driver.JTableColumnCountQuery.columnCountOf;
-import static org.assertj.swing.driver.JTableContentsQuery.tableContents;
-import static org.assertj.swing.driver.JTableHasSelectionQuery.hasSelection;
-import static org.assertj.swing.driver.JTableHeaderQuery.tableHeader;
-import static org.assertj.swing.driver.JTableMatchingCellQuery.cellWithValue;
-import static org.assertj.swing.driver.JTableRowCellSelectedQuery.isCellSelected;
-import static org.assertj.swing.driver.TextAssert.verifyThat;
-import static org.assertj.swing.edt.GuiActionRunner.execute;
-import static org.assertj.swing.exception.ActionFailedException.actionFailure;
-import static org.assertj.swing.query.JTableColumnByIdentifierQuery.columnIndexByIdentifier;
-import static org.assertj.swing.util.ArrayPreconditions.checkNotNullOrEmpty;
-import static org.assertj.swing.util.Arrays.equal;
-import static org.assertj.swing.util.Arrays.format;
-import static org.assertj.swing.util.Platform.controlOrCommandKey;
-
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Font;
-import java.awt.Point;
-import java.util.regex.Pattern;
-
-import javax.annotation.Nonnegative;
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import javax.swing.JPopupMenu;
-import javax.swing.JTable;
-import javax.swing.table.JTableHeader;
-
-import org.assertj.core.description.Description;
-import org.assertj.core.util.VisibleForTesting;
 import org.assertj.swing.annotation.RunsInCurrentThread;
 import org.assertj.swing.annotation.RunsInEDT;
+import org.assertj.swing.annotation.VisibleForTesting;
 import org.assertj.swing.cell.JTableCellReader;
 import org.assertj.swing.cell.JTableCellWriter;
 import org.assertj.swing.core.MouseButton;
@@ -64,6 +28,37 @@ import org.assertj.swing.util.Arrays;
 import org.assertj.swing.util.Pair;
 import org.assertj.swing.util.PatternTextMatcher;
 import org.assertj.swing.util.StringTextMatcher;
+
+import javax.annotation.Nonnegative;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import javax.swing.*;
+import javax.swing.table.JTableHeader;
+import java.awt.*;
+import java.util.function.Supplier;
+import java.util.regex.Pattern;
+
+import static org.assertj.swing.core.MouseButton.LEFT_BUTTON;
+import static org.assertj.swing.driver.JTableCellEditableQuery.isCellEditable;
+import static org.assertj.swing.driver.JTableColumnCountQuery.columnCountOf;
+import static org.assertj.swing.driver.JTableContentsQuery.tableContents;
+import static org.assertj.swing.driver.JTableHasSelectionQuery.hasSelection;
+import static org.assertj.swing.driver.JTableHeaderQuery.tableHeader;
+import static org.assertj.swing.driver.JTableMatchingCellQuery.cellWithValue;
+import static org.assertj.swing.driver.JTableRowCellSelectedQuery.isCellSelected;
+import static org.assertj.swing.edt.GuiActionRunner.execute;
+import static org.assertj.swing.exception.ActionFailedException.actionFailure;
+import static org.assertj.swing.query.JTableColumnByIdentifierQuery.columnIndexByIdentifier;
+import static org.assertj.swing.util.ArrayPreconditions.checkNotNullOrEmpty;
+import static org.assertj.swing.util.Arrays.equal;
+import static org.assertj.swing.util.Arrays.format;
+import static org.assertj.swing.util.Fail.fail;
+import static org.assertj.swing.util.Platform.controlOrCommandKey;
+import static org.assertj.swing.util.Preconditions.checkNotNull;
+import static org.assertj.swing.util.Preconditions.checkNotNullOrEmpty;
+import static org.assertj.swing.util.Require.assertThat;
+import static org.assertj.swing.util.Require.verifyThat;
+import static org.assertj.swing.util.Strings.concat;
 
 /**
  * <p>
@@ -376,7 +371,7 @@ public class JTableDriver extends JComponentDriver {
         return;
       }
       String format = "[%s] expected no selection but was:<rows=%s, columns=%s>";
-      String msg = String.format(format, propertyName(table, SELECTION_PROPERTY).value(),
+      String msg = String.format(format, propertyName(table, SELECTION_PROPERTY).get(),
                                  format(selectedRowsOf(table)), format(table.getSelectedColumns()));
       fail(msg);
     });
@@ -546,8 +541,8 @@ public class JTableDriver extends JComponentDriver {
   }
 
   private static void failNotEqual(@Nonnull String[][] actual, @Nonnull String[][] expected,
-                                   @Nullable Description description) {
-    String descriptionValue = description != null ? description.value() : null;
+                                   @Nullable Supplier<String> description) {
+    String descriptionValue = description != null ? description.get() : null;
     String message = descriptionValue == null ? "" : String.format("[%s] ", descriptionValue);
     fail(message + String.format("expected:<%s> but was<%s>", Arrays.format(expected), Arrays.format(actual)));
   }
@@ -597,7 +592,7 @@ public class JTableDriver extends JComponentDriver {
   }
 
   @RunsInEDT
-  @Nonnull private Description cellValueProperty(@Nonnull JTable table, @Nonnull TableCell cell) {
+  @Nonnull private Supplier<String> cellValueProperty(@Nonnull JTable table, @Nonnull TableCell cell) {
     return cellProperty(table, concat(VALUE_PROPERTY, " ", cell));
   }
 
@@ -658,7 +653,7 @@ public class JTableDriver extends JComponentDriver {
   }
 
   @RunsInEDT
-  @Nonnull private static Description cellProperty(@Nonnull JTable table, @Nonnull String propertyName) {
+  @Nonnull private static Supplier<String> cellProperty(@Nonnull JTable table, @Nonnull String propertyName) {
     return propertyName(table, propertyName);
   }
 

@@ -12,20 +12,15 @@
  */
 package org.assertj.swing.keystroke;
 
-import static java.awt.event.KeyEvent.VK_BACK_SPACE;
-import static java.awt.event.KeyEvent.VK_DELETE;
-import static java.awt.event.KeyEvent.VK_ENTER;
-import static java.awt.event.KeyEvent.VK_ESCAPE;
-import static java.awt.event.KeyEvent.VK_TAB;
-import static org.assertj.core.util.Lists.newArrayList;
-import static org.assertj.swing.keystroke.KeyStrokeMapping.mapping;
-import static org.assertj.swing.keystroke.KeyStrokeMappingProvider.NO_MASK;
-import static org.assertj.swing.util.Platform.isWindows;
-
+import javax.annotation.Nonnull;
 import java.util.Collection;
 import java.util.List;
 
-import javax.annotation.Nonnull;
+import static java.awt.event.KeyEvent.*;
+import static org.assertj.swing.keystroke.KeyStrokeMapping.mapping;
+import static org.assertj.swing.keystroke.KeyStrokeMappingProvider.NO_MASK;
+import static org.assertj.swing.util.Lists.newArrayList;
+import static org.assertj.swing.util.Platform.isWindows;
 
 /**
  * Utility methods related to {@link KeyStrokeMapping}s.

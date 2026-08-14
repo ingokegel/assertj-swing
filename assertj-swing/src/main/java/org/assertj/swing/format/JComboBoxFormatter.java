@@ -12,17 +12,16 @@
  */
 package org.assertj.swing.format;
 
-import static org.assertj.core.util.Strings.quote;
-
-import java.awt.Component;
-import java.util.List;
-
-import javax.annotation.Nonnull;
-import javax.swing.JComboBox;
-
-import org.assertj.core.util.Lists;
 import org.assertj.swing.annotation.RunsInCurrentThread;
 import org.assertj.swing.util.Arrays;
+import org.assertj.swing.util.Lists;
+
+import javax.annotation.Nonnull;
+import javax.swing.*;
+import java.awt.*;
+import java.util.List;
+
+import static org.assertj.swing.util.Strings.quote;
 
 /**
  * Formatter for {@code JComboBox}es.

@@ -12,8 +12,14 @@
  */
 package org.assertj.swing.internal.assertions;
 
-import static org.assertj.core.data.Offset.offset;
-import static org.assertj.core.util.Objects.areEqual;
+import org.assertj.swing.annotation.VisibleForTesting;
+import org.assertj.swing.assertions.data.Offset;
+import org.assertj.swing.assertions.data.RgbColor;
+
+import java.awt.*;
+import java.awt.image.BufferedImage;
+
+import static org.assertj.swing.assertions.data.Offset.offset;
 import static org.assertj.swing.assertions.data.RgbColor.color;
 import static org.assertj.swing.assertions.error.ShouldBeEqualColors.shouldBeEqualColors;
 import static org.assertj.swing.assertions.error.ShouldBeEqualImages.shouldBeEqualImages;
@@ -21,21 +27,11 @@ import static org.assertj.swing.assertions.error.ShouldHaveDimension.shouldHaveD
 import static org.assertj.swing.assertions.error.ShouldNotBeEqualImages.shouldNotBeEqualImages;
 import static org.assertj.swing.internal.assertions.ColorComparisonResult.ARE_EQUAL;
 import static org.assertj.swing.internal.assertions.ColorComparisonResult.notEqual;
-
-import java.awt.Dimension;
-import java.awt.image.BufferedImage;
-
-import org.assertj.core.api.AssertionInfo;
-import org.assertj.core.data.Offset;
-import org.assertj.core.error.ErrorMessageFactory;
-import org.assertj.core.internal.Failures;
-import org.assertj.core.internal.Objects;
-import org.assertj.core.util.VisibleForTesting;
-import org.assertj.swing.assertions.data.RgbColor;
+import static org.assertj.swing.util.Objects.areEqual;
 
 /**
  * Reusable assertions for <code>{@link BufferedImage}</code>s.
- * 
+ *
  * @author Yvonne Wang
  */
 public class Images {
@@ -45,15 +41,12 @@ public class Images {
 
   /**
    * Returns the singleton instance of this class.
-   * 
+   *
    * @return the singleton instance of this class.
    */
   public static Images instance() {
     return INSTANCE;
   }
-
-  @VisibleForTesting
-  Failures failures = Failures.instance();
 
   @VisibleForTesting
   Images() {
@@ -65,14 +58,13 @@ public class Images {
    * <li>they have equal size</li>
    * <li>the the RGB values of the color at each pixel are equal</li>
    * </ol>
-   * 
-   * @param info contains information about the assertion.
+   *
    * @param actual the actual image.
    * @param expected the expected image.
    * @throws AssertionError if the actual image is not equal to the expected one.
    */
-  public void assertEqual(AssertionInfo info, BufferedImage actual, BufferedImage expected) {
-    assertEqual(info, actual, expected, ZERO);
+  public void assertEqual(BufferedImage actual, BufferedImage expected) {
+    assertEqual(actual, expected, ZERO);
   }
 
   /**
@@ -81,8 +73,7 @@ public class Images {
    * <li>they have the same size</li>
    * <li>the difference between the RGB values of the color at each pixel is less than or equal to the given offset</li>
    * </ol>
-   * 
-   * @param info contains information about the assertion.
+   *
    * @param actual the actual image.
    * @param expected the expected image.
    * @param offset helps decide if the color of two pixels are similar: two pixels that are identical to the human eye
@@ -91,42 +82,33 @@ public class Images {
    * @throws NullPointerException if the given offset is {@code null}.
    * @throws AssertionError if the actual image is not equal to the expected one.
    */
-  public void assertEqual(AssertionInfo info, BufferedImage actual, BufferedImage expected, Offset<Integer> offset) {
+  public void assertEqual(BufferedImage actual, BufferedImage expected, Offset<Integer> offset) {
     if (offset == null)
       throw new NullPointerException("The given offset should not be null");
     if (areEqual(actual, expected))
       return;
     if (actual == null || expected == null)
-      throw imagesShouldBeEqual(info, offset);
+      throw failure(shouldBeEqualImages(offset));
     // BufferedImage does not have an implementation of 'equals,' which means that "equality" is verified by identity.
     // We need to verify that two images are equal ourselves.
     if (!haveEqualSize(actual, expected))
-      throw imageShouldHaveSize(info, actual, sizeOf(actual), sizeOf(expected));
+      throw failure(shouldHaveDimension(actual, sizeOf(actual), sizeOf(expected)));
     ColorComparisonResult haveEqualColor = haveEqualColor(actual, expected, offset);
     if (haveEqualColor == ARE_EQUAL)
       return;
-    throw failures.failure(info, imagesShouldHaveEqualColor(haveEqualColor, offset));
-  }
-
-  private AssertionError imagesShouldBeEqual(AssertionInfo info, Offset<Integer> offset) {
-    return failures.failure(info, shouldBeEqualImages(offset));
-  }
-
-  private ErrorMessageFactory imagesShouldHaveEqualColor(ColorComparisonResult r, Offset<Integer> offset) {
-    return shouldBeEqualColors(r.color2, r.color1, r.point, offset);
+    throw failure(shouldBeEqualColors(haveEqualColor.color2, haveEqualColor.color1, haveEqualColor.point, offset));
   }
 
   /**
    * Asserts that two images are not equal.
-   * 
-   * @param info contains information about the assertion.
+   *
    * @param actual the given image.
    * @param other the object to compare {@code actual} to.
    * @throws AssertionError if {@code actual} is equal to {@code other}.
    */
-  public void assertNotEqual(AssertionInfo info, BufferedImage actual, BufferedImage other) {
+  public void assertNotEqual(BufferedImage actual, BufferedImage other) {
     if (areEqual(actual, other))
-      throw imagesShouldNotBeEqual(info);
+      throw failure(shouldNotBeEqualImages());
     if (actual == null || other == null)
       return;
     if (!(haveEqualSize(actual, other)))
@@ -134,11 +116,7 @@ public class Images {
     ColorComparisonResult haveEqualColor = haveEqualColor(actual, other, ZERO);
     if (haveEqualColor != ARE_EQUAL)
       return;
-    throw imagesShouldNotBeEqual(info);
-  }
-
-  private AssertionError imagesShouldNotBeEqual(AssertionInfo info) {
-    return failures.failure(info, shouldNotBeEqualImages());
+    throw failure(shouldNotBeEqualImages());
   }
 
   private boolean haveEqualSize(BufferedImage i1, BufferedImage i2) {
@@ -162,30 +140,29 @@ public class Images {
 
   /**
    * Asserts that the size of the given image is equal to the given size.
-   * 
-   * @param info contains information about the assertion.
+   *
    * @param actual the given image.
    * @param size the expected size of {@code actual}.
    * @throws NullPointerException if the given size is {@code null}.
    * @throws AssertionError if the size of the given image is not equal to the given size.
    */
-  public void assertHasSize(AssertionInfo info, BufferedImage actual, Dimension size) {
+  public void assertHasSize(BufferedImage actual, Dimension size) {
     if (size == null)
       throw new NullPointerException("The given size should not be null");
-    Objects.instance().assertNotNull(info, actual);
+    if (actual == null)
+      throw failure("Expecting actual not to be null");
     Dimension sizeOfActual = sizeOf(actual);
     if (areEqual(sizeOfActual, size))
       return;
-    throw imageShouldHaveSize(info, actual, sizeOfActual, size);
-  }
-
-  private AssertionError imageShouldHaveSize(AssertionInfo info, BufferedImage image, Dimension actual,
-      Dimension expected) {
-    return failures.failure(info, shouldHaveDimension(image, actual, expected));
+    throw failure(shouldHaveDimension(actual, sizeOfActual, size));
   }
 
   @VisibleForTesting
   static Dimension sizeOf(BufferedImage image) {
     return new Dimension(image.getWidth(), image.getHeight());
+  }
+
+  private static AssertionError failure(String message) {
+    return new AssertionError(message);
   }
 }

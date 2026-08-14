@@ -12,19 +12,6 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.util.Preconditions.checkNotNull;
-import static org.assertj.core.util.Strings.concat;
-import static org.assertj.swing.driver.ComponentPreconditions.checkEnabledAndShowing;
-import static org.assertj.swing.driver.JScrollBarSetValueTask.setValue;
-import static org.assertj.swing.driver.JScrollBarValueQuery.valueOf;
-import static org.assertj.swing.edt.GuiActionRunner.execute;
-
-import java.awt.Point;
-
-import javax.annotation.Nonnull;
-import javax.swing.JScrollBar;
-
 import org.assertj.swing.annotation.RunsInCurrentThread;
 import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.core.Robot;
@@ -32,6 +19,18 @@ import org.assertj.swing.edt.GuiQuery;
 import org.assertj.swing.internal.annotation.InternalApi;
 import org.assertj.swing.util.GenericRange;
 import org.assertj.swing.util.Pair;
+
+import javax.annotation.Nonnull;
+import javax.swing.*;
+import java.awt.*;
+
+import static org.assertj.swing.driver.ComponentPreconditions.checkEnabledAndShowing;
+import static org.assertj.swing.driver.JScrollBarSetValueTask.setValue;
+import static org.assertj.swing.driver.JScrollBarValueQuery.valueOf;
+import static org.assertj.swing.edt.GuiActionRunner.execute;
+import static org.assertj.swing.util.Preconditions.checkNotNull;
+import static org.assertj.swing.util.Require.assertThat;
+import static org.assertj.swing.util.Strings.concat;
 
 /**
  * <p>

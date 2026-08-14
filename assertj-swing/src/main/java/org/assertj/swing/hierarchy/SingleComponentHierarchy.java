@@ -12,17 +12,14 @@
  */
 package org.assertj.swing.hierarchy;
 
-import static javax.swing.SwingUtilities.isDescendingFrom;
-import static org.assertj.core.util.Lists.newArrayList;
-
-import java.awt.Component;
-import java.awt.Container;
-import java.awt.Window;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.awt.*;
 import java.util.Collection;
 import java.util.List;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import static javax.swing.SwingUtilities.isDescendingFrom;
+import static org.assertj.swing.util.Lists.newArrayList;
 
 /**
  * A {@link ComponentHierarchy} created with a specified AWT or Swing {@code Component} as root.

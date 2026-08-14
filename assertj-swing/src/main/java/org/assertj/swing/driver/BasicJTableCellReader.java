@@ -12,23 +12,17 @@
  */
 package org.assertj.swing.driver;
 
-import static java.lang.String.valueOf;
-import static org.assertj.core.util.Preconditions.checkNotNull;
-import static org.assertj.swing.driver.ModelValueToString.asText;
-
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Font;
+import org.assertj.swing.annotation.RunsInCurrentThread;
+import org.assertj.swing.cell.JTableCellReader;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JTable;
+import javax.swing.*;
+import java.awt.*;
 
-import org.assertj.swing.annotation.RunsInCurrentThread;
-import org.assertj.swing.cell.JTableCellReader;
+import static java.lang.String.valueOf;
+import static org.assertj.swing.driver.ModelValueToString.asText;
+import static org.assertj.swing.util.Preconditions.checkNotNull;
 
 /**
  * Default implementation of {@link JTableCellReader}.

@@ -12,13 +12,13 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
-import static org.assertj.swing.edt.GuiActionRunner.execute;
+import org.assertj.swing.annotation.RunsInEDT;
 
 import javax.annotation.Nonnull;
-import javax.swing.AbstractButton;
+import javax.swing.*;
 
-import org.assertj.swing.annotation.RunsInEDT;
+import static org.assertj.swing.edt.GuiActionRunner.execute;
+import static org.assertj.swing.util.Preconditions.checkNotNull;
 
 /**
  * Indicates whether a Swing {@code AbstractButton} is selected. This action is executed in the event dispatch thread

@@ -12,19 +12,17 @@
  */
 package org.assertj.swing.driver;
 
-import static javax.swing.SwingConstants.HORIZONTAL;
-import static javax.swing.SwingConstants.VERTICAL;
-import static org.assertj.core.util.Preconditions.checkNotNull;
-import static org.assertj.swing.util.Maps.newHashMap;
-
-import java.awt.Insets;
-import java.awt.Point;
-import java.util.Map;
+import org.assertj.swing.annotation.RunsInCurrentThread;
 
 import javax.annotation.Nonnull;
-import javax.swing.JSlider;
+import javax.swing.*;
+import java.awt.*;
+import java.util.Map;
 
-import org.assertj.swing.annotation.RunsInCurrentThread;
+import static javax.swing.SwingConstants.HORIZONTAL;
+import static javax.swing.SwingConstants.VERTICAL;
+import static org.assertj.swing.util.Maps.newHashMap;
+import static org.assertj.swing.util.Preconditions.checkNotNull;
 
 /**
  * A location in a {@code JSlider}.

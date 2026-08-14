@@ -12,28 +12,8 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.util.Lists.newArrayList;
-import static org.assertj.core.util.Preconditions.checkNotNull;
-import static org.assertj.swing.driver.ComponentPreconditions.checkEnabledAndShowing;
-import static org.assertj.swing.driver.JTabbedPaneSelectTabQuery.selectedTabIndexOf;
-import static org.assertj.swing.driver.JTabbedPaneSelectTabTask.setSelectedTab;
-import static org.assertj.swing.driver.JTabbedPaneTabTitlesQuery.tabTitlesOf;
-import static org.assertj.swing.driver.TextAssert.verifyThat;
-import static org.assertj.swing.edt.GuiActionRunner.execute;
-
-import java.awt.Component;
-import java.awt.Point;
-import java.util.List;
-import java.util.regex.Pattern;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import javax.swing.JTabbedPane;
-
-import org.assertj.core.description.Description;
-import org.assertj.core.util.VisibleForTesting;
 import org.assertj.swing.annotation.RunsInEDT;
+import org.assertj.swing.annotation.VisibleForTesting;
 import org.assertj.swing.core.Robot;
 import org.assertj.swing.data.Index;
 import org.assertj.swing.edt.GuiQuery;
@@ -44,6 +24,24 @@ import org.assertj.swing.util.Pair;
 import org.assertj.swing.util.PatternTextMatcher;
 import org.assertj.swing.util.StringTextMatcher;
 import org.assertj.swing.util.TextMatcher;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import javax.swing.*;
+import java.awt.*;
+import java.util.List;
+import java.util.function.Supplier;
+import java.util.regex.Pattern;
+
+import static org.assertj.swing.driver.ComponentPreconditions.checkEnabledAndShowing;
+import static org.assertj.swing.driver.JTabbedPaneSelectTabQuery.selectedTabIndexOf;
+import static org.assertj.swing.driver.JTabbedPaneSelectTabTask.setSelectedTab;
+import static org.assertj.swing.driver.JTabbedPaneTabTitlesQuery.tabTitlesOf;
+import static org.assertj.swing.edt.GuiActionRunner.execute;
+import static org.assertj.swing.util.Lists.newArrayList;
+import static org.assertj.swing.util.Preconditions.checkNotNull;
+import static org.assertj.swing.util.Require.assertThat;
+import static org.assertj.swing.util.Require.verifyThat;
 
 /**
  * <p>
@@ -337,17 +335,17 @@ public class JTabbedPaneDriver extends JComponentDriver {
   }
 
   @RunsInEDT
-  private Description titleAtProperty(@Nonnull JTabbedPane tabbedPane) {
+  private Supplier<String> titleAtProperty(@Nonnull JTabbedPane tabbedPane) {
     return propertyName(tabbedPane, "titleAt");
   }
 
   @RunsInEDT
-  private Description toolTipTextAtProperty(@Nonnull JTabbedPane tabbedPane) {
+  private Supplier<String> toolTipTextAtProperty(@Nonnull JTabbedPane tabbedPane) {
     return propertyName(tabbedPane, "toolTipTextAt");
   }
 
   @RunsInEDT
-  private Description enabledAtProperty(@Nonnull JTabbedPane tabbedPane) {
+  private Supplier<String> enabledAtProperty(@Nonnull JTabbedPane tabbedPane) {
     return propertyName(tabbedPane, "enabledAt");
   }
 

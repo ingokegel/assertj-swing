@@ -12,7 +12,13 @@
  */
 package org.assertj.swing.core;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
+import org.assertj.swing.annotation.RunsInEDT;
+import org.assertj.swing.util.RobotFactory;
+
+import javax.annotation.Nonnull;
+import java.awt.*;
+import java.awt.Robot;
+
 import static org.assertj.swing.awt.AWT.isPointInScreenBoundaries;
 import static org.assertj.swing.awt.AWT.translate;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
@@ -21,16 +27,7 @@ import static org.assertj.swing.exception.UnexpectedException.unexpected;
 import static org.assertj.swing.timing.Pause.pause;
 import static org.assertj.swing.util.Platform.isOSX;
 import static org.assertj.swing.util.Platform.isWindows;
-
-import java.awt.AWTException;
-import java.awt.Component;
-import java.awt.Point;
-import java.awt.Robot;
-
-import javax.annotation.Nonnull;
-
-import org.assertj.swing.annotation.RunsInEDT;
-import org.assertj.swing.util.RobotFactory;
+import static org.assertj.swing.util.Preconditions.checkNotNull;
 
 /**
  * Simulates user input by using an AWT {@code Robot}.

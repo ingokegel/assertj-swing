@@ -12,18 +12,15 @@
  */
 package org.assertj.swing.format;
 
-import static javax.swing.JFileChooser.CUSTOM_DIALOG;
-import static javax.swing.JFileChooser.OPEN_DIALOG;
-import static javax.swing.JFileChooser.SAVE_DIALOG;
-import static org.assertj.core.util.Strings.quote;
-
-import java.awt.Component;
+import org.assertj.swing.annotation.RunsInCurrentThread;
 
 import javax.annotation.Nonnull;
-import javax.swing.JFileChooser;
+import javax.swing.*;
+import java.awt.*;
 
-import org.assertj.core.presentation.StandardRepresentation;
-import org.assertj.swing.annotation.RunsInCurrentThread;
+import static javax.swing.JFileChooser.*;
+import static org.assertj.swing.util.Strings.quote;
+import static org.assertj.swing.util.ToString.toStringOf;
 
 /**
  * Formatter for {@code JFileChooser}s.
@@ -49,7 +46,7 @@ public class JFileChooserFormatter extends ComponentFormatterTemplate {
     String format = "%s[name=%s, dialogTitle=%s, dialogType=%s, currentDirectory=%s, enabled=%b, visible=%b, showing=%b";
     return String.format(format, getRealClassName(c), quote(fileChooser.getName()),
                          quote(fileChooser.getDialogTitle()), DIALOG_TYPES.get(fileChooser.getDialogType()),
-                         new StandardRepresentation().toStringOf(fileChooser.getCurrentDirectory()),
+                         toStringOf(fileChooser.getCurrentDirectory()),
                          fileChooser.isEnabled(),
                          fileChooser.isVisible(), fileChooser.isShowing());
   }

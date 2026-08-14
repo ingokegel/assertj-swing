@@ -12,18 +12,16 @@
  */
 package org.assertj.swing.hierarchy;
 
-import static org.assertj.core.util.Lists.emptyList;
-import static org.assertj.core.util.Lists.newArrayList;
+import org.assertj.swing.annotation.RunsInCurrentThread;
+import org.assertj.swing.annotation.VisibleForTesting;
 
-import java.awt.Component;
-import java.awt.Container;
+import javax.annotation.Nonnull;
+import java.awt.*;
 import java.util.Collection;
 import java.util.List;
 
-import javax.annotation.Nonnull;
-
-import org.assertj.core.util.VisibleForTesting;
-import org.assertj.swing.annotation.RunsInCurrentThread;
+import static org.assertj.swing.util.Lists.emptyList;
+import static org.assertj.swing.util.Lists.newArrayList;
 
 /**
  * Find children {@code Component}s in an AWT or Swing {@code Container}.

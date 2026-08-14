@@ -12,51 +12,22 @@
  */
 package org.assertj.swing.fixture;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
-import static org.assertj.swing.core.ComponentLookupScope.SHOWING_ONLY;
-import static org.assertj.swing.timing.Pause.pause;
-import static org.assertj.swing.timing.Timeout.timeout;
-
-import java.awt.Component;
-import java.awt.Container;
-import java.awt.Dialog;
+import org.assertj.swing.annotation.RunsInEDT;
+import org.assertj.swing.core.*;
+import org.assertj.swing.core.Robot;
+import org.assertj.swing.driver.ComponentDriver;
+import org.assertj.swing.timing.Timeout;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
-import javax.swing.JFileChooser;
-import javax.swing.JInternalFrame;
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JProgressBar;
-import javax.swing.JRadioButton;
-import javax.swing.JScrollBar;
-import javax.swing.JScrollPane;
-import javax.swing.JSlider;
-import javax.swing.JSpinner;
-import javax.swing.JSplitPane;
-import javax.swing.JTabbedPane;
-import javax.swing.JTable;
-import javax.swing.JToggleButton;
-import javax.swing.JToolBar;
-import javax.swing.JTree;
+import javax.swing.*;
 import javax.swing.text.JTextComponent;
+import java.awt.*;
 
-import org.assertj.swing.annotation.RunsInEDT;
-import org.assertj.swing.core.ComponentFinder;
-import org.assertj.swing.core.ComponentFoundCondition;
-import org.assertj.swing.core.ComponentMatcher;
-import org.assertj.swing.core.GenericTypeMatcher;
-import org.assertj.swing.core.NameMatcher;
-import org.assertj.swing.core.Robot;
-import org.assertj.swing.core.TypeMatcher;
-import org.assertj.swing.driver.ComponentDriver;
-import org.assertj.swing.timing.Timeout;
+import static org.assertj.swing.core.ComponentLookupScope.SHOWING_ONLY;
+import static org.assertj.swing.timing.Pause.pause;
+import static org.assertj.swing.timing.Timeout.timeout;
+import static org.assertj.swing.util.Preconditions.checkNotNull;
 
 /**
  * Looks up AWT or Swing {@code Component}s contained in a {@code Container}.

@@ -12,14 +12,13 @@
  */
 package org.assertj.swing.input;
 
-import java.awt.Toolkit;
-import java.awt.event.AWTEventListener;
-import java.util.EmptyStackException;
+import org.assertj.swing.annotation.VisibleForTesting;
+import org.assertj.swing.logging.Logger;
 
 import javax.annotation.Nonnull;
-
-import org.assertj.core.util.VisibleForTesting;
-import org.assertj.swing.logging.Logger;
+import java.awt.*;
+import java.awt.event.AWTEventListener;
+import java.util.EmptyStackException;
 
 /**
  * AWT event listener which normalizes the event stream:

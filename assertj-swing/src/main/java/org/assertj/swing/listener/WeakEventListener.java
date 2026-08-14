@@ -12,14 +12,12 @@
  */
 package org.assertj.swing.listener;
 
-import java.awt.AWTEvent;
-import java.awt.Toolkit;
-import java.awt.event.AWTEventListener;
-import java.lang.ref.WeakReference;
+import org.assertj.swing.annotation.VisibleForTesting;
 
 import javax.annotation.Nonnull;
-
-import org.assertj.core.util.VisibleForTesting;
+import java.awt.*;
+import java.awt.event.AWTEventListener;
+import java.lang.ref.WeakReference;
 
 /**
  * Event listener that wraps a given {@code AWTEventListener} and:

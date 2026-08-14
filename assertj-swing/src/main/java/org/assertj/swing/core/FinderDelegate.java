@@ -12,18 +12,17 @@
  */
 package org.assertj.swing.core;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
-import static org.assertj.core.util.Sets.newLinkedHashSet;
-import static org.assertj.swing.edt.GuiActionRunner.execute;
+import org.assertj.swing.annotation.RunsInEDT;
+import org.assertj.swing.hierarchy.ComponentHierarchy;
 
-import java.awt.Component;
+import javax.annotation.Nonnull;
+import java.awt.*;
 import java.util.Collection;
 import java.util.Set;
 
-import javax.annotation.Nonnull;
-
-import org.assertj.swing.annotation.RunsInEDT;
-import org.assertj.swing.hierarchy.ComponentHierarchy;
+import static org.assertj.swing.edt.GuiActionRunner.execute;
+import static org.assertj.swing.util.Preconditions.checkNotNull;
+import static org.assertj.swing.util.Sets.newLinkedHashSet;
 
 /**
  * Finds all the AWT and Swing {@code Components} in a {@link ComponentHierarchy} that match the search criteria

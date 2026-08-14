@@ -12,24 +12,23 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.util.Preconditions.checkNotNull;
-import static org.assertj.swing.driver.AbstractButtonArmedQuery.isArmed;
-import static org.assertj.swing.driver.AbstractButtonSelectedQuery.isSelected;
-import static org.assertj.swing.driver.ComponentPreconditions.checkEnabledAndShowing;
-import static org.assertj.swing.driver.TextAssert.verifyThat;
-import static org.assertj.swing.edt.GuiActionRunner.execute;
-
-import java.util.regex.Pattern;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import javax.swing.AbstractButton;
-
-import org.assertj.core.description.Description;
 import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.core.Robot;
 import org.assertj.swing.internal.annotation.InternalApi;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import javax.swing.*;
+import java.util.function.Supplier;
+import java.util.regex.Pattern;
+
+import static org.assertj.swing.driver.AbstractButtonArmedQuery.isArmed;
+import static org.assertj.swing.driver.AbstractButtonSelectedQuery.isSelected;
+import static org.assertj.swing.driver.ComponentPreconditions.checkEnabledAndShowing;
+import static org.assertj.swing.edt.GuiActionRunner.execute;
+import static org.assertj.swing.util.Preconditions.checkNotNull;
+import static org.assertj.swing.util.Require.assertThat;
+import static org.assertj.swing.util.Require.verifyThat;
 
 /**
  * <p>
@@ -166,7 +165,7 @@ public class AbstractButtonDriver extends JComponentDriver implements TextDispla
   }
 
   @RunsInEDT
-  @Nonnull private static Description selectedProperty(@Nonnull AbstractButton button) {
+  @Nonnull private static Supplier<String> selectedProperty(@Nonnull AbstractButton button) {
     return propertyName(button, SELECTED_PROPERTY);
   }
 
@@ -198,7 +197,7 @@ public class AbstractButtonDriver extends JComponentDriver implements TextDispla
   }
 
   @RunsInEDT
-  @Nonnull private static Description armedProperty(@Nonnull AbstractButton button) {
+  @Nonnull private static Supplier<String> armedProperty(@Nonnull AbstractButton button) {
     return propertyName(button, ARMED_PROPERTY);
   }
 }

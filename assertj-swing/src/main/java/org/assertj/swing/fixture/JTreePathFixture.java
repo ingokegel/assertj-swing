@@ -12,12 +12,12 @@
  */
 package org.assertj.swing.fixture;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
-import org.assertj.core.util.VisibleForTesting;
+import org.assertj.swing.annotation.VisibleForTesting;
 import org.assertj.swing.core.MouseButton;
 import org.assertj.swing.core.MouseClickInfo;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 /**
  * Supports functional testing of single nodes, referenced by their paths, in {@code JTree}s.

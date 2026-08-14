@@ -12,29 +12,24 @@
  */
 package org.assertj.swing.driver;
 
-import static java.awt.Frame.ICONIFIED;
-import static java.awt.Frame.MAXIMIZED_BOTH;
-import static java.awt.Frame.NORMAL;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.util.Preconditions.checkNotNull;
+import org.assertj.swing.annotation.RunsInEDT;
+import org.assertj.swing.annotation.ThreadSafeAction;
+import org.assertj.swing.core.Robot;
+import org.assertj.swing.internal.annotation.InternalApi;
+import org.assertj.swing.util.ToolkitProvider;
+
+import javax.annotation.Nonnull;
+import java.awt.*;
+
+import static java.awt.Frame.*;
 import static org.assertj.swing.driver.ComponentPreconditions.checkEnabledAndShowing;
 import static org.assertj.swing.driver.FrameTitleQuery.titleOf;
 import static org.assertj.swing.driver.WindowLikeContainers.iconifyButtonLocation;
 import static org.assertj.swing.driver.WindowLikeContainers.maximizeButtonLocation;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 import static org.assertj.swing.exception.ActionFailedException.actionFailure;
-
-import java.awt.Frame;
-import java.awt.Point;
-import java.awt.Toolkit;
-
-import javax.annotation.Nonnull;
-
-import org.assertj.swing.annotation.RunsInEDT;
-import org.assertj.swing.annotation.ThreadSafeAction;
-import org.assertj.swing.core.Robot;
-import org.assertj.swing.internal.annotation.InternalApi;
-import org.assertj.swing.util.ToolkitProvider;
+import static org.assertj.swing.util.Preconditions.checkNotNull;
+import static org.assertj.swing.util.Require.assertThat;
 
 /**
  * <p>

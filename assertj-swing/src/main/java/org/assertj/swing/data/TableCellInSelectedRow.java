@@ -12,15 +12,15 @@
  */
 package org.assertj.swing.data;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
-import static org.assertj.swing.edt.GuiActionRunner.execute;
-import static org.assertj.swing.exception.ActionFailedException.actionFailure;
-
-import javax.annotation.Nonnull;
-import javax.swing.JTable;
-
 import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.cell.JTableCellReader;
+
+import javax.annotation.Nonnull;
+import javax.swing.*;
+
+import static org.assertj.swing.edt.GuiActionRunner.execute;
+import static org.assertj.swing.exception.ActionFailedException.actionFailure;
+import static org.assertj.swing.util.Preconditions.checkNotNull;
 
 /**
  * <p>

@@ -12,13 +12,13 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.swing.edt.GuiActionRunner.execute;
+import org.assertj.swing.annotation.RunsInEDT;
+import org.assertj.swing.util.Preconditions;
 
 import javax.annotation.Nonnull;
-import javax.swing.JComboBox;
+import javax.swing.*;
 
-import org.assertj.core.util.Preconditions;
-import org.assertj.swing.annotation.RunsInEDT;
+import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 /**
  * Indicates whether a {@code JComboBox} is editable or not. This action is executed in the event dispatch thread (EDT).

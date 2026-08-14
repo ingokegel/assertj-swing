@@ -12,18 +12,16 @@
  */
 package org.assertj.swing.util;
 
-import static java.lang.System.lineSeparator;
-import static org.assertj.core.util.Objects.areEqual;
-import static org.assertj.core.util.Preconditions.checkNotNull;
-import static org.assertj.core.util.Strings.quote;
-
-import java.lang.reflect.Array;
+import org.assertj.swing.internal.annotation.InternalApi;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.lang.reflect.Array;
 
-import org.assertj.core.presentation.StandardRepresentation;
-import org.assertj.swing.internal.annotation.InternalApi;
+import static java.lang.System.lineSeparator;
+import static org.assertj.swing.util.Objects.areEqual;
+import static org.assertj.swing.util.Preconditions.checkNotNull;
+import static org.assertj.swing.util.Strings.quote;
 
 /**
  * Utility methods for arrays.
@@ -71,7 +69,18 @@ public final class Arrays {
 
   @InternalApi
   public static String format(Object object) {
-    return new StandardRepresentation().toStringOf(object);
+    return ToString.toStringOf(object);
+  }
+
+  /**
+   * Indicates whether the given array is {@code null} or empty.
+   *
+   * @param <T> the type of elements of the array.
+   * @param array the array to check.
+   * @return {@code true} if the given array is {@code null} or empty, otherwise {@code false}.
+   */
+  public static <T> boolean isNullOrEmpty(T... array) {
+    return array == null || array.length == 0;
   }
 
   /**

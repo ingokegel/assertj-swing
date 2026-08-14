@@ -12,11 +12,10 @@
  */
 package org.assertj.swing.util;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
-
-import java.awt.Toolkit;
-
 import javax.annotation.Nonnull;
+import java.awt.*;
+
+import static org.assertj.swing.util.Preconditions.checkNotNull;
 
 /**
  * Provider of {@code Toolkit}s.

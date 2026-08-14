@@ -12,18 +12,15 @@
  */
 package org.assertj.swing.core.matcher;
 
-import static org.assertj.core.util.Objects.areEqual;
-import static org.assertj.core.util.Strings.quote;
-import static org.assertj.swing.util.Strings.areEqualOrMatch;
-import static org.assertj.swing.util.Strings.match;
-
-import java.awt.Component;
-import java.util.regex.Pattern;
+import org.assertj.swing.core.GenericTypeMatcher;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.awt.*;
+import java.util.regex.Pattern;
 
-import org.assertj.swing.core.GenericTypeMatcher;
+import static org.assertj.swing.util.Objects.areEqual;
+import static org.assertj.swing.util.Strings.*;
 
 /**
  * Template for matching AWT or Swing {@code Component} by name. Subclasses are free to add other properties to use as

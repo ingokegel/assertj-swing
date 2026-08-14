@@ -12,43 +12,44 @@
  */
 package org.assertj.swing.edt;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
-import static org.assertj.swing.edt.GuiActionRunner.execute;
-
-import javax.annotation.Nonnull;
-
-import org.assertj.core.description.Description;
 import org.assertj.swing.annotation.RunsInCurrentThread;
 
+import javax.annotation.Nonnull;
+import java.util.function.Supplier;
+
+import static org.assertj.swing.edt.GuiActionRunner.execute;
+import static org.assertj.swing.util.Preconditions.checkNotNull;
+
 /**
- * {@code Description} that loads its text lazily, in the event dispatch thread (EDT).
- * 
+ * Supplier of text that is loaded lazily, in the event dispatch thread (EDT). Useful for descriptions that must read
+ * state of GUI components, which is only allowed on the EDT.
+ *
  * @author Alex Ruiz
  * @author Yvonne Wang
  */
-public abstract class GuiLazyLoadingDescription extends Description {
+public abstract class GuiLazyLoadingDescription implements Supplier<String> {
   /**
    * Executes {@link #loadDescription()} in the event dispatch thread (EDT).
-   * 
+   *
    * @return the text loaded in the event dispatch thread (EDT).
    */
   @Override
-  public final @Nonnull String value() {
+  public final @Nonnull String get() {
     String result = execute(() -> loadDescription());
     return checkNotNull(result);
   }
 
   /**
    * <p>
-   * Returns the lazy-loaded text of this description.
+   * Returns the lazily-loaded text.
    * </p>
-   * 
+   *
    * <p>
    * <b>Note:</b> This method is accessed in the current executing thread. Such thread may or may not be the event
    * dispatch thread (EDT). Client code must call this method from the EDT.
    * </p>
-   * 
-   * @return the lazy-loaded text of this description.
+   *
+   * @return the lazily-loaded text.
    */
   @RunsInCurrentThread
   protected abstract @Nonnull String loadDescription();

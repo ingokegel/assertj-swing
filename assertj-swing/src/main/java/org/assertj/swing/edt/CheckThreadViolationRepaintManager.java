@@ -12,14 +12,12 @@
  */
 package org.assertj.swing.edt;
 
-import static javax.swing.SwingUtilities.isEventDispatchThread;
-import static org.assertj.core.util.Preconditions.checkNotNull;
-
+import javax.annotation.Nonnull;
+import javax.swing.*;
 import java.lang.ref.WeakReference;
 
-import javax.annotation.Nonnull;
-import javax.swing.JComponent;
-import javax.swing.RepaintManager;
+import static javax.swing.SwingUtilities.isEventDispatchThread;
+import static org.assertj.swing.util.Preconditions.checkNotNull;
 
 /**
  * <p>

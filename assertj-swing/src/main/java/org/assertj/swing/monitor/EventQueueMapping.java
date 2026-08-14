@@ -12,20 +12,18 @@
  */
 package org.assertj.swing.monitor;
 
-import static org.assertj.core.util.Sets.newHashSet;
-import static org.assertj.swing.util.Maps.newWeakHashMap;
+import org.assertj.swing.annotation.RunsInCurrentThread;
 
-import java.awt.Component;
-import java.awt.EventQueue;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.awt.*;
 import java.lang.ref.WeakReference;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
-import org.assertj.swing.annotation.RunsInCurrentThread;
+import static org.assertj.swing.util.Maps.newWeakHashMap;
+import static org.assertj.swing.util.Sets.newHashSet;
 
 /**
  * A mapping of AWT or Swing {@code Component}s, and their respective {@link EventQueue}.

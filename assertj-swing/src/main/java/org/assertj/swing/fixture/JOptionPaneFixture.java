@@ -12,16 +12,15 @@
  */
 package org.assertj.swing.fixture;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
-
-import java.util.regex.Pattern;
+import org.assertj.swing.core.Robot;
+import org.assertj.swing.driver.JOptionPaneDriver;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import javax.swing.JOptionPane;
+import javax.swing.*;
+import java.util.regex.Pattern;
 
-import org.assertj.swing.core.Robot;
-import org.assertj.swing.driver.JOptionPaneDriver;
+import static org.assertj.swing.util.Preconditions.checkNotNull;
 
 /**
  * Supports functional testing of {@code JOptionPane}s.

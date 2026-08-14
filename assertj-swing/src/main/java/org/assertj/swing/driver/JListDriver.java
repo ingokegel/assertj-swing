@@ -12,43 +12,6 @@
  */
 package org.assertj.swing.driver;
 
-import static java.awt.event.KeyEvent.VK_SHIFT;
-import static java.util.Arrays.sort;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Fail.fail;
-import static org.assertj.core.util.Preconditions.checkNotNull;
-import static org.assertj.swing.core.MouseButton.LEFT_BUTTON;
-import static org.assertj.swing.driver.JListContentQuery.contents;
-import static org.assertj.swing.driver.JListItemCountQuery.itemCountIn;
-import static org.assertj.swing.driver.JListItemPreconditions.checkIndicesInBounds;
-import static org.assertj.swing.driver.JListItemValueQuery.itemValue;
-import static org.assertj.swing.driver.JListMatchingItemQuery.centerOfMatchingItemCell;
-import static org.assertj.swing.driver.JListMatchingItemQuery.matchingItemIndex;
-import static org.assertj.swing.driver.JListMatchingItemQuery.matchingItemIndices;
-import static org.assertj.swing.driver.JListMatchingItemQuery.matchingItemValues;
-import static org.assertj.swing.driver.JListScrollToItemTask.ITEM_NOT_FOUND;
-import static org.assertj.swing.driver.JListScrollToItemTask.scrollToItem;
-import static org.assertj.swing.driver.JListScrollToItemTask.scrollToItemIfNotSelectedYet;
-import static org.assertj.swing.driver.JListSelectedIndexQuery.selectedIndexOf;
-import static org.assertj.swing.driver.JListSelectionIndicesQuery.selectedIndices;
-import static org.assertj.swing.driver.JListSelectionValueQuery.NO_SELECTION_VALUE;
-import static org.assertj.swing.driver.JListSelectionValueQuery.singleSelectionValue;
-import static org.assertj.swing.driver.JListSelectionValuesQuery.selectionValues;
-import static org.assertj.swing.driver.TextAssert.verifyThat;
-import static org.assertj.swing.edt.GuiActionRunner.execute;
-import static org.assertj.swing.util.ArrayPreconditions.checkNotNullOrEmpty;
-import static org.assertj.swing.util.Arrays.format;
-
-import java.awt.Point;
-import java.util.List;
-import java.util.regex.Pattern;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import javax.swing.JList;
-import javax.swing.JPopupMenu;
-
-import org.assertj.core.description.Description;
 import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.cell.JListCellReader;
 import org.assertj.swing.core.MouseButton;
@@ -61,6 +24,36 @@ import org.assertj.swing.util.Range.From;
 import org.assertj.swing.util.Range.To;
 import org.assertj.swing.util.StringTextMatcher;
 import org.assertj.swing.util.TextMatcher;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import javax.swing.*;
+import java.awt.*;
+import java.util.List;
+import java.util.function.Supplier;
+import java.util.regex.Pattern;
+
+import static java.awt.event.KeyEvent.VK_SHIFT;
+import static java.util.Arrays.sort;
+import static org.assertj.swing.core.MouseButton.LEFT_BUTTON;
+import static org.assertj.swing.driver.JListContentQuery.contents;
+import static org.assertj.swing.driver.JListItemCountQuery.itemCountIn;
+import static org.assertj.swing.driver.JListItemPreconditions.checkIndicesInBounds;
+import static org.assertj.swing.driver.JListItemValueQuery.itemValue;
+import static org.assertj.swing.driver.JListMatchingItemQuery.*;
+import static org.assertj.swing.driver.JListScrollToItemTask.*;
+import static org.assertj.swing.driver.JListSelectedIndexQuery.selectedIndexOf;
+import static org.assertj.swing.driver.JListSelectionIndicesQuery.selectedIndices;
+import static org.assertj.swing.driver.JListSelectionValueQuery.NO_SELECTION_VALUE;
+import static org.assertj.swing.driver.JListSelectionValueQuery.singleSelectionValue;
+import static org.assertj.swing.driver.JListSelectionValuesQuery.selectionValues;
+import static org.assertj.swing.edt.GuiActionRunner.execute;
+import static org.assertj.swing.util.ArrayPreconditions.checkNotNullOrEmpty;
+import static org.assertj.swing.util.Arrays.format;
+import static org.assertj.swing.util.Fail.fail;
+import static org.assertj.swing.util.Preconditions.checkNotNull;
+import static org.assertj.swing.util.Require.assertThat;
+import static org.assertj.swing.util.Require.verifyThat;
 
 /**
  * <p>
@@ -561,11 +554,11 @@ public class JListDriver extends JComponentDriver {
 
   @RunsInEDT
   private void failNoSelection(@Nonnull JList<?> list) {
-    fail(String.format("[%s] No selection", selectedIndexProperty(list).value()));
+    fail(String.format("[%s] No selection", selectedIndexProperty(list).get()));
   }
 
   @RunsInEDT
-  private Description selectedIndexProperty(@Nonnull JList<?> list) {
+  private Supplier<String> selectedIndexProperty(@Nonnull JList<?> list) {
     return propertyName(list, SELECTED_INDEX_PROPERTY);
   }
 

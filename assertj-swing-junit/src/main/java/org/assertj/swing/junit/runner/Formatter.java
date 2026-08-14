@@ -12,10 +12,10 @@
  */
 package org.assertj.swing.junit.runner;
 
-import static org.assertj.core.util.Arrays.isNullOrEmpty;
-import static org.assertj.core.util.Strings.concat;
-
 import java.lang.reflect.Method;
+
+import static org.assertj.swing.util.Arrays.isNullOrEmpty;
+import static org.assertj.swing.util.Strings.concat;
 
 /**
  * Understands formatting utilities for AssertJ-Swing JUnit runners.

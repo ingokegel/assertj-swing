@@ -12,9 +12,9 @@
  */
 package org.assertj.swing.data;
 
-import static org.assertj.core.util.Objects.HASH_CODE_PRIME;
-
 import javax.annotation.Nonnull;
+
+import static org.assertj.swing.util.Objects.HASH_CODE_PRIME;
 
 /**
  * A cell in a {@code JTable}.

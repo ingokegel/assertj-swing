@@ -12,7 +12,7 @@
  */
 package org.assertj.swing.keystroke;
 
-import org.assertj.core.util.Lists;
+import org.assertj.swing.util.Lists;
 
 import javax.annotation.Nonnull;
 import java.util.Collection;
@@ -21,8 +21,6 @@ import java.util.List;
 import static java.awt.event.InputEvent.ALT_GRAPH_MASK;
 import static java.awt.event.InputEvent.SHIFT_MASK;
 import static java.awt.event.KeyEvent.*;
-import static java.awt.event.KeyEvent.VK_MINUS;
-import static java.awt.event.KeyEvent.VK_SPACE;
 import static org.assertj.swing.keystroke.KeyStrokeMapping.mapping;
 
 /**

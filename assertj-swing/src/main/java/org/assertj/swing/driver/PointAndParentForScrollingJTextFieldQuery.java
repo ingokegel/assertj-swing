@@ -12,19 +12,14 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
-
-import java.awt.Container;
-import java.awt.Point;
-import java.awt.Rectangle;
-
-import javax.annotation.Nonnull;
-import javax.swing.CellRendererPane;
-import javax.swing.JComponent;
-import javax.swing.JTextField;
-
 import org.assertj.swing.annotation.RunsInCurrentThread;
 import org.assertj.swing.util.Pair;
+
+import javax.annotation.Nonnull;
+import javax.swing.*;
+import java.awt.*;
+
+import static org.assertj.swing.util.Preconditions.checkNotNull;
 
 /**
  * <p>

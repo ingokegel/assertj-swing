@@ -12,7 +12,7 @@
  */
 package org.assertj.swing.jide.grids.driver;
 
-import org.assertj.core.util.Strings;
+import org.assertj.swing.util.Strings;
 import org.assertj.swing.annotation.RunsInCurrentThread;
 import org.assertj.swing.driver.ComponentPreconditions;
 import org.assertj.swing.format.Formatting;

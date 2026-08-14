@@ -12,18 +12,18 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.swing.driver.JProgressBarIndeterminateQuery.isIndeterminate;
-import static org.assertj.swing.format.Formatting.format;
-import static org.assertj.swing.timing.Pause.pause;
-
-import javax.annotation.Nonnull;
-import javax.swing.JProgressBar;
-
-import org.assertj.core.description.Description;
 import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.edt.GuiLazyLoadingDescription;
 import org.assertj.swing.timing.Condition;
 import org.assertj.swing.timing.Timeout;
+
+import javax.annotation.Nonnull;
+import javax.swing.*;
+import java.util.function.Supplier;
+
+import static org.assertj.swing.driver.JProgressBarIndeterminateQuery.isIndeterminate;
+import static org.assertj.swing.format.Formatting.format;
+import static org.assertj.swing.timing.Pause.pause;
 
 /**
  * EDT-safe task that waits until the value of a {@code JProgressBar} is equal to the given expected value.
@@ -41,7 +41,7 @@ final class JProgressBarWaitUntilIsDeterminate {
     }, timeout);
   }
 
-  private static Description untilIsDeterminate(final @Nonnull JProgressBar progressBar) {
+  private static Supplier<String> untilIsDeterminate(final @Nonnull JProgressBar progressBar) {
     return new GuiLazyLoadingDescription() {
       @Override
       @Nonnull protected String loadDescription() {

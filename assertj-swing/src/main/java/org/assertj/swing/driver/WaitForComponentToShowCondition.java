@@ -12,16 +12,15 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
-import static org.assertj.core.util.Strings.concat;
-import static org.assertj.swing.format.Formatting.format;
-import static org.assertj.swing.query.ComponentShowingQuery.isShowing;
-
-import java.awt.Component;
+import org.assertj.swing.timing.Condition;
 
 import javax.annotation.Nonnull;
+import java.awt.*;
 
-import org.assertj.swing.timing.Condition;
+import static org.assertj.swing.format.Formatting.format;
+import static org.assertj.swing.query.ComponentShowingQuery.isShowing;
+import static org.assertj.swing.util.Preconditions.checkNotNull;
+import static org.assertj.swing.util.Strings.concat;
 
 /**
  * Verifies that an AWT or Swing {@code Component} is showing on the screen.

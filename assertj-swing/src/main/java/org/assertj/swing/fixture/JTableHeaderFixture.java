@@ -12,18 +12,17 @@
  */
 package org.assertj.swing.fixture;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
-
-import java.util.regex.Pattern;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import javax.swing.JPopupMenu;
-import javax.swing.table.JTableHeader;
-
 import org.assertj.swing.core.MouseClickInfo;
 import org.assertj.swing.core.Robot;
 import org.assertj.swing.driver.JTableHeaderDriver;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import javax.swing.*;
+import javax.swing.table.JTableHeader;
+import java.util.regex.Pattern;
+
+import static org.assertj.swing.util.Preconditions.checkNotNull;
 
 /**
  * Supports functional testing of {@code JTableHeader}s.

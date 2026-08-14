@@ -12,7 +12,7 @@
  */
 package org.assertj.swing.jide.components;
 
-import org.assertj.core.util.Strings;
+import org.assertj.swing.util.Strings;
 import org.assertj.swing.core.Robot;
 import org.assertj.swing.fixture.AbstractContainerFixture;
 

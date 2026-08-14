@@ -12,36 +12,28 @@
  */
 package org.assertj.swing.keystroke;
 
-import static java.lang.Thread.currentThread;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.util.Lists.newArrayList;
-import static org.assertj.core.util.Preconditions.checkNotNull;
-import static org.assertj.core.util.Preconditions.checkNotNullOrEmpty;
-import static org.assertj.core.util.Strings.concat;
-import static org.assertj.core.util.Strings.quote;
-import static org.assertj.swing.keystroke.KeyStrokeMapping.mapping;
-import static org.assertj.swing.keystroke.KeyStrokeMappingProvider.NO_MASK;
-import static org.assertj.swing.util.Maps.newHashMap;
-import static org.fest.reflect.core.Reflection.field;
-
-import java.awt.event.InputEvent;
-import java.awt.event.KeyEvent;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.List;
-import java.util.Map;
-
-import javax.annotation.Nonnull;
-
-import org.assertj.core.util.VisibleForTesting;
+import org.assertj.swing.annotation.VisibleForTesting;
 import org.assertj.swing.exception.ParsingException;
 import org.assertj.swing.logging.Logger;
 import org.fest.reflect.exception.ReflectionError;
+
+import javax.annotation.Nonnull;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
+import java.io.*;
+import java.util.List;
+import java.util.Map;
+
+import static java.lang.Thread.currentThread;
+import static org.assertj.swing.keystroke.KeyStrokeMapping.mapping;
+import static org.assertj.swing.keystroke.KeyStrokeMappingProvider.NO_MASK;
+import static org.assertj.swing.util.Lists.newArrayList;
+import static org.assertj.swing.util.Maps.newHashMap;
+import static org.assertj.swing.util.Preconditions.checkNotNull;
+import static org.assertj.swing.util.Preconditions.checkNotNullOrEmpty;
+import static org.assertj.swing.util.Strings.concat;
+import static org.assertj.swing.util.Strings.quote;
+import static org.fest.reflect.core.Reflection.field;
 
 /**
  * <p>
@@ -149,7 +141,9 @@ public class KeyStrokeMappingsParser {
    * @throws ParsingException if any error occurs during parsing.
    */
   @Nonnull public KeyStrokeMappingProvider parse(@Nonnull File file) {
-    assertThat(file).isFile();
+    if (file == null || !file.isFile()) {
+      throw new AssertionError(concat("The file ", quote(String.valueOf(file)), " is not an existing file"));
+    }
     try {
       return parse(fileAsStream(file));
     } catch (IOException e) {

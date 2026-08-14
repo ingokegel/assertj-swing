@@ -12,12 +12,11 @@
  */
 package org.assertj.swing.query;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
-import static org.assertj.swing.edt.GuiActionRunner.execute;
-
-import java.awt.Component;
-
 import javax.annotation.Nonnull;
+import java.awt.*;
+
+import static org.assertj.swing.edt.GuiActionRunner.execute;
+import static org.assertj.swing.util.Preconditions.checkNotNull;
 
 /**
  * Indicates whether an AWT or Swing {@code Component} is enabled or not. This query is executed in the event dispatch

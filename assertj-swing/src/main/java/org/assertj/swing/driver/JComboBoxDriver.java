@@ -12,41 +12,9 @@
  */
 package org.assertj.swing.driver;
 
-import static javax.swing.text.DefaultEditorKit.deletePrevCharAction;
-import static javax.swing.text.DefaultEditorKit.selectAllAction;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Fail.fail;
-import static org.assertj.core.util.Preconditions.checkNotNull;
-import static org.assertj.core.util.Strings.quote;
-import static org.assertj.swing.driver.ComponentPreconditions.checkEnabledAndShowing;
-import static org.assertj.swing.driver.JComboBoxContentQuery.contents;
-import static org.assertj.swing.driver.JComboBoxEditableQuery.isEditable;
-import static org.assertj.swing.driver.JComboBoxItemCountQuery.itemCountIn;
-import static org.assertj.swing.driver.JComboBoxItemIndexPreconditions.checkItemIndexInBounds;
-import static org.assertj.swing.driver.JComboBoxMatchingItemQuery.matchingItemIndex;
-import static org.assertj.swing.driver.JComboBoxSelectedIndexQuery.selectedIndexOf;
-import static org.assertj.swing.driver.JComboBoxSelectionValueQuery.selection;
-import static org.assertj.swing.driver.JComboBoxSetSelectedIndexTask.setSelectedIndex;
-import static org.assertj.swing.driver.TextAssert.verifyThat;
-import static org.assertj.swing.edt.GuiActionRunner.execute;
-import static org.assertj.swing.exception.ActionFailedException.actionFailure;
-import static org.assertj.swing.format.Formatting.format;
-import static org.assertj.swing.util.Arrays.format;
-
-import java.awt.Component;
-import java.util.regex.Pattern;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import javax.swing.ComboBoxEditor;
-import javax.swing.JComboBox;
-import javax.swing.JComponent;
-import javax.swing.JList;
-
-import org.assertj.core.description.Description;
-import org.assertj.core.util.VisibleForTesting;
 import org.assertj.swing.annotation.RunsInCurrentThread;
 import org.assertj.swing.annotation.RunsInEDT;
+import org.assertj.swing.annotation.VisibleForTesting;
 import org.assertj.swing.cell.JComboBoxCellReader;
 import org.assertj.swing.core.Robot;
 import org.assertj.swing.exception.ComponentLookupException;
@@ -56,6 +24,34 @@ import org.assertj.swing.util.Pair;
 import org.assertj.swing.util.PatternTextMatcher;
 import org.assertj.swing.util.StringTextMatcher;
 import org.assertj.swing.util.TextMatcher;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import javax.swing.*;
+import java.awt.*;
+import java.util.function.Supplier;
+import java.util.regex.Pattern;
+
+import static javax.swing.text.DefaultEditorKit.deletePrevCharAction;
+import static javax.swing.text.DefaultEditorKit.selectAllAction;
+import static org.assertj.swing.driver.ComponentPreconditions.checkEnabledAndShowing;
+import static org.assertj.swing.driver.JComboBoxContentQuery.contents;
+import static org.assertj.swing.driver.JComboBoxEditableQuery.isEditable;
+import static org.assertj.swing.driver.JComboBoxItemCountQuery.itemCountIn;
+import static org.assertj.swing.driver.JComboBoxItemIndexPreconditions.checkItemIndexInBounds;
+import static org.assertj.swing.driver.JComboBoxMatchingItemQuery.matchingItemIndex;
+import static org.assertj.swing.driver.JComboBoxSelectedIndexQuery.selectedIndexOf;
+import static org.assertj.swing.driver.JComboBoxSelectionValueQuery.selection;
+import static org.assertj.swing.driver.JComboBoxSetSelectedIndexTask.setSelectedIndex;
+import static org.assertj.swing.edt.GuiActionRunner.execute;
+import static org.assertj.swing.exception.ActionFailedException.actionFailure;
+import static org.assertj.swing.format.Formatting.format;
+import static org.assertj.swing.util.Arrays.format;
+import static org.assertj.swing.util.Fail.fail;
+import static org.assertj.swing.util.Preconditions.checkNotNull;
+import static org.assertj.swing.util.Require.assertThat;
+import static org.assertj.swing.util.Require.verifyThat;
+import static org.assertj.swing.util.Strings.quote;
 
 /**
  * <p>
@@ -208,7 +204,7 @@ public class JComboBoxDriver extends JComponentDriver {
   }
 
   private void failNoSelection(@Nonnull JComboBox<?> comboBox) {
-    fail(String.format("[%s] No selection", selectedIndexProperty(comboBox).value()));
+    fail(String.format("[%s] No selection", selectedIndexProperty(comboBox).get()));
   }
 
   /**
@@ -225,7 +221,7 @@ public class JComboBoxDriver extends JComponentDriver {
       return;
     }
     String format = "[%s] Expecting no selection, but found:<%s>";
-    fail(String.format(format, selectedIndexProperty(comboBox).value(), quote(selection.second)));
+    fail(String.format(format, selectedIndexProperty(comboBox).get(), quote(selection.second)));
   }
 
   /**
@@ -252,7 +248,7 @@ public class JComboBoxDriver extends JComponentDriver {
     });
   }
 
-  @Nonnull private Description selectedIndexProperty(@Nonnull JComboBox<?> comboBox) {
+  @Nonnull private Supplier<String> selectedIndexProperty(@Nonnull JComboBox<?> comboBox) {
     return propertyName(comboBox, SELECTED_INDEX_PROPERTY);
   }
 
@@ -509,7 +505,7 @@ public class JComboBoxDriver extends JComponentDriver {
   }
 
   @RunsInEDT
-  private static Description editableProperty(@Nonnull JComboBox<?> comboBox) {
+  private static Supplier<String> editableProperty(@Nonnull JComboBox<?> comboBox) {
     return propertyName(comboBox, EDITABLE_PROPERTY);
   }
 

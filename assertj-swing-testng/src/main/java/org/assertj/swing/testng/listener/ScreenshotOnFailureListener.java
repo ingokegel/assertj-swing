@@ -12,17 +12,8 @@
  */
 package org.assertj.swing.testng.listener;
 
-import static java.io.File.separator;
-import static org.assertj.core.util.Strings.concat;
-import static org.assertj.core.util.Strings.quote;
-import static org.assertj.swing.testng.listener.ScreenshotFileNameGenerator.screenshotFileNameFrom;
-import static org.assertj.swing.util.Strings.isNullOrEmpty;
-
-import java.awt.GraphicsEnvironment;
-import java.lang.reflect.Method;
-
-import org.assertj.core.util.VisibleForTesting;
 import org.assertj.swing.annotation.GUITestFinder;
+import org.assertj.swing.annotation.VisibleForTesting;
 import org.assertj.swing.image.ImageException;
 import org.assertj.swing.image.NoopScreenshotTaker;
 import org.assertj.swing.image.ScreenshotTaker;
@@ -31,6 +22,13 @@ import org.assertj.swing.logging.Logger;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.Reporter;
+
+import java.awt.*;
+import java.lang.reflect.Method;
+
+import static java.io.File.separator;
+import static org.assertj.swing.testng.listener.ScreenshotFileNameGenerator.screenshotFileNameFrom;
+import static org.assertj.swing.util.Strings.*;
 
 /**
  * Understands a <a href="http://testng.org" target="_blank">TestNG</a> listener that takes a screenshot when a GUI test

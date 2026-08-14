@@ -12,14 +12,14 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.swing.edt.GuiActionRunner.execute;
+import org.assertj.swing.annotation.RunsInEDT;
+import org.assertj.swing.util.Strings;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import javax.swing.JFileChooser;
+import javax.swing.*;
 
-import org.assertj.core.util.Strings;
-import org.assertj.swing.annotation.RunsInEDT;
+import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 /**
  * Returns the text used in the "approve button" of a {@code JFileChooser}. This action is executed in the event

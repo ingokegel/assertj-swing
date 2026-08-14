@@ -12,18 +12,18 @@
  */
 package org.assertj.swing.junit.runner;
 
-import static java.io.File.separator;
-import static org.assertj.core.util.Strings.concat;
-import static org.assertj.core.util.Strings.quote;
-import static org.assertj.swing.image.ImageFileExtensions.PNG;
-
-import java.awt.GraphicsEnvironment;
-import java.io.File;
-
 import org.assertj.swing.image.NoopScreenshotTaker;
 import org.assertj.swing.image.ScreenshotTaker;
 import org.assertj.swing.image.ScreenshotTakerIF;
 import org.assertj.swing.logging.Logger;
+
+import java.awt.*;
+import java.io.File;
+
+import static java.io.File.separator;
+import static org.assertj.swing.image.ImageFileExtensions.PNG;
+import static org.assertj.swing.util.Strings.concat;
+import static org.assertj.swing.util.Strings.quote;
 
 /**
  * Understands taking a screenshot of the desktop when a GUI test fails.

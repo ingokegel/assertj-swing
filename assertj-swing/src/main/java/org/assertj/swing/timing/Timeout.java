@@ -12,12 +12,11 @@
  */
 package org.assertj.swing.timing;
 
-import static org.assertj.core.util.Objects.HASH_CODE_PRIME;
-import static org.assertj.core.util.Preconditions.checkNotNull;
-
+import javax.annotation.Nonnull;
 import java.util.concurrent.TimeUnit;
 
-import javax.annotation.Nonnull;
+import static org.assertj.swing.util.Objects.HASH_CODE_PRIME;
+import static org.assertj.swing.util.Preconditions.checkNotNull;
 
 /**
  * Timeout.

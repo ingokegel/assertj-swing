@@ -12,57 +12,53 @@
  */
 package org.assertj.swing.fixture;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.util.Preconditions.checkNotNull;
-import static org.assertj.swing.util.Colors.colorFromHexString;
-
-import java.awt.Color;
-
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.awt.*;
+import java.util.function.Supplier;
 
-import org.assertj.core.api.AbstractObjectAssert;
-import org.assertj.core.description.Description;
-import org.assertj.core.description.TextDescription;
+import static org.assertj.swing.util.Colors.colorFromHexString;
+import static org.assertj.swing.util.Preconditions.checkNotNull;
+import static org.assertj.swing.util.Require.assertThat;
 
 /**
  * Verifies the state of {@code Color}s.
- * 
+ *
  * @author Alex Ruiz
  */
 public class ColorFixture {
   private final Color target;
-  private final Description description;
+  private final Supplier<String> description;
 
   /**
    * Creates a new {@link ColorFixture}.
-   * 
+   *
    * @param target the color to manage.
    * @throws NullPointerException if {@code target} is {@code null}.
    */
   public ColorFixture(@Nonnull Color target) {
-    this(target, (Description) null);
+    this(target, (Supplier<String>) null);
   }
 
   /**
    * Creates a new {@link ColorFixture}.
-   * 
+   *
    * @param target the color to manage.
    * @param description this fixture's description.
    * @throws NullPointerException if {@code target} is {@code null}.
    */
   public ColorFixture(@Nonnull Color target, @Nonnull String description) {
-    this(target, new TextDescription(description));
+    this(target, () -> description);
   }
 
   /**
    * Creates a new {@link ColorFixture}.
-   * 
+   *
    * @param target the color to manage.
    * @param description this fixture's description.
    * @throws NullPointerException if {@code target} is {@code null}.
    */
-  public ColorFixture(@Nonnull Color target, @Nullable Description description) {
+  public ColorFixture(@Nonnull Color target, @Nullable Supplier<String> description) {
     this.target = checkNotNull(target);
     this.description = description;
   }
@@ -90,16 +86,8 @@ public class ColorFixture {
    * @throws AssertionError if this fixture's {@code Color} is not equal to the given one.
    */
   @Nonnull public ColorFixture requireEqualTo(@Nullable Color color) {
-    AbstractObjectAssert<?, Color> assertThat = assertThat(target);
-    describe(assertThat);
-    assertThat.isEqualTo(color);
+    assertThat(target).describedAs(description).isEqualTo(color);
     return this;
-  }
-
-  private void describe(AbstractObjectAssert<?, Color> assertThat) {
-    if (description != null) {
-      assertThat.as(description);
-    }
   }
 
   /**
@@ -125,9 +113,7 @@ public class ColorFixture {
    * @throws AssertionError if this fixture's {@code Color} is equal to the given one.
    */
   @Nonnull public ColorFixture requireNotEqualTo(@Nullable Color color) {
-    AbstractObjectAssert<?, Color> assertThat = assertThat(target);
-    describe(assertThat);
-    assertThat.isNotEqualTo(color);
+    assertThat(target).describedAs(description).isNotEqualTo(color);
     return this;
   }
 
@@ -142,6 +128,6 @@ public class ColorFixture {
    * @return this fixture's description.
    */
   public final @Nullable String description() {
-    return description != null ? description.value() : null;
+    return description != null ? description.get() : null;
   }
 }

@@ -12,31 +12,24 @@
  */
 package org.assertj.swing.input;
 
-import static java.awt.AWTEvent.KEY_EVENT_MASK;
-import static java.awt.AWTEvent.MOUSE_EVENT_MASK;
-import static java.awt.AWTEvent.MOUSE_MOTION_EVENT_MASK;
-import static javax.swing.SwingUtilities.getDeepestComponentAt;
-import static org.assertj.core.util.Preconditions.checkNotNull;
-import static org.assertj.swing.awt.AWT.locationOnScreenOf;
-import static org.assertj.swing.input.MouseInfo.BUTTON_MASK;
-
-import java.awt.AWTEvent;
-import java.awt.Component;
-import java.awt.IllegalComponentStateException;
-import java.awt.Point;
-import java.awt.Toolkit;
-import java.awt.event.AWTEventListener;
-import java.awt.event.InputEvent;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
+import org.assertj.swing.exception.UnexpectedException;
+import org.assertj.swing.listener.EventDispatchThreadedEventListener;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.concurrent.GuardedBy;
 import javax.annotation.concurrent.ThreadSafe;
+import java.awt.*;
+import java.awt.event.AWTEventListener;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 
-import org.assertj.swing.exception.UnexpectedException;
-import org.assertj.swing.listener.EventDispatchThreadedEventListener;
+import static java.awt.AWTEvent.*;
+import static javax.swing.SwingUtilities.getDeepestComponentAt;
+import static org.assertj.swing.awt.AWT.locationOnScreenOf;
+import static org.assertj.swing.input.MouseInfo.BUTTON_MASK;
+import static org.assertj.swing.util.Preconditions.checkNotNull;
 
 /**
  * <p>

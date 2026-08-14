@@ -12,15 +12,14 @@
  */
 package org.assertj.swing.keystroke;
 
-import static org.assertj.core.util.Strings.join;
+import org.assertj.swing.util.OSFamily;
 
+import javax.annotation.Nonnull;
 import java.util.Iterator;
 import java.util.Locale;
 import java.util.NoSuchElementException;
 
-import javax.annotation.Nonnull;
-
-import org.assertj.swing.util.OSFamily;
+import static org.assertj.swing.util.Strings.join;
 
 /**
  * A generated name for a {@link KeyStrokeMappingProvider} to use, based on operating system family and locale.

@@ -12,19 +12,16 @@
  */
 package org.assertj.swing.hierarchy;
 
-import static org.assertj.core.util.Lists.emptyList;
-import static org.assertj.core.util.Lists.newArrayList;
-
-import java.awt.Component;
-import java.awt.Container;
-import java.util.Collection;
+import org.assertj.swing.annotation.RunsInCurrentThread;
 
 import javax.annotation.Nonnull;
-import javax.swing.JDesktopPane;
-import javax.swing.JInternalFrame;
+import javax.swing.*;
 import javax.swing.JInternalFrame.JDesktopIcon;
+import java.awt.*;
+import java.util.Collection;
 
-import org.assertj.swing.annotation.RunsInCurrentThread;
+import static org.assertj.swing.util.Lists.emptyList;
+import static org.assertj.swing.util.Lists.newArrayList;
 
 /**
  * Finds children {@code Component}s in a {@code JDesktopPane}.

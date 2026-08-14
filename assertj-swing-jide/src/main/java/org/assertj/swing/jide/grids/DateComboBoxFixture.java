@@ -12,7 +12,7 @@
  */
 package org.assertj.swing.jide.grids;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.swing.util.Require.assertThat;
 
 import java.util.Calendar;
 import java.util.Date;

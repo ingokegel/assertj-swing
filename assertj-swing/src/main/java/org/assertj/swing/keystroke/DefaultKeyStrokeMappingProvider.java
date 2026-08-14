@@ -12,13 +12,12 @@
  */
 package org.assertj.swing.keystroke;
 
-import static org.assertj.core.util.Lists.newArrayList;
-import static org.assertj.swing.keystroke.KeyStrokeMappings.defaultMappings;
-
+import javax.annotation.Nonnull;
 import java.util.Collection;
 import java.util.List;
 
-import javax.annotation.Nonnull;
+import static org.assertj.swing.keystroke.KeyStrokeMappings.defaultMappings;
+import static org.assertj.swing.util.Lists.newArrayList;
 
 /**
  * Default mapping of characters and {@code javax.swing.KeyStroke}s.

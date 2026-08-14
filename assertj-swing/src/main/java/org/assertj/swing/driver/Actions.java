@@ -12,20 +12,18 @@
  */
 package org.assertj.swing.driver;
 
-import static java.util.Collections.sort;
-import static javax.swing.Action.NAME;
-import static org.assertj.core.util.Lists.newArrayList;
-import static org.assertj.core.util.Preconditions.checkNotNull;
-import static org.assertj.core.util.Strings.concat;
-import static org.assertj.core.util.Strings.quote;
-import static org.assertj.swing.exception.ActionFailedException.actionFailure;
-
-import java.util.List;
-
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import javax.swing.Action;
-import javax.swing.ActionMap;
+import javax.swing.*;
+import java.util.List;
+
+import static java.util.Collections.sort;
+import static javax.swing.Action.NAME;
+import static org.assertj.swing.exception.ActionFailedException.actionFailure;
+import static org.assertj.swing.util.Lists.newArrayList;
+import static org.assertj.swing.util.Preconditions.checkNotNull;
+import static org.assertj.swing.util.Strings.concat;
+import static org.assertj.swing.util.Strings.quote;
 
 /**
  * Utility methods related to Swing {@code Action}s.

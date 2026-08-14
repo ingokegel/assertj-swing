@@ -12,37 +12,33 @@
  */
 package org.assertj.swing.assertions.error;
 
-import org.assertj.core.data.Offset;
-import org.assertj.core.error.BasicErrorMessageFactory;
-import org.assertj.core.error.ErrorMessageFactory;
+import org.assertj.swing.assertions.data.Offset;
 import org.assertj.swing.assertions.data.Point;
 import org.assertj.swing.assertions.data.RgbColor;
 
 /**
- * Creates an error message indicating that an assertion that verifies that a two colors are equal at a given point
- * fails.
- * 
+ * Creates an error message indicating that an assertion that expected two colors to be equal at a given point failed.
+ *
  * @author Yvonne Wang
  */
-public class ShouldBeEqualColors extends BasicErrorMessageFactory {
+public final class ShouldBeEqualColors {
 
   /**
-   * Creates a new <code>{@link ShouldBeEqualColors}</code>.
-   * 
+   * Creates a new error message.
+   *
    * @param expected the expected color.
    * @param actual the actual color.
    * @param point the point where {@code expected} and {@code actual} were compared at.
-   * @param offset helps decide if two colors are similar: two colors that are identical to the human eye may still have
-   *          slightly different color values. For example, by using an offset of 1 we can indicate that a blue value of
-   *          60 is similar to a blue value of 61.
-   * @return the created {@code ErrorMessageFactory}.
+   * @param offset helps decide if two colors are similar: two colors that are identical to the human eye may still
+   *          have slightly different color values. For example, by using an offset of 1 we can indicate that a blue
+   *          value of 60 is similar to a blue value of 61.
+   * @return the created error message.
    */
-  public static ErrorMessageFactory shouldBeEqualColors(RgbColor expected, RgbColor actual, Point point,
-      Offset<?> offset) {
-    return new ShouldBeEqualColors(expected, actual, point, offset);
+  public static String shouldBeEqualColors(RgbColor expected, RgbColor actual, Point point, Offset<?> offset) {
+    return String.format("expected:<%s> but was:<%s> at:<%s> within offset:<%s>", expected, actual, point,
+                         offset.value);
   }
 
-  private ShouldBeEqualColors(RgbColor expected, RgbColor actual, Point point, Offset<?> offset) {
-    super("expected:<%s> but was:<%s> at:<%s> within offset:<%s>", expected, actual, point, offset.value);
+  private ShouldBeEqualColors() {
   }
 }

@@ -12,29 +12,27 @@
  */
 package org.assertj.swing.core;
 
-import static java.lang.System.lineSeparator;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.util.Preconditions.checkNotNull;
-import static org.assertj.core.util.Strings.concat;
-import static org.assertj.swing.edt.GuiActionRunner.execute;
-import static org.assertj.swing.format.Formatting.format;
-import static org.assertj.swing.hierarchy.NewHierarchy.ignoreExistingComponents;
-
-import java.awt.Component;
-import java.awt.Container;
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
-import java.util.Collection;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import javax.swing.JLabel;
-
 import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.exception.ComponentLookupException;
 import org.assertj.swing.hierarchy.ComponentHierarchy;
 import org.assertj.swing.hierarchy.ExistingHierarchy;
 import org.assertj.swing.hierarchy.SingleComponentHierarchy;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import javax.swing.*;
+import java.awt.*;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+import java.util.Collection;
+
+import static java.lang.System.lineSeparator;
+import static org.assertj.swing.edt.GuiActionRunner.execute;
+import static org.assertj.swing.format.Formatting.format;
+import static org.assertj.swing.hierarchy.NewHierarchy.ignoreExistingComponents;
+import static org.assertj.swing.util.Preconditions.checkNotNull;
+import static org.assertj.swing.util.Require.assertThat;
+import static org.assertj.swing.util.Strings.concat;
 
 /**
  * Default implementation of {@link ComponentFinder}.

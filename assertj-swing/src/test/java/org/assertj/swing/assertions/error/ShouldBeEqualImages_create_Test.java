@@ -12,33 +12,15 @@
  */
 package org.assertj.swing.assertions.error;
 
-import static junit.framework.Assert.assertEquals;
-import static org.assertj.core.data.Offset.offset;
-import static org.assertj.swing.assertions.error.ShouldBeEqualImages.shouldBeEqualImages;
-
-import org.assertj.core.description.TextDescription;
-import org.assertj.core.error.ErrorMessageFactory;
-import org.assertj.core.presentation.StandardRepresentation;
-import org.junit.Before;
 import org.junit.Test;
 
-/**
- * Tests for <code>{@link ShouldBeEqualImages#create(Description)}</code>.
- * 
- * @author Yvonne Wang
- */
+import static junit.framework.Assert.assertEquals;
+import static org.assertj.swing.assertions.data.Offset.offset;
+import static org.assertj.swing.assertions.error.ShouldBeEqualImages.shouldBeEqualImages;
+
 public class ShouldBeEqualImages_create_Test {
-
-  private ErrorMessageFactory factory;
-
-  @Before
-  public void setUp() {
-    factory = shouldBeEqualImages(offset(6));
-  }
-
   @Test
   public void should_Create_Error_Message() {
-    String message = factory.create(new TextDescription("Test"), new StandardRepresentation());
-    assertEquals("[Test] expecting images to be equal within offset:<6>", message);
+    assertEquals("expecting images to be equal within offset:<6>", shouldBeEqualImages(offset(6)));
   }
 }

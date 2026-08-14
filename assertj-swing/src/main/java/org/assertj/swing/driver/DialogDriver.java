@@ -12,16 +12,15 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.swing.driver.DialogModalQuery.isModal;
-
-import java.awt.Dialog;
-
-import javax.annotation.Nonnull;
-
 import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.core.Robot;
 import org.assertj.swing.internal.annotation.InternalApi;
+
+import javax.annotation.Nonnull;
+import java.awt.*;
+
+import static org.assertj.swing.driver.DialogModalQuery.isModal;
+import static org.assertj.swing.util.Require.assertThat;
 
 /**
  * <p>

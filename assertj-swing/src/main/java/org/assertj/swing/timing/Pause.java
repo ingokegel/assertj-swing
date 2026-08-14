@@ -12,22 +12,15 @@
  */
 package org.assertj.swing.timing;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
-import static org.assertj.core.util.Preconditions.checkNotNullOrEmpty;
-import static org.assertj.swing.timing.Timeout.timeout;
-
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
+import org.assertj.swing.exception.WaitTimedOutError;
 
 import javax.annotation.Nonnull;
+import java.util.concurrent.*;
 
-import org.assertj.core.presentation.StandardRepresentation;
-import org.assertj.swing.exception.WaitTimedOutError;
+import static org.assertj.swing.timing.Timeout.timeout;
+import static org.assertj.swing.util.Preconditions.checkNotNull;
+import static org.assertj.swing.util.Preconditions.checkNotNullOrEmpty;
+import static org.assertj.swing.util.ToString.toStringOf;
 
 /**
  * Waits for period of time or for a particular condition to be satisfied.
@@ -98,7 +91,7 @@ public final class Pause {
     } catch (TimeoutException ex) {
       futureResult.cancel(true);
       throw new WaitTimedOutError(String.format("Timed out waiting for %s",
-                                                new StandardRepresentation().toStringOf(value)));
+                                                toStringOf(value)));
     } catch (InterruptedException e) {
       e.printStackTrace();
     } catch (ExecutionException e) {

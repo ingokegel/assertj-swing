@@ -12,16 +12,15 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.core.util.Strings.concat;
-import static org.assertj.swing.exception.ActionFailedException.actionFailure;
-import static org.assertj.swing.format.Formatting.format;
-
-import java.awt.Component;
+import org.assertj.swing.annotation.RunsInCurrentThread;
 
 import javax.accessibility.AccessibleAction;
 import javax.annotation.Nonnull;
+import java.awt.*;
 
-import org.assertj.swing.annotation.RunsInCurrentThread;
+import static org.assertj.swing.exception.ActionFailedException.actionFailure;
+import static org.assertj.swing.format.Formatting.format;
+import static org.assertj.swing.util.Strings.concat;
 
 /**
  * <p>

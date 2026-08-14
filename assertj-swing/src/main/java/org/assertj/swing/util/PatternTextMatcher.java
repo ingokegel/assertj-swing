@@ -12,16 +12,15 @@
  */
 package org.assertj.swing.util;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
-import static org.assertj.core.util.Preconditions.checkNotNullOrEmpty;
-import static org.assertj.core.util.Strings.quote;
-import static org.assertj.swing.util.Patterns.format;
-import static org.assertj.swing.util.Strings.match;
-
-import java.util.regex.Pattern;
-
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.regex.Pattern;
+
+import static org.assertj.swing.util.Patterns.format;
+import static org.assertj.swing.util.Preconditions.checkNotNull;
+import static org.assertj.swing.util.Preconditions.checkNotNullOrEmpty;
+import static org.assertj.swing.util.Strings.match;
+import static org.assertj.swing.util.Strings.quote;
 
 /**
  * Matches text to a group of {@code String} values. Matching is perform by equality or by regular expression matching.
