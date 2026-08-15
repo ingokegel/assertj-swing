@@ -15,18 +15,16 @@ package org.assertj.swing.input;
 import static java.awt.event.MouseEvent.MOUSE_MOVED;
 import static java.awt.event.MouseEvent.MOUSE_PRESSED;
 import static java.awt.event.MouseEvent.MOUSE_RELEASED;
-import static org.fest.reflect.core.Reflection.method;
 
 import java.awt.Component;
 import java.awt.Point;
 import java.awt.dnd.InvalidDnDOperationException;
 import java.awt.event.MouseEvent;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-
-import org.fest.reflect.exception.ReflectionError;
 
 /**
  * Description of a drag/drop operation.
@@ -81,16 +79,12 @@ class DragDropInfo {
   boolean isNativeDragActive() {
     try {
       Class<?> type = Class.forName("sun.awt.dnd.SunDragSourceContextPeer");
-      try {
-        method("checkDragDropInProgress").in(type).invoke();
-        return false;
-      } catch (ReflectionError e) {
-        Throwable cause = e.getCause();
-        if (!(cause instanceof InvocationTargetException)) {
-          return false;
-        }
-        return (((InvocationTargetException) cause).getTargetException() instanceof InvalidDnDOperationException);
-      }
+      Method checkDragDropInProgress = type.getDeclaredMethod("checkDragDropInProgress");
+      checkDragDropInProgress.setAccessible(true);
+      checkDragDropInProgress.invoke(null);
+      return false;
+    } catch (InvocationTargetException e) {
+      return e.getTargetException() instanceof InvalidDnDOperationException;
     } catch (Exception ignored) {
       return false;
     }

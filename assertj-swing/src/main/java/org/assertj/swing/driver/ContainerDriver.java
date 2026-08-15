@@ -20,7 +20,6 @@ import org.assertj.swing.edt.GuiQuery;
 import org.assertj.swing.internal.annotation.InternalApi;
 import org.assertj.swing.util.Pair;
 import org.assertj.swing.util.Triple;
-import org.fest.reflect.exception.ReflectionError;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -35,7 +34,7 @@ import static org.assertj.swing.driver.ComponentSetSizeTask.setComponentSize;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 import static org.assertj.swing.format.Formatting.format;
 import static org.assertj.swing.util.Preconditions.checkNotNull;
-import static org.fest.reflect.core.Reflection.method;
+import static org.assertj.swing.util.Reflection.invokeMethod;
 
 /**
  * <p>
@@ -139,9 +138,9 @@ public abstract class ContainerDriver extends ComponentDriver {
   @RunsInCurrentThread
   protected boolean isResizable(@Nonnull Container c) {
     try {
-      Boolean resizable = method("isResizable").withReturnType(boolean.class).in(c).invoke();
+      Boolean resizable = (Boolean) invokeMethod(c, "isResizable", new Class<?>[0]);
       return checkNotNull(resizable);
-    } catch (ReflectionError e) {
+    } catch (RuntimeException e) {
       return false;
     }
   }

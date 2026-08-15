@@ -12,7 +12,7 @@
  */
 package org.assertj.swing.core;
 
-import static org.fest.reflect.core.Reflection.field;
+import static org.assertj.swing.util.Reflection.staticFieldValue;
 
 import java.awt.Component;
 import java.awt.KeyboardFocusManager;
@@ -27,6 +27,6 @@ import javax.annotation.Nullable;
 class ReflectionBasedFocusOwnerFinder implements FocusOwnerFinderStrategy {
   @Override
   @Nullable public Component focusOwner() {
-    return field("focusOwner").ofType(Component.class).in(KeyboardFocusManager.class).get();
+    return (Component) staticFieldValue(KeyboardFocusManager.class, "focusOwner");
   }
 }

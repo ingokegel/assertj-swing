@@ -73,22 +73,12 @@
               <artifactSet>
                 <includes>
                   <include>com.google.code.findbugs:jsr305</include>
-                  <include>org.easytesting:fest-reflect</include>
-                  <include>org.easytesting:fest-util</include>
                 </includes>
               </artifactSet>
               <relocations>
                 <relocation>
                   <pattern>javax.annotation</pattern>
                   <shadedPattern>org.assertj.swing.dependency.jsr305</shadedPattern>
-                </relocation>
-                <relocation>
-                  <pattern>org.fest.reflect</pattern>
-                  <shadedPattern>org.assertj.swing.dependency.fest_reflect</shadedPattern>
-                </relocation>
-                <relocation>
-                  <pattern>org.fest.util</pattern>
-                  <shadedPattern>org.assertj.swing.dependency.fest_util</shadedPattern>
                 </relocation>
               </relocations>
             </configuration>
@@ -110,16 +100,6 @@
       <artifactId>jsr305</artifactId>
       <type>jar</type>
       <version>3.0.2</version>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>org.easytesting</groupId>
-      <artifactId>fest-reflect</artifactId>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>org.easytesting</groupId>
-      <artifactId>fest-util</artifactId>
       <optional>true</optional>
     </dependency>
     <dependency>

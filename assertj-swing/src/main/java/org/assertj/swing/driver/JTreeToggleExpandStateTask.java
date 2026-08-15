@@ -22,7 +22,7 @@ import javax.swing.tree.TreePath;
 import java.awt.*;
 
 import static org.assertj.swing.util.Require.assertThat;
-import static org.fest.reflect.core.Reflection.method;
+import static org.assertj.swing.util.Reflection.invokeMethod;
 
 /**
  * Uses reflection to toggle the "expand state" of a node in a given {@code JTextComponent}. This task is executed in
@@ -36,7 +36,7 @@ final class JTreeToggleExpandStateTask {
     TreePath path = tree.getPathForLocation(pathLocation.x, pathLocation.y);
     TreeUI treeUI = tree.getUI();
     assertThat(treeUI).isInstanceOf(BasicTreeUI.class);
-    method("toggleExpandState").withParameterTypes(TreePath.class).in(treeUI).invoke(path);
+    invokeMethod(treeUI, "toggleExpandState", new Class<?>[] { TreePath.class }, path);
   }
 
   private JTreeToggleExpandStateTask() {

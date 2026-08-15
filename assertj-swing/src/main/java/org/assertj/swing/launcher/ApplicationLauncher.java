@@ -18,9 +18,9 @@ import javax.annotation.Nonnull;
 
 import static org.assertj.swing.util.Arrays.copyOf;
 import static org.assertj.swing.util.Preconditions.checkNotNull;
+import static org.assertj.swing.util.Reflection.invokeStaticMethod;
 import static org.assertj.swing.util.Strings.concat;
 import static org.assertj.swing.util.Strings.quote;
-import static org.fest.reflect.core.Reflection.method;
 
 /**
  * <p>
@@ -103,9 +103,9 @@ public class ApplicationLauncher {
   /**
    * Starts the application.
    *
-   * @throws org.fest.reflect.exception.ReflectionError if the "main" method cannot be invoked.
+   * @throws IllegalStateException if the "main" method cannot be invoked or throws a checked exception.
    */
   public void start() {
-    method("main").withParameterTypes(String[].class).in(applicationType).invoke(new Object[] { args });
+    invokeStaticMethod(applicationType, "main", new Class<?>[] { String[].class }, new Object[] { args });
   }
 }

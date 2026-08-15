@@ -15,7 +15,6 @@ package org.assertj.swing.keystroke;
 import org.assertj.swing.annotation.VisibleForTesting;
 import org.assertj.swing.exception.ParsingException;
 import org.assertj.swing.logging.Logger;
-import org.fest.reflect.exception.ReflectionError;
 
 import javax.annotation.Nonnull;
 import java.awt.event.InputEvent;
@@ -33,7 +32,6 @@ import static org.assertj.swing.util.Preconditions.checkNotNull;
 import static org.assertj.swing.util.Preconditions.checkNotNullOrEmpty;
 import static org.assertj.swing.util.Strings.concat;
 import static org.assertj.swing.util.Strings.quote;
-import static org.fest.reflect.core.Reflection.field;
 
 /**
  * <p>
@@ -205,10 +203,9 @@ public class KeyStrokeMappingsParser {
 
   private static int keyCodeFrom(@Nonnull String s) {
     try {
-      Integer keyCode = field("VK_" + s).ofType(int.class).in(KeyEvent.class).get();
-      return checkNotNull(keyCode);
-    } catch (ReflectionError e) {
-      throw new ParsingException(concat("Unable to retrieve key code from text ", quote(s)), e.getCause());
+      return KeyEvent.class.getField("VK_" + s).getInt(null);
+    } catch (ReflectiveOperationException e) {
+      throw new ParsingException(concat("Unable to retrieve key code from text ", quote(s)), e);
     }
   }
 
@@ -217,10 +214,9 @@ public class KeyStrokeMappingsParser {
       return NO_MASK;
     }
     try {
-      Integer modifiers = field(s).ofType(int.class).in(InputEvent.class).get();
-      return checkNotNull(modifiers);
-    } catch (ReflectionError e) {
-      throw new ParsingException(concat("Unable to retrieve modifiers from text ", quote(s)), e.getCause());
+      return InputEvent.class.getField(s).getInt(null);
+    } catch (ReflectiveOperationException e) {
+      throw new ParsingException(concat("Unable to retrieve modifiers from text ", quote(s)), e);
     }
   }
 }

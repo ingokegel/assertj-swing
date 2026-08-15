@@ -12,11 +12,11 @@
  */
 package org.assertj.swing.util;
 
+import static org.assertj.swing.util.Reflection.hasDefaultConstructor;
+
 import org.assertj.swing.annotation.VisibleForTesting;
 
 import javax.annotation.Nonnull;
-
-import static org.fest.reflect.core.Reflection.constructor;
 
 /**
  * <p>
@@ -50,9 +50,7 @@ public final class AWTExceptionHandlerInstaller {
 
   @VisibleForTesting
   static void installAWTExceptionHandler(@Nonnull Class<?> exceptionHandlerType, SystemPropertyWriter writer) {
-    try {
-      constructor().in(exceptionHandlerType).info();
-    } catch (RuntimeException e) {
+    if (!hasDefaultConstructor(exceptionHandlerType)) {
       throw new IllegalArgumentException("The exception handler type should have a default constructor");
     }
     writer.updateSystemProperty("sun.awt.exception.handler", exceptionHandlerType.getName());

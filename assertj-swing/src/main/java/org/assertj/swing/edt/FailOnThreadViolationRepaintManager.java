@@ -12,7 +12,7 @@
  */
 package org.assertj.swing.edt;
 
-import static org.fest.reflect.core.Reflection.method;
+import static org.assertj.swing.util.Reflection.invokeStaticMethod;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -78,8 +78,8 @@ public class FailOnThreadViolationRepaintManager extends CheckThreadViolationRep
   @Nullable private static
   RepaintManager currentRepaintManager() {
     try {
-      Object repaintManager = method("appContextGet").withReturnType(Object.class).withParameterTypes(Object.class)
-                                                     .in(SwingUtilities.class).invoke(RepaintManager.class);
+      Object repaintManager = invokeStaticMethod(SwingUtilities.class, "appContextGet",
+                                                 new Class<?>[] { Object.class }, RepaintManager.class);
       if (repaintManager instanceof RepaintManager) {
         return (RepaintManager) repaintManager;
       }

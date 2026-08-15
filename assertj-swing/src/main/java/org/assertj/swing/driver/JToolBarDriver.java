@@ -32,7 +32,7 @@ import static org.assertj.swing.edt.GuiActionRunner.execute;
 import static org.assertj.swing.exception.ActionFailedException.actionFailure;
 import static org.assertj.swing.format.Formatting.format;
 import static org.assertj.swing.util.Preconditions.checkNotNull;
-import static org.fest.reflect.core.Reflection.field;
+import static org.assertj.swing.util.Reflection.fieldValue;
 
 /**
  * <p>
@@ -201,7 +201,7 @@ public class JToolBarDriver extends JComponentDriver {
   @RunsInCurrentThread
   @Nonnull private static Container dockFor(final @Nonnull JToolBar toolBar) {
     try {
-      return checkNotNull(field("dockingSource").ofType(Container.class).in(toolBar.getUI()).get());
+      return checkNotNull((Container) fieldValue(toolBar.getUI(), "dockingSource"));
     } catch (RuntimeException e) {
       throw actionFailure("Unabled to determine dock for JToolBar");
     }
