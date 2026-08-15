@@ -15,7 +15,7 @@ package org.assertj.swing.driver;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 import static org.assertj.swing.test.ExpectedException.none;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verifyZeroInteractions;
+import static org.mockito.Mockito.verifyNoInteractions;
 import static org.mockito.Mockito.when;
 
 import java.awt.Component;
@@ -74,7 +74,7 @@ public class ComponentPerformDefaultAccessibleActionTask_performDefaultAccessibl
       ComponentPerformDefaultAccessibleActionTask.performDefaultAccessibleAction(component);
       robot.waitForIdle();
     } finally {
-      verifyZeroInteractions(accessibleAction);
+      verifyNoInteractions(accessibleAction);
     }
   }
 

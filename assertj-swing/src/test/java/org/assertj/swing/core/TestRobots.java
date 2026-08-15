@@ -41,7 +41,7 @@ public final class TestRobots {
         invocation.<Runnable> getArgument(1).run();
         return null;
       }
-    }).when(mock).pressKeyWhileRunning(ArgumentMatchers.anyInt(), ArgumentMatchers.anyObject());
+    }).when(mock).pressKeyWhileRunning(ArgumentMatchers.anyInt(), ArgumentMatchers.any());
 
     return mock;
   }

@@ -12,54 +12,61 @@
  */
 package org.assertj.swing.lock;
 
-import static edu.umd.cs.mtc.TestFramework.runManyTimes;
 import static org.assertj.core.api.Assertions.assertThat;
+
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicReference;
 
 import org.junit.Test;
 
-import edu.umd.cs.mtc.MultithreadedTestCase;
-
 /**
- * Tests for {@link ScreenLock#acquire(Object)}, {@link ScreenLock#acquiredBy(Object)} and
- * {@link ScreenLock#release(Object)}.
- * 
+ * Tests for {@link ScreenLock#acquire(Object)} blocking other owners until the lock is released.
+ *
  * @author Alex Ruiz
  */
-public class ScreenLock_acquire_acquiredBy_release_Test extends MultithreadedTestCase {
-  private LockOwner owner1;
-  private LockOwner owner2;
-  private ScreenLock lock;
+public class ScreenLock_acquire_acquiredBy_release_Test {
 
-  @Override
-  public void initialize() {
-    owner1 = new LockOwner("Owner #1");
-    owner2 = new LockOwner("Owner #2");
-    lock = new ScreenLock();
-  }
+  @Test
+  public void should_Acquire_Lock_And_Queue_Others_Wanting_Lock() throws Exception {
+    final ScreenLock lock = new ScreenLock();
+    final Object owner1 = new LockOwner("Owner #1");
+    final Object owner2 = new LockOwner("Owner #2");
 
-  public void thread1() {
-    lock.acquire(owner1);
-    assertThat(lock.acquired()).isTrue();
+    final CountDownLatch acquiredByOwner1 = new CountDownLatch(1);
+    final CountDownLatch owner2Done = new CountDownLatch(1);
+    final AtomicReference<Throwable> failureInThread2 = new AtomicReference<>();
+
+    Thread thread1 = new Thread(() -> {
+      lock.acquire(owner1);
+      acquiredByOwner1.countDown();
+    });
+    Thread thread2 = new Thread(() -> {
+      try {
+        lock.acquire(owner2);
+      } catch (Throwable t) {
+        failureInThread2.set(t);
+      } finally {
+        owner2Done.countDown();
+      }
+    });
+
+    thread1.start();
+    assertThat(acquiredByOwner1.await(10, TimeUnit.SECONDS)).isTrue();
+
+    // while the lock is held by owner1, a second acquisition blocks
+    thread2.start();
     assertThat(lock.acquiredBy(owner1)).isTrue();
-    waitForTick(2);
+    assertThat(owner2Done.await(200, TimeUnit.MILLISECONDS)).isFalse();
+
+    // releasing lets the queued owner2 acquire the lock
     lock.release(owner1);
-  }
+    assertThat(owner2Done.await(10, TimeUnit.SECONDS)).isTrue();
 
-  public void thread2() {
-    waitForTick(1);
-    lock.acquire(owner2);
-  }
-
-  @Override
-  public void finish() {
     assertThat(lock.acquiredBy(owner2)).isTrue();
     lock.release(owner2);
     assertThat(lock.acquired()).isFalse();
-  }
-
-  @Test
-  public void should_Acquire_Lock_And_Queue_Others_Wanting_Lock() throws Throwable {
-    runManyTimes(new ScreenLock_acquire_acquiredBy_release_Test(), 5);
+    assertThat(failureInThread2.get()).isNull();
   }
 
   private static class LockOwner {

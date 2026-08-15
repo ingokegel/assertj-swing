@@ -16,7 +16,7 @@ import static org.assertj.core.util.Arrays.array;
 import static org.assertj.swing.test.ExpectedException.none;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyZeroInteractions;
+import static org.mockito.Mockito.verifyNoInteractions;
 import static org.mockito.Mockito.when;
 
 import org.assertj.swing.test.ExpectedException;
@@ -67,7 +67,7 @@ public class NoExitSecurityManager_checkExit_Test {
     StackTraceElement[] stackTrace = array(methodInRuntime("availableProcessors"));
     when(stackTraces.stackTraceInCurrentThread()).thenReturn(stackTrace);
     securityManager.checkExit(0);
-    verifyZeroInteractions(hook);
+    verifyNoInteractions(hook);
   }
 
   private StackTraceElement methodInRuntime(String methodName) {
@@ -80,6 +80,6 @@ public class NoExitSecurityManager_checkExit_Test {
     StackTraceElement[] stackTrace = array(e);
     when(stackTraces.stackTraceInCurrentThread()).thenReturn(stackTrace);
     securityManager.checkExit(0);
-    verifyZeroInteractions(hook);
+    verifyNoInteractions(hook);
   }
 }

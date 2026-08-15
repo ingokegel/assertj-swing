@@ -12,42 +12,28 @@
  */
 package org.assertj.swing.lock;
 
-import static edu.umd.cs.mtc.TestFramework.runOnce;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.Test;
 
-import edu.umd.cs.mtc.MultithreadedTestCase;
-
 /**
  * Tests for {@link ScreenLock#acquire(Object)}.
- * 
+ *
  * @author Alex Ruiz
  */
-public class ScreenLock_acquire_Test extends MultithreadedTestCase {
-  private ScreenLock lock;
-  private Object owner;
-
-  @Override
-  public void initialize() {
-    lock = new ScreenLock();
-    owner = new Object();
-  }
-
-  public void thread1() {
-    lock.acquire(owner);
-    assertThat(lock.acquiredBy(owner)).isTrue();
-  }
-
-  @Override
-  public void finish() {
-    if (lock.acquiredBy(owner)) {
-      lock.release(owner);
-    }
-  }
+public class ScreenLock_acquire_Test {
 
   @Test
-  public void should_Not_Block_If_Current_Owner_Tries_To_Acquire_Lock_Again() throws Throwable {
-    runOnce(new ScreenLock_acquire_Test());
+  public void should_Acquire_Lock_And_Report_Acquired_By_Owner() {
+    final ScreenLock lock = new ScreenLock();
+    final Object owner = new Object();
+    lock.acquire(owner);
+    try {
+      assertThat(lock.acquired()).isTrue();
+      assertThat(lock.acquiredBy(owner)).isTrue();
+    } finally {
+      lock.release(owner);
+    }
+    assertThat(lock.acquired()).isFalse();
   }
 }

@@ -23,7 +23,7 @@ import static org.assertj.swing.monitor.TestWindows.newWindowsMock;
 import static org.assertj.swing.test.awt.Toolkits.newToolkitStub;
 import static org.assertj.swing.test.builder.JTextFields.textField;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyZeroInteractions;
+import static org.mockito.Mockito.verifyNoInteractions;
 import static org.mockito.Mockito.when;
 
 import java.awt.EventQueue;
@@ -80,7 +80,7 @@ public class ContextMonitor_eventDispatched_Test extends EDTSafeTestCase {
   @Test
   public void shouldNotProcessEventIfComponentIsNotWindowOrApplet() {
     monitor.eventDispatched(new ComponentEvent(textField().createNew(), 8));
-    verifyZeroInteractions(windows, context);
+    verifyNoInteractions(windows, context);
   }
 
   @Test
@@ -115,7 +115,7 @@ public class ContextMonitor_eventDispatched_Test extends EDTSafeTestCase {
   public void shouldNotProcessEventWithIdWindowClosing() {
     when(context.storedQueueFor(window)).thenReturn(window.getToolkit().getSystemEventQueue());
     monitor.eventDispatched(new ComponentEvent(window, WINDOW_CLOSING));
-    verifyZeroInteractions(windows);
+    verifyNoInteractions(windows);
   }
 
   @Test

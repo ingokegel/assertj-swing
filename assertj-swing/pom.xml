@@ -123,11 +123,6 @@
       <optional>true</optional>
     </dependency>
     <dependency>
-      <groupId>org.easytesting</groupId>
-      <artifactId>fest-test</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <scope>test</scope>
@@ -135,12 +130,6 @@
     <dependency>
       <groupId>org.mockito</groupId>
       <artifactId>mockito-core</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.googlecode.multithreadedtc</groupId>
-      <artifactId>multithreadedtc</artifactId>
-      <version>1.01</version>
-      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>nl.jqno.equalsverifier</groupId>

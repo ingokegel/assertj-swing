@@ -14,10 +14,10 @@ package org.assertj.swing.assertions.data;
 
 import static junit.framework.Assert.assertFalse;
 import static org.assertj.swing.assertions.data.RgbColor.color;
-import static org.fest.test.EqualsHashCodeContractAssert.assertEqualsIsReflexive;
-import static org.fest.test.EqualsHashCodeContractAssert.assertEqualsIsSymmetric;
-import static org.fest.test.EqualsHashCodeContractAssert.assertEqualsIsTransitive;
-import static org.fest.test.EqualsHashCodeContractAssert.assertMaintainsEqualsAndHashCodeContract;
+import static org.assertj.swing.test.EqualsHashCodeContractAssert.assertEqualsIsReflexive;
+import static org.assertj.swing.test.EqualsHashCodeContractAssert.assertEqualsIsSymmetric;
+import static org.assertj.swing.test.EqualsHashCodeContractAssert.assertEqualsIsTransitive;
+import static org.assertj.swing.test.EqualsHashCodeContractAssert.assertMaintainsEqualsAndHashCodeContract;
 
 import org.junit.BeforeClass;
 import org.junit.Test;

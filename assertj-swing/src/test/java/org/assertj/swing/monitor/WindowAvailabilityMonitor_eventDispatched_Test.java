@@ -14,7 +14,7 @@ package org.assertj.swing.monitor;
 
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyZeroInteractions;
+import static org.mockito.Mockito.verifyNoInteractions;
 
 import java.awt.Component;
 import java.awt.event.KeyEvent;
@@ -74,7 +74,7 @@ public class WindowAvailabilityMonitor_eventDispatched_Test extends WindowAvaila
   @Test
   public void should_Not_Mark_Source_Window_As_Ready_If_Event_Is_Not_MouseEvent() {
     monitor.eventDispatched(new KeyEvent(window, 8, 9238, 0, 0, 'a'));
-    verifyZeroInteractions(windows);
+    verifyNoInteractions(windows);
   }
 
   private MouseEvent mouseEvent(Component source) {

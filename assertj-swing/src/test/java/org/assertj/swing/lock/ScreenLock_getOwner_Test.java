@@ -12,46 +12,49 @@
  */
 package org.assertj.swing.lock;
 
-import static edu.umd.cs.mtc.TestFramework.runOnce;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.Test;
 
-import edu.umd.cs.mtc.MultithreadedTestCase;
-
 /**
  * Tests for {@link ScreenLock#getOwner()}.
- * 
- * @author Christian Rösch
+ *
+ * @author Alex Ruiz
  */
-public class ScreenLock_getOwner_Test extends MultithreadedTestCase {
-  private ScreenLock lock;
-  private Object owner;
+public class ScreenLock_getOwner_Test {
 
-  @Override
-  public void initialize() {
-    lock = new ScreenLock();
-    owner = new Object();
+  @Test
+  public void should_Return_Null_If_Not_Acquired() {
+    ScreenLock lock = new ScreenLock();
     assertThat(lock.getOwner()).isNull();
   }
 
-  public void thread1() {
+  @Test
+  public void should_Return_Owner_When_Acquired() {
+    final ScreenLock lock = new ScreenLock();
+    final Object owner = new Object();
     lock.acquire(owner);
-    // correct owner is returned
-    assertThat(lock.getOwner()).isSameAs(owner);
-    assertThat(lock.acquiredBy(lock.getOwner())).isTrue();
-  }
-
-  @Override
-  public void finish() {
-    if (lock.acquiredBy(owner)) {
+    try {
+      assertThat(lock.getOwner()).isSameAs(owner);
+      assertThat(lock.acquiredBy(lock.getOwner())).isTrue();
+    } finally {
       lock.release(owner);
       assertThat(lock.getOwner()).isNull();
     }
   }
 
   @Test
-  public void should_Not_Block_If_Current_Owner_Tries_To_Acquire_Lock_Again() throws Throwable {
-    runOnce(new ScreenLock_getOwner_Test());
+  public void should_Not_Block_If_Current_Owner_Tries_To_Acquire_Lock_Again() {
+    final ScreenLock lock = new ScreenLock();
+    final Object owner = new Object();
+    lock.acquire(owner);
+    lock.acquire(owner);
+    try {
+      assertThat(lock.getOwner()).isSameAs(owner);
+      assertThat(lock.acquiredBy(owner)).isTrue();
+    } finally {
+      lock.release(owner);
+      assertThat(lock.getOwner()).isNull();
+    }
   }
 }

@@ -14,7 +14,7 @@ package org.assertj.swing.monitor;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.swing.test.core.MethodInvocations.Args.args;
-import static org.mockito.Mockito.verifyZeroInteractions;
+import static org.mockito.Mockito.verifyNoInteractions;
 
 import java.awt.event.WindowEvent;
 
@@ -32,6 +32,6 @@ public class WindowVisibilityMonitor_windowClosed_Test extends WindowVisibilityM
     monitor.windowClosed(new WindowEvent(window, 8));
     assertThat(window.requireInvoked("removeWindowListener", args(monitor)));
     assertThat(window.requireInvoked("removeComponentListener", args(monitor)));
-    verifyZeroInteractions(windows);
+    verifyNoInteractions(windows);
   }
 }

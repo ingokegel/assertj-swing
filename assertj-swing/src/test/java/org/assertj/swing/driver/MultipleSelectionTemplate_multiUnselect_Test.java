@@ -15,8 +15,8 @@ package org.assertj.swing.driver;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.swing.core.TestRobots.newRobotMock;
 import static org.assertj.swing.util.Platform.controlOrCommandKey;
-import static org.mockito.Matchers.anyObject;
-import static org.mockito.Matchers.eq;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.verify;
 
 import org.assertj.swing.core.Robot;
@@ -43,7 +43,7 @@ public class MultipleSelectionTemplate_multiUnselect_Test {
     int key = controlOrCommandKey();
     template.multiUnselect();
     assertThat(template.timesUnselected).isEqualTo(1);
-    verify(robot).pressKeyWhileRunning(eq(key), anyObject());
+    verify(robot).pressKeyWhileRunning(eq(key), any());
   }
 
   @Test
@@ -52,7 +52,7 @@ public class MultipleSelectionTemplate_multiUnselect_Test {
     int key = controlOrCommandKey();
     template.multiUnselect();
     assertThat(template.timesUnselected).isEqualTo(2);
-    verify(robot).pressKeyWhileRunning(eq(key), anyObject());
+    verify(robot).pressKeyWhileRunning(eq(key), any());
   }
 
   private static class MultipleSelection extends MultipleSelectionTemplate {

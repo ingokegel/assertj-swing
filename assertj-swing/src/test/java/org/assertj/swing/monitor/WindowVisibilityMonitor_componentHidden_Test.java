@@ -13,7 +13,7 @@
 package org.assertj.swing.monitor;
 
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyZeroInteractions;
+import static org.mockito.Mockito.verifyNoInteractions;
 
 import org.junit.Test;
 
@@ -32,6 +32,6 @@ public class WindowVisibilityMonitor_componentHidden_Test extends WindowVisibili
   @Test
   public void should_Not_Mark_Window_As_Hidden_If_Component_Hidden_Is_Not_Window() {
     monitor.componentHidden(componentEventWithTextFieldAsSource());
-    verifyZeroInteractions(windows);
+    verifyNoInteractions(windows);
   }
 }

@@ -16,7 +16,7 @@ import static org.assertj.swing.test.awt.TestAWTEvents.singletonAWTEventMock;
 import static org.assertj.swing.test.awt.Toolkits.newToolkitMock;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyZeroInteractions;
+import static org.mockito.Mockito.verifyNoInteractions;
 import static org.mockito.Mockito.when;
 
 import java.awt.AWTEvent;
@@ -56,6 +56,6 @@ public class EventNormalizer_eventDispatched_Test extends EventNormalizer_TestCa
   public void should_Not_Delegate_Event_If_It_Is_A_Duplicate_Dispose() {
     when(disposedWindowMonitor.isDuplicateDispose(event)).thenReturn(true);
     eventNormalizer.eventDispatched(event);
-    verifyZeroInteractions(delegateEventListener);
+    verifyNoInteractions(delegateEventListener);
   }
 }
