@@ -2,14 +2,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd ">
   <modelVersion>4.0.0</modelVersion>
 
-  <parent>
-    <groupId>org.assertj</groupId>
-    <artifactId>assertj-parent-pom</artifactId>
-    <version>2.2.1</version>
-  </parent>
-
+  <groupId>org.assertj</groupId>
   <artifactId>assertj-swing-parent-pom</artifactId>
-  <version>4.0</version>
+  <version>${revision}</version>
   <packaging>pom</packaging>
   <name>AssertJ Swing: Fluent assertions for java unit testing</name>
   <description>Parent POM for all AssertJ-Swing modules</description>
@@ -61,18 +56,37 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-release-plugin</artifactId>
+        <version>3.1.1</version>
         <configuration>
           <arguments>-DskipTests</arguments>
         </configuration>
       </plugin>
-      <!-- This fork deploys to GitHub Packages, not to OSSRH. Setting extensions=false on the
-           inherited nexus-staging-maven-plugin removes its lifecycle injection; the deploy
-           phase then falls back to the standard maven-deploy-plugin binding, which honors
-           -DaltDeploymentRepository. -->
+      <!-- Resolves ${revision} in the parent version references; installed and deployed poms
+           get the concrete version instead of the property. -->
       <plugin>
-        <groupId>org.sonatype.plugins</groupId>
-        <artifactId>nexus-staging-maven-plugin</artifactId>
-        <extensions>false</extensions>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>flatten-maven-plugin</artifactId>
+        <version>1.7.2</version>
+        <configuration>
+          <updatePomFile>true</updatePomFile>
+          <flattenMode>oss</flattenMode>
+        </configuration>
+        <executions>
+          <execution>
+            <id>flatten</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>flatten</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>flatten.clean</id>
+            <phase>clean</phase>
+            <goals>
+              <goal>clean</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>
@@ -154,6 +168,8 @@
     </dependencies>
   </dependencyManagement>
   <properties>
+    <revision>4.0</revision>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.release>8</maven.compiler.release>
   </properties>
 

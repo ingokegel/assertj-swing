@@ -6,7 +6,7 @@
   <parent>
     <groupId>org.assertj</groupId>
     <artifactId>assertj-swing-parent-pom</artifactId>
-    <version>4.0</version>
+    <version>${revision}</version>
   </parent>
 
   <artifactId>assertj-swing-junit</artifactId>
@@ -46,7 +46,7 @@
     <dependency>
       <groupId>org.assertj</groupId>
       <artifactId>assertj-swing</artifactId>
-      <version>4.0</version>
+      <version>${project.version}</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
