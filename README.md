@@ -11,7 +11,7 @@ This repository is a personal fork of [assertj/assertj-swing](https://github.com
 ## Changes since upstream was abandoned
 
 - Added a new `assertj-swing-junit-jupiter` module for JUnit 5+
-- Track new AssertJ core, TestNG and JUnit versions
+- Track new TestNG and JUnit versions
 - Replaced fest-mock with Mockito
 - Replaced jarjar-maven-plugin with maven-shade-plugin, added the Maven wrapper, and modernized the Maven setup
 - Added xvfb support for headless test runs
@@ -20,6 +20,15 @@ This repository is a personal fork of [assertj/assertj-swing](https://github.com
 - Keep Java 8 compatibility and added support for modern JDKs
 - Fixed `waitForIdle` hangs caused by orphaned EventQueues after heavyweight popup interactions on modern JDKs
 - Fixed recognition of disposed windows that were made displayable again
+- No external dependencies anymore The dependency on `assertj-core` was removed, together with the shaded `fest-reflect` and `jsr305` libraries. The jars only contain their own classes.
+- Logging goes to `java.lang.System.Logger` on Java 9+ (no `java.logging` module required) and falls back to `java.util.logging` on Java 8.
+- Null-safety annotations are now [JSpecify](https://jspecify.dev) annotations (`org.jspecify.annotations.NonNull`/`Nullable`)
+
+### Migration from 3.x
+
+- The `Description`/`TextDescription` parameters (e.g. in `Condition`, `ColorFixture`, `FontFixture`) are replaced by `String` or `java.util.function.Supplier<String>` parameters.
+- `org.assertj.swing.assertions.Assertions` no longer extends `org.assertj.core.api.Assertions`; it only offers the `BufferedImage` assertions. Use assertj-core's own `Assertions` for everything else.
+- Custom `ImageAssert`/`TextAssert` usage is unaffected on the API surface, but `ImageAssert` no longer extends assertj-core's `AbstractAssert` (no `as()`/`describedAs()` chaining, comparators remain unsupported).
 
 ## Getting the dependency via JitPack
 

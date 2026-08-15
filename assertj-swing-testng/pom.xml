@@ -76,39 +76,4 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
-  <reporting>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-site-plugin</artifactId>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-javadoc-plugin</artifactId>
-        <version>2.7</version>
-        <configuration>
-          <aggregate>true</aggregate>
-          <minmemory>128m</minmemory>
-          <maxmemory>512m</maxmemory>
-          <breakiterator>true</breakiterator>
-          <quiet>true</quiet>
-          <source>1.5</source>
-          <verbose>false</verbose>
-          <linksource>true</linksource>
-          <links>
-            <link>http://java.sun.com/j2se/1.5.0/docs/api/</link>
-            <link>http://testng.org/javadocs</link>
-            <link>http://fest.easytesting.org/swing/apidocs/</link>
-          </links>
-        </configuration>
-        <reportSets>
-          <reportSet>
-            <reports>
-              <report>javadoc</report>
-            </reports>
-          </reportSet>
-        </reportSets>
-      </plugin>
-    </plugins>
-  </reporting>
 </project>

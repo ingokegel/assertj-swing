@@ -14,3 +14,6 @@ target/
 # jEnv configuration
 .java-version
 .mvn/wrapper/maven-wrapper.jar
+
+# flatten-maven-plugin
+.flattened-pom.xml
