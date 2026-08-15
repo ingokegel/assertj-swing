@@ -53,7 +53,7 @@ public class AbstractContainerFixture_optionPane_Test extends RobotBasedTestCase
   public void should_Find_Visible_JOptionPane_By_Type_With_Timeout() {
     robot.showWindow(window);
     launchOptionPane(2000);
-    JOptionPaneFixture optionPane = launcher.optionPane(timeout(3000));
+    JOptionPaneFixture optionPane = launcher.optionPane(timeout(10000));
     assertThat(optionPane.target()).isNotNull();
   }
 

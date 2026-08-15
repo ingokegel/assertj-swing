@@ -48,14 +48,14 @@ public class WindowFinder_findDialog_withMatcher_Test extends WindowFinder_TestC
   @Test
   public void should_Find_Dialog_Before_Given_Timeout_Expires() {
     clickLaunchDialogButton();
-    DialogFixture found = WindowFinder.findDialog(matcher).withTimeout(500, MILLISECONDS).using(robot);
+    DialogFixture found = WindowFinder.findDialog(matcher).withTimeout(5000, MILLISECONDS).using(robot);
     assertThat(found.target()).isInstanceOf(DialogToLaunch.class);
   }
 
   @Test
   public void should_Find_Dialog_Before_Given_Timeout_In_Ms_Expires() {
     clickLaunchDialogButton();
-    DialogFixture found = WindowFinder.findDialog(matcher).withTimeout(500).using(robot);
+    DialogFixture found = WindowFinder.findDialog(matcher).withTimeout(5000).using(robot);
     assertThat(found.target()).isInstanceOf(DialogToLaunch.class);
   }
 

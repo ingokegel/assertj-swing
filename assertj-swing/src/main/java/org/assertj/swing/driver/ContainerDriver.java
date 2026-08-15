@@ -33,6 +33,8 @@ import static org.assertj.swing.driver.ComponentPreconditions.checkShowing;
 import static org.assertj.swing.driver.ComponentSetSizeTask.setComponentSize;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 import static org.assertj.swing.format.Formatting.format;
+import static org.assertj.swing.query.ComponentLocationOnScreenQuery.locationOnScreen;
+import static org.assertj.swing.timing.Pause.pause;
 import static org.assertj.swing.util.Preconditions.checkNotNull;
 import static org.assertj.swing.util.Reflection.invokeMethod;
 
@@ -51,6 +53,7 @@ import static org.assertj.swing.util.Reflection.invokeMethod;
  */
 @InternalApi
 public abstract class ContainerDriver extends ComponentDriver {
+  private static final int MOVE_SETTLE_TIMEOUT = 2000;
   /**
    * Creates a new {@link ContainerDriver}.
    * 
@@ -228,6 +231,24 @@ public abstract class ContainerDriver extends ComponentDriver {
     Point location = new Point(locationOnScreen.x + x, locationOnScreen.y + y);
     moveComponent(c, location);
     robot.waitForIdle();
+    waitUntilLocationIsSettled(c, location);
+  }
+
+  /**
+   * The windowing system applies a move of a shown window asynchronously. This method waits a bounded time until the
+   * location of the given container has actually reached the target location, so that a query after a move does not
+   * read a stale position.
+   */
+  @RunsInEDT
+  private void waitUntilLocationIsSettled(@NonNull Container c, @NonNull Point expected) {
+    long start = System.currentTimeMillis();
+    while (System.currentTimeMillis() - start < MOVE_SETTLE_TIMEOUT) {
+      if (expected.equals(locationOnScreen(c))) {
+        return;
+      }
+      pause();
+    }
+    // the move is best-effort: the windowing system may refuse the exact location, so give up silently
   }
 
   @RunsInEDT

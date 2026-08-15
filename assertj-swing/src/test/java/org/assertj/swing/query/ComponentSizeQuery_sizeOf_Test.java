@@ -38,6 +38,9 @@ public class ComponentSizeQuery_sizeOf_Test extends SequentialEDTSafeTestCase {
   protected void onSetUp() {
     window = MyWindow.createNew();
     window.display();
+    // the size constraints registered by the windowing system are applied asynchronously when the window is shown,
+    // so the size is set explicitly to make it deterministic
+    execute(() -> window.setSize(SIZE));
   }
 
   @Override

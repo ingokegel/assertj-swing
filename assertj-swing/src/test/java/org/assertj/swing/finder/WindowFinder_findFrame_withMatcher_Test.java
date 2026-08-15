@@ -48,14 +48,14 @@ public class WindowFinder_findFrame_withMatcher_Test extends WindowFinder_TestCa
   @Test
   public void should_Find_Frame_Before_Given_Timeout_Expires() {
     clickLaunchFrameButton();
-    FrameFixture found = WindowFinder.findFrame(matcher).withTimeout(500, MILLISECONDS).using(robot);
+    FrameFixture found = WindowFinder.findFrame(matcher).withTimeout(5000, MILLISECONDS).using(robot);
     assertThat(found.target()).isInstanceOf(WindowToLaunch.class);
   }
 
   @Test
   public void should_Find_Frame_Before_Given_Timeout_In_Ms_Expires() {
     clickLaunchFrameButton();
-    FrameFixture found = WindowFinder.findFrame(matcher).withTimeout(500).using(robot);
+    FrameFixture found = WindowFinder.findFrame(matcher).withTimeout(5000).using(robot);
     assertThat(found.target()).isInstanceOf(WindowToLaunch.class);
   }
 

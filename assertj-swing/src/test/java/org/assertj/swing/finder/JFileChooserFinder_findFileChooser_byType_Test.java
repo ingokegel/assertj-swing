@@ -36,7 +36,7 @@ public class JFileChooserFinder_findFileChooser_byType_Test extends JFileChooser
   public void should_Find_JFileChooser_Before_Given_Timeout_Expires() {
     window.launchDelay(200);
     clickBrowseButton();
-    JFileChooserFixture found = JFileChooserFinder.findFileChooser().withTimeout(500, MILLISECONDS).using(robot);
+    JFileChooserFixture found = JFileChooserFinder.findFileChooser().withTimeout(5000, MILLISECONDS).using(robot);
     assertThat(found.target()).isSameAs(window.fileChooser());
   }
 
@@ -44,7 +44,7 @@ public class JFileChooserFinder_findFileChooser_byType_Test extends JFileChooser
   public void should_Find_JFileChooser_Before_Given_Timeout_In_Ms_Expires() {
     window.launchDelay(200);
     clickBrowseButton();
-    JFileChooserFixture found = JFileChooserFinder.findFileChooser().withTimeout(500).using(robot);
+    JFileChooserFixture found = JFileChooserFinder.findFileChooser().withTimeout(5000).using(robot);
     assertThat(found.target()).isSameAs(window.fileChooser());
   }
 

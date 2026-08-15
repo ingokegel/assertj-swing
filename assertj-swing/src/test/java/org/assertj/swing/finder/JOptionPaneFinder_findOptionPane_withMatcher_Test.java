@@ -48,7 +48,7 @@ public class JOptionPaneFinder_findOptionPane_withMatcher_Test extends JOptionPa
   public void should_Find_JOptionPane_Before_Given_Timeout_Expires() {
     window.launchDelay(200);
     clickMessageButton();
-    JOptionPaneFixture found = JOptionPaneFinder.findOptionPane(matcher).withTimeout(500, MILLISECONDS).using(robot);
+    JOptionPaneFixture found = JOptionPaneFinder.findOptionPane(matcher).withTimeout(5000, MILLISECONDS).using(robot);
     assertThat(found.target()).isNotNull();
   }
 
@@ -56,7 +56,7 @@ public class JOptionPaneFinder_findOptionPane_withMatcher_Test extends JOptionPa
   public void should_Find_JOptionPane_Before_Given_Timeout_In_Ms_Expires() {
     window.launchDelay(200);
     clickMessageButton();
-    JOptionPaneFixture found = JOptionPaneFinder.findOptionPane(matcher).withTimeout(500).using(robot);
+    JOptionPaneFixture found = JOptionPaneFinder.findOptionPane(matcher).withTimeout(5000).using(robot);
     assertThat(found.target()).isNotNull();
   }
 

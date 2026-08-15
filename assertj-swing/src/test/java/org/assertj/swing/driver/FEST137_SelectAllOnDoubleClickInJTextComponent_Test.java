@@ -24,6 +24,9 @@ public class FEST137_SelectAllOnDoubleClickInJTextComponent_Test extends JTextCo
   public void should_Select_All_Text_On_Double_Click() {
     setTextFieldText("Hello");
     showWindow();
+    // the selection triggered by the double click only happens if the text field has the focus, which the window
+    // manager grants asynchronously after the window is shown
+    driver.focusAndWaitForFocusGain(textField);
     driver.doubleClick(textField);
     requireSelectedTextInTextField("Hello");
   }

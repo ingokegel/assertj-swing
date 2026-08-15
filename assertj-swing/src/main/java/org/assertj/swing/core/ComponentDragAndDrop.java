@@ -108,7 +108,8 @@ public class ComponentDragAndDrop {
   @RunsInEDT
   public void drop(@NonNull Component target, @NonNull Point where) {
     dragOver(target, where);
-    TimeoutWatch watch = startWatchWithTimeoutOf(settings().eventPostingDelay() * 4);
+    // the drag state is registered asynchronously, so wait generously before failing
+    TimeoutWatch watch = startWatchWithTimeoutOf(Math.max(settings().eventPostingDelay() * 4, 2000));
     while (!robot.isDragging()) {
       if (watch.isTimeOut()) {
         throw actionFailure("There is no drag in effect");
