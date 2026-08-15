@@ -14,8 +14,8 @@ package org.assertj.swing.keystroke;
 
 import org.assertj.swing.annotation.VisibleForTesting;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 import javax.swing.*;
 
 import static java.awt.event.InputEvent.SHIFT_MASK;
@@ -45,7 +45,7 @@ public class KeyStrokeMap {
   }
 
   @VisibleForTesting
-  static void updateKeyStrokeMapCollection(@Nonnull KeyStrokeMapCollection c) {
+  static void updateKeyStrokeMapCollection(@NonNull KeyStrokeMapCollection c) {
     maps = c;
   }
 
@@ -54,13 +54,13 @@ public class KeyStrokeMap {
    * 
    * @param provider the given {@code KeyStrokeMappingProvider}.
    */
-  public static void addKeyStrokesFrom(@Nonnull KeyStrokeMappingProvider provider) {
+  public static void addKeyStrokesFrom(@NonNull KeyStrokeMappingProvider provider) {
     for (KeyStrokeMapping entry : provider.keyStrokeMappings()) {
       add(entry.character(), entry.keyStroke());
     }
   }
 
-  private static void add(@Nonnull Character character, @Nonnull KeyStroke keyStroke) {
+  private static void add(@NonNull Character character, @NonNull KeyStroke keyStroke) {
     maps.add(character, keyStroke);
   }
 
@@ -101,7 +101,7 @@ public class KeyStrokeMap {
    * @param keyStroke the given {@code KeyStroke}.
    * @return {@code KeyEvent.VK_UNDEFINED} if the result is unknown.
    */
-  public static char charFor(@Nonnull KeyStroke keyStroke) {
+  public static char charFor(@NonNull KeyStroke keyStroke) {
     Character character = maps.charFor(keyStroke);
     // Try again, but strip all modifiers but shift
     if (character == null) {
@@ -114,7 +114,7 @@ public class KeyStrokeMap {
   }
 
   @Nullable private static
-  Character charWithoutModifiersButShift(@Nonnull KeyStroke keyStroke) {
+  Character charWithoutModifiersButShift(@NonNull KeyStroke keyStroke) {
     int mask = keyStroke.getModifiers() & ~SHIFT_MASK;
     return maps.charFor(KeyStroke.getKeyStroke(keyStroke.getKeyCode(), mask));
   }

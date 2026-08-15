@@ -14,7 +14,7 @@ package org.assertj.swing.driver;
 
 import org.assertj.swing.timing.Condition;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import java.awt.*;
 
 import static org.assertj.swing.format.Formatting.format;
@@ -37,11 +37,11 @@ public class WaitForComponentToShowCondition extends Condition {
    * @return the created condition.
    * @throws NullPointerException if the {@code Component} is {@code null}.
    */
-  public static WaitForComponentToShowCondition untilIsShowing(@Nonnull Component c) {
+  public static WaitForComponentToShowCondition untilIsShowing(@NonNull Component c) {
     return new WaitForComponentToShowCondition(c);
   }
 
-  private WaitForComponentToShowCondition(@Nonnull Component c) {
+  private WaitForComponentToShowCondition(@NonNull Component c) {
     super(concat("Component ", format(c), " to show on the screen"));
     this.c = checkNotNull(c);
   }

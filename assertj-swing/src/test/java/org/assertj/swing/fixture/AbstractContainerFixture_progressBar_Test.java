@@ -18,7 +18,7 @@ import static org.assertj.swing.edt.GuiActionRunner.execute;
 import static org.assertj.swing.test.ExpectedException.none;
 import static org.assertj.swing.test.core.NeverMatchingComponentMatcher.neverMatches;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.JProgressBar;
 
 import org.assertj.swing.core.GenericTypeMatcher;
@@ -82,7 +82,7 @@ public class AbstractContainerFixture_progressBar_Test extends RobotBasedTestCas
     robot.showWindow(window);
     JProgressBarFixture progressBar = fixture.progressBar(new GenericTypeMatcher<JProgressBar>(JProgressBar.class) {
       @Override
-      protected boolean isMatching(@Nonnull JProgressBar b) {
+      protected boolean isMatching(@NonNull JProgressBar b) {
         return true;
       }
     });
@@ -99,11 +99,11 @@ public class AbstractContainerFixture_progressBar_Test extends RobotBasedTestCas
   private static class MyWindow extends TestWindow {
     final JProgressBar progressBar = new JProgressBar();
 
-    static @Nonnull MyWindow createNew(final @Nonnull Class<?> testClass) {
+    static @NonNull MyWindow createNew(final @NonNull Class<?> testClass) {
       return checkNotNull(execute(() -> new MyWindow(testClass)));
     }
 
-    private MyWindow(@Nonnull Class<?> testClass) {
+    private MyWindow(@NonNull Class<?> testClass) {
       super(testClass);
       progressBar.setName("progressBar");
       addComponents(progressBar);

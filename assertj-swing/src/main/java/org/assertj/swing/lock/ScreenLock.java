@@ -16,10 +16,8 @@ import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import javax.annotation.concurrent.GuardedBy;
-import javax.annotation.concurrent.ThreadSafe;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 
 import org.assertj.swing.exception.ScreenLockException;
 
@@ -30,15 +28,12 @@ import org.assertj.swing.exception.ScreenLockException;
  * @author Yvonne Wang
  * @author Alex Ruiz
  */
-@ThreadSafe
 public final class ScreenLock {
   private final Lock lock = new ReentrantLock();
   private final Condition released = lock.newCondition();
 
-  @GuardedBy("lock")
   private Object owner;
 
-  @GuardedBy("lock")
   private boolean acquired;
 
   /**
@@ -47,7 +42,7 @@ public final class ScreenLock {
    * 
    * @param newOwner the new owner of the lock.
    */
-  public void acquire(@Nonnull Object newOwner) {
+  public void acquire(@NonNull Object newOwner) {
     lock.lock();
     try {
       if (alreadyAcquiredBy(newOwner)) {
@@ -72,7 +67,7 @@ public final class ScreenLock {
    * @throws ScreenLockException if the lock has not been previously acquired.
    * @throws ScreenLockException if the given owner is not the same as the current owner of the lock.
    */
-  public void release(@Nonnull Object currentOwner) {
+  public void release(@NonNull Object currentOwner) {
     lock.lock();
     try {
       if (!acquired) {
@@ -95,7 +90,7 @@ public final class ScreenLock {
    * @param possibleOwner the given object, which could be owning the lock.
    * @return {@code true} if the given object is owning the lock; {@code false} otherwise.
    */
-  public boolean acquiredBy(@Nonnull Object possibleOwner) {
+  public boolean acquiredBy(@NonNull Object possibleOwner) {
     lock.lock();
     try {
       return alreadyAcquiredBy(possibleOwner);
@@ -104,7 +99,7 @@ public final class ScreenLock {
     }
   }
 
-  private boolean alreadyAcquiredBy(@Nonnull Object possibleOwner) {
+  private boolean alreadyAcquiredBy(@NonNull Object possibleOwner) {
     return acquired && owner == possibleOwner;
   }
 
@@ -140,7 +135,7 @@ public final class ScreenLock {
   /**
    * @return the singleton instance of this class.
    */
-  @Nonnull public static ScreenLock instance() {
+  @NonNull public static ScreenLock instance() {
     return ScreenLockHolder.instance;
   }
 

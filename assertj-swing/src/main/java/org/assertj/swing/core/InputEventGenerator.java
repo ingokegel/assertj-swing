@@ -15,7 +15,7 @@ package org.assertj.swing.core;
 import java.awt.Component;
 import java.awt.Point;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 
 /**
  * Generates input events.
@@ -40,7 +40,7 @@ interface InputEventGenerator {
    * @throws org.assertj.swing.exception.ActionFailedException if the {@code Component} to click is out of the
    *           boundaries of the screen.
    */
-  void pressMouse(@Nonnull Component c, @Nonnull Point where, int buttons);
+  void pressMouse(@NonNull Component c, @NonNull Point where, int buttons);
 
   /**
    * Simulates a user pressing the given mouse buttons on the given coordinates.
@@ -48,7 +48,7 @@ interface InputEventGenerator {
    * @param where the coordinates where to press the given mouse buttons.
    * @param buttons the mouse buttons to press.
    */
-  void pressMouse(@Nonnull Point where, int buttons);
+  void pressMouse(@NonNull Point where, int buttons);
 
   /**
    * Simulates a user moving the mouse pointer to the given coordinates relative to the given AWT or Swing
@@ -58,7 +58,7 @@ interface InputEventGenerator {
    * @param x X coordinate, relative to the given {@code Component}.
    * @param y Y coordinate, relative to the given {@code Component}.
    */
-  void moveMouse(@Nonnull Component c, int x, int y);
+  void moveMouse(@NonNull Component c, int x, int y);
 
   /**
    * Simulates a user moving the mouse pointer to the given coordinates.

@@ -17,7 +17,7 @@ import static org.assertj.swing.edt.GuiActionRunner.execute;
 import java.awt.Component;
 import java.awt.Point;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 
 import org.assertj.swing.annotation.RunsInEDT;
 
@@ -28,7 +28,7 @@ import org.assertj.swing.annotation.RunsInEDT;
  */
 final class ComponentMoveTask {
   @RunsInEDT
-  static void moveComponent(final @Nonnull Component c, final @Nonnull Point location) {
+  static void moveComponent(final @NonNull Component c, final @NonNull Point location) {
     execute(() -> c.setLocation(location));
   }
 

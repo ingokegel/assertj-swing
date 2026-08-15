@@ -16,7 +16,7 @@ import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import java.awt.Component;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 
 import org.assertj.swing.annotation.RunsInEDT;
 
@@ -27,7 +27,7 @@ import org.assertj.swing.annotation.RunsInEDT;
  */
 final class ComponentSetSizeTask {
   @RunsInEDT
-  static void setComponentSize(final @Nonnull Component c, final int width, final int height) {
+  static void setComponentSize(final @NonNull Component c, final int width, final int height) {
     execute(() -> c.setSize(width, height));
   }
 

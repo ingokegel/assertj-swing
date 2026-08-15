@@ -14,7 +14,7 @@ package org.assertj.swing.driver;
 
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.JInternalFrame;
 
 import org.assertj.swing.annotation.RunsInEDT;
@@ -26,7 +26,7 @@ import org.assertj.swing.annotation.RunsInEDT;
  */
 final class JInternalFrameCloseTask {
   @RunsInEDT
-  static void close(final @Nonnull JInternalFrame internalFrame) {
+  static void close(final @NonNull JInternalFrame internalFrame) {
     execute(() -> internalFrame.doDefaultCloseAction());
   }
 

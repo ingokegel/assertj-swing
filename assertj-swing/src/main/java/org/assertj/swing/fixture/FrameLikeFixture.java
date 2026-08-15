@@ -12,7 +12,7 @@
  */
 package org.assertj.swing.fixture;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 
 /**
  * Supports functional testing of frame-like components (not necessarily subclasses of {@code java.awt.Frame}).
@@ -30,7 +30,7 @@ public interface FrameLikeFixture<S> extends WindowLikeContainerFixture<S> {
    *
    * @return this fixture.
    */
-  @Nonnull
+  @NonNull
   S iconify();
 
   /**
@@ -38,7 +38,7 @@ public interface FrameLikeFixture<S> extends WindowLikeContainerFixture<S> {
    *
    * @return this fixture.
    */
-  @Nonnull
+  @NonNull
   S deiconify();
 
   /**
@@ -46,7 +46,7 @@ public interface FrameLikeFixture<S> extends WindowLikeContainerFixture<S> {
    *
    * @return this fixture.
    */
-  @Nonnull
+  @NonNull
   S maximize();
 
   /**
@@ -54,7 +54,7 @@ public interface FrameLikeFixture<S> extends WindowLikeContainerFixture<S> {
    *
    * @return this fixture.
    */
-  @Nonnull
+  @NonNull
   S normalize();
 
   /**

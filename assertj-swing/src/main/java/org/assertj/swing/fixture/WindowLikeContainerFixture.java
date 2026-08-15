@@ -15,7 +15,7 @@ package org.assertj.swing.fixture;
 import java.awt.Dimension;
 import java.awt.Point;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 
 /**
  * Supports functional testing of window-like containers (not necessarily subclasses of {@code Window}).
@@ -38,7 +38,7 @@ public interface WindowLikeContainerFixture<S> {
    * @param width the width that this fixture's window-like container should have after being resized.
    * @return this fixture.
    */
-  @Nonnull
+  @NonNull
   S resizeWidthTo(int width);
 
   /**
@@ -47,7 +47,7 @@ public interface WindowLikeContainerFixture<S> {
    * @param height the height that this fixture's window-like container should have after being resized.
    * @return this fixture.
    */
-  @Nonnull
+  @NonNull
   S resizeHeightTo(int height);
 
   /**
@@ -56,8 +56,8 @@ public interface WindowLikeContainerFixture<S> {
    * @param size the size that the target window should have after being resized.
    * @return this fixture.
    */
-  @Nonnull
-  S resizeTo(@Nonnull Dimension size);
+  @NonNull
+  S resizeTo(@NonNull Dimension size);
 
   /**
    * Asserts that the size of this fixture's window-like container is equal to given one.
@@ -66,8 +66,8 @@ public interface WindowLikeContainerFixture<S> {
    * @return this fixture.
    * @throws AssertionError if the size of this fixture's window-like container is not equal to the given size.
    */
-  @Nonnull
-  S requireSize(@Nonnull Dimension size);
+  @NonNull
+  S requireSize(@NonNull Dimension size);
 
   /**
    * Simulates a user moving this fixture's window-like container to the given point.
@@ -75,15 +75,15 @@ public interface WindowLikeContainerFixture<S> {
    * @param p the point to move this fixture's window-like container to.
    * @return this fixture.
    */
-  @Nonnull
-  S moveTo(@Nonnull Point p);
+  @NonNull
+  S moveTo(@NonNull Point p);
 
   /**
    * Brings this fixture's window-like component to the front.
    * 
    * @return this fixture.
    */
-  @Nonnull
+  @NonNull
   S moveToFront();
 
   /**
@@ -91,6 +91,6 @@ public interface WindowLikeContainerFixture<S> {
    * 
    * @return this fixture.
    */
-  @Nonnull
+  @NonNull
   S moveToBack();
 }

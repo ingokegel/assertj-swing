@@ -18,7 +18,7 @@ import static org.assertj.swing.timing.Pause.pause;
 import java.awt.Dialog;
 import java.awt.Dimension;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
 import org.assertj.swing.annotation.RunsInEDT;
@@ -32,19 +32,19 @@ import org.assertj.swing.timing.Condition;
  */
 public final class DialogShowTask {
   @RunsInCurrentThread
-  public static void packAndShow(@Nonnull Dialog dialog, @Nonnull Dimension preferredSize) {
+  public static void packAndShow(@NonNull Dialog dialog, @NonNull Dimension preferredSize) {
     dialog.setPreferredSize(preferredSize);
     packAndShow(dialog);
   }
 
   @RunsInCurrentThread
-  public static void packAndShow(final @Nonnull Dialog dialog) {
+  public static void packAndShow(final @NonNull Dialog dialog) {
     dialog.pack();
     dialog.setVisible(true);
   }
 
   @RunsInEDT
-  public static void waitForShowing(final @Nonnull Dialog dialog) {
+  public static void waitForShowing(final @NonNull Dialog dialog) {
     pause(new Condition("Dialog is showing") {
       @Override
       public boolean test() {

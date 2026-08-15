@@ -12,8 +12,8 @@
  */
 package org.assertj.swing.fixture;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 import javax.swing.JSlider;
 
 import org.assertj.swing.core.Robot;
@@ -34,7 +34,7 @@ public class JSliderFixture extends AbstractJPopupMenuInvokerFixture<JSliderFixt
    * @throws NullPointerException if {@code robot} is {@code null}.
    * @throws NullPointerException if {@code target} is {@code null}.
    */
-  public JSliderFixture(@Nonnull Robot robot, @Nonnull JSlider target) {
+  public JSliderFixture(@NonNull Robot robot, @NonNull JSlider target) {
     super(JSliderFixture.class, robot, target);
   }
 
@@ -47,12 +47,12 @@ public class JSliderFixture extends AbstractJPopupMenuInvokerFixture<JSliderFixt
    * @throws org.assertj.swing.exception.ComponentLookupException if a matching {@code JSlider} could not be found.
    * @throws org.assertj.swing.exception.ComponentLookupException if more than one matching {@code JSlider} is found.
    */
-  public JSliderFixture(@Nonnull Robot robot, @Nullable String sliderName) {
+  public JSliderFixture(@NonNull Robot robot, @Nullable String sliderName) {
     super(JSliderFixture.class, robot, sliderName, JSlider.class);
   }
 
   @Override
-  @Nonnull protected JSliderDriver createDriver(@Nonnull Robot robot) {
+  @NonNull protected JSliderDriver createDriver(@NonNull Robot robot) {
     return new JSliderDriver(robot);
   }
 
@@ -65,7 +65,7 @@ public class JSliderFixture extends AbstractJPopupMenuInvokerFixture<JSliderFixt
    * @throws IllegalStateException if this fixture's {@code JSlider} is not showing on the screen.
    * @throws IllegalArgumentException if the given position is not within the {@code JSlider} bounds.
    */
-  @Nonnull public JSliderFixture slideTo(int value) {
+  @NonNull public JSliderFixture slideTo(int value) {
     driver().slide(target(), value);
     return this;
   }
@@ -77,7 +77,7 @@ public class JSliderFixture extends AbstractJPopupMenuInvokerFixture<JSliderFixt
    * @throws IllegalStateException if this fixture's {@code JSlider} is disabled.
    * @throws IllegalStateException if this fixture's {@code JSlider} is not showing on the screen.
    */
-  @Nonnull public JSliderFixture slideToMaximum() {
+  @NonNull public JSliderFixture slideToMaximum() {
     driver().slideToMaximum(target());
     return this;
   }
@@ -89,7 +89,7 @@ public class JSliderFixture extends AbstractJPopupMenuInvokerFixture<JSliderFixt
    * @throws IllegalStateException if this fixture's {@code JSlider} is disabled.
    * @throws IllegalStateException if this fixture's {@code JSlider} is not showing on the screen.
    */
-  @Nonnull public JSliderFixture slideToMinimum() {
+  @NonNull public JSliderFixture slideToMinimum() {
     driver().slideToMinimum(target());
     return this;
   }

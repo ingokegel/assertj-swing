@@ -14,7 +14,7 @@ package org.assertj.swing.driver;
 
 import org.assertj.swing.annotation.RunsInEDT;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.*;
 
 import static org.assertj.swing.edt.GuiActionRunner.execute;
@@ -28,7 +28,7 @@ import static org.assertj.swing.util.Preconditions.checkNotNull;
  */
 final class JProgressBarIndeterminateQuery {
   @RunsInEDT
-  static boolean isIndeterminate(final @Nonnull JProgressBar progressBar) {
+  static boolean isIndeterminate(final @NonNull JProgressBar progressBar) {
     Boolean result = execute(() -> progressBar.isIndeterminate());
     return checkNotNull(result);
   }

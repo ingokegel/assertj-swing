@@ -19,7 +19,7 @@ import static org.assertj.swing.timing.Pause.pause;
 import java.awt.Dimension;
 import java.awt.Frame;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
 import org.assertj.swing.annotation.RunsInEDT;
@@ -33,19 +33,19 @@ import org.assertj.swing.timing.Condition;
  */
 public final class FrameShowTask {
   @RunsInCurrentThread
-  public static void packAndShow(@Nonnull Frame frame, @Nonnull Dimension preferredSize) {
+  public static void packAndShow(@NonNull Frame frame, @NonNull Dimension preferredSize) {
     frame.setPreferredSize(preferredSize);
     packAndShow(frame);
   }
 
   @RunsInCurrentThread
-  public static void packAndShow(@Nonnull Frame frame) {
+  public static void packAndShow(@NonNull Frame frame) {
     frame.pack();
     frame.setVisible(true);
   }
 
   @RunsInEDT
-  public static void waitForShowing(final @Nonnull Frame frame) {
+  public static void waitForShowing(final @NonNull Frame frame) {
     pause(new Condition("Frame is showing") {
       @Override
       public boolean test() {

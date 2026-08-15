@@ -15,7 +15,7 @@ package org.assertj.swing.driver;
 import static org.assertj.swing.driver.JTreeAddRootIfInvisibleTask.addRootIfInvisible;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.JTree;
 import javax.swing.tree.TreePath;
 
@@ -30,7 +30,7 @@ import org.assertj.swing.annotation.RunsInEDT;
  */
 final class JTreeExpandPathTask {
   @RunsInEDT
-  static void expandTreePath(final @Nonnull JTree tree, final @Nonnull TreePath path) {
+  static void expandTreePath(final @NonNull JTree tree, final @NonNull TreePath path) {
     execute(() -> {
       TreePath realPath = addRootIfInvisible(tree, path);
       if (!tree.isExpanded(path)) {

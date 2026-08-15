@@ -20,8 +20,8 @@ import static org.mockito.Mockito.when;
 import java.awt.Component;
 import java.awt.Frame;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 
 import org.assertj.swing.core.ComponentFinder;
 import org.assertj.swing.core.Robot;
@@ -77,13 +77,13 @@ public class AbstractComponentFixture_constructor_withLookupByNameAndType_Test {
   }
 
   private static class ComponentFixture extends AbstractComponentFixture<ComponentFixture, Component, ComponentDriver> {
-    public ComponentFixture(@Nonnull Class<ComponentFixture> selfType, @Nonnull Robot robot, @Nullable String name,
-        @Nonnull Class<? extends Component> type) {
+    public ComponentFixture(@NonNull Class<ComponentFixture> selfType, @NonNull Robot robot, @Nullable String name,
+        @NonNull Class<? extends Component> type) {
       super(selfType, robot, name, type);
     }
 
     @Override
-    @Nonnull protected ComponentDriver createDriver(@Nonnull Robot robot) {
+    @NonNull protected ComponentDriver createDriver(@NonNull Robot robot) {
       return new ComponentDriver(robot);
     }
   }

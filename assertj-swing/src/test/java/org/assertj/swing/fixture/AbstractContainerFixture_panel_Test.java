@@ -19,7 +19,7 @@ import static org.assertj.swing.edt.GuiActionRunner.execute;
 import static org.assertj.swing.test.ExpectedException.none;
 import static org.assertj.swing.test.core.NeverMatchingComponentMatcher.neverMatches;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.JPanel;
 
 import org.assertj.swing.core.GenericTypeMatcher;
@@ -83,7 +83,7 @@ public class AbstractContainerFixture_panel_Test extends RobotBasedTestCase {
     robot.showWindow(window);
     JPanelFixture panel = fixture.panel(new GenericTypeMatcher<JPanel>(JPanel.class) {
       @Override
-      protected boolean isMatching(@Nonnull JPanel p) {
+      protected boolean isMatching(@NonNull JPanel p) {
         return RED.equals(p.getBackground());
       }
     });
@@ -100,11 +100,11 @@ public class AbstractContainerFixture_panel_Test extends RobotBasedTestCase {
   private static class MyWindow extends TestWindow {
     final JPanel panel = new JPanel();
 
-    static @Nonnull MyWindow createNew(final @Nonnull Class<?> testClass) {
+    static @NonNull MyWindow createNew(final @NonNull Class<?> testClass) {
       return checkNotNull(execute(() -> new MyWindow(testClass)));
     }
 
-    private MyWindow(@Nonnull Class<?> testClass) {
+    private MyWindow(@NonNull Class<?> testClass) {
       super(testClass);
       panel.setName("myPanel");
       panel.setBackground(RED);

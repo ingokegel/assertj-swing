@@ -16,7 +16,7 @@ import java.awt.Component;
 import java.awt.Container;
 import java.util.Collection;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
 
@@ -42,6 +42,6 @@ interface ChildrenFinderStrategy {
    * @return a collection containing the non-explicit children found.
    */
   @RunsInCurrentThread
-  @Nonnull
-  Collection<Component> nonExplicitChildrenOf(@Nonnull Container c);
+  @NonNull
+  Collection<Component> nonExplicitChildrenOf(@NonNull Container c);
 }

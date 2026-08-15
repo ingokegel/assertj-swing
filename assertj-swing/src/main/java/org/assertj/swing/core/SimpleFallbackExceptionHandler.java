@@ -12,7 +12,7 @@
  */
 package org.assertj.swing.core;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 
 /**
  * <p>
@@ -38,7 +38,7 @@ public class SimpleFallbackExceptionHandler {
    *
    * @param t the given exception.
    */
-  public void handle(@Nonnull Throwable t) {
+  public void handle(@NonNull Throwable t) {
     t.printStackTrace();
   }
 }

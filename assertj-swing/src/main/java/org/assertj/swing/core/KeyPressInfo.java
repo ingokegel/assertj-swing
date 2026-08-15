@@ -14,7 +14,7 @@ package org.assertj.swing.core;
 
 import static org.assertj.swing.util.Arrays.copyOf;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 
 /**
  * <p>
@@ -63,11 +63,11 @@ public final class KeyPressInfo {
    * @param keyCode the code of the key to press.
    * @return the created {@code KeyPressInfo}.
    */
-  @Nonnull public static KeyPressInfo keyCode(int keyCode) {
+  @NonNull public static KeyPressInfo keyCode(int keyCode) {
     return new KeyPressInfo(keyCode, NO_MODIFIERS);
   }
 
-  private KeyPressInfo(int keyCode, @Nonnull int[] modifiers) {
+  private KeyPressInfo(int keyCode, @NonNull int[] modifiers) {
     this.keyCode = keyCode;
     this.modifiers = modifiers;
   }
@@ -82,7 +82,7 @@ public final class KeyPressInfo {
   /**
    * @return the modifiers to use when pressing {@link #keyCode() the specified key}.
    */
-  @Nonnull public int[] modifiers() {
+  @NonNull public int[] modifiers() {
     return copyOf(modifiers);
   }
 
@@ -101,7 +101,7 @@ public final class KeyPressInfo {
    * @return this object.
    * @throws NullPointerException if {@code newModifiers} is {@code null}.
    */
-  @Nonnull public KeyPressInfo modifiers(@Nonnull int... newModifiers) {
+  @NonNull public KeyPressInfo modifiers(@NonNull int... newModifiers) {
     modifiers = copyOf(newModifiers);
     return this;
   }

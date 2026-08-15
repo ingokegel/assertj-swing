@@ -12,8 +12,8 @@
  */
 package org.assertj.swing.util;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 import java.util.regex.Pattern;
 
 import static org.assertj.swing.util.Patterns.format;
@@ -37,7 +37,7 @@ public class PatternTextMatcher implements TextMatcher {
    * @throws NullPointerException if the array of patterns is {@code null}.
    * @throws IllegalArgumentException if the array of patterns is empty.
    */
-  public PatternTextMatcher(@Nonnull Pattern... patterns) {
+  public PatternTextMatcher(@NonNull Pattern... patterns) {
     this.patterns = checkNotNullOrEmpty(patterns);
   }
 
@@ -63,7 +63,7 @@ public class PatternTextMatcher implements TextMatcher {
    *         pattern.
    */
   @Override
-  @Nonnull public String description() {
+  @NonNull public String description() {
     return patterns.length == 1 ? "pattern" : "patterns";
   }
 
@@ -71,7 +71,7 @@ public class PatternTextMatcher implements TextMatcher {
    * @return the regular expression patterns in this matcher, formatted as a single {@code String}.
    */
   @Override
-  @Nonnull public String formattedValues() {
+  @NonNull public String formattedValues() {
     if (patterns.length == 1) {
       return checkNotNull(quote(patterns[0].pattern()));
     }

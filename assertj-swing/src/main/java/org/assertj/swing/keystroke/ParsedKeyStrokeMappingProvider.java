@@ -12,7 +12,7 @@
  */
 package org.assertj.swing.keystroke;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import java.util.Collection;
 import java.util.List;
 
@@ -29,7 +29,7 @@ import static org.assertj.swing.util.Lists.newArrayList;
 class ParsedKeyStrokeMappingProvider implements KeyStrokeMappingProvider {
   private final List<KeyStrokeMapping> mappings = newArrayList();
 
-  ParsedKeyStrokeMappingProvider(@Nonnull List<KeyStrokeMapping> mappings) {
+  ParsedKeyStrokeMappingProvider(@NonNull List<KeyStrokeMapping> mappings) {
     this.mappings.addAll(defaultMappings());
     this.mappings.addAll(mappings);
   }
@@ -48,7 +48,7 @@ class ParsedKeyStrokeMappingProvider implements KeyStrokeMappingProvider {
    * @return the mapping of characters and {@code KeyStroke}s.
    */
   @Override
-  @Nonnull public Collection<KeyStrokeMapping> keyStrokeMappings() {
+  @NonNull public Collection<KeyStrokeMapping> keyStrokeMappings() {
     return unmodifiableList(mappings);
   }
 }

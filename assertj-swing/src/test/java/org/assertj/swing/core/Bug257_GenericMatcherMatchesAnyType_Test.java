@@ -18,7 +18,7 @@ import static org.assertj.swing.test.builder.JTextFields.textField;
 
 import java.awt.Component;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.JDialog;
 
 import org.assertj.swing.test.core.EDTSafeTestCase;
@@ -45,7 +45,7 @@ public class Bug257_GenericMatcherMatchesAnyType_Test extends EDTSafeTestCase {
     }
 
     @Override
-    protected boolean isMatching(final @Nonnull T component) {
+    protected boolean isMatching(final @NonNull T component) {
       return true;
     }
   }

@@ -16,7 +16,7 @@ import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.cell.JTableCellReader;
 import org.assertj.swing.edt.GuiQuery;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.*;
 
 import static org.assertj.swing.edt.GuiActionRunner.execute;
@@ -30,10 +30,10 @@ import static org.assertj.swing.util.Preconditions.checkNotNull;
  */
 final class JTableContentsQuery {
   @RunsInEDT
-  static @Nonnull String[][] tableContents(final @Nonnull JTable table, final @Nonnull JTableCellReader cellReader) {
+  static @NonNull String[][] tableContents(final @NonNull JTable table, final @NonNull JTableCellReader cellReader) {
     String[][] result = execute(new GuiQuery<String[][]>() {
       @Override
-      @Nonnull protected String[][] executeInEDT() {
+      @NonNull protected String[][] executeInEDT() {
         int rCount = table.getRowCount();
         int cCount = table.getColumnCount();
         String[][] contents = new String[rCount][cCount];

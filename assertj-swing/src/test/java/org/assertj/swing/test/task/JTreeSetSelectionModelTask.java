@@ -14,7 +14,7 @@ package org.assertj.swing.test.task;
 
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.JTree;
 import javax.swing.tree.TreeSelectionModel;
 
@@ -27,7 +27,7 @@ import org.assertj.swing.annotation.RunsInEDT;
  */
 public final class JTreeSetSelectionModelTask {
   @RunsInEDT
-  public static void setSelectionModel(final @Nonnull JTree tree, final @Nonnull TreeSelectionModel selectionModel) {
+  public static void setSelectionModel(final @NonNull JTree tree, final @NonNull TreeSelectionModel selectionModel) {
     execute(() -> tree.setSelectionModel(selectionModel));
   }
 

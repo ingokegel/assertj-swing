@@ -12,7 +12,7 @@
  */
 package org.assertj.swing.util;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +30,7 @@ public final class Lists {
    * @param <T> the type of elements of the list to create.
    * @return the created {@code ArrayList}.
    */
-  public static <T> @Nonnull List<T> newArrayList() {
+  public static <T> @NonNull List<T> newArrayList() {
     return new ArrayList<>();
   }
 
@@ -42,7 +42,7 @@ public final class Lists {
    * @return the created {@code ArrayList}.
    */
   @SafeVarargs
-  public static <T> @Nonnull List<T> newArrayList(T... elements) {
+  public static <T> @NonNull List<T> newArrayList(T... elements) {
     if (elements == null)
       return newArrayList();
     List<T> list = newArrayList();
@@ -58,7 +58,7 @@ public final class Lists {
    * @param iterable the source of elements to store in the created list.
    * @return the created {@code ArrayList}.
    */
-  public static <T> @Nonnull List<T> newArrayList(@Nonnull Iterable<? extends T> iterable) {
+  public static <T> @NonNull List<T> newArrayList(@NonNull Iterable<? extends T> iterable) {
     List<T> list = newArrayList();
     for (T e : iterable)
       list.add(e);
@@ -71,7 +71,7 @@ public final class Lists {
    * @param <T> the type of elements of the list.
    * @return an empty list.
    */
-  public static <T> @Nonnull List<T> emptyList() {
+  public static <T> @NonNull List<T> emptyList() {
     return java.util.Collections.emptyList();
   }
 

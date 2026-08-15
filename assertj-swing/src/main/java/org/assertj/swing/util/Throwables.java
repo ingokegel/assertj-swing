@@ -12,7 +12,7 @@
  */
 package org.assertj.swing.util;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -32,7 +32,7 @@ public final class Throwables {
    * @param throwable the given throwable.
    * @param methodName the name of the method in the current thread's stack trace after which appending starts.
    */
-  public static void appendStackTraceInCurrentThreadToThrowable(@Nonnull Throwable throwable, @Nonnull String methodName) {
+  public static void appendStackTraceInCurrentThreadToThrowable(@NonNull Throwable throwable, @NonNull String methodName) {
     List<StackTraceElement> stackTrace = new ArrayList<>();
     Collections.addAll(stackTrace, throwable.getStackTrace());
     stackTrace.addAll(stackTraceInCurrentThread(methodName));

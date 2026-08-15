@@ -14,7 +14,7 @@ package org.assertj.swing.util;
 
 import org.assertj.swing.annotation.VisibleForTesting;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import java.awt.*;
 
 import static java.lang.String.valueOf;
@@ -40,7 +40,7 @@ public final class Platform {
   }
 
   @VisibleForTesting
-  static void initialize(@Nonnull OSIdentifier osIdentifier, @Nonnull Toolkit toolkit) {
+  static void initialize(@NonNull OSIdentifier osIdentifier, @NonNull Toolkit toolkit) {
     Platform.osIdentifier = osIdentifier;
     Platform.toolkit = toolkit;
   }
@@ -179,7 +179,7 @@ public final class Platform {
   /**
    * @return the current operating system family.
    */
-  @Nonnull public static OSFamily osFamily() {
+  @NonNull public static OSFamily osFamily() {
     return osIdentifier.osFamily();
   }
 

@@ -12,8 +12,8 @@
  */
 package org.assertj.swing.util;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 
 import static org.assertj.swing.util.Arrays.format;
 import static org.assertj.swing.util.Preconditions.checkNotNull;
@@ -36,7 +36,7 @@ public class StringTextMatcher implements TextMatcher {
    * @throws NullPointerException if the array of values is {@code null}.
    * @throws IllegalArgumentException if the array of values is empty.
    */
-  public StringTextMatcher(@Nonnull String... values) {
+  public StringTextMatcher(@NonNull String... values) {
     this.values = checkNotNullOrEmpty(values);
   }
 
@@ -61,7 +61,7 @@ public class StringTextMatcher implements TextMatcher {
    * @return "value" if this matcher contains only one value, or "values" if this matcher contains more than one value.
    */
   @Override
-  @Nonnull public String description() {
+  @NonNull public String description() {
     return onlyOneValue() ? "value" : "values";
   }
 
@@ -69,7 +69,7 @@ public class StringTextMatcher implements TextMatcher {
    * @return the {@code String} values in this matcher, formatted as a single {@code String}.
    */
   @Override
-  @Nonnull public String formattedValues() {
+  @NonNull public String formattedValues() {
     String s = onlyOneValue() ? quote(values[0]) : format(values);
     return checkNotNull(s);
   }

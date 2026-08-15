@@ -16,8 +16,8 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 
 /**
  * Utility methods for reflective access to members of the JDK and of GUI components, replacement for the removed
@@ -39,8 +39,8 @@ public final class Reflection {
    * @throws IllegalStateException if the method cannot be found or invoked.
    * @throws RuntimeException if the invoked method throws a {@code RuntimeException}, propagated unchanged.
    */
-  public static @Nullable Object invokeMethod(@Nonnull Object target, @Nonnull String name,
-      @Nonnull Class<?>[] parameterTypes, Object... args) {
+  public static @Nullable Object invokeMethod(@NonNull Object target, @NonNull String name,
+      @NonNull Class<?>[] parameterTypes, Object... args) {
     Method method = findMethod(target.getClass(), name, parameterTypes);
     return invoke(method, target, args);
   }
@@ -57,8 +57,8 @@ public final class Reflection {
    * @throws IllegalStateException if the method cannot be found or invoked.
    * @throws RuntimeException if the invoked method throws a {@code RuntimeException}, propagated unchanged.
    */
-  public static @Nullable Object invokeStaticMethod(@Nonnull Class<?> type, @Nonnull String name,
-      @Nonnull Class<?>[] parameterTypes, Object... args) {
+  public static @Nullable Object invokeStaticMethod(@NonNull Class<?> type, @NonNull String name,
+      @NonNull Class<?>[] parameterTypes, Object... args) {
     Method method = findMethod(type, name, parameterTypes);
     return invoke(method, null, args);
   }
@@ -72,7 +72,7 @@ public final class Reflection {
    * @return the value of the field, boxed if primitive.
    * @throws IllegalStateException if the field cannot be found or read.
    */
-  public static @Nullable Object fieldValue(@Nonnull Object target, @Nonnull String name) {
+  public static @Nullable Object fieldValue(@NonNull Object target, @NonNull String name) {
     try {
       return findField(target.getClass(), name).get(target);
     } catch (ReflectiveOperationException | RuntimeException e) {
@@ -90,7 +90,7 @@ public final class Reflection {
    * @return the value of the field, boxed if primitive.
    * @throws IllegalStateException if the field cannot be found or read.
    */
-  public static @Nullable Object staticFieldValue(@Nonnull Class<?> type, @Nonnull String name) {
+  public static @Nullable Object staticFieldValue(@NonNull Class<?> type, @NonNull String name) {
     try {
       return findField(type, name).get(null);
     } catch (ReflectiveOperationException | RuntimeException e) {
@@ -105,7 +105,7 @@ public final class Reflection {
    * @param type the type to check.
    * @return {@code true} if the given type has a default constructor, {@code false} otherwise.
    */
-  public static boolean hasDefaultConstructor(@Nonnull Class<?> type) {
+  public static boolean hasDefaultConstructor(@NonNull Class<?> type) {
     try {
       type.getDeclaredConstructor();
       return true;
@@ -114,8 +114,8 @@ public final class Reflection {
     }
   }
 
-  private static @Nonnull Method findMethod(@Nonnull Class<?> type, @Nonnull String name,
-      @Nonnull Class<?>[] parameterTypes) {
+  private static @NonNull Method findMethod(@NonNull Class<?> type, @NonNull String name,
+      @NonNull Class<?>[] parameterTypes) {
     for (Class<?> current = type; current != null; current = current.getSuperclass()) {
       try {
         Method method = current.getDeclaredMethod(name, parameterTypes);
@@ -128,7 +128,7 @@ public final class Reflection {
     throw new IllegalStateException(String.format("Unable to find method '%s' in %s", name, type.getName()));
   }
 
-  private static @Nonnull Field findField(@Nonnull Class<?> type, @Nonnull String name) throws NoSuchFieldException {
+  private static @NonNull Field findField(@NonNull Class<?> type, @NonNull String name) throws NoSuchFieldException {
     for (Class<?> current = type; current != null; current = current.getSuperclass()) {
       try {
         Field field = current.getDeclaredField(name);
@@ -141,7 +141,7 @@ public final class Reflection {
     throw new NoSuchFieldException(name);
   }
 
-  private static @Nullable Object invoke(@Nonnull Method method, @Nullable Object target, Object... args) {
+  private static @Nullable Object invoke(@NonNull Method method, @Nullable Object target, Object... args) {
     try {
       return method.invoke(target, args);
     } catch (InvocationTargetException e) {

@@ -17,8 +17,8 @@ import static org.assertj.swing.util.Maps.newHashMap;
 
 import java.util.Map;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 
 /**
  * Workaround to obtain a {@code String} representation of an {@code int} enumeration.
@@ -36,7 +36,7 @@ final class IntEnum {
     return valueOf(key);
   }
 
-  @Nonnull
+  @NonNull
   IntEnum put(int key, @Nullable String value) {
     map.put(key, value);
     return this;

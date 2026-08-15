@@ -14,7 +14,7 @@ package org.assertj.swing.timing;
 
 import org.assertj.swing.exception.WaitTimedOutError;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import java.util.concurrent.*;
 
 import static org.assertj.swing.timing.Timeout.timeout;
@@ -40,7 +40,7 @@ public final class Pause {
    * @throws NullPointerException if the given condition is {@code null}.
    * @throws WaitTimedOutError if the wait times out (more than 30 seconds).
    */
-  public static void pause(@Nonnull Condition condition) {
+  public static void pause(@NonNull Condition condition) {
     pause(condition, DEFAULT_TIMEOUT);
   }
 
@@ -53,7 +53,7 @@ public final class Pause {
    * @throws NullPointerException if the given condition is {@code null}.
    * @throws WaitTimedOutError if the wait times out.
    */
-  public static void pause(@Nonnull Condition condition, @Nonnull Timeout timeout) {
+  public static void pause(@NonNull Condition condition, @NonNull Timeout timeout) {
     checkNotNull(timeout);
     pause(condition, timeout.duration());
   }
@@ -66,7 +66,7 @@ public final class Pause {
    * @throws NullPointerException if the given condition is {@code null}.
    * @throws WaitTimedOutError if the wait times out.
    */
-  public static void pause(@Nonnull final Condition condition, final long timeout) {
+  public static void pause(@NonNull final Condition condition, final long timeout) {
     checkNotNull(condition);
     try {
       Callable<Object> task = new Callable<Object>() {
@@ -111,7 +111,7 @@ public final class Pause {
    * @throws NullPointerException if the array of conditions has one or more {@code null} values.
    * @throws WaitTimedOutError if the wait times out (more than 30 seconds).
    */
-  public static void pause(@Nonnull Condition[] conditions) {
+  public static void pause(@NonNull Condition[] conditions) {
     pause(conditions, DEFAULT_TIMEOUT);
   }
 
@@ -126,7 +126,7 @@ public final class Pause {
    * @throws NullPointerException if the array of conditions has one or more {@code null} values.
    * @throws WaitTimedOutError if the wait times out.
    */
-  public static void pause(@Nonnull Condition[] conditions, @Nonnull Timeout timeout) {
+  public static void pause(@NonNull Condition[] conditions, @NonNull Timeout timeout) {
     pause(conditions, timeout.duration());
   }
 
@@ -140,7 +140,7 @@ public final class Pause {
    * @throws NullPointerException if the array of conditions has one or more {@code null} values.
    * @throws WaitTimedOutError if the wait times out.
    */
-  public static void pause(@Nonnull final Condition[] conditions, final long timeout) {
+  public static void pause(@NonNull final Condition[] conditions, final long timeout) {
     checkNotNullOrEmpty(conditions);
     for (Condition condition : conditions) {
       checkNotNull(condition);
@@ -163,7 +163,7 @@ public final class Pause {
     }
   }
 
-  private static boolean areSatisfied(@Nonnull Condition[] conditions) {
+  private static boolean areSatisfied(@NonNull Condition[] conditions) {
     for (Condition condition : conditions) {
       if (!condition.test()) {
         return false;
@@ -180,7 +180,7 @@ public final class Pause {
    * @see #pause(long)
    * @throws NullPointerException if {@code unit} is {@code null}.
    */
-  public static void pause(long timeout, @Nonnull TimeUnit unit) {
+  public static void pause(long timeout, @NonNull TimeUnit unit) {
     checkNotNull(unit);
     pause(unit.toMillis(timeout));
   }

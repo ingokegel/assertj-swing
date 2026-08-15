@@ -12,8 +12,8 @@
  */
 package org.assertj.swing.util;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 
 /**
  * Verifies values satisfied some given conditions, similar to {@code com.google.common.base.Preconditions}.
@@ -30,7 +30,7 @@ public final class Preconditions {
    * @throws NullPointerException if the given {@code String} is {@code null}.
    * @throws IllegalArgumentException if the given {@code String} is empty.
    */
-  public static @Nonnull String checkNotNullOrEmpty(@Nullable String s) {
+  public static @NonNull String checkNotNullOrEmpty(@Nullable String s) {
     checkNotNull(s);
     if (s.isEmpty())
       throw new IllegalArgumentException("The given String should not be empty");
@@ -61,7 +61,7 @@ public final class Preconditions {
    * @return the given object if it is not {@code null}.
    * @throws NullPointerException if the given object is {@code null}.
    */
-  public static <T> @Nonnull T checkNotNull(@Nullable T reference) {
+  public static <T> @NonNull T checkNotNull(@Nullable T reference) {
     if (reference == null)
       throw new NullPointerException();
     return reference;

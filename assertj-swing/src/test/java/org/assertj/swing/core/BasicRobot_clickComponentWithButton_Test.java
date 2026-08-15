@@ -20,7 +20,7 @@ import static org.assertj.swing.core.MouseButton.RIGHT_BUTTON;
 
 import java.util.Collection;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.JTextField;
 
 import org.assertj.swing.test.recorder.ClickRecorder;
@@ -44,7 +44,7 @@ public class BasicRobot_clickComponentWithButton_Test extends BasicRobot_ClickTe
     return newArrayList(new Object[][] { { LEFT_BUTTON }, { MIDDLE_BUTTON }, { RIGHT_BUTTON } });
   }
 
-  public BasicRobot_clickComponentWithButton_Test(@Nonnull MouseButton button) {
+  public BasicRobot_clickComponentWithButton_Test(@NonNull MouseButton button) {
     this.button = checkNotNull(button);
   }
 

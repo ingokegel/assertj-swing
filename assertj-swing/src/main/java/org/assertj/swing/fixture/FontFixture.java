@@ -12,8 +12,8 @@
  */
 package org.assertj.swing.fixture;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 import java.awt.*;
 import java.util.function.Supplier;
 
@@ -48,7 +48,7 @@ public class FontFixture {
    * @param target the font to manage.
    * @throws NullPointerException if {@code target} is {@code null}.
    */
-  public FontFixture(@Nonnull Font target) {
+  public FontFixture(@NonNull Font target) {
     this(target, (Supplier<String>) null);
   }
 
@@ -59,7 +59,7 @@ public class FontFixture {
    * @param description this fixture's description.
    * @throws NullPointerException if {@code target} is {@code null}.
    */
-  public FontFixture(@Nonnull Font target, @Nonnull String description) {
+  public FontFixture(@NonNull Font target, @NonNull String description) {
     this(target, () -> description);
   }
 
@@ -70,7 +70,7 @@ public class FontFixture {
    * @param description this fixture's description.
    * @throws NullPointerException if {@code target} is {@code null}.
    */
-  public FontFixture(@Nonnull Font target, @Nullable Supplier<String> description) {
+  public FontFixture(@NonNull Font target, @Nullable Supplier<String> description) {
     this.target = checkNotNull(target);
     this.description = description;
   }
@@ -83,7 +83,7 @@ public class FontFixture {
    * @throws AssertionError if the family name of this fixture's font is not equal to the given one.
    * @see Font#getFamily()
    */
-  @Nonnull public FontFixture requireFamily(@Nonnull String family) {
+  @NonNull public FontFixture requireFamily(@NonNull String family) {
     assertThat(target.getFamily()).as(property(FAMILY_PROPERTY)).isEqualTo(family);
     return this;
   }
@@ -96,7 +96,7 @@ public class FontFixture {
    * @throws AssertionError if the logical name of this fixture's font is not equal to the given one.
    * @see Font#getName()
    */
-  @Nonnull public FontFixture requireName(@Nonnull String name) {
+  @NonNull public FontFixture requireName(@NonNull String name) {
     assertThat(target.getName()).as(property(NAME_PROPERTY)).isEqualTo(name);
     return this;
   }
@@ -109,7 +109,7 @@ public class FontFixture {
    * @throws AssertionError if the point size of this fixture's font is not equal to the given one.
    * @see Font#getSize()
    */
-  @Nonnull public FontFixture requireSize(int size) {
+  @NonNull public FontFixture requireSize(int size) {
     assertThat(target.getSize()).as(property(SIZE_PROPERTY)).isEqualTo(size);
     return this;
   }
@@ -121,7 +121,7 @@ public class FontFixture {
    * @throws AssertionError if this fixture's font is not bold.
    * @see Font#isBold()
    */
-  @Nonnull public FontFixture requireBold() {
+  @NonNull public FontFixture requireBold() {
     return requireBold(true);
   }
 
@@ -132,11 +132,11 @@ public class FontFixture {
    * @throws AssertionError if this fixture's font is bold.
    * @see Font#isBold()
    */
-  @Nonnull public FontFixture requireNotBold() {
+  @NonNull public FontFixture requireNotBold() {
     return requireBold(false);
   }
 
-  @Nonnull private FontFixture requireBold(boolean bold) {
+  @NonNull private FontFixture requireBold(boolean bold) {
     assertThat(target.isBold()).as(property(BOLD_PROPERTY)).isEqualTo(bold);
     return this;
   }
@@ -148,7 +148,7 @@ public class FontFixture {
    * @throws AssertionError if this fixture's font is not italic.
    * @see Font#isItalic()
    */
-  @Nonnull public FontFixture requireItalic() {
+  @NonNull public FontFixture requireItalic() {
     return requireItalic(true);
   }
 
@@ -159,11 +159,11 @@ public class FontFixture {
    * @throws AssertionError if this fixture's font is italic.
    * @see Font#isItalic()
    */
-  @Nonnull public FontFixture requireNotItalic() {
+  @NonNull public FontFixture requireNotItalic() {
     return requireItalic(false);
   }
 
-  @Nonnull private FontFixture requireItalic(boolean italic) {
+  @NonNull private FontFixture requireItalic(boolean italic) {
     assertThat(target.isItalic()).as(property(ITALIC_PROPERTY)).isEqualTo(italic);
     return this;
   }
@@ -175,7 +175,7 @@ public class FontFixture {
    * @throws AssertionError if this fixture's font is not plain.
    * @see Font#isPlain()
    */
-  @Nonnull public FontFixture requirePlain() {
+  @NonNull public FontFixture requirePlain() {
     return requirePlain(true);
   }
 
@@ -186,16 +186,16 @@ public class FontFixture {
    * @throws AssertionError if this fixture's font is plain.
    * @see Font#isPlain()
    */
-  @Nonnull public FontFixture requireNotPlain() {
+  @NonNull public FontFixture requireNotPlain() {
     return requirePlain(false);
   }
 
-  @Nonnull private FontFixture requirePlain(boolean plain) {
+  @NonNull private FontFixture requirePlain(boolean plain) {
     assertThat(target.isBold()).as(property(PLAIN_PROPERTY)).isEqualTo(plain);
     return this;
   }
 
-  @Nonnull private String property(@Nonnull String s) {
+  @NonNull private String property(@NonNull String s) {
     if (!isNullOrEmpty(description())) {
       return concat(description.get(), PROPERTY_SEPARATOR, s);
     }
@@ -205,7 +205,7 @@ public class FontFixture {
   /**
    * @return this fixture's font.
    */
-  @Nonnull public Font target() {
+  @NonNull public Font target() {
     return target;
   }
 

@@ -14,7 +14,7 @@ package org.assertj.swing.core;
 
 import org.assertj.swing.annotation.RunsInEDT;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
@@ -33,7 +33,7 @@ class UnexpectedJOptionPaneFinder {
 
   private final ComponentFinder finder;
 
-  UnexpectedJOptionPaneFinder(@Nonnull ComponentFinder finder) {
+  UnexpectedJOptionPaneFinder(@NonNull ComponentFinder finder) {
     this.finder = finder;
   }
 
@@ -45,11 +45,11 @@ class UnexpectedJOptionPaneFinder {
     }
   }
 
-  private List<Component> findAll(@Nonnull ComponentMatcher m) {
+  private List<Component> findAll(@NonNull ComponentMatcher m) {
     return newArrayList(finder.findAll(m));
   }
 
-  private void unexpectedJOptionPanesFound(@Nonnull List<Component> found) {
+  private void unexpectedJOptionPanesFound(@NonNull List<Component> found) {
     StringBuilder message = new StringBuilder();
     message.append("Expecting no JOptionPane to be showing, but found:<[");
     int size = found.size();

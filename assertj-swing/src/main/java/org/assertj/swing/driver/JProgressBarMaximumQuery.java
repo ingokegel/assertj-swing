@@ -14,7 +14,7 @@ package org.assertj.swing.driver;
 
 import org.assertj.swing.annotation.RunsInEDT;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.*;
 
 import static org.assertj.swing.edt.GuiActionRunner.execute;
@@ -27,7 +27,7 @@ import static org.assertj.swing.util.Preconditions.checkNotNull;
  */
 final class JProgressBarMaximumQuery {
   @RunsInEDT
-  static int maximumOf(final @Nonnull JProgressBar progressBar) {
+  static int maximumOf(final @NonNull JProgressBar progressBar) {
     Integer result = execute(() -> progressBar.getMaximum());
     return checkNotNull(result);
   }

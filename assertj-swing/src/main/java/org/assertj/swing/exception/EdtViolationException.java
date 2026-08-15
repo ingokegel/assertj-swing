@@ -12,7 +12,7 @@
  */
 package org.assertj.swing.exception;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 
 /**
  * Error thrown when a EDT violation is detected. For more details, please read the <a
@@ -30,7 +30,7 @@ public class EdtViolationException extends RuntimeException {
    *
    * @param message the detail message.
    */
-  public EdtViolationException(@Nonnull String message) {
+  public EdtViolationException(@NonNull String message) {
     super(message);
   }
 }

@@ -14,7 +14,7 @@ package org.assertj.swing.driver;
 
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.AbstractButton;
 
 import org.assertj.swing.annotation.RunsInEDT;
@@ -27,7 +27,7 @@ import org.assertj.swing.annotation.RunsInEDT;
  */
 final class AbstractButtonTextQuery {
   @RunsInEDT
-  static @Nonnull String textOf(final @Nonnull AbstractButton button) {
+  static @NonNull String textOf(final @NonNull AbstractButton button) {
     String result = execute(() -> button.getText());
     return result == null ? "" : result;
   }

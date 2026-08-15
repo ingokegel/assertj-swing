@@ -14,7 +14,7 @@ package org.assertj.swing.driver;
 
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.JSlider;
 
 import org.assertj.swing.annotation.RunsInEDT;
@@ -26,7 +26,7 @@ import org.assertj.swing.annotation.RunsInEDT;
  */
 final class JSliderSetValueTask {
   @RunsInEDT
-  static void setValue(final @Nonnull JSlider slider, final int newValue) {
+  static void setValue(final @NonNull JSlider slider, final int newValue) {
     execute(() -> slider.setValue(newValue));
   }
 

@@ -15,7 +15,7 @@ package org.assertj.swing.driver;
 import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.cell.JComboBoxCellReader;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.*;
 
 import static org.assertj.swing.edt.GuiActionRunner.execute;
@@ -29,7 +29,7 @@ import static org.assertj.swing.util.Preconditions.checkNotNull;
  */
 final class JComboBoxContentQuery {
   @RunsInEDT
-  static @Nonnull String[] contents(final @Nonnull JComboBox<?> comboBox, final @Nonnull JComboBoxCellReader cellReader) {
+  static @NonNull String[] contents(final @NonNull JComboBox<?> comboBox, final @NonNull JComboBoxCellReader cellReader) {
     String[] result = execute(() -> {
       int itemCount = comboBox.getItemCount();
       String[] values = new String[itemCount];

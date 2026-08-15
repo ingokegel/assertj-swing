@@ -17,7 +17,7 @@ import static org.assertj.swing.awt.AWT.centerOf;
 import java.awt.Point;
 import java.awt.Rectangle;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.JList;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
@@ -34,7 +34,7 @@ final class JListCellCenterQuery {
    * visible rectangle of the JList and the cell bounds. (issue FEST-65).
    */
   @RunsInCurrentThread
-  static @Nonnull Point cellCenter(@Nonnull JList<?> list, @Nonnull Rectangle cellBounds) {
+  static @NonNull Point cellCenter(@NonNull JList<?> list, @NonNull Rectangle cellBounds) {
     Point cellCenter = centerOf(cellBounds);
     Rectangle visibleRect = list.getVisibleRect();
     if (visibleRect.contains(cellCenter)) {

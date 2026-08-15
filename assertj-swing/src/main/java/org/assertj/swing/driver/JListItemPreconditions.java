@@ -12,7 +12,7 @@
  */
 package org.assertj.swing.driver;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.JList;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
@@ -31,12 +31,12 @@ import org.assertj.swing.annotation.RunsInCurrentThread;
  */
 final class JListItemPreconditions {
   @RunsInCurrentThread
-  static void checkIndexInBounds(@Nonnull JList<?> list, int index) {
+  static void checkIndexInBounds(@NonNull JList<?> list, int index) {
     checkIndexInBounds(index, list.getModel().getSize());
   }
 
   @RunsInCurrentThread
-  static void checkIndicesInBounds(@Nonnull JList<?> list, @Nonnull int... indices) {
+  static void checkIndicesInBounds(@NonNull JList<?> list, @NonNull int... indices) {
     int itemCount = list.getModel().getSize();
     for (int index : indices) {
       checkIndexInBounds(index, itemCount);

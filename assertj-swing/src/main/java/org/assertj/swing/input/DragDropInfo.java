@@ -23,8 +23,8 @@ import java.awt.event.MouseEvent;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 
 /**
  * Description of a drag/drop operation.
@@ -40,7 +40,7 @@ class DragDropInfo {
     source(null);
   }
 
-  void update(@Nonnull MouseEvent event) {
+  void update(@NonNull MouseEvent event) {
     int mouseEventId = event.getID();
     if (mouseEventId == MOUSE_RELEASED || mouseEventId == MOUSE_MOVED) {
       clear();
@@ -66,12 +66,12 @@ class DragDropInfo {
     return source != null;
   }
 
-  @Nonnull
+  @NonNull
   Point origin() {
     return new Point(x, y);
   }
 
-  void origin(@Nonnull Point origin) {
+  void origin(@NonNull Point origin) {
     x = origin.x;
     y = origin.y;
   }

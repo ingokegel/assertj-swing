@@ -19,7 +19,7 @@ import static org.assertj.swing.edt.GuiActionRunner.execute;
 import java.awt.Color;
 import java.awt.Component;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 
@@ -48,7 +48,7 @@ public class BasicJTableCellReader_foregroundAt_Test extends BasicJTableCellRead
   }
 
   @RunsInEDT
-  @Nonnull private static Color foregroundOf(final @Nonnull Component component) {
+  @NonNull private static Color foregroundOf(final @NonNull Component component) {
     Color result = execute(() -> component.getForeground());
     return checkNotNull(result);
   }

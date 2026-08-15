@@ -14,7 +14,7 @@ package org.assertj.swing.driver;
 
 import java.awt.Component;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
@@ -34,7 +34,7 @@ public class BasicJTableCellWriter extends AbstractJTableCellWriter {
   private final JTableComboBoxEditorCellWriter comboBoxWriter;
   private final JTableTextComponentEditorCellWriter textComponentWriter;
 
-  public BasicJTableCellWriter(@Nonnull Robot robot) {
+  public BasicJTableCellWriter(@NonNull Robot robot) {
     super(robot);
     checkBoxWriter = new JTableCheckBoxEditorCellWriter(robot);
     comboBoxWriter = new JTableComboBoxEditorCellWriter(robot);
@@ -60,7 +60,7 @@ public class BasicJTableCellWriter extends AbstractJTableCellWriter {
    *           editor.
    */
   @Override
-  public void enterValue(@Nonnull JTable table, int row, int column, @Nonnull String value) {
+  public void enterValue(@NonNull JTable table, int row, int column, @NonNull String value) {
     cellWriterFor(table, row, column).enterValue(table, row, column, value);
   }
 
@@ -80,7 +80,7 @@ public class BasicJTableCellWriter extends AbstractJTableCellWriter {
    * @see JTableCellWriter#startCellEditing(JTable, int, int)
    */
   @Override
-  public void startCellEditing(@Nonnull JTable table, int row, int column) {
+  public void startCellEditing(@NonNull JTable table, int row, int column) {
     cellWriterFor(table, row, column).startCellEditing(table, row, column);
   }
 
@@ -100,7 +100,7 @@ public class BasicJTableCellWriter extends AbstractJTableCellWriter {
    * @see JTableCellWriter#stopCellEditing(JTable, int, int)
    */
   @Override
-  public void stopCellEditing(@Nonnull JTable table, int row, int column) {
+  public void stopCellEditing(@NonNull JTable table, int row, int column) {
     cellWriterFor(table, row, column).stopCellEditing(table, row, column);
   }
 
@@ -120,11 +120,11 @@ public class BasicJTableCellWriter extends AbstractJTableCellWriter {
    * @see JTableCellWriter#cancelCellEditing(JTable, int, int)
    */
   @Override
-  public void cancelCellEditing(@Nonnull JTable table, int row, int column) {
+  public void cancelCellEditing(@NonNull JTable table, int row, int column) {
     cellWriterFor(table, row, column).cancelCellEditing(table, row, column);
   }
 
-  @Nonnull private JTableCellWriter cellWriterFor(@Nonnull JTable table, int row, int column) {
+  @NonNull private JTableCellWriter cellWriterFor(@NonNull JTable table, int row, int column) {
     Component editor = editorForCell(table, row, column);
     if (editor instanceof JCheckBox) {
       return checkBoxWriter;

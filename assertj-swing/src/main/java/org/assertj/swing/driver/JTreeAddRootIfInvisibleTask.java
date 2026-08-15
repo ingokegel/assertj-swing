@@ -14,7 +14,7 @@ package org.assertj.swing.driver;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.*;
 import javax.swing.tree.TreePath;
 import java.util.List;
@@ -39,7 +39,7 @@ final class JTreeAddRootIfInvisibleTask {
    * root node cannot be expanded (issue 293).
    */
   @RunsInCurrentThread
-  static @Nonnull TreePath addRootIfInvisible(@Nonnull JTree tree, @Nonnull TreePath path) {
+  static @NonNull TreePath addRootIfInvisible(@NonNull JTree tree, @NonNull TreePath path) {
     Object root = tree.getModel().getRoot();
     if (tree.isRootVisible() || root == null) {
       return path;

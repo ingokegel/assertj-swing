@@ -15,8 +15,8 @@ package org.assertj.swing.core;
 import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.timing.Condition;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 import java.util.function.Supplier;
 
 import static org.assertj.swing.edt.GuiActionRunner.execute;
@@ -33,7 +33,7 @@ public abstract class EdtSafeCondition extends Condition {
    * 
    * @param description describes this condition.
    */
-  public EdtSafeCondition(@Nonnull String description) {
+  public EdtSafeCondition(@NonNull String description) {
     super(description);
   }
 

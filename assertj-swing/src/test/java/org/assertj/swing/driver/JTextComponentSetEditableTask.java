@@ -14,7 +14,7 @@ package org.assertj.swing.driver;
 
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.JTextField;
 
 import org.assertj.swing.annotation.RunsInEDT;
@@ -26,7 +26,7 @@ import org.assertj.swing.annotation.RunsInEDT;
  */
 final class JTextComponentSetEditableTask {
   @RunsInEDT
-  static void setTextFieldEditable(final @Nonnull JTextField textField, final boolean editable) {
+  static void setTextFieldEditable(final @NonNull JTextField textField, final boolean editable) {
     execute(() -> textField.setEditable(editable));
   }
 

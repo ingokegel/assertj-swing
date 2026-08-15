@@ -16,7 +16,7 @@ import static java.util.concurrent.TimeUnit.MILLISECONDS;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.swing.query.ComponentShowingQuery.isShowing;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.JDialog;
 
 import org.assertj.swing.core.GenericTypeMatcher;
@@ -70,7 +70,7 @@ public class WindowFinder_findDialog_withMatcher_Test extends WindowFinder_TestC
     }
 
     @Override
-    protected boolean isMatching(@Nonnull JDialog dialog) {
+    protected boolean isMatching(@NonNull JDialog dialog) {
       return "dialog".equals(dialog.getName()) && isShowing(dialog);
     }
   }

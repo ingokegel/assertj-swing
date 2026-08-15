@@ -20,8 +20,8 @@ import static java.awt.event.InputEvent.SHIFT_MASK;
 
 import java.awt.event.InputEvent;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 
 /**
  * Utility methods related to input modifiers.
@@ -63,7 +63,7 @@ final class InputModifiers {
     return (modifiers & ALT_GRAPH_MASK) != 0;
   }
 
-  static boolean modifiersMatch(@Nonnull InputEvent e, int modifiers) {
+  static boolean modifiersMatch(@NonNull InputEvent e, int modifiers) {
     if (e.isAltDown() != isAltDown(modifiers)) {
       return false;
     }

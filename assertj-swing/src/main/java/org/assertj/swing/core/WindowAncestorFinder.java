@@ -17,8 +17,8 @@ import static org.assertj.swing.awt.AWT.invokerOf;
 import java.awt.Component;
 import java.awt.Window;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 import javax.swing.MenuElement;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
@@ -49,7 +49,7 @@ public final class WindowAncestorFinder {
    *         {@code Window}, or the invoker's {@code Window} if on a pop-up.
    */
   @RunsInCurrentThread
-  @Nullable public static Window windowAncestorOf(@Nonnull Component c) {
+  @Nullable public static Window windowAncestorOf(@NonNull Component c) {
     return findWindowAncestor(c);
   }
 

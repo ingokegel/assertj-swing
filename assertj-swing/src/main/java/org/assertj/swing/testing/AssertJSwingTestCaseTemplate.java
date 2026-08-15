@@ -12,7 +12,7 @@
  */
 package org.assertj.swing.testing;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 
 import org.assertj.swing.core.BasicRobot;
 import org.assertj.swing.core.Robot;
@@ -46,7 +46,7 @@ public abstract class AssertJSwingTestCaseTemplate {
   /**
    * @return this test's {@link Robot}
    */
-  protected final @Nonnull Robot robot() {
+  protected final @NonNull Robot robot() {
     return robot;
   }
 }

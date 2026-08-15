@@ -20,7 +20,7 @@ import java.lang.annotation.Target;
 
 /**
  * Indicates that a method is thread-safe. To document that a class is thread-safe, use
- * {@code javax.annotation.concurrent.ThreadSafe}.
+ * {@code ThreadSafeAction}.
  * 
  * @author Alex Ruiz
  */

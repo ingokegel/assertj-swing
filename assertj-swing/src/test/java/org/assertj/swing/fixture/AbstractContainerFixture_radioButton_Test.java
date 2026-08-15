@@ -18,7 +18,7 @@ import static org.assertj.swing.edt.GuiActionRunner.execute;
 import static org.assertj.swing.test.ExpectedException.none;
 import static org.assertj.swing.test.core.NeverMatchingComponentMatcher.neverMatches;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.JRadioButton;
 
 import org.assertj.swing.core.GenericTypeMatcher;
@@ -82,7 +82,7 @@ public class AbstractContainerFixture_radioButton_Test extends RobotBasedTestCas
     robot.showWindow(window);
     JRadioButtonFixture radioButton = fixture.radioButton(new GenericTypeMatcher<JRadioButton>(JRadioButton.class) {
       @Override
-      protected boolean isMatching(@Nonnull JRadioButton r) {
+      protected boolean isMatching(@NonNull JRadioButton r) {
         return "Select Me".equals(r.getText());
       }
     });
@@ -99,11 +99,11 @@ public class AbstractContainerFixture_radioButton_Test extends RobotBasedTestCas
   private static class MyWindow extends TestWindow {
     final JRadioButton radioButton = new JRadioButton("Select Me");
 
-    static @Nonnull MyWindow createNew(final @Nonnull Class<?> testClass) {
+    static @NonNull MyWindow createNew(final @NonNull Class<?> testClass) {
       return checkNotNull(execute(() -> new MyWindow(testClass)));
     }
 
-    private MyWindow(@Nonnull Class<?> testClass) {
+    private MyWindow(@NonNull Class<?> testClass) {
       super(testClass);
       radioButton.setName("selectMeRadioButton");
       addComponents(radioButton);

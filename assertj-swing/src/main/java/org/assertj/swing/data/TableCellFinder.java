@@ -12,7 +12,7 @@
  */
 package org.assertj.swing.data;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.JTable;
 
 import org.assertj.swing.annotation.RunsInEDT;
@@ -34,6 +34,6 @@ public interface TableCellFinder {
    * @throws org.assertj.swing.exception.ActionFailedException if a matching cell could not be found.
    */
   @RunsInEDT
-  @Nonnull
-  TableCell findCell(@Nonnull JTable table, @Nonnull JTableCellReader cellReader);
+  @NonNull
+  TableCell findCell(@NonNull JTable table, @NonNull JTableCellReader cellReader);
 }

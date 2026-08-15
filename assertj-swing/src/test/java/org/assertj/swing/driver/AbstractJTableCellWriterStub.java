@@ -12,7 +12,7 @@
  */
 package org.assertj.swing.driver;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.JTable;
 
 import org.assertj.swing.core.Robot;
@@ -23,18 +23,18 @@ class AbstractJTableCellWriterStub extends AbstractJTableCellWriter {
   }
 
   @Override
-  public void enterValue(@Nonnull JTable table, int row, int column, @Nonnull String value) {
+  public void enterValue(@NonNull JTable table, int row, int column, @NonNull String value) {
   }
 
   @Override
-  public void startCellEditing(@Nonnull JTable table, int row, int column) {
+  public void startCellEditing(@NonNull JTable table, int row, int column) {
   }
 
   @Override
-  public void stopCellEditing(@Nonnull JTable table, int row, int column) {
+  public void stopCellEditing(@NonNull JTable table, int row, int column) {
   }
 
   @Override
-  public void cancelCellEditing(@Nonnull JTable table, int row, int column) {
+  public void cancelCellEditing(@NonNull JTable table, int row, int column) {
   }
 }

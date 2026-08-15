@@ -19,7 +19,7 @@ import static java.awt.event.WindowEvent.WINDOW_OPENED;
 import java.awt.AWTEvent;
 import java.awt.Window;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 
 /**
  * Utility methods related to AWT events.
@@ -33,7 +33,7 @@ public final class AWTEvents {
    * @param e the given event.
    * @return {@code true} if the id of the given event is equal to {@code WINDOW_OPENED}; {@code false} otherwise.
    */
-  public static boolean wasWindowOpened(@Nonnull AWTEvent e) {
+  public static boolean wasWindowOpened(@NonNull AWTEvent e) {
     return e.getID() == WINDOW_OPENED;
   }
 
@@ -45,7 +45,7 @@ public final class AWTEvents {
    * @return {@code true} if the id of the given event is equal to {@code COMPONENT_SHOWN} and the source of the event
    *         is a {@code Window}; {@code false} otherwise.
    */
-  public static boolean wasWindowShown(@Nonnull AWTEvent e) {
+  public static boolean wasWindowShown(@NonNull AWTEvent e) {
     return e.getID() == COMPONENT_SHOWN && e.getSource() instanceof Window;
   }
 
@@ -55,7 +55,7 @@ public final class AWTEvents {
    * @param e the given event.
    * @return {@code true} if the id of the given event is equal to {@code WINDOW_CLOSED}; {@code false} otherwise.
    */
-  public static boolean wasWindowClosed(@Nonnull AWTEvent e) {
+  public static boolean wasWindowClosed(@NonNull AWTEvent e) {
     return e.getID() == WINDOW_CLOSED;
   }
 

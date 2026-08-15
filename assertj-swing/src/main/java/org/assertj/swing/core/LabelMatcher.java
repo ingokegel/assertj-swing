@@ -14,8 +14,8 @@ package org.assertj.swing.core;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 import javax.swing.*;
 import java.awt.*;
 
@@ -68,7 +68,7 @@ public class LabelMatcher extends AbstractComponentMatcher {
    * @throws IllegalArgumentException if the given label is empty.
    * @throws NullPointerException if the given type is {@code null}.
    */
-  public LabelMatcher(@Nullable String label, @Nonnull Class<? extends Component> type) {
+  public LabelMatcher(@Nullable String label, @NonNull Class<? extends Component> type) {
     this(label, type, false);
   }
 
@@ -82,7 +82,7 @@ public class LabelMatcher extends AbstractComponentMatcher {
    * @throws IllegalArgumentException if the given label is empty.
    * @throws NullPointerException if the given type is {@code null}.
    */
-  public LabelMatcher(@Nullable String label, @Nonnull Class<? extends Component> type, boolean requireShowing) {
+  public LabelMatcher(@Nullable String label, @NonNull Class<? extends Component> type, boolean requireShowing) {
     super(requireShowing);
     this.label = checkNotNullOrEmpty(label).toString();
     this.type = checkNotNull(type);

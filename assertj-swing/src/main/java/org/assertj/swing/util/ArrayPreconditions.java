@@ -12,7 +12,7 @@
  */
 package org.assertj.swing.util;
 
-import javax.annotation.Nullable;
+import org.jspecify.annotations.Nullable;
 
 /**
  * Verifies correct state of arrays.

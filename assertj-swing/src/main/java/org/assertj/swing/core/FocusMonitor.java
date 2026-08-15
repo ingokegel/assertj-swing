@@ -18,7 +18,7 @@ import java.awt.Component;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 
 /**
  * Attaches itself to an AWT or Swing {@code Component} and keeps record of when such {@code Component} gains or loses
@@ -29,7 +29,7 @@ import javax.annotation.Nonnull;
 final class FocusMonitor implements FocusListener {
   private volatile boolean hasFocus;
 
-  static @Nonnull FocusMonitor attachTo(@Nonnull Component c) {
+  static @NonNull FocusMonitor attachTo(@NonNull Component c) {
     FocusMonitor monitor = new FocusMonitor(c);
     c.addFocusListener(monitor);
     return monitor;

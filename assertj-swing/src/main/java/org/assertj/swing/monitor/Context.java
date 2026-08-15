@@ -14,10 +14,8 @@ package org.assertj.swing.monitor;
 
 import org.assertj.swing.annotation.RunsInEDT;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import javax.annotation.concurrent.GuardedBy;
-import javax.annotation.concurrent.ThreadSafe;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 import java.awt.*;
 import java.util.Collection;
 import java.util.Set;
@@ -31,24 +29,21 @@ import static org.assertj.swing.util.Sets.newLinkedHashSet;
  *
  * @author Alex Ruiz
  */
-@ThreadSafe
 class Context {
   /** Maps unique event queues to the set of root windows found on each queue. */
-  @GuardedBy("lock")
   private final WindowEventQueueMapping windowEventQueueMapping;
 
   /** Maps components to their corresponding event queues. */
-  @GuardedBy("lock")
   private final EventQueueMapping eventQueueMapping;
 
   private final Object lock = new Object();
 
-  Context(@Nonnull Toolkit toolkit) {
+  Context(@NonNull Toolkit toolkit) {
     this(toolkit, new WindowEventQueueMapping(), new EventQueueMapping());
   }
 
-  Context(@Nonnull Toolkit toolkit, @Nonnull WindowEventQueueMapping windowEventQueueMapping,
-          @Nonnull EventQueueMapping eventQueueMapping) {
+  Context(@NonNull Toolkit toolkit, @NonNull WindowEventQueueMapping windowEventQueueMapping,
+          @NonNull EventQueueMapping eventQueueMapping) {
     this.windowEventQueueMapping = windowEventQueueMapping;
     this.eventQueueMapping = eventQueueMapping;
     this.windowEventQueueMapping.addQueueFor(toolkit);
@@ -61,7 +56,7 @@ class Context {
    *
    * @return all available root {@code Window}s.
    */
-  @Nonnull
+  @NonNull
   Collection<Window> rootWindows() {
     Set<Window> rootWindows = newLinkedHashSet();
     synchronized (lock) {
@@ -73,19 +68,19 @@ class Context {
   }
 
   @Nullable
-  EventQueue storedQueueFor(@Nonnull Component c) {
+  EventQueue storedQueueFor(@NonNull Component c) {
     synchronized (lock) {
       return eventQueueMapping.storedQueueFor(c);
     }
   }
 
-  void removeContextFor(@Nonnull Component component) {
+  void removeContextFor(@NonNull Component component) {
     synchronized (lock) {
       windowEventQueueMapping.removeMappingFor(component);
     }
   }
 
-  void addContextFor(@Nonnull Component component) {
+  void addContextFor(@NonNull Component component) {
     synchronized (lock) {
       windowEventQueueMapping.addQueueFor(component);
       eventQueueMapping.addQueueFor(component);
@@ -101,7 +96,7 @@ class Context {
    */
   @RunsInEDT
   @Nullable
-  EventQueue eventQueueFor(@Nonnull Component c) {
+  EventQueue eventQueueFor(@NonNull Component c) {
     Component component = topParentOf(c);
     if (component == null) {
       return null;
@@ -112,7 +107,7 @@ class Context {
   }
 
   @RunsInEDT
-  @Nullable private static Component topParentOf(final @Nonnull Component c) {
+  @Nullable private static Component topParentOf(final @NonNull Component c) {
     return execute(() -> {
       Component parent = c;
       while (parent.getParent() != null) {
@@ -125,7 +120,7 @@ class Context {
   /**
    * @return all known event queues.
    */
-  @Nonnull
+  @NonNull
   Collection<EventQueue> allEventQueues() {
     Set<EventQueue> eventQueues = newLinkedHashSet();
     synchronized (lock) {

@@ -15,7 +15,7 @@ package org.assertj.swing.core;
 import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.util.RobotFactory;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import java.awt.*;
 import java.awt.Robot;
 
@@ -44,11 +44,11 @@ class RobotEventGenerator implements InputEventGenerator {
     this(new Settings());
   }
 
-  RobotEventGenerator(@Nonnull Settings settings) {
+  RobotEventGenerator(@NonNull Settings settings) {
     this(new RobotFactory(), settings);
   }
 
-  RobotEventGenerator(@Nonnull RobotFactory robotFactory, @Nonnull Settings settings) {
+  RobotEventGenerator(@NonNull RobotFactory robotFactory, @NonNull Settings settings) {
     try {
       robot = robotFactory.newRobotInLeftScreen();
       if (isWindows() || isOSX()) {
@@ -61,14 +61,14 @@ class RobotEventGenerator implements InputEventGenerator {
     settings.attachTo(robot);
   }
 
-  @Nonnull
+  @NonNull
   Robot robot() {
     return robot;
   }
 
   @RunsInEDT
   @Override
-  public void pressMouse(@Nonnull Component c, @Nonnull Point where, int buttons) {
+  public void pressMouse(@NonNull Component c, @NonNull Point where, int buttons) {
     Point p = checkNotNull(execute(() -> translate(c, where.x, where.y)));
     if (!isPointInScreenBoundaries(p)) {
       throw actionFailure("The component to click is out of the boundaries of the screen");
@@ -77,7 +77,7 @@ class RobotEventGenerator implements InputEventGenerator {
   }
 
   @Override
-  public void pressMouse(@Nonnull Point where, int buttons) {
+  public void pressMouse(@NonNull Point where, int buttons) {
     moveMouse(where.x, where.y);
     pressMouse(buttons);
   }
@@ -99,7 +99,7 @@ class RobotEventGenerator implements InputEventGenerator {
 
   @RunsInEDT
   @Override
-  public void moveMouse(@Nonnull Component c, int x, int y) {
+  public void moveMouse(@NonNull Component c, int x, int y) {
     Point p = checkNotNull(execute(() -> translate(c, x, y)));
     moveMouse(p.x, p.y);
   }

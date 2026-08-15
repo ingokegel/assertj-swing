@@ -12,7 +12,7 @@
  */
 package org.assertj.swing.query;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import java.awt.*;
 
 import static org.assertj.swing.edt.GuiActionRunner.execute;
@@ -36,7 +36,7 @@ public final class ComponentEnabledQuery {
    * @return {@code true} if the given {@code Component} is enabled, {@code false} otherwise.
    * @see Component#isEnabled()
    */
-  public static boolean isEnabled(final @Nonnull Component component) {
+  public static boolean isEnabled(final @NonNull Component component) {
     Boolean result = execute(() -> component.isEnabled());
     return checkNotNull(result);
   }

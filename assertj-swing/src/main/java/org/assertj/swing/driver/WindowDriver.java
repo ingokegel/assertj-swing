@@ -16,7 +16,7 @@ import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.core.Robot;
 import org.assertj.swing.internal.annotation.InternalApi;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import java.awt.*;
 
 import static org.assertj.swing.driver.ComponentPreconditions.checkEnabledAndShowing;
@@ -43,7 +43,7 @@ public class WindowDriver extends ContainerDriver {
    *
    * @param robot the robot to use to simulate user input.
    */
-  public WindowDriver(@Nonnull Robot robot) {
+  public WindowDriver(@NonNull Robot robot) {
     super(robot);
   }
 
@@ -57,7 +57,7 @@ public class WindowDriver extends ContainerDriver {
    * @throws org.assertj.swing.exception.ActionFailedException if the {@code Window} is not showing on the screen.
    */
   @RunsInEDT
-  public void resizeWidthTo(@Nonnull Window w, int width) {
+  public void resizeWidthTo(@NonNull Window w, int width) {
     doResizeWidth(w, width);
   }
 
@@ -71,7 +71,7 @@ public class WindowDriver extends ContainerDriver {
    * @throws org.assertj.swing.exception.ActionFailedException if the {@code Window} is not showing on the screen.
    */
   @RunsInEDT
-  public void resizeHeightTo(@Nonnull Window w, int height) {
+  public void resizeHeightTo(@NonNull Window w, int height) {
     doResizeHeight(w, height);
   }
 
@@ -85,7 +85,7 @@ public class WindowDriver extends ContainerDriver {
    * @throws org.assertj.swing.exception.ActionFailedException if the {@code Window} is not showing on the screen.
    */
   @RunsInEDT
-  public void resizeTo(@Nonnull Window w, @Nonnull Dimension size) {
+  public void resizeTo(@NonNull Window w, @NonNull Dimension size) {
     resize(w, size.width, size.height);
   }
 
@@ -98,7 +98,7 @@ public class WindowDriver extends ContainerDriver {
    * @throws org.assertj.swing.exception.ActionFailedException if the {@code Window} is not movable by the user.
    * @throws org.assertj.swing.exception.ActionFailedException if the {@code Window} is not showing on the screen.
    */
-  public void moveTo(@Nonnull Window w, @Nonnull Point where) {
+  public void moveTo(@NonNull Window w, @NonNull Point where) {
     move(w, where.x, where.y);
   }
 
@@ -110,13 +110,13 @@ public class WindowDriver extends ContainerDriver {
    *           {@code Window} is not showing on the screen.
    */
   @RunsInEDT
-  public void close(@Nonnull Window w) {
+  public void close(@NonNull Window w) {
     moveMouseIgnoringAnyError(w, closeInfo(w));
     robot.close(w);
   }
 
   @RunsInEDT
-  @Nonnull private static Point closeInfo(final @Nonnull Window w) {
+  @NonNull private static Point closeInfo(final @NonNull Window w) {
     Point result = execute(() -> {
       checkEnabledAndShowing(w);
       return closeButtonLocation(w);
@@ -130,7 +130,7 @@ public class WindowDriver extends ContainerDriver {
    * @param w the target {@code Window}.
    */
   @RunsInEDT
-  public void show(@Nonnull Window w) {
+  public void show(@NonNull Window w) {
     robot.showWindow(w);
   }
 
@@ -141,7 +141,7 @@ public class WindowDriver extends ContainerDriver {
    * @param size the size to resize the {@code Window} to.
    */
   @RunsInEDT
-  public void show(@Nonnull Window w, @Nonnull Dimension size) {
+  public void show(@NonNull Window w, @NonNull Dimension size) {
     robot.showWindow(w, size);
   }
 
@@ -151,13 +151,13 @@ public class WindowDriver extends ContainerDriver {
    * @param w the target {@code Window}.
    */
   @RunsInEDT
-  public void moveToFront(@Nonnull Window w) {
+  public void moveToFront(@NonNull Window w) {
     doMoveToFront(w);
     robot.waitForIdle();
   }
 
   @RunsInEDT
-  private static void doMoveToFront(final @Nonnull Window w) {
+  private static void doMoveToFront(final @NonNull Window w) {
     execute(() -> w.toFront());
   }
 
@@ -168,13 +168,13 @@ public class WindowDriver extends ContainerDriver {
    * @param w the target {@code Window}.
    */
   @RunsInEDT
-  public void moveToBack(@Nonnull Window w) {
+  public void moveToBack(@NonNull Window w) {
     doMoveToBack(w);
     robot.waitForIdle();
   }
 
   @RunsInEDT
-  private static void doMoveToBack(final @Nonnull Window w) {
+  private static void doMoveToBack(final @NonNull Window w) {
     execute(() -> w.toBack());
   }
 }

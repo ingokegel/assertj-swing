@@ -12,7 +12,7 @@
  */
 package org.assertj.swing.assertions.data;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 
 /**
  * A positive offset to tolerate differences when comparing values.
@@ -27,7 +27,7 @@ public final class Offset<T extends Number> {
   /**
    * The value of the offset, never negative.
    */
-  public final @Nonnull T value;
+  public final @NonNull T value;
 
   /**
    * Creates a new {@code Offset}.
@@ -38,7 +38,7 @@ public final class Offset<T extends Number> {
    * @throws NullPointerException if the given value is {@code null}.
    * @throws IllegalArgumentException if the given value is negative.
    */
-  public static <T extends Number> @Nonnull Offset<T> offset(@Nonnull T value) {
+  public static <T extends Number> @NonNull Offset<T> offset(@NonNull T value) {
     if (value.doubleValue() < 0d)
       throw new IllegalArgumentException("The offset value should not be negative");
     return new Offset<>(value);
@@ -51,11 +51,11 @@ public final class Offset<T extends Number> {
    * @return the created {@code Offset}.
    * @throws IllegalArgumentException if the given value is negative.
    */
-  public static @Nonnull Offset<Integer> offset(int value) {
+  public static @NonNull Offset<Integer> offset(int value) {
     return offset(Integer.valueOf(value));
   }
 
-  private Offset(@Nonnull T value) {
+  private Offset(@NonNull T value) {
     this.value = value;
   }
 

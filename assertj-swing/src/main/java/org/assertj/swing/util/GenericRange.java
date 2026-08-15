@@ -12,7 +12,7 @@
  */
 package org.assertj.swing.util;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 
 /**
  * A range of values.
@@ -31,7 +31,7 @@ public final class GenericRange<T> {
    * @param from the initial value of this range.
    * @param to the final value of this range.
    */
-  public GenericRange(@Nonnull T from, @Nonnull T to) {
+  public GenericRange(@NonNull T from, @NonNull T to) {
     this.from = from;
     this.to = to;
   }
@@ -39,14 +39,14 @@ public final class GenericRange<T> {
   /**
    * @return the initial value of this range.
    */
-  @Nonnull public T from() {
+  @NonNull public T from() {
     return from;
   }
 
   /**
    * @return the final value of this range.
    */
-  @Nonnull public T to() {
+  @NonNull public T to() {
     return to;
   }
 }

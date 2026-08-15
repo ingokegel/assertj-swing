@@ -12,7 +12,7 @@
  */
 package org.assertj.swing.fixture;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.JToggleButton;
 
 import org.assertj.swing.core.Robot;
@@ -31,7 +31,7 @@ public class JToggleButtonFixture extends AbstractTwoStateButtonFixture<JToggleB
    * @throws NullPointerException if {@code robot} is {@code null}.
    * @throws NullPointerException if {@code target} is {@code null}.
    */
-  public JToggleButtonFixture(@Nonnull Robot robot, @Nonnull JToggleButton target) {
+  public JToggleButtonFixture(@NonNull Robot robot, @NonNull JToggleButton target) {
     super(JToggleButtonFixture.class, robot, target);
   }
 
@@ -46,7 +46,7 @@ public class JToggleButtonFixture extends AbstractTwoStateButtonFixture<JToggleB
    * @throws org.assertj.swing.exception.ComponentLookupException if more than one matching {@code JToggleButton} is
    *           found.
    */
-  public JToggleButtonFixture(@Nonnull Robot robot, @Nonnull String toggleButtonName) {
+  public JToggleButtonFixture(@NonNull Robot robot, @NonNull String toggleButtonName) {
     super(JToggleButtonFixture.class, robot, toggleButtonName, JToggleButton.class);
   }
 }

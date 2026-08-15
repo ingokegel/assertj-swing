@@ -15,7 +15,7 @@ package org.assertj.swing.driver;
 import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.timing.Condition;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.*;
 import javax.swing.tree.TreePath;
 
@@ -31,11 +31,11 @@ class JTreeChildrenShowUpCondition extends Condition {
   private JTree tree;
   private TreePath path;
 
-  static @Nonnull JTreeChildrenShowUpCondition untilChildrenShowUp(@Nonnull JTree tree, @Nonnull TreePath path) {
+  static @NonNull JTreeChildrenShowUpCondition untilChildrenShowUp(@NonNull JTree tree, @NonNull TreePath path) {
     return new JTreeChildrenShowUpCondition(tree, path);
   }
 
-  private JTreeChildrenShowUpCondition(@Nonnull JTree tree, @Nonnull TreePath path) {
+  private JTreeChildrenShowUpCondition(@NonNull JTree tree, @NonNull TreePath path) {
     super(concat(path.toString(), " to show"));
     this.tree = tree;
     this.path = path;

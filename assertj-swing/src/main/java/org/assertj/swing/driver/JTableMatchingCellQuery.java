@@ -18,7 +18,7 @@ import org.assertj.swing.cell.JTableCellReader;
 import org.assertj.swing.data.TableCell;
 import org.assertj.swing.util.TextMatcher;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.*;
 
 import static org.assertj.swing.data.TableCell.row;
@@ -34,15 +34,15 @@ import static org.assertj.swing.util.Preconditions.checkNotNull;
  */
 final class JTableMatchingCellQuery {
   @RunsInEDT
-  static @Nonnull TableCell cellWithValue(final @Nonnull JTable table, final @Nonnull TextMatcher matcher,
-                                          final @Nonnull JTableCellReader cellReader) {
+  static @NonNull TableCell cellWithValue(final @NonNull JTable table, final @NonNull TextMatcher matcher,
+                                          final @NonNull JTableCellReader cellReader) {
     TableCell result = execute(() -> findMatchingCell(table, matcher, cellReader));
     return checkNotNull(result);
   }
 
   @RunsInCurrentThread
-  @Nonnull private static TableCell findMatchingCell(@Nonnull JTable table, @Nonnull TextMatcher matcher,
-                                                     @Nonnull JTableCellReader cellReader) {
+  @NonNull private static TableCell findMatchingCell(@NonNull JTable table, @NonNull TextMatcher matcher,
+                                                     @NonNull JTableCellReader cellReader) {
     int rCount = table.getRowCount();
     int cCount = table.getColumnCount();
     for (int r = 0; r < rCount; r++) {
@@ -57,8 +57,8 @@ final class JTableMatchingCellQuery {
   }
 
   @RunsInCurrentThread
-  private static boolean cellHasValue(@Nonnull JTable table, int row, int column, @Nonnull TextMatcher matcher,
-                                      @Nonnull JTableCellReader cellReader) {
+  private static boolean cellHasValue(@NonNull JTable table, int row, int column, @NonNull TextMatcher matcher,
+                                      @NonNull JTableCellReader cellReader) {
     return matcher.isMatching(cellReader.valueAt(table, row, column));
   }
 

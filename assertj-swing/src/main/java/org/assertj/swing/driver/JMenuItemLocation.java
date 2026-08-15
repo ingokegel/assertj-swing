@@ -15,8 +15,8 @@ package org.assertj.swing.driver;
 import org.assertj.swing.annotation.RunsInCurrentThread;
 import org.assertj.swing.annotation.RunsInEDT;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 import javax.swing.*;
 import java.awt.*;
 
@@ -47,7 +47,7 @@ public final class JMenuItemLocation {
    * @param menuItem the target {@code JMenuItem}.
    */
   @RunsInCurrentThread
-  public JMenuItemLocation(@Nonnull JMenuItem menuItem) {
+  public JMenuItemLocation(@NonNull JMenuItem menuItem) {
     parentOrInvoker = menuItem.getParent();
     if (parentOrInvoker instanceof JPopupMenu) {
       parentPopup = (JPopupMenu) parentOrInvoker;
@@ -81,7 +81,7 @@ public final class JMenuItemLocation {
   /**
    * @return the parent or the invoker of the {@code JMenuItem}, or its invoker (if it is in a pop-up).
    */
-  @Nonnull public Component parentOrInvoker() {
+  @NonNull public Component parentOrInvoker() {
     return parentOrInvoker;
   }
 

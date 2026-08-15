@@ -21,7 +21,7 @@ import org.assertj.swing.internal.annotation.InternalApi;
 import org.assertj.swing.timing.Timeout;
 import org.assertj.swing.util.TimeoutWatch;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.*;
 import java.awt.*;
 import java.util.function.Supplier;
@@ -71,7 +71,7 @@ public class ComponentDriver {
    *
    * @param robot the robot to use to simulate user input.
    */
-  public ComponentDriver(@Nonnull Robot robot) {
+  public ComponentDriver(@NonNull Robot robot) {
     this.robot = robot;
     dragAndDrop = new ComponentDragAndDrop(robot);
   }
@@ -85,7 +85,7 @@ public class ComponentDriver {
    * @throws IllegalStateException if the {@code Component} is not showing on the screen.
    */
   @RunsInEDT
-  public void click(@Nonnull Component c) {
+  public void click(@NonNull Component c) {
     checkClickAllowed(c);
     robot.click(c);
   }
@@ -101,7 +101,7 @@ public class ComponentDriver {
    * @throws IllegalStateException if the {@code Component} is not showing on the screen.
    */
   @RunsInEDT
-  public void click(@Nonnull Component c, @Nonnull MouseButton button) {
+  public void click(@NonNull Component c, @NonNull MouseButton button) {
     click(c, button, 1);
   }
 
@@ -116,7 +116,7 @@ public class ComponentDriver {
    * @throws IllegalStateException if the {@code Component} is not showing on the screen.
    */
   @RunsInEDT
-  public void click(@Nonnull Component c, @Nonnull MouseClickInfo mouseClickInfo) {
+  public void click(@NonNull Component c, @NonNull MouseClickInfo mouseClickInfo) {
     checkNotNull(mouseClickInfo);
     click(c, mouseClickInfo.button(), mouseClickInfo.times());
   }
@@ -130,7 +130,7 @@ public class ComponentDriver {
    * @throws IllegalStateException if the {@code Component} is not showing on the screen.
    */
   @RunsInEDT
-  public void doubleClick(@Nonnull Component c) {
+  public void doubleClick(@NonNull Component c) {
     click(c, LEFT_BUTTON, 2);
   }
 
@@ -143,7 +143,7 @@ public class ComponentDriver {
    * @throws IllegalStateException if the {@code Component} is not showing on the screen.
    */
   @RunsInEDT
-  public void rightClick(@Nonnull Component c) {
+  public void rightClick(@NonNull Component c) {
     click(c, RIGHT_BUTTON);
   }
 
@@ -159,7 +159,7 @@ public class ComponentDriver {
    * @throws IllegalStateException if the {@code Component} is not showing on the screen.
    */
   @RunsInEDT
-  public void click(@Nonnull Component c, @Nonnull MouseButton button, int times) {
+  public void click(@NonNull Component c, @NonNull MouseButton button, int times) {
     checkNotNull(button);
     checkClickAllowed(c);
     robot.click(c, button, times);
@@ -175,12 +175,12 @@ public class ComponentDriver {
    * @throws IllegalStateException if the {@code Component} is not showing on the screen.
    */
   @RunsInEDT
-  public void click(@Nonnull Component c, @Nonnull Point where) {
+  public void click(@NonNull Component c, @NonNull Point where) {
     checkClickAllowed(c);
     robot.click(c, where);
   }
 
-  @Nonnull
+  @NonNull
   protected Settings settings() {
     return robot.settings();
   }
@@ -193,7 +193,7 @@ public class ComponentDriver {
    * @throws AssertionError if the size of the {@code Component} is not equal to the given size.
    */
   @RunsInEDT
-  public void requireSize(@Nonnull Component c, @Nonnull Dimension size) {
+  public void requireSize(@NonNull Component c, @NonNull Dimension size) {
     assertThat(sizeOf(c)).as(propertyName(c, SIZE_PROPERTY)).isEqualTo(size);
   }
 
@@ -204,7 +204,7 @@ public class ComponentDriver {
    * @throws AssertionError if the {@code Component} is not visible.
    */
   @RunsInEDT
-  public void requireVisible(@Nonnull Component c) {
+  public void requireVisible(@NonNull Component c) {
     assertThat(isVisible(c)).as(visibleProperty(c)).isTrue();
   }
 
@@ -215,13 +215,13 @@ public class ComponentDriver {
    * @throws AssertionError if the {@code Component} is visible.
    */
   @RunsInEDT
-  public void requireNotVisible(@Nonnull Component c) {
+  public void requireNotVisible(@NonNull Component c) {
     assertThat(isVisible(c)).as(visibleProperty(c)).isFalse();
   }
 
   @RunsInEDT
-  @Nonnull
-  private static Supplier<String> visibleProperty(@Nonnull Component c) {
+  @NonNull
+  private static Supplier<String> visibleProperty(@NonNull Component c) {
     return propertyName(c, VISIBLE_PROPERTY);
   }
 
@@ -232,15 +232,15 @@ public class ComponentDriver {
    * @throws AssertionError if the {@code Component} does not have input focus.
    */
   @RunsInEDT
-  public void requireFocused(@Nonnull Component c) {
+  public void requireFocused(@NonNull Component c) {
     assertThat(hasFocus(c)).as(requiredFocusedErrorMessage(c)).isTrue();
   }
 
-  @Nonnull
+  @NonNull
   private static Supplier<String> requiredFocusedErrorMessage(final Component c) {
     return new GuiLazyLoadingDescription() {
       @Override
-      @Nonnull
+      @NonNull
       protected String loadDescription() {
         return String.format("Expected component %s to have input focus", format(c));
       }
@@ -254,7 +254,7 @@ public class ComponentDriver {
    * @throws AssertionError if the {@code Component} is disabled.
    */
   @RunsInEDT
-  public void requireEnabled(@Nonnull Component c) {
+  public void requireEnabled(@NonNull Component c) {
     assertThat(isEnabled(c)).as(enabledProperty(c)).isTrue();
   }
 
@@ -266,7 +266,7 @@ public class ComponentDriver {
    * @throws org.assertj.swing.exception.WaitTimedOutError if the {@code Component} is never enabled.
    */
   @RunsInEDT
-  public void requireEnabled(@Nonnull Component c, @Nonnull Timeout timeout) {
+  public void requireEnabled(@NonNull Component c, @NonNull Timeout timeout) {
     pause(untilIsEnabled(c), timeout);
   }
 
@@ -277,13 +277,13 @@ public class ComponentDriver {
    * @throws AssertionError if the {@code Component} is enabled.
    */
   @RunsInEDT
-  public void requireDisabled(@Nonnull Component c) {
+  public void requireDisabled(@NonNull Component c) {
     assertThat(isEnabled(c)).as(enabledProperty(c)).isFalse();
   }
 
   @RunsInEDT
-  @Nonnull
-  private static Supplier<String> enabledProperty(@Nonnull Component c) {
+  @NonNull
+  private static Supplier<String> enabledProperty(@NonNull Component c) {
     return propertyName(c, ENABLED_PROPERTY);
   }
 
@@ -299,7 +299,7 @@ public class ComponentDriver {
    * @see java.awt.event.KeyEvent
    */
   @RunsInEDT
-  public void pressAndReleaseKeys(@Nonnull Component c, @Nonnull int... keyCodes) {
+  public void pressAndReleaseKeys(@NonNull Component c, @NonNull int... keyCodes) {
     checkNotNull(keyCodes);
     checkInEdtEnabledAndShowing(c);
     focusAndWaitForFocusGain(c);
@@ -320,7 +320,7 @@ public class ComponentDriver {
    * @see java.awt.event.InputEvent
    */
   @RunsInEDT
-  public void pressAndReleaseKey(@Nonnull Component c, @Nonnull KeyPressInfo keyPressInfo) {
+  public void pressAndReleaseKey(@NonNull Component c, @NonNull KeyPressInfo keyPressInfo) {
     checkNotNull(keyPressInfo);
     pressAndReleaseKey(c, keyPressInfo.keyCode(), keyPressInfo.modifiers());
   }
@@ -339,7 +339,7 @@ public class ComponentDriver {
    * @see java.awt.event.InputEvent
    */
   @RunsInEDT
-  public void pressAndReleaseKey(@Nonnull Component c, int keyCode, @Nonnull int[] modifiers) {
+  public void pressAndReleaseKey(@NonNull Component c, int keyCode, @NonNull int[] modifiers) {
     focusAndWaitForFocusGain(c);
     robot.pressAndReleaseKey(keyCode, modifiers);
   }
@@ -356,7 +356,7 @@ public class ComponentDriver {
    * @see java.awt.event.KeyEvent
    */
   @RunsInEDT
-  public void pressKey(@Nonnull Component c, int keyCode) {
+  public void pressKey(@NonNull Component c, int keyCode) {
     focusAndWaitForFocusGain(c);
     robot.pressKey(keyCode);
   }
@@ -375,7 +375,7 @@ public class ComponentDriver {
    * @see java.awt.event.KeyEvent
    */
   @RunsInEDT
-  public void pressKeyWhileRunning(@Nonnull Component c, int keyCode, @Nonnull Runnable runnable) {
+  public void pressKeyWhileRunning(@NonNull Component c, int keyCode, @NonNull Runnable runnable) {
     focusAndWaitForFocusGain(c);
     robot.pressKeyWhileRunning(keyCode, runnable);
   }
@@ -391,7 +391,7 @@ public class ComponentDriver {
    * @see java.awt.event.KeyEvent
    */
   @RunsInEDT
-  public void releaseKey(@Nonnull Component c, int keyCode) {
+  public void releaseKey(@NonNull Component c, int keyCode) {
     focusAndWaitForFocusGain(c);
     robot.releaseKey(keyCode);
   }
@@ -404,7 +404,7 @@ public class ComponentDriver {
    * @throws IllegalStateException if the {@code Component} is not showing on the screen.
    */
   @RunsInEDT
-  public void focusAndWaitForFocusGain(@Nonnull Component c) {
+  public void focusAndWaitForFocusGain(@NonNull Component c) {
     checkInEdtEnabledAndShowing(c);
     robot.focusAndWaitForFocusGain(c);
   }
@@ -418,7 +418,7 @@ public class ComponentDriver {
    * @throws IllegalStateException if the {@code Component} is not showing on the screen.
    */
   @RunsInEDT
-  public void focus(@Nonnull Component c) {
+  public void focus(@NonNull Component c) {
     checkInEdtEnabledAndShowing(c);
     robot.focus(c);
   }
@@ -430,7 +430,7 @@ public class ComponentDriver {
    * @param where the point where to start the drag action.
    */
   @RunsInEDT
-  protected final void drag(@Nonnull Component c, @Nonnull Point where) {
+  protected final void drag(@NonNull Component c, @NonNull Point where) {
     dragAndDrop.drag(c, where);
   }
 
@@ -443,7 +443,7 @@ public class ComponentDriver {
    * @throws org.assertj.swing.exception.ActionFailedException if there is no drag action in effect.
    */
   @RunsInEDT
-  public void drop(@Nonnull Component c) {
+  public void drop(@NonNull Component c) {
     checkInEdtEnabledAndShowing(c);
     drop(c, visibleCenterOf(c));
   }
@@ -461,7 +461,7 @@ public class ComponentDriver {
    * @throws org.assertj.swing.exception.ActionFailedException if there is no drag action in effect.
    */
   @RunsInEDT
-  protected final void drop(@Nonnull Component c, @Nonnull Point where) {
+  protected final void drop(@NonNull Component c, @NonNull Point where) {
     dragAndDrop.drop(c, where);
   }
 
@@ -472,7 +472,7 @@ public class ComponentDriver {
    * @param c the target {@code Component}.
    * @param where the point to drag over.
    */
-  protected final void dragOver(@Nonnull Component c, @Nonnull Point where) {
+  protected final void dragOver(@NonNull Component c, @NonNull Point where) {
     dragAndDrop.dragOver(c, where);
   }
 
@@ -490,7 +490,7 @@ public class ComponentDriver {
    * @throws org.assertj.swing.exception.ActionFailedException if something goes wrong.
    */
   @RunsInCurrentThread
-  protected final void performAccessibleActionOf(@Nonnull Component c) {
+  protected final void performAccessibleActionOf(@NonNull Component c) {
     performDefaultAccessibleAction(c);
     robot.waitForIdle();
   }
@@ -511,7 +511,7 @@ public class ComponentDriver {
    * @return {@code true} if the {@code Component} is showing and ready, {@code false} otherwise.
    */
   @RunsInCurrentThread
-  protected final boolean waitForShowing(@Nonnull Component c, long timeout) {
+  protected final boolean waitForShowing(@NonNull Component c, long timeout) {
     // TODO test
     if (robot.isReadyForInput(c)) {
       return true;
@@ -544,8 +544,8 @@ public class ComponentDriver {
    * @throws org.assertj.swing.exception.ComponentLookupException if a pop-up menu cannot be found.
    */
   @RunsInEDT
-  @Nonnull
-  public JPopupMenu invokePopupMenu(@Nonnull Component c) {
+  @NonNull
+  public JPopupMenu invokePopupMenu(@NonNull Component c) {
     checkClickAllowed(c);
     return robot.showPopupMenu(c);
   }
@@ -564,8 +564,8 @@ public class ComponentDriver {
    * @throws org.assertj.swing.exception.ComponentLookupException if a pop-up menu cannot be found.
    */
   @RunsInEDT
-  @Nonnull
-  public JPopupMenu invokePopupMenu(@Nonnull Component c, @Nonnull Point p) {
+  @NonNull
+  public JPopupMenu invokePopupMenu(@NonNull Component c, @NonNull Point p) {
     checkNotNull(p);
     checkClickAllowed(c);
     return robot.showPopupMenu(c, p);
@@ -579,7 +579,7 @@ public class ComponentDriver {
    * @throws IllegalStateException if the {@code Component} is not showing on the screen.
    */
   @RunsInEDT
-  protected static void checkInEdtEnabledAndShowing(final @Nonnull Component c) {
+  protected static void checkInEdtEnabledAndShowing(final @NonNull Component c) {
     execute(() -> checkEnabledAndShowing(c));
   }
 
@@ -590,7 +590,7 @@ public class ComponentDriver {
    * @throws IllegalStateException if the {@code Component} is not showing on the screen.
    */
   @RunsInEDT
-  protected static void checkInEdtShowing(final @Nonnull Component c) {
+  protected static void checkInEdtShowing(final @NonNull Component c) {
     execute(() -> checkShowing(c));
   }
 
@@ -603,7 +603,7 @@ public class ComponentDriver {
    * @throws IllegalStateException if the {@code Component} is not showing on the screen.
    */
   @RunsInEDT
-  protected void checkClickAllowed(final @Nonnull Component c) {
+  protected void checkClickAllowed(final @NonNull Component c) {
     if (robot.settings().clickOnDisabledComponentsAllowed()) {
       checkInEdtShowing(c);
     } else {
@@ -622,11 +622,11 @@ public class ComponentDriver {
    * @see org.assertj.swing.format.Formatting#format(Component)
    */
   @RunsInEDT
-  @Nonnull
-  public static Supplier<String> propertyName(final @Nonnull Component c, final @Nonnull String propertyName) {
+  @NonNull
+  public static Supplier<String> propertyName(final @NonNull Component c, final @NonNull String propertyName) {
     return new GuiLazyLoadingDescription() {
       @Override
-      @Nonnull
+      @NonNull
       protected String loadDescription() {
         return String.format("%s - property:'%s'", format(c), propertyName);
       }
@@ -642,7 +642,7 @@ public class ComponentDriver {
    * @param p coordinates relative to the given {@code Component}.
    */
   @RunsInEDT
-  protected final void moveMouseIgnoringAnyError(@Nonnull Component c, @Nonnull Point p) {
+  protected final void moveMouseIgnoringAnyError(@NonNull Component c, @NonNull Point p) {
     moveMouseIgnoringAnyError(c, p.x, p.y);
   }
 
@@ -656,7 +656,7 @@ public class ComponentDriver {
    * @param y vertical coordinate relative to the given {@code Component}.
    */
   @RunsInEDT
-  protected final void moveMouseIgnoringAnyError(@Nonnull Component c, int x, int y) {
+  protected final void moveMouseIgnoringAnyError(@NonNull Component c, int x, int y) {
     try {
       robot.moveMouse(c, x, y);
     } catch (RuntimeException ignored) {
@@ -670,8 +670,8 @@ public class ComponentDriver {
    * @return the font of the given {@code Component}.
    */
   @RunsInEDT
-  @Nonnull
-  public Font fontOf(final @Nonnull Component c) {
+  @NonNull
+  public Font fontOf(final @NonNull Component c) {
     Font result = execute(() -> c.getFont());
     return checkNotNull(result);
   }
@@ -683,8 +683,8 @@ public class ComponentDriver {
    * @return the background color of the given {@code Component}.
    */
   @RunsInEDT
-  @Nonnull
-  public Color backgroundOf(final @Nonnull Component c) {
+  @NonNull
+  public Color backgroundOf(final @NonNull Component c) {
     Color result = execute(() -> c.getBackground());
     return checkNotNull(result);
   }
@@ -696,8 +696,8 @@ public class ComponentDriver {
    * @return the foreground color of the given {@code Component}.
    */
   @RunsInEDT
-  @Nonnull
-  public Color foregroundOf(final @Nonnull Component c) {
+  @NonNull
+  public Color foregroundOf(final @NonNull Component c) {
     Color result = execute(() -> c.getForeground());
     return checkNotNull(result);
   }

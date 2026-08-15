@@ -14,7 +14,7 @@ package org.assertj.swing.driver;
 
 import org.assertj.swing.annotation.RunsInEDT;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.*;
 
 import static org.assertj.swing.edt.GuiActionRunner.execute;
@@ -29,7 +29,7 @@ import static org.assertj.swing.util.Preconditions.checkNotNull;
  */
 final class JOptionPaneOptionsQuery {
   @RunsInEDT
-  static @Nonnull Object[] optionsOf(final @Nonnull JOptionPane optionPane) {
+  static @NonNull Object[] optionsOf(final @NonNull JOptionPane optionPane) {
     Object[] result = execute(() -> optionPane.getOptions());
     return checkNotNull(result);
   }

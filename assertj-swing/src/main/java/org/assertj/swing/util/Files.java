@@ -12,7 +12,7 @@
  */
 package org.assertj.swing.util;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import java.io.File;
 import java.io.IOException;
 
@@ -31,7 +31,7 @@ public final class Files {
    * @return the created file.
    * @throws IOException if an I/O error occurs.
    */
-  public static @Nonnull File newFile(@Nonnull String name) throws IOException {
+  public static @NonNull File newFile(@NonNull String name) throws IOException {
     File file = new File(name);
     file.createNewFile();
     return file;
@@ -42,7 +42,7 @@ public final class Files {
    *
    * @param file the file to delete.
    */
-  public static void delete(@Nonnull File file) {
+  public static void delete(@NonNull File file) {
     if (file.isDirectory()) {
       File[] contents = file.listFiles();
       if (contents != null)
@@ -57,7 +57,7 @@ public final class Files {
    *
    * @return the current working folder.
    */
-  public static @Nonnull File currentFolder() {
+  public static @NonNull File currentFolder() {
     try {
       return new File(".").getCanonicalFile();
     } catch (IOException e) {

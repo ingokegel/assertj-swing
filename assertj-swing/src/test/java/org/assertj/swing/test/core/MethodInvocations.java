@@ -23,8 +23,8 @@ import static org.assertj.swing.util.Maps.newHashMap;
 
 import java.util.Map;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 
 /**
  * Mechanism to record and verify expected method invocations.
@@ -41,7 +41,7 @@ public class MethodInvocations {
    * @param methodName the name of the invoked method.
    * @return {@code this}.
    */
-  @Nonnull public MethodInvocations invoked(@Nonnull String methodName) {
+  @NonNull public MethodInvocations invoked(@NonNull String methodName) {
     invocations.put(methodName, new Object[0]);
     return this;
   }
@@ -53,7 +53,7 @@ public class MethodInvocations {
    * @param args the arguments passed to the invoked method.
    * @return {@code this}.
    */
-  @Nonnull public MethodInvocations invoked(@Nonnull String methodName, @Nonnull Args args) {
+  @NonNull public MethodInvocations invoked(@NonNull String methodName, @NonNull Args args) {
     checkNotNull(args);
     invocations.put(methodName, args.args);
     return this;
@@ -66,7 +66,7 @@ public class MethodInvocations {
    * @return {@code this}.
    * @throws AssertionError if the method was not invoked.
    */
-  @Nonnull public MethodInvocations requireInvoked(@Nonnull String methodName) {
+  @NonNull public MethodInvocations requireInvoked(@NonNull String methodName) {
     if (!invocations.containsKey(methodName)) {
       methodNotInvoked(methodName);
     }
@@ -82,7 +82,7 @@ public class MethodInvocations {
    * @throws AssertionError if the method was not invoked.
    * @throws AssertionError if different arguments were passed to the method to verify.
    */
-  @Nonnull public MethodInvocations requireInvoked(@Nonnull String methodName, @Nonnull Args args) {
+  @NonNull public MethodInvocations requireInvoked(@NonNull String methodName, @NonNull Args args) {
     checkNotNull(args);
     if (!invocations.containsKey(methodName)) {
       methodNotInvoked(methodName);
@@ -95,7 +95,7 @@ public class MethodInvocations {
     return this;
   }
 
-  private void methodNotInvoked(@Nonnull String methodName) {
+  private void methodNotInvoked(@NonNull String methodName) {
     fail(concat("expecting method ", quote(methodName), " to be invoked"));
   }
 
@@ -114,7 +114,7 @@ public class MethodInvocations {
      * @param args the arguments to store.
      * @return the created {@code Args}.
      */
-    @Nonnull public static Args args(@Nullable Object... args) {
+    @NonNull public static Args args(@Nullable Object... args) {
       return new Args(args);
     }
 

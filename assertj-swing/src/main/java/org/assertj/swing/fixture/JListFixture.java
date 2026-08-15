@@ -16,8 +16,8 @@ import static org.assertj.swing.core.MouseButton.LEFT_BUTTON;
 
 import java.util.regex.Pattern;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 import javax.swing.JList;
 
 import org.assertj.swing.cell.JListCellReader;
@@ -52,7 +52,7 @@ public class JListFixture extends AbstractJPopupMenuInvokerFixture<JListFixture,
    * @throws org.assertj.swing.exception.ComponentLookupException if a matching {@code JList} could not be found.
    * @throws org.assertj.swing.exception.ComponentLookupException if more than one matching {@code JList} is found.
    */
-  public JListFixture(@Nonnull Robot robot, @Nullable String listName) {
+  public JListFixture(@NonNull Robot robot, @Nullable String listName) {
     super(JListFixture.class, robot, listName, JList.class);
   }
 
@@ -64,12 +64,12 @@ public class JListFixture extends AbstractJPopupMenuInvokerFixture<JListFixture,
    * @throws NullPointerException if {@code robot} is {@code null}.
    * @throws NullPointerException if {@code target} is {@code null}.
    */
-  public JListFixture(@Nonnull Robot robot, @Nonnull JList target) {
+  public JListFixture(@NonNull Robot robot, @NonNull JList target) {
     super(JListFixture.class, robot, target);
   }
 
   @Override
-  @Nonnull protected JListDriver createDriver(@Nonnull Robot robot) {
+  @NonNull protected JListDriver createDriver(@NonNull Robot robot) {
     return new JListDriver(robot);
   }
 
@@ -96,7 +96,7 @@ public class JListFixture extends AbstractJPopupMenuInvokerFixture<JListFixture,
    * @see #replaceCellReader(JListCellReader)
    */
   @Override
-  @Nonnull public String[] contents() {
+  @NonNull public String[] contents() {
     return driver().contentsOf(target());
   }
 
@@ -107,7 +107,7 @@ public class JListFixture extends AbstractJPopupMenuInvokerFixture<JListFixture,
    * @return the {@code String} representation of the selected elements in this fixture's {@code JList}.
    * @see #replaceCellReader(JListCellReader)
    */
-  @Nonnull public String[] selection() {
+  @NonNull public String[] selection() {
     return driver().selectionOf(target());
   }
 
@@ -118,7 +118,7 @@ public class JListFixture extends AbstractJPopupMenuInvokerFixture<JListFixture,
    * @return a fixture that manages the list item specified by the given index.
    * @throws IndexOutOfBoundsException if the index is out of bounds.
    */
-  @Nonnull public JListItemFixture item(int index) {
+  @NonNull public JListItemFixture item(int index) {
     return new JListItemFixture(this, index);
   }
 
@@ -129,7 +129,7 @@ public class JListFixture extends AbstractJPopupMenuInvokerFixture<JListFixture,
    * @return a fixture that manages the list item specified by the given text.
    * @throws org.assertj.swing.exception.LocationUnavailableException if an element matching the given text cannot be found.
    */
-  @Nonnull public JListItemFixture item(@Nullable String text) {
+  @NonNull public JListItemFixture item(@Nullable String text) {
     return new JListItemFixture(this, driver().indexOf(target(), text));
   }
 
@@ -141,7 +141,7 @@ public class JListFixture extends AbstractJPopupMenuInvokerFixture<JListFixture,
    * @throws org.assertj.swing.exception.LocationUnavailableException if an element matching the given text cannot be found.
    * @throws NullPointerException if the given regular expression pattern is {@code null}.
    */
-  @Nonnull public JListItemFixture item(@Nonnull Pattern pattern) {
+  @NonNull public JListItemFixture item(@NonNull Pattern pattern) {
     return new JListItemFixture(this, driver().indexOf(target(), pattern));
   }
 
@@ -152,7 +152,7 @@ public class JListFixture extends AbstractJPopupMenuInvokerFixture<JListFixture,
    * @return this fixture.
    */
   @Override
-  @Nonnull public JListFixture clearSelection() {
+  @NonNull public JListFixture clearSelection() {
     driver().clearSelection(target());
     return this;
   }
@@ -170,7 +170,7 @@ public class JListFixture extends AbstractJPopupMenuInvokerFixture<JListFixture,
    * @see JListItemFixture#select()
    */
   @Override
-  @Nonnull public JListFixture selectItem(int index) {
+  @NonNull public JListFixture selectItem(int index) {
     driver().selectItem(target(), index);
     return this;
   }
@@ -188,7 +188,7 @@ public class JListFixture extends AbstractJPopupMenuInvokerFixture<JListFixture,
    * @see #replaceCellReader(JListCellReader)
    */
   @Override
-  @Nonnull public JListFixture selectItem(@Nullable String text) {
+  @NonNull public JListFixture selectItem(@Nullable String text) {
     driver().selectItem(target(), text);
     return this;
   }
@@ -208,7 +208,7 @@ public class JListFixture extends AbstractJPopupMenuInvokerFixture<JListFixture,
    * @see #replaceCellReader(JListCellReader)
    */
   @Override
-  @Nonnull public JListFixture selectItem(@Nonnull Pattern pattern) {
+  @NonNull public JListFixture selectItem(@NonNull Pattern pattern) {
     driver().selectItem(target(), pattern);
     return this;
   }
@@ -225,7 +225,7 @@ public class JListFixture extends AbstractJPopupMenuInvokerFixture<JListFixture,
    * @see #item(int)
    * @see JListItemFixture#unselect()
    */
-  @Nonnull public JListFixture unselectItem(int index) {
+  @NonNull public JListFixture unselectItem(int index) {
     driver().unselectItem(target(), index);
     return this;
   }
@@ -240,7 +240,7 @@ public class JListFixture extends AbstractJPopupMenuInvokerFixture<JListFixture,
    * @see #replaceCellReader(JListCellReader)
    */
   @Override
-  @Nonnull public JListFixture requireSelection(@Nullable String text) {
+  @NonNull public JListFixture requireSelection(@Nullable String text) {
     driver().requireSelection(target(), text);
     return this;
   }
@@ -256,7 +256,7 @@ public class JListFixture extends AbstractJPopupMenuInvokerFixture<JListFixture,
    * @see #replaceCellReader(JListCellReader)
    */
   @Override
-  @Nonnull public JListFixture requireSelection(@Nonnull Pattern pattern) {
+  @NonNull public JListFixture requireSelection(@NonNull Pattern pattern) {
     driver().requireSelection(target(), pattern);
     return this;
   }
@@ -269,7 +269,7 @@ public class JListFixture extends AbstractJPopupMenuInvokerFixture<JListFixture,
    * @throws AssertionError if the selected index is not equal to the given one.
    */
   @Override
-  @Nonnull public JListFixture requireSelection(int index) {
+  @NonNull public JListFixture requireSelection(int index) {
     driver().requireSelection(target(), index);
     return this;
   }
@@ -281,7 +281,7 @@ public class JListFixture extends AbstractJPopupMenuInvokerFixture<JListFixture,
    * @throws AssertionError if this fixture's {@code JList} has a selection.
    */
   @Override
-  @Nonnull public JListFixture requireNoSelection() {
+  @NonNull public JListFixture requireNoSelection() {
     driver().requireNoSelection(target());
     return this;
   }
@@ -294,7 +294,7 @@ public class JListFixture extends AbstractJPopupMenuInvokerFixture<JListFixture,
    * @throws AssertionError if the number of items in this fixture's {@code JList} is not equal to the expected one.
    */
   @Override
-  @Nonnull public JListFixture requireItemCount(int expected) {
+  @NonNull public JListFixture requireItemCount(int expected) {
     driver().requireItemCount(target(), expected);
     return this;
   }
@@ -310,7 +310,7 @@ public class JListFixture extends AbstractJPopupMenuInvokerFixture<JListFixture,
    * @throws IndexOutOfBoundsException if the any index is negative or greater than the index of the last item in the
    *           {@code JList}.
    */
-  @Nonnull public JListFixture selectItems(@Nonnull Range.From from, @Nonnull Range.To to) {
+  @NonNull public JListFixture selectItems(Range.@NonNull From from, Range.@NonNull To to) {
     driver().selectItems(target(), from, to);
     return this;
   }
@@ -327,7 +327,7 @@ public class JListFixture extends AbstractJPopupMenuInvokerFixture<JListFixture,
    * @throws IllegalStateException if this fixture's {@code JList} is disabled.
    * @throws IllegalStateException if this fixture's {@code JList} is not showing on the screen.
    */
-  @Nonnull public JListFixture selectItems(@Nonnull int... indices) {
+  @NonNull public JListFixture selectItems(@NonNull int... indices) {
     driver().selectItems(target(), indices);
     return this;
   }
@@ -344,7 +344,7 @@ public class JListFixture extends AbstractJPopupMenuInvokerFixture<JListFixture,
    * @throws IllegalStateException if this fixture's {@code JList} is disabled.
    * @throws IllegalStateException if this fixture's {@code JList} is not showing on the screen.
    */
-  @Nonnull public JListFixture unselectItems(@Nonnull int... indices) {
+  @NonNull public JListFixture unselectItems(@NonNull int... indices) {
     driver().unselectItems(target(), indices);
     return this;
   }
@@ -362,7 +362,7 @@ public class JListFixture extends AbstractJPopupMenuInvokerFixture<JListFixture,
    * @throws org.assertj.swing.exception.LocationUnavailableException if an element matching the any of the given values cannot be found.
    * @see #replaceCellReader(JListCellReader)
    */
-  @Nonnull public JListFixture selectItems(@Nonnull String... items) {
+  @NonNull public JListFixture selectItems(@NonNull String... items) {
     driver().selectItems(target(), items);
     return this;
   }
@@ -382,7 +382,7 @@ public class JListFixture extends AbstractJPopupMenuInvokerFixture<JListFixture,
    *           be found.
    * @see #replaceCellReader(JListCellReader)
    */
-  @Nonnull public JListFixture selectItems(@Nonnull Pattern... patterns) {
+  @NonNull public JListFixture selectItems(@NonNull Pattern... patterns) {
     driver().selectItems(target(), patterns);
     return this;
   }
@@ -399,7 +399,7 @@ public class JListFixture extends AbstractJPopupMenuInvokerFixture<JListFixture,
    * @see #item(int)
    * @see JListItemFixture#click()
    */
-  @Nonnull public JListFixture clickItem(int index) {
+  @NonNull public JListFixture clickItem(int index) {
     driver().clickItem(target(), index, LEFT_BUTTON, 1);
     return this;
   }
@@ -435,12 +435,12 @@ public class JListFixture extends AbstractJPopupMenuInvokerFixture<JListFixture,
    * @see JListItemFixture#select()
    * @see #replaceCellReader(JListCellReader)
    */
-  @Nonnull public JListFixture clickItem(@Nonnull Pattern pattern) {
+  @NonNull public JListFixture clickItem(@NonNull Pattern pattern) {
     driver().clickItem(target(), pattern, LEFT_BUTTON, 1);
     return this;
   }
 
-  void clickItem(int index, @Nonnull MouseButton button, int times) {
+  void clickItem(int index, @NonNull MouseButton button, int times) {
     driver().clickItem(target(), index, button, times);
   }
 
@@ -453,7 +453,7 @@ public class JListFixture extends AbstractJPopupMenuInvokerFixture<JListFixture,
    * @throws IllegalArgumentException if the given array is empty.
    * @throws AssertionError if the selection in this fixture's {@code JList} does not match the given one.
    */
-  @Nonnull public JListFixture requireSelectedItems(@Nonnull int... indices) {
+  @NonNull public JListFixture requireSelectedItems(@NonNull int... indices) {
     driver().requireSelectedItems(target(), indices);
     return this;
   }
@@ -469,7 +469,7 @@ public class JListFixture extends AbstractJPopupMenuInvokerFixture<JListFixture,
    * @throws AssertionError if the selected items do not match the given text items.
    * @see #replaceCellReader(JListCellReader)
    */
-  @Nonnull public JListFixture requireSelectedItems(@Nonnull String... items) {
+  @NonNull public JListFixture requireSelectedItems(@NonNull String... items) {
     driver().requireSelectedItems(target(), items);
     return this;
   }
@@ -486,7 +486,7 @@ public class JListFixture extends AbstractJPopupMenuInvokerFixture<JListFixture,
    * @throws AssertionError if the selected items do not match the given regular expression patterns.
    * @see #replaceCellReader(JListCellReader)
    */
-  @Nonnull public JListFixture requireSelectedItems(@Nonnull Pattern[] patterns) {
+  @NonNull public JListFixture requireSelectedItems(@NonNull Pattern[] patterns) {
     driver().requireSelectedItems(target(), patterns);
     return this;
   }
@@ -501,7 +501,7 @@ public class JListFixture extends AbstractJPopupMenuInvokerFixture<JListFixture,
    * @throws IndexOutOfBoundsException if the given index is negative or greater than the index of the last item in the
    *           {@code JList}.
    */
-  @Nonnull public JListFixture drag(int index) {
+  @NonNull public JListFixture drag(int index) {
     driver().drag(target(), index);
     return this;
   }
@@ -517,7 +517,7 @@ public class JListFixture extends AbstractJPopupMenuInvokerFixture<JListFixture,
    *           {@code JList}.
    * @throws org.assertj.swing.exception.ActionFailedException if there is no drag action in effect.
    */
-  @Nonnull public JListFixture drop(int index) {
+  @NonNull public JListFixture drop(int index) {
     driver().drop(target(), index);
     return this;
   }
@@ -534,7 +534,7 @@ public class JListFixture extends AbstractJPopupMenuInvokerFixture<JListFixture,
    * @throws org.assertj.swing.exception.ActionFailedException if there is no drag action in effect.
    * @see #drop(int)
    */
-  @Nonnull public JListFixture dropAbove(int index) {
+  @NonNull public JListFixture dropAbove(int index) {
     return drop(index - 1);
   }
 
@@ -550,7 +550,7 @@ public class JListFixture extends AbstractJPopupMenuInvokerFixture<JListFixture,
    * @throws org.assertj.swing.exception.ActionFailedException if there is no drag action in effect.
    * @see #drop(int)
    */
-  @Nonnull public JListFixture dropBelow(int index) {
+  @NonNull public JListFixture dropBelow(int index) {
     return drop(index + 1);
   }
 
@@ -564,7 +564,7 @@ public class JListFixture extends AbstractJPopupMenuInvokerFixture<JListFixture,
    * @throws org.assertj.swing.exception.LocationUnavailableException if an element matching the given text cannot be found.
    * @return this fixture.
    */
-  @Nonnull public JListFixture drag(@Nullable String text) {
+  @NonNull public JListFixture drag(@Nullable String text) {
     driver().drag(target(), text);
     return this;
   }
@@ -579,7 +579,7 @@ public class JListFixture extends AbstractJPopupMenuInvokerFixture<JListFixture,
    * @throws org.assertj.swing.exception.LocationUnavailableException if an element matching the given text cannot be found.
    * @throws org.assertj.swing.exception.ActionFailedException if there is no drag action in effect.
    */
-  @Nonnull public JListFixture drop(@Nullable String text) {
+  @NonNull public JListFixture drop(@Nullable String text) {
     driver().drop(target(), text);
     return this;
   }
@@ -595,7 +595,7 @@ public class JListFixture extends AbstractJPopupMenuInvokerFixture<JListFixture,
    * @throws NullPointerException if the given regular expression pattern in {@code null}.
    * @throws org.assertj.swing.exception.LocationUnavailableException if an element matching the given regular expression pattern cannot be found.
    */
-  @Nonnull public JListFixture drag(@Nonnull Pattern pattern) {
+  @NonNull public JListFixture drag(@NonNull Pattern pattern) {
     driver().drag(target(), pattern);
     return this;
   }
@@ -611,7 +611,7 @@ public class JListFixture extends AbstractJPopupMenuInvokerFixture<JListFixture,
    * @throws org.assertj.swing.exception.LocationUnavailableException if an element matching the given text cannot be found.
    * @throws org.assertj.swing.exception.ActionFailedException if there is no drag action in effect.
    */
-  @Nonnull public JListFixture drop(@Nonnull Pattern pattern) {
+  @NonNull public JListFixture drop(@NonNull Pattern pattern) {
     driver().drop(target(), pattern);
     return this;
   }
@@ -627,7 +627,7 @@ public class JListFixture extends AbstractJPopupMenuInvokerFixture<JListFixture,
    * @throws IndexOutOfBoundsException if the given index is negative or greater than the index of the last item in the
    *           {@code JList}.
    */
-  @Nonnull public JPopupMenuFixture showPopupMenuAt(int index) {
+  @NonNull public JPopupMenuFixture showPopupMenuAt(int index) {
     return new JPopupMenuFixture(robot(), driver().showPopupMenu(target(), index));
   }
 
@@ -641,7 +641,7 @@ public class JListFixture extends AbstractJPopupMenuInvokerFixture<JListFixture,
    * @throws org.assertj.swing.exception.ComponentLookupException if a pop-up menu cannot be found.
    * @throws org.assertj.swing.exception.LocationUnavailableException if an element matching the given value cannot be found.
    */
-  @Nonnull public JPopupMenuFixture showPopupMenuAt(@Nullable String text) {
+  @NonNull public JPopupMenuFixture showPopupMenuAt(@Nullable String text) {
     return new JPopupMenuFixture(robot(), driver().showPopupMenu(target(), text));
   }
 
@@ -657,11 +657,11 @@ public class JListFixture extends AbstractJPopupMenuInvokerFixture<JListFixture,
    * @throws org.assertj.swing.exception.ComponentLookupException if a pop-up menu cannot be found.
    * @throws org.assertj.swing.exception.LocationUnavailableException if an element matching the given value cannot be found.
    */
-  @Nonnull public JPopupMenuFixture showPopupMenuAt(@Nonnull Pattern pattern) {
+  @NonNull public JPopupMenuFixture showPopupMenuAt(@NonNull Pattern pattern) {
     return new JPopupMenuFixture(robot(), driver().showPopupMenu(target(), pattern));
   }
 
-  public void replaceCellReader(@Nonnull JListCellReader cellReader) {
+  public void replaceCellReader(@NonNull JListCellReader cellReader) {
     driver().replaceCellReader(cellReader);
   }
 }

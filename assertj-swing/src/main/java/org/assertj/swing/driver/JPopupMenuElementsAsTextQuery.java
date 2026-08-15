@@ -15,8 +15,8 @@ package org.assertj.swing.driver;
 import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.edt.GuiQuery;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 import javax.swing.*;
 import java.awt.*;
 
@@ -32,7 +32,7 @@ import static org.assertj.swing.util.Preconditions.checkNotNull;
  */
 final class JPopupMenuElementsAsTextQuery {
   @RunsInEDT
-  static @Nonnull String[] menuElementsAsText(final @Nonnull JPopupMenu popupMenu) {
+  static @NonNull String[] menuElementsAsText(final @NonNull JPopupMenu popupMenu) {
     String[] result = execute(new GuiQuery<String[]>() {
       @Override
       protected String[] executeInEDT() throws Throwable {
@@ -48,7 +48,7 @@ final class JPopupMenuElementsAsTextQuery {
     return checkNotNull(result);
   }
 
-  @Nullable private static String textOf(@Nonnull MenuElement e) {
+  @Nullable private static String textOf(@NonNull MenuElement e) {
     Component c = componentIn(e);
     if (c instanceof JMenuItem) {
       return ((JMenuItem) c).getText();

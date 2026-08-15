@@ -12,7 +12,7 @@
  */
 package org.assertj.swing.driver;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import java.util.Map;
 
 import static javax.swing.JOptionPane.*;
@@ -36,7 +36,7 @@ final class JOptionPaneMessageTypes {
     messageMap.put(PLAIN_MESSAGE, "Plain Message");
   }
 
-  static @Nonnull String messageTypeAsText(int messageType) {
+  static @NonNull String messageTypeAsText(int messageType) {
     if (messageMap.containsKey(messageType)) {
       return checkNotNullOrEmpty(messageMap.get(messageType)).toString();
     }

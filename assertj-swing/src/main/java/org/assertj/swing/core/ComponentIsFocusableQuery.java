@@ -15,7 +15,7 @@ package org.assertj.swing.core;
 import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.util.Preconditions;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import java.awt.*;
 
 import static org.assertj.swing.edt.GuiActionRunner.execute;
@@ -29,7 +29,7 @@ import static org.assertj.swing.edt.GuiActionRunner.execute;
  */
 final class ComponentIsFocusableQuery {
   @RunsInEDT
-  static boolean isFocusable(final @Nonnull Component component) {
+  static boolean isFocusable(final @NonNull Component component) {
     Boolean result = execute(() -> component.isFocusable());
     return Preconditions.checkNotNull(result);
   }

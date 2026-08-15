@@ -17,7 +17,7 @@ import static org.assertj.core.util.Lists.newArrayList;
 import java.awt.Component;
 import java.util.List;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 
 import org.junit.rules.TestRule;
 import org.junit.runner.Description;
@@ -31,11 +31,11 @@ public class ClickRecorderManager implements TestRule {
     return new RecorderStatement(base);
   }
 
-  @Nonnull public ClickRecorder attachDirectlyTo(@Nonnull Component target) {
+  @NonNull public ClickRecorder attachDirectlyTo(@NonNull Component target) {
     return ClickRecorder.attachTo(target);
   }
 
-  @Nonnull public ToolkitClickRecorder attachToToolkitFor(@Nonnull Component target) {
+  @NonNull public ToolkitClickRecorder attachToToolkitFor(@NonNull Component target) {
     ToolkitClickRecorder clickRecorder = ToolkitClickRecorder.attachTo(target);
     attachedToolkitClickRecorders.add(clickRecorder);
     return clickRecorder;

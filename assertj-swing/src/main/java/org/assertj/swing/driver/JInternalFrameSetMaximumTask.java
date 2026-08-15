@@ -14,7 +14,7 @@ package org.assertj.swing.driver;
 
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.JInternalFrame;
 
 import org.assertj.swing.annotation.RunsInEDT;
@@ -26,7 +26,7 @@ import org.assertj.swing.annotation.RunsInEDT;
  */
 final class JInternalFrameSetMaximumTask {
   @RunsInEDT
-  static void setMaximum(final @Nonnull JInternalFrame internalFrame, final @Nonnull JInternalFrameAction action) {
+  static void setMaximum(final @NonNull JInternalFrame internalFrame, final @NonNull JInternalFrameAction action) {
     execute(() -> {
       internalFrame.setIcon(false);
       internalFrame.setMaximum(action.value);

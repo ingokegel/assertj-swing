@@ -14,8 +14,8 @@ package org.assertj.swing.test.query;
 
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 import javax.swing.JComboBox;
 
 import org.assertj.swing.annotation.RunsInEDT;
@@ -27,7 +27,7 @@ import org.assertj.swing.annotation.RunsInEDT;
  */
 public final class JComboBoxSelectedItemQuery {
   @RunsInEDT
-  @Nullable public static Object selectedItemOf(final @Nonnull JComboBox comboBox) {
+  @Nullable public static Object selectedItemOf(final @NonNull JComboBox comboBox) {
     return execute(() -> comboBox.getSelectedItem());
   }
 

@@ -18,7 +18,7 @@ import static org.assertj.swing.edt.GuiActionRunner.execute;
 import static org.assertj.swing.test.ExpectedException.none;
 import static org.assertj.swing.test.core.NeverMatchingComponentMatcher.neverMatches;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.JTextField;
 import javax.swing.text.JTextComponent;
 
@@ -83,7 +83,7 @@ public class AbstractContainerFixture_textBox_Test extends RobotBasedTestCase {
     robot.showWindow(window);
     JTextComponentFixture textBox = fixture.textBox(new GenericTypeMatcher<JTextComponent>(JTextComponent.class) {
       @Override
-      protected boolean isMatching(@Nonnull JTextComponent b) {
+      protected boolean isMatching(@NonNull JTextComponent b) {
         return "".equals(b.getText());
       }
     });
@@ -100,11 +100,11 @@ public class AbstractContainerFixture_textBox_Test extends RobotBasedTestCase {
   private static class MyWindow extends TestWindow {
     final JTextComponent textBox = new JTextField(10);
 
-    static @Nonnull MyWindow createNew(final @Nonnull Class<?> testClass) {
+    static @NonNull MyWindow createNew(final @NonNull Class<?> testClass) {
       return checkNotNull(execute(() -> new MyWindow(testClass)));
     }
 
-    private MyWindow(@Nonnull Class<?> testClass) {
+    private MyWindow(@NonNull Class<?> testClass) {
       super(testClass);
       textBox.setName("typeMeTextField");
       addComponents(textBox);

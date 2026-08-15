@@ -12,7 +12,7 @@
  */
 package org.assertj.swing.image;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -35,7 +35,7 @@ public class ImageFileWriter {
    * @return {@code false} if the image could not be saved.
    * @exception IOException if an error occurs during writing.
    */
-  public boolean writeAsPng(@Nonnull BufferedImage image, @Nonnull String filePath) throws IOException {
+  public boolean writeAsPng(@NonNull BufferedImage image, @NonNull String filePath) throws IOException {
     return ImageIO.write(image, PNG, newFile(filePath));
   }
 }

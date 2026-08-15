@@ -18,7 +18,7 @@ import static org.assertj.core.util.Lists.newArrayList;
 
 import java.util.Collection;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 
 import org.assertj.swing.exception.EdtViolationException;
 import org.assertj.swing.test.data.BooleanProvider;
@@ -38,7 +38,7 @@ public class EdtSafeCondition_test_Test {
   private final boolean conditionSatisfied;
 
   @Parameters
-  @Nonnull public static Collection<Object[]> booleans() {
+  @NonNull public static Collection<Object[]> booleans() {
     return newArrayList(BooleanProvider.booleans());
   }
 

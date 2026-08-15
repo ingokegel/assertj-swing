@@ -14,7 +14,7 @@ package org.assertj.swing.util;
 
 import org.assertj.swing.annotation.VisibleForTesting;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 
 import static java.util.Locale.ENGLISH;
 import static org.assertj.swing.util.OSFamily.*;
@@ -41,7 +41,7 @@ class OSIdentifier {
   }
 
   @VisibleForTesting
-  OSIdentifier(@Nonnull SystemPropertyReader reader) {
+  OSIdentifier(@NonNull SystemPropertyReader reader) {
     String osName = checkNotNull(reader.systemProperty("os.name")).toLowerCase(ENGLISH);
     isWindows = osName.startsWith("windows");
     isWindows9x = isWindows && containsAny(osName, "95", "98", "me");
@@ -54,7 +54,7 @@ class OSIdentifier {
     osFamily = findOSFamily();
   }
 
-  private static boolean containsAny(@Nonnull String target, @Nonnull String... subs) {
+  private static boolean containsAny(@NonNull String target, @NonNull String... subs) {
     for (String sub : subs) {
       if (target.contains(sub)) {
         return true;
@@ -63,7 +63,7 @@ class OSIdentifier {
     return false;
   }
 
-  @Nonnull private OSFamily findOSFamily() {
+  @NonNull private OSFamily findOSFamily() {
     if (isWindows()) {
       return WINDOWS;
     }
@@ -114,7 +114,7 @@ class OSIdentifier {
   }
 
   /* Since 1.2 */
-  @Nonnull
+  @NonNull
   OSFamily osFamily() {
     return osFamily;
   }

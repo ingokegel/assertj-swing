@@ -14,7 +14,7 @@ package org.assertj.swing.launcher;
 
 import org.assertj.swing.exception.UnexpectedException;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 
 import static org.assertj.swing.util.Arrays.copyOf;
 import static org.assertj.swing.util.Preconditions.checkNotNull;
@@ -61,7 +61,7 @@ public class ApplicationLauncher {
    * @return the created {@code ApplicationStarter}.
    * @throws UnexpectedException if the class specified in the given name cannot be loaded.
    */
-  @Nonnull public static ApplicationLauncher application(@Nonnull String applicationTypeName) {
+  @NonNull public static ApplicationLauncher application(@NonNull String applicationTypeName) {
     try {
       Class<?> applicationType = Thread.currentThread().getContextClassLoader().loadClass(applicationTypeName);
       return application(applicationType);
@@ -76,14 +76,14 @@ public class ApplicationLauncher {
    * @param applicationType the class containing the "main" method.
    * @return the created {@code ApplicationStarter}.
    */
-  @Nonnull public static ApplicationLauncher application(@Nonnull Class<?> applicationType) {
+  @NonNull public static ApplicationLauncher application(@NonNull Class<?> applicationType) {
     return new ApplicationLauncher(applicationType);
   }
 
   private final Class<?> applicationType;
   private String[] args = {};
 
-  private ApplicationLauncher(@Nonnull Class<?> applicationType) {
+  private ApplicationLauncher(@NonNull Class<?> applicationType) {
     this.applicationType = applicationType;
   }
 
@@ -95,7 +95,7 @@ public class ApplicationLauncher {
    * @return this {@code ApplicationStarter}.
    * @throws NullPointerException if {@code newArgs} is {@code null}.
    */
-  @Nonnull public ApplicationLauncher withArgs(@Nonnull String... newArgs) {
+  @NonNull public ApplicationLauncher withArgs(@NonNull String... newArgs) {
     args = copyOf(checkNotNull(newArgs));
     return this;
   }

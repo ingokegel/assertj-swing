@@ -16,7 +16,7 @@ import java.awt.Component;
 import java.awt.Dialog;
 import java.awt.Frame;
 
-import javax.annotation.Nullable;
+import org.jspecify.annotations.Nullable;
 import javax.swing.JInternalFrame;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;

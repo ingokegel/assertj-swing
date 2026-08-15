@@ -20,7 +20,7 @@ import java.awt.Container;
 import java.awt.Insets;
 import java.awt.Point;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
 
@@ -46,7 +46,7 @@ final class WindowLikeContainers {
    * @return the coordinates of the 'close' button.
    */
   @RunsInCurrentThread
-  static @Nonnull Point closeButtonLocation(@Nonnull Container c) {
+  static @NonNull Point closeButtonLocation(@NonNull Container c) {
     Insets insets = c.getInsets();
     if (isOSX()) {
       return new Point(insets.left + 15, insets.top / 2);
@@ -68,7 +68,7 @@ final class WindowLikeContainers {
    * @return the coordinates of the 'maximize' button.
    */
   @RunsInCurrentThread
-  static @Nonnull Point maximizeButtonLocation(@Nonnull Container c) {
+  static @NonNull Point maximizeButtonLocation(@NonNull Container c) {
     Point p = iconifyButtonLocation(c);
     p.x += MAXIMIZE_BUTTON_OFFSET;
     return p;
@@ -88,7 +88,7 @@ final class WindowLikeContainers {
    * @return the coordinates of the 'iconify' button, returning (0, 0) if not found.
    */
   @RunsInCurrentThread
-  static @Nonnull Point iconifyButtonLocation(@Nonnull Container c) {
+  static @NonNull Point iconifyButtonLocation(@NonNull Container c) {
     Insets insets = c.getInsets();
     // From Abbot: We know the exact layout of the window manager frames for w32 and OSX. Currently no way of detecting
     // the WM under X11. Maybe we could send a WM message (WM_ICONIFY)?

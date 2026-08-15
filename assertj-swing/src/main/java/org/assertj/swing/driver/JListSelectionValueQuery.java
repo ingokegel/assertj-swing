@@ -14,8 +14,8 @@ package org.assertj.swing.driver;
 
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 import javax.swing.JList;
 
 import org.assertj.swing.annotation.RunsInEDT;
@@ -31,7 +31,7 @@ final class JListSelectionValueQuery {
   static final Object NO_SELECTION_VALUE = new Object();
 
   @RunsInEDT
-  static @Nullable Object singleSelectionValue(final @Nonnull JList<?> list, final @Nonnull JListCellReader cellReader) {
+  static @Nullable Object singleSelectionValue(final @NonNull JList<?> list, final @NonNull JListCellReader cellReader) {
     return execute(() -> {
       int selectedIndex = list.getSelectedIndex();
       return (selectedIndex >= 0) ? cellReader.valueAt(list, selectedIndex) : NO_SELECTION_VALUE;

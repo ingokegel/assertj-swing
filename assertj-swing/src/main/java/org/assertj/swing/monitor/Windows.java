@@ -15,9 +15,7 @@ package org.assertj.swing.monitor;
 import org.assertj.swing.annotation.RunsInCurrentThread;
 import org.assertj.swing.annotation.VisibleForTesting;
 
-import javax.annotation.Nonnull;
-import javax.annotation.concurrent.GuardedBy;
-import javax.annotation.concurrent.ThreadSafe;
+import org.jspecify.annotations.NonNull;
 import java.awt.*;
 import java.util.Map;
 import java.util.Timer;
@@ -30,25 +28,20 @@ import static org.assertj.swing.util.Maps.newWeakHashMap;
  *
  * @author Alex Ruiz
  */
-@ThreadSafe
 class Windows {
   @VisibleForTesting
   static int WINDOW_READY_DELAY = 10000;
 
   /** {@link Window#isShowing() isShowing} is true but are not yet ready for input. */
-  @GuardedBy("lock")
   final Map<Window, TimerTask> pending = newWeakHashMap();
 
   /** Considered to be ready to use. */
-  @GuardedBy("lock")
   final Map<Window, Boolean> open = newWeakHashMap();
 
   /** Have sent a {@link java.awt.event.WindowEvent#WINDOW_CLOSED WINDOW_CLOSED} event. */
-  @GuardedBy("lock")
   final Map<Window, Boolean> closed = newWeakHashMap();
 
   /** Not visible. */
-  @GuardedBy("lock")
   final Map<Window, Boolean> hidden = newWeakHashMap();
 
   private final Timer windowReadyTimer;
@@ -76,7 +69,7 @@ class Windows {
    * @param w the given window.
    */
   @RunsInCurrentThread
-  void markExisting(@Nonnull Window w) {
+  void markExisting(@NonNull Window w) {
     synchronized (lock) {
       open.put(w, true);
       if (!w.isShowing()) {
@@ -90,7 +83,7 @@ class Windows {
    *
    * @param w the given window.
    */
-  void markAsHidden(@Nonnull Window w) {
+  void markAsHidden(@NonNull Window w) {
     synchronized (lock) {
       hidden.put(w, true);
       removeWindowFrom(w, pending);
@@ -102,7 +95,7 @@ class Windows {
    *
    * @param w the given window.
    */
-  void markAsShowing(final @Nonnull Window w) {
+  void markAsShowing(final @NonNull Window w) {
     synchronized (lock) {
       TimerTask task = new TimerTask() {
         @Override
@@ -120,7 +113,7 @@ class Windows {
    *
    * @param w the given window.
    */
-  void markAsReady(@Nonnull Window w) {
+  void markAsReady(@NonNull Window w) {
     synchronized (lock) {
       if (!pending.containsKey(w)) {
         return;
@@ -135,7 +128,7 @@ class Windows {
    *
    * @param w the given window.
    */
-  void markAsClosed(@Nonnull Window w) {
+  void markAsClosed(@NonNull Window w) {
     synchronized (lock) {
       removeWindowFrom(w, open, hidden, pending);
       closed.put(w, true);
@@ -154,7 +147,7 @@ class Windows {
    * @param c the given {@code Component}.
    * @return {@code true} if the given {@code Component} is a closed {@code Window}, {@code false} otherwise.
    */
-  boolean isClosed(@Nonnull Component c) {
+  boolean isClosed(@NonNull Component c) {
     synchronized (lock) {
       return closed.containsKey(c);
     }
@@ -166,7 +159,7 @@ class Windows {
    * @param w the given {@code Window}.
    * @return {@code true} if the given {@code Window} is ready to receive OS-level event input, {@code false} otherwise.
    */
-  boolean isReady(@Nonnull Window w) {
+  boolean isReady(@NonNull Window w) {
     synchronized (lock) {
       return open.containsKey(w) && !hidden.containsKey(w);
     }
@@ -178,7 +171,7 @@ class Windows {
    * @param w the given {@code Window}.
    * @return {@code true} if the given {@code Window} is hidden, {@code false} otherwise.
    */
-  boolean isHidden(@Nonnull Window w) {
+  boolean isHidden(@NonNull Window w) {
     synchronized (lock) {
       return hidden.containsKey(w);
     }
@@ -191,7 +184,7 @@ class Windows {
    * @return {@code true} if the given {@code Window} is showing but not not ready to receive OS-level event input,
    *         {@code false} otherwise.
    */
-  boolean isShowingButNotReady(@Nonnull Window w) {
+  boolean isShowingButNotReady(@NonNull Window w) {
     synchronized (lock) {
       return pending.containsKey(w);
     }

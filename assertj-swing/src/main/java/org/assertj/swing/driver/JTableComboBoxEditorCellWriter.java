@@ -15,7 +15,7 @@ package org.assertj.swing.driver;
 import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.core.Robot;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.*;
 import java.awt.*;
 
@@ -32,20 +32,20 @@ import static org.assertj.swing.util.Lists.newArrayList;
 public class JTableComboBoxEditorCellWriter extends AbstractJTableCellWriter {
   private final JComboBoxDriver driver;
 
-  public JTableComboBoxEditorCellWriter(@Nonnull Robot robot) {
+  public JTableComboBoxEditorCellWriter(@NonNull Robot robot) {
     super(robot);
     driver = new JComboBoxDriver(robot);
   }
 
   @RunsInEDT
   @Override
-  public void enterValue(@Nonnull JTable table, int row, int column, @Nonnull String value) {
+  public void enterValue(@NonNull JTable table, int row, int column, @NonNull String value) {
     JComboBox<?> editor = doStartCellEditing(table, row, column);
     selectOrType(editor, value);
     stopEditing(table, row, column);
   }
 
-  private void selectOrType(@Nonnull JComboBox<?> editor, @Nonnull String value) {
+  private void selectOrType(@NonNull JComboBox<?> editor, @NonNull String value) {
     boolean selectValue = !isEditable(editor);
     if (!selectValue) {
       selectValue = newArrayList(driver.contentsOf(editor)).contains(value);
@@ -59,12 +59,12 @@ public class JTableComboBoxEditorCellWriter extends AbstractJTableCellWriter {
 
   @Override
   @RunsInEDT
-  public void startCellEditing(@Nonnull JTable table, int row, int column) {
+  public void startCellEditing(@NonNull JTable table, int row, int column) {
     doStartCellEditing(table, row, column);
   }
 
   @RunsInEDT
-  private JComboBox<?> doStartCellEditing(@Nonnull JTable table, int row, int column) {
+  private JComboBox<?> doStartCellEditing(@NonNull JTable table, int row, int column) {
     Point cellLocation = cellLocation(table, row, column, location());
     robot.click(table, cellLocation); // activate JComboBox editor
     JComboBox<?> comboBox = waitForEditorActivation(table, row, column);
@@ -73,7 +73,7 @@ public class JTableComboBoxEditorCellWriter extends AbstractJTableCellWriter {
   }
 
   @RunsInEDT
-  private JComboBox<?> waitForEditorActivation(@Nonnull JTable table, int row, int column) {
+  private JComboBox<?> waitForEditorActivation(@NonNull JTable table, int row, int column) {
     return waitForEditorActivation(table, row, column, JComboBox.class);
   }
 }

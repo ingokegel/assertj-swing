@@ -18,8 +18,8 @@ import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Window;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 
 import org.assertj.swing.core.Robot;
 import org.assertj.swing.driver.WindowDriver;
@@ -49,7 +49,7 @@ public abstract class AbstractWindowFixture<S, C extends Window, D extends Windo
    *           is found.
    * @see org.assertj.swing.core.BasicRobot#robotWithCurrentAwtHierarchy()
    */
-  public AbstractWindowFixture(@Nonnull Class<S> selfType, @Nonnull Class<? extends C> type) {
+  public AbstractWindowFixture(@NonNull Class<S> selfType, @NonNull Class<? extends C> type) {
     this(selfType, robotWithCurrentAwtHierarchy(), type);
   }
 
@@ -66,7 +66,7 @@ public abstract class AbstractWindowFixture<S, C extends Window, D extends Windo
    * @throws org.assertj.swing.exception.ComponentLookupException if more than one {@code Window} having a matching type
    *           is found.
    */
-  public AbstractWindowFixture(@Nonnull Class<S> selfType, @Nonnull Robot robot, @Nonnull Class<? extends C> type) {
+  public AbstractWindowFixture(@NonNull Class<S> selfType, @NonNull Robot robot, @NonNull Class<? extends C> type) {
     super(selfType, robot, type);
   }
 
@@ -84,7 +84,7 @@ public abstract class AbstractWindowFixture<S, C extends Window, D extends Windo
    *           is found.
    * @see org.assertj.swing.core.BasicRobot#robotWithCurrentAwtHierarchy()
    */
-  public AbstractWindowFixture(@Nonnull Class<S> selfType, @Nullable String name, @Nonnull Class<? extends C> type) {
+  public AbstractWindowFixture(@NonNull Class<S> selfType, @Nullable String name, @NonNull Class<? extends C> type) {
     this(selfType, robotWithCurrentAwtHierarchy(), name, type);
   }
 
@@ -102,8 +102,8 @@ public abstract class AbstractWindowFixture<S, C extends Window, D extends Windo
    * @throws org.assertj.swing.exception.ComponentLookupException if more than one {@code Window} having a matching name
    *           is found.
    */
-  public AbstractWindowFixture(@Nonnull Class<S> selfType, @Nonnull Robot robot, @Nullable String name,
-                               @Nonnull Class<? extends C> type) {
+  public AbstractWindowFixture(@NonNull Class<S> selfType, @NonNull Robot robot, @Nullable String name,
+                               @NonNull Class<? extends C> type) {
     super(selfType, robot, name, type);
   }
 
@@ -115,7 +115,7 @@ public abstract class AbstractWindowFixture<S, C extends Window, D extends Windo
    * @param target the {@code Window} to be managed by this fixture.
    * @throws NullPointerException if the given target {@code Window} is {@code null}.
    */
-  public AbstractWindowFixture(@Nonnull Class<S> selfType, @Nonnull C target) {
+  public AbstractWindowFixture(@NonNull Class<S> selfType, @NonNull C target) {
     this(selfType, robotWithCurrentAwtHierarchy(), target);
   }
 
@@ -128,7 +128,7 @@ public abstract class AbstractWindowFixture<S, C extends Window, D extends Windo
    * @throws NullPointerException if the given robot is {@code null}.
    * @throws NullPointerException if the given target {@code Window} is {@code null}.
    */
-  public AbstractWindowFixture(@Nonnull Class<S> selfType, @Nonnull Robot robot, @Nonnull C target) {
+  public AbstractWindowFixture(@NonNull Class<S> selfType, @NonNull Robot robot, @NonNull C target) {
     super(selfType, robot, target);
   }
 
@@ -141,7 +141,7 @@ public abstract class AbstractWindowFixture<S, C extends Window, D extends Windo
    * @throws org.assertj.swing.exception.ActionFailedException if the given {@code Window} is not showing on the screen.
    */
   @Override
-  public final @Nonnull S moveTo(@Nonnull Point p) {
+  public final @NonNull S moveTo(@NonNull Point p) {
     driver().moveTo(target(), p);
     return myself();
   }
@@ -152,7 +152,7 @@ public abstract class AbstractWindowFixture<S, C extends Window, D extends Windo
    * @return this fixture.
    */
   @Override
-  public final @Nonnull S moveToFront() {
+  public final @NonNull S moveToFront() {
     driver().moveToFront(target());
     return myself();
   }
@@ -164,7 +164,7 @@ public abstract class AbstractWindowFixture<S, C extends Window, D extends Windo
    * @return this fixture.
    */
   @Override
-  public final @Nonnull S moveToBack() {
+  public final @NonNull S moveToBack() {
     driver().moveToBack(target());
     return myself();
   }
@@ -177,7 +177,7 @@ public abstract class AbstractWindowFixture<S, C extends Window, D extends Windo
    * @throws AssertionError if the size of this fixture's {@code Window} is not equal to the given size.
    */
   @Override
-  public final @Nonnull S requireSize(@Nonnull Dimension size) {
+  public final @NonNull S requireSize(@NonNull Dimension size) {
     driver().requireSize(target(), size);
     return myself();
   }
@@ -190,7 +190,7 @@ public abstract class AbstractWindowFixture<S, C extends Window, D extends Windo
    * @throws org.assertj.swing.exception.ActionFailedException if the {@code Window} is not resizable.
    */
   @Override
-  public final @Nonnull S resizeHeightTo(int height) {
+  public final @NonNull S resizeHeightTo(int height) {
     driver().resizeHeightTo(target(), height);
     return myself();
   }
@@ -203,7 +203,7 @@ public abstract class AbstractWindowFixture<S, C extends Window, D extends Windo
    * @throws org.assertj.swing.exception.ActionFailedException if the {@code Window} is not resizable.
    */
   @Override
-  public final @Nonnull S resizeTo(@Nonnull Dimension size) {
+  public final @NonNull S resizeTo(@NonNull Dimension size) {
     driver().resizeTo(target(), size);
     return myself();
   }
@@ -216,7 +216,7 @@ public abstract class AbstractWindowFixture<S, C extends Window, D extends Windo
    * @throws org.assertj.swing.exception.ActionFailedException if the {@code Window} is not resizable.
    */
   @Override
-  public final @Nonnull S resizeWidthTo(int width) {
+  public final @NonNull S resizeWidthTo(int width) {
     driver().resizeWidthTo(target(), width);
     return myself();
   }
@@ -226,7 +226,7 @@ public abstract class AbstractWindowFixture<S, C extends Window, D extends Windo
    *
    * @return this fixture.
    */
-  public final @Nonnull S show() {
+  public final @NonNull S show() {
     driver().show(target());
     return myself();
   }
@@ -237,7 +237,7 @@ public abstract class AbstractWindowFixture<S, C extends Window, D extends Windo
    * @param size the size to resize this fixture's {@code Window} to.
    * @return this fixture.
    */
-  public final @Nonnull S show(@Nonnull Dimension size) {
+  public final @NonNull S show(@NonNull Dimension size) {
     driver().show(target(), size);
     return myself();
   }
@@ -252,7 +252,7 @@ public abstract class AbstractWindowFixture<S, C extends Window, D extends Windo
    * @throws org.assertj.swing.exception.ComponentLookupException if a pop-up menu cannot be found.
    */
   @Override
-  public final @Nonnull JPopupMenuFixture showPopupMenu() {
+  public final @NonNull JPopupMenuFixture showPopupMenu() {
     return new JPopupMenuFixture(robot(), driver().invokePopupMenu(target()));
   }
 
@@ -267,7 +267,7 @@ public abstract class AbstractWindowFixture<S, C extends Window, D extends Windo
    * @throws org.assertj.swing.exception.ComponentLookupException if a pop-up menu cannot be found.
    */
   @Override
-  public final @Nonnull JPopupMenuFixture showPopupMenuAt(@Nonnull Point p) {
+  public final @NonNull JPopupMenuFixture showPopupMenuAt(@NonNull Point p) {
     return new JPopupMenuFixture(robot(), driver().invokePopupMenu(target(), p));
   }
 

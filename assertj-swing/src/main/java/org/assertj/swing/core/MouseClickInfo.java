@@ -12,7 +12,7 @@
  */
 package org.assertj.swing.core;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 
 import static org.assertj.swing.core.MouseButton.*;
 import static org.assertj.swing.util.Preconditions.checkNotNull;
@@ -56,7 +56,7 @@ public final class MouseClickInfo {
    *
    * @return the created click info.
    */
-  @Nonnull public static MouseClickInfo leftButton() {
+  @NonNull public static MouseClickInfo leftButton() {
     return button(LEFT_BUTTON);
   }
 
@@ -65,7 +65,7 @@ public final class MouseClickInfo {
    *
    * @return the created click info.
    */
-  @Nonnull public static MouseClickInfo middleButton() {
+  @NonNull public static MouseClickInfo middleButton() {
     return button(MIDDLE_BUTTON);
   }
 
@@ -74,7 +74,7 @@ public final class MouseClickInfo {
    *
    * @return the created click info.
    */
-  @Nonnull public static MouseClickInfo rightButton() {
+  @NonNull public static MouseClickInfo rightButton() {
     return button(RIGHT_BUTTON);
   }
 
@@ -85,11 +85,11 @@ public final class MouseClickInfo {
    * @return the created click info.
    * @throws NullPointerException if {@code button} is {@code null}.
    */
-  @Nonnull public static MouseClickInfo button(@Nonnull MouseButton button) {
+  @NonNull public static MouseClickInfo button(@NonNull MouseButton button) {
     return new MouseClickInfo(button, 1);
   }
 
-  private MouseClickInfo(@Nonnull MouseButton button, int times) {
+  private MouseClickInfo(@NonNull MouseButton button, int times) {
     this.button = checkNotNull(button);
     this.times = times;
   }
@@ -97,7 +97,7 @@ public final class MouseClickInfo {
   /**
    * @return the button to click.
    */
-  @Nonnull public MouseButton button() {
+  @NonNull public MouseButton button() {
     return button;
   }
 
@@ -120,7 +120,7 @@ public final class MouseClickInfo {
   }
 
   @Override
-  @Nonnull public String toString() {
+  @NonNull public String toString() {
     return concat(String.format("%s[button=%s, times=%d]", getClass().getName(), button.toString(), times));
   }
 }

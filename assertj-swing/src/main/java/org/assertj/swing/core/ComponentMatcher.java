@@ -14,7 +14,7 @@ package org.assertj.swing.core;
 
 import java.awt.Component;
 
-import javax.annotation.Nullable;
+import org.jspecify.annotations.Nullable;
 
 /**
  * Indicates whether an AWT or Swing {@code Component} matches some desired criteria.

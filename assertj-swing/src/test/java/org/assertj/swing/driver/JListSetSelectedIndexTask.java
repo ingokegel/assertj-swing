@@ -14,7 +14,7 @@ package org.assertj.swing.driver;
 
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.JList;
 
 /**
@@ -24,7 +24,7 @@ import javax.swing.JList;
  * @author Yvonne Wang
  */
 final class JListSetSelectedIndexTask {
-  static void setSelectedIndex(final @Nonnull JList list, final int index) {
+  static void setSelectedIndex(final @NonNull JList list, final int index) {
     execute(() -> list.setSelectedIndex(index));
   }
 

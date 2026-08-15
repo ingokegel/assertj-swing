@@ -12,8 +12,8 @@
  */
 package org.assertj.swing.fixture;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 
@@ -36,7 +36,7 @@ public class JScrollPaneFixture extends
    * @throws NullPointerException if {@code robot} is {@code null}.
    * @throws IllegalArgumentException if {@code target} is {@code null}.
    */
-  public JScrollPaneFixture(@Nonnull Robot robot, @Nonnull JScrollPane target) {
+  public JScrollPaneFixture(@NonNull Robot robot, @NonNull JScrollPane target) {
     super(JScrollPaneFixture.class, robot, target);
   }
 
@@ -49,30 +49,30 @@ public class JScrollPaneFixture extends
    * @throws org.assertj.swing.exception.ComponentLookupException if a matching {@code JScrollPane} could not be found.
    * @throws org.assertj.swing.exception.ComponentLookupException if more than one matching {@code JScrollPane} is found.
    */
-  public JScrollPaneFixture(@Nonnull Robot robot, @Nullable String panelName) {
+  public JScrollPaneFixture(@NonNull Robot robot, @Nullable String panelName) {
     super(JScrollPaneFixture.class, robot, panelName, JScrollPane.class);
   }
 
   @Override
-  @Nonnull protected JScrollPaneDriver createDriver(@Nonnull Robot robot) {
+  @NonNull protected JScrollPaneDriver createDriver(@NonNull Robot robot) {
     return new JScrollPaneDriver(robot);
   }
 
   /**
    * @return a fixture managing the horizontal {@code JScrollBar} of this target's {@code JScrollPane}.
    */
-  @Nonnull public JScrollBarFixture horizontalScrollBar() {
+  @NonNull public JScrollBarFixture horizontalScrollBar() {
     return scrollBarFixture(driver().horizontalScrollBarIn(target()));
   }
 
   /**
    * @return a fixture managing the vertical {@code JScrollBar} of this target's {@code JScrollPane}.
    */
-  @Nonnull public JScrollBarFixture verticalScrollBar() {
+  @NonNull public JScrollBarFixture verticalScrollBar() {
     return scrollBarFixture(driver().verticalScrollBarIn(target()));
   }
 
-  @Nonnull private JScrollBarFixture scrollBarFixture(@Nonnull JScrollBar scrollBar) {
+  @NonNull private JScrollBarFixture scrollBarFixture(@NonNull JScrollBar scrollBar) {
     return new JScrollBarFixture(robot(), scrollBar);
   }
 }

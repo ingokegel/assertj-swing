@@ -16,9 +16,8 @@ import java.awt.Component;
 import java.awt.Frame;
 import java.util.concurrent.TimeUnit;
 
-import javax.annotation.Nonnegative;
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 
 import org.assertj.swing.core.GenericTypeMatcher;
 import org.assertj.swing.core.Robot;
@@ -45,7 +44,7 @@ public class FrameFinder extends WindowFinderTemplate<Frame> {
    * 
    * @param matcher specifies the search criteria to use when looking up a {@code Frame}.
    */
-  protected FrameFinder(@Nonnull GenericTypeMatcher<? extends Frame> matcher) {
+  protected FrameFinder(@NonNull GenericTypeMatcher<? extends Frame> matcher) {
     super(matcher);
   }
 
@@ -54,7 +53,7 @@ public class FrameFinder extends WindowFinderTemplate<Frame> {
    * 
    * @param frameType the type of {@code Frame} to look for.
    */
-  protected FrameFinder(@Nonnull Class<? extends Frame> frameType) {
+  protected FrameFinder(@NonNull Class<? extends Frame> frameType) {
     super(frameType);
   }
 
@@ -65,7 +64,7 @@ public class FrameFinder extends WindowFinderTemplate<Frame> {
    * @return this finder.
    */
   @Override
-  @Nonnull public FrameFinder withTimeout(@Nonnegative long timeout) {
+  @NonNull public FrameFinder withTimeout(long timeout) {
     super.withTimeout(timeout);
     return this;
   }
@@ -78,7 +77,7 @@ public class FrameFinder extends WindowFinderTemplate<Frame> {
    * @return this finder.
    */
   @Override
-  @Nonnull public FrameFinder withTimeout(@Nonnegative long timeout, @Nonnull TimeUnit unit) {
+  @NonNull public FrameFinder withTimeout(long timeout, @NonNull TimeUnit unit) {
     super.withTimeout(timeout, unit);
     return this;
   }
@@ -91,7 +90,7 @@ public class FrameFinder extends WindowFinderTemplate<Frame> {
    * @throws org.assertj.swing.exception.WaitTimedOutError if a {@code Frame} could not be found.
    */
   @Override
-  @Nonnull public FrameFixture using(@Nonnull Robot robot) {
+  @NonNull public FrameFixture using(@NonNull Robot robot) {
     return new FrameFixture(robot, findComponentWith(robot));
   }
 

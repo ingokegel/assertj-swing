@@ -16,9 +16,8 @@ import org.assertj.swing.core.*;
 import org.assertj.swing.core.Robot;
 import org.assertj.swing.fixture.AbstractComponentFixture;
 
-import javax.annotation.Nonnegative;
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 import java.awt.*;
 import java.util.concurrent.TimeUnit;
 
@@ -48,7 +47,7 @@ public abstract class ComponentFinderTemplate<T extends Component> {
    * @param componentName the name of the {@code Component} to find.
    * @param componentType the type of the {@code Component} to find.
    */
-  protected ComponentFinderTemplate(@Nullable String componentName, @Nonnull Class<? extends T> componentType) {
+  protected ComponentFinderTemplate(@Nullable String componentName, @NonNull Class<? extends T> componentType) {
     this(new NameMatcher(componentName, componentType, true));
   }
 
@@ -57,7 +56,7 @@ public abstract class ComponentFinderTemplate<T extends Component> {
    *
    * @param matcher specifies the search criteria to use when looking up a {@code Component}.
    */
-  protected ComponentFinderTemplate(@Nonnull GenericTypeMatcher<? extends T> matcher) {
+  protected ComponentFinderTemplate(@NonNull GenericTypeMatcher<? extends T> matcher) {
     this((ComponentMatcher) matcher);
   }
 
@@ -66,11 +65,11 @@ public abstract class ComponentFinderTemplate<T extends Component> {
    *
    * @param componentType the type of the {@code Component} to find.
    */
-  protected ComponentFinderTemplate(@Nonnull Class<? extends T> componentType) {
+  protected ComponentFinderTemplate(@NonNull Class<? extends T> componentType) {
     this(new TypeMatcher(componentType, true));
   }
 
-  private ComponentFinderTemplate(@Nonnull ComponentMatcher matcher) {
+  private ComponentFinderTemplate(@NonNull ComponentMatcher matcher) {
     this.matcher = checkNotNull(matcher);
     searchDescription = concat("component to be found using matcher ", matcher);
   }
@@ -84,7 +83,7 @@ public abstract class ComponentFinderTemplate<T extends Component> {
    * @throws NullPointerException if the time unit is {@code null}.
    * @throws IllegalArgumentException if the timeout is a negative number.
    */
-  protected ComponentFinderTemplate<T> withTimeout(@Nonnegative long newTimeout, @Nonnull TimeUnit unit) {
+  protected ComponentFinderTemplate<T> withTimeout(long newTimeout, @NonNull TimeUnit unit) {
     checkNotNull(unit);
     return withTimeout(unit.toMillis(newTimeout));
   }
@@ -96,7 +95,7 @@ public abstract class ComponentFinderTemplate<T extends Component> {
    * @return this finder.
    * @throws IllegalArgumentException if the timeout is a negative number.
    */
-  @Nonnull protected ComponentFinderTemplate<T> withTimeout(@Nonnegative long newTimeout) {
+  @NonNull protected ComponentFinderTemplate<T> withTimeout(long newTimeout) {
     if (newTimeout < 0) {
       throw new IllegalArgumentException("Timeout cannot be a negative number");
     }
@@ -112,7 +111,7 @@ public abstract class ComponentFinderTemplate<T extends Component> {
    * @throws org.assertj.swing.exception.WaitTimedOutError if a component with the given name or of the given type could
    *           not be found.
    */
-  public abstract @Nonnull AbstractComponentFixture<?, T, ?> using(@Nonnull Robot robot);
+  public abstract @NonNull AbstractComponentFixture<?, T, ?> using(@NonNull Robot robot);
 
   /**
    * Finds the component using either by name or type.
@@ -122,7 +121,7 @@ public abstract class ComponentFinderTemplate<T extends Component> {
    * @throws org.assertj.swing.exception.WaitTimedOutError if a component with the given name or of the given type could
    *           not be found.
    */
-  protected final @Nonnull T findComponentWith(@Nonnull Robot robot) {
+  protected final @NonNull T findComponentWith(@NonNull Robot robot) {
     ComponentFoundCondition condition = new ComponentFoundCondition(searchDescription, robot.finder(), matcher);
     pause(condition, timeout);
     return checkNotNull(cast(condition.found()));

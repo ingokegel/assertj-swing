@@ -16,8 +16,8 @@ import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import java.awt.Frame;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 
 import org.assertj.swing.annotation.RunsInEDT;
 
@@ -30,7 +30,7 @@ import org.assertj.swing.annotation.RunsInEDT;
  */
 final class FrameTitleQuery {
   @RunsInEDT
-  static @Nullable String titleOf(final @Nonnull Frame f) {
+  static @Nullable String titleOf(final @NonNull Frame f) {
     return execute(() -> f.getTitle());
   }
 

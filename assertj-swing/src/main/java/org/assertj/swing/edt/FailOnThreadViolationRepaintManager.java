@@ -14,8 +14,8 @@ package org.assertj.swing.edt;
 
 import static org.assertj.swing.util.Reflection.invokeStaticMethod;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 import javax.swing.JComponent;
 import javax.swing.RepaintManager;
 import javax.swing.SwingUtilities;
@@ -49,7 +49,7 @@ public class FailOnThreadViolationRepaintManager extends CheckThreadViolationRep
    * @see #uninstall()
    * @see RepaintManager#setCurrentManager(RepaintManager)
    */
-  @Nonnull public static FailOnThreadViolationRepaintManager install() {
+  @NonNull public static FailOnThreadViolationRepaintManager install() {
     Object m = currentRepaintManager();
     if (m instanceof FailOnThreadViolationRepaintManager) {
       return (FailOnThreadViolationRepaintManager) m;
@@ -67,7 +67,7 @@ public class FailOnThreadViolationRepaintManager extends CheckThreadViolationRep
    * @see #install()
    * @see RepaintManager#setCurrentManager(RepaintManager)
    */
-  @Nonnull public static
+  @NonNull public static
   RepaintManager uninstall() {
     RepaintManager restored = previousRepaintManager;
     setCurrentManager(restored);
@@ -89,7 +89,7 @@ public class FailOnThreadViolationRepaintManager extends CheckThreadViolationRep
     return null;
   }
 
-  @Nonnull private static FailOnThreadViolationRepaintManager installNew() {
+  @NonNull private static FailOnThreadViolationRepaintManager installNew() {
     FailOnThreadViolationRepaintManager m = new FailOnThreadViolationRepaintManager();
     previousRepaintManager = currentRepaintManager();
     setCurrentManager(m);
@@ -111,7 +111,7 @@ public class FailOnThreadViolationRepaintManager extends CheckThreadViolationRep
    * @throws EdtViolationException when a EDT access violation is found.
    */
   @Override
-  void violationFound(@Nonnull JComponent c, @Nonnull StackTraceElement[] stackTraceElements) {
+  void violationFound(@NonNull JComponent c, @NonNull StackTraceElement[] stackTraceElements) {
     EdtViolationException e = new EdtViolationException("EDT violation detected");
     e.setStackTrace(stackTraceElements);
     throw e;

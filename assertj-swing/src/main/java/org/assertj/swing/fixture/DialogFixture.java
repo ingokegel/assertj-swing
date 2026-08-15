@@ -14,8 +14,8 @@ package org.assertj.swing.fixture;
 
 import java.awt.Dialog;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 
 import org.assertj.swing.core.Robot;
 import org.assertj.swing.driver.DialogDriver;
@@ -34,7 +34,7 @@ public class DialogFixture extends AbstractWindowFixture<DialogFixture, Dialog, 
    * @throws NullPointerException if {@code target} is {@code null}.
    * @see org.assertj.swing.core.BasicRobot#robotWithCurrentAwtHierarchy()
    */
-  public DialogFixture(@Nonnull Dialog target) {
+  public DialogFixture(@NonNull Dialog target) {
     super(DialogFixture.class, target);
   }
 
@@ -46,7 +46,7 @@ public class DialogFixture extends AbstractWindowFixture<DialogFixture, Dialog, 
    * @throws NullPointerException if {@code robot} is {@code null}.
    * @throws NullPointerException if {@code target} is {@code null}.
    */
-  public DialogFixture(@Nonnull Robot robot, @Nonnull Dialog target) {
+  public DialogFixture(@NonNull Robot robot, @NonNull Dialog target) {
     super(DialogFixture.class, robot, target);
   }
 
@@ -59,7 +59,7 @@ public class DialogFixture extends AbstractWindowFixture<DialogFixture, Dialog, 
    * @throws org.assertj.swing.exception.ComponentLookupException if a {@code Dialog} having a matching name could not be found.
    * @throws org.assertj.swing.exception.ComponentLookupException if more than one {@code Dialog} having a matching name is found.
    */
-  public DialogFixture(@Nonnull Robot robot, @Nullable String dialogName) {
+  public DialogFixture(@NonNull Robot robot, @Nullable String dialogName) {
     super(DialogFixture.class, robot, dialogName, Dialog.class);
   }
 
@@ -77,7 +77,7 @@ public class DialogFixture extends AbstractWindowFixture<DialogFixture, Dialog, 
   }
 
   @Override
-  @Nonnull protected DialogDriver createDriver(@Nonnull Robot robot) {
+  @NonNull protected DialogDriver createDriver(@NonNull Robot robot) {
     return new DialogDriver(robot);
   }
 
@@ -87,7 +87,7 @@ public class DialogFixture extends AbstractWindowFixture<DialogFixture, Dialog, 
    * @return this fixture.
    * @throws AssertionError if this fixture's {@code Dialog} is not modal.
    */
-  @Nonnull public DialogFixture requireModal() {
+  @NonNull public DialogFixture requireModal() {
     driver().requireModal(target());
     return this;
   }

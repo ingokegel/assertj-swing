@@ -17,8 +17,8 @@ import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.core.Robot;
 import org.assertj.swing.internal.annotation.InternalApi;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 import javax.swing.*;
 import java.awt.*;
 import java.util.regex.Pattern;
@@ -54,7 +54,7 @@ public class JComponentDriver extends ContainerDriver {
    *
    * @param robot the robot the robot to use to simulate user input.
    */
-  public JComponentDriver(@Nonnull Robot robot) {
+  public JComponentDriver(@NonNull Robot robot) {
     super(robot);
   }
 
@@ -72,7 +72,7 @@ public class JComponentDriver extends ContainerDriver {
    * @param r the visible {@code Rectangle}.
    */
   @RunsInCurrentThread
-  protected final void scrollToVisible(@Nonnull JComponent c, @Nonnull Rectangle r) {
+  protected final void scrollToVisible(@NonNull JComponent c, @NonNull Rectangle r) {
     // From Abbot:
     // Ideally, we'd use scrollBar commands to effect the scrolling, but that gets really complicated for no real gain
     // in function. Fortunately, Swing's Scrollable makes for a simple solution.
@@ -97,7 +97,7 @@ public class JComponentDriver extends ContainerDriver {
    *         {@code Rectangle}.
    */
   @RunsInCurrentThread
-  protected static boolean isVisible(@Nonnull JComponent c, @Nonnull Rectangle r) {
+  protected static boolean isVisible(@NonNull JComponent c, @NonNull Rectangle r) {
     return c.getVisibleRect().contains(r);
   }
 
@@ -117,7 +117,7 @@ public class JComponentDriver extends ContainerDriver {
    *         {@code Rectangle}.
    */
   @RunsInCurrentThread
-  protected final boolean isVisible(@Nonnull JComponent c, @Nonnull Point p) {
+  protected final boolean isVisible(@NonNull JComponent c, @NonNull Point p) {
     return c.getVisibleRect().contains(p);
   }
 
@@ -131,7 +131,7 @@ public class JComponentDriver extends ContainerDriver {
    *           not possible to type any of the found {@code KeyStroke}s.
    */
   @RunsInEDT
-  protected final void invokeAction(@Nonnull JComponent c, @Nonnull String name) {
+  protected final void invokeAction(@NonNull JComponent c, @NonNull String name) {
     robot.focusAndWaitForFocusGain(c);
     for (KeyStroke keyStroke : keyStrokesForAction(c, name)) {
       try {
@@ -145,12 +145,12 @@ public class JComponentDriver extends ContainerDriver {
   }
 
   @RunsInCurrentThread
-  private static KeyStroke[] keyStrokesForAction(@Nonnull JComponent component, @Nonnull String actionName) {
+  private static KeyStroke[] keyStrokesForAction(@NonNull JComponent component, @NonNull String actionName) {
     Object key = findActionKey(actionName, checkNotNull(component.getActionMap()));
     return findKeyStrokesForAction(actionName, key, checkNotNull(component.getInputMap()));
   }
 
-  private void type(@Nonnull KeyStroke keyStroke) {
+  private void type(@NonNull KeyStroke keyStroke) {
     if (keyStroke.getKeyCode() == VK_UNDEFINED) {
       robot.type(keyStroke.getKeyChar());
       return;
@@ -166,7 +166,7 @@ public class JComponentDriver extends ContainerDriver {
    * @throws AssertionError if the toolTip of the given {@code JComponent} does not match the given value.
    */
   @RunsInEDT
-  public void requireToolTip(@Nonnull JComponent c, @Nullable String expected) {
+  public void requireToolTip(@NonNull JComponent c, @Nullable String expected) {
     verifyThat(toolTipOf(c)).as(propertyName(c, TOOL_TIP_TEXT_PROPERTY)).isEqualOrMatches(expected);
   }
 
@@ -179,7 +179,7 @@ public class JComponentDriver extends ContainerDriver {
    * @throws AssertionError if the toolTip of the given {@code JComponent} does not match the given value.
    */
   @RunsInEDT
-  public void requireToolTip(@Nonnull JComponent c, @Nonnull Pattern pattern) {
+  public void requireToolTip(@NonNull JComponent c, @NonNull Pattern pattern) {
     verifyThat(toolTipOf(c)).as(propertyName(c, TOOL_TIP_TEXT_PROPERTY)).matches(pattern);
   }
 
@@ -192,11 +192,11 @@ public class JComponentDriver extends ContainerDriver {
    * @throws NullPointerException if the given key is {@code null}.
    */
   @RunsInEDT
-  @Nullable public Object clientProperty(@Nonnull JComponent c, @Nonnull Object key) {
+  @Nullable public Object clientProperty(@NonNull JComponent c, @NonNull Object key) {
     return clientPropertyIn(c, checkNotNull(key));
   }
 
-  @Nullable private static Object clientPropertyIn(final @Nonnull JComponent c, final @Nonnull Object key) {
+  @Nullable private static Object clientPropertyIn(final @NonNull JComponent c, final @NonNull Object key) {
     return execute(() -> c.getClientProperty(key));
   }
 }

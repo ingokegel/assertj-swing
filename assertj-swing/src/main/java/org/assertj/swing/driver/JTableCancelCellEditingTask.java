@@ -16,8 +16,8 @@ import static org.assertj.swing.driver.JTableCellPreconditions.checkCellIndicesI
 import static org.assertj.swing.driver.JTableCellPreconditions.validateCellIsEditable;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 import javax.swing.JTable;
 import javax.swing.table.TableCellEditor;
 
@@ -31,7 +31,7 @@ import org.assertj.swing.annotation.RunsInEDT;
  */
 final class JTableCancelCellEditingTask {
   @RunsInEDT
-  static void cancelEditing(final @Nonnull JTable table, final int row, final int column) {
+  static void cancelEditing(final @NonNull JTable table, final int row, final int column) {
     execute(() -> {
       checkCellIndicesInBounds(table, row, column);
       validateCellIsEditable(table, row, column);
@@ -41,7 +41,7 @@ final class JTableCancelCellEditingTask {
   }
 
   @RunsInEDT
-  static void cancelEditing(final @Nonnull TableCellEditor cellEditor) {
+  static void cancelEditing(final @NonNull TableCellEditor cellEditor) {
     execute(() -> doCancelEditing(cellEditor));
   }
 

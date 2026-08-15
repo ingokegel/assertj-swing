@@ -18,7 +18,7 @@ import org.assertj.swing.core.Robot;
 import org.assertj.swing.internal.annotation.InternalApi;
 import org.assertj.swing.util.ToolkitProvider;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import java.awt.*;
 
 import static java.awt.Frame.*;
@@ -52,7 +52,7 @@ public class FrameDriver extends WindowDriver {
    *
    * @param robot the robot to use to simulate user input.
    */
-  public FrameDriver(@Nonnull Robot robot) {
+  public FrameDriver(@NonNull Robot robot) {
     super(robot);
   }
 
@@ -64,14 +64,14 @@ public class FrameDriver extends WindowDriver {
    * @throws IllegalStateException if the {@code Frame} is not showing on the screen.
    */
   @RunsInEDT
-  public void iconify(@Nonnull Frame frame) {
+  public void iconify(@NonNull Frame frame) {
     moveMouseIgnoringAnyError(frame, iconifyInfo(frame));
     robot.waitForIdle();
     updateFrameExtendedState(frame, ICONIFIED);
   }
 
   @RunsInEDT
-  private static Point iconifyInfo(final @Nonnull Frame frame) {
+  private static Point iconifyInfo(final @NonNull Frame frame) {
     return execute(() -> {
       checkEnabledAndShowing(frame);
       return iconifyButtonLocation(frame);
@@ -86,7 +86,7 @@ public class FrameDriver extends WindowDriver {
    * @throws IllegalStateException if the {@code Frame} is not showing on the screen.
    */
   @RunsInEDT
-  public void deiconify(@Nonnull Frame frame) {
+  public void deiconify(@NonNull Frame frame) {
     checkInEdtEnabledAndShowing(frame);
     updateFrameExtendedState(frame, NORMAL);
   }
@@ -99,7 +99,7 @@ public class FrameDriver extends WindowDriver {
    * @throws IllegalStateException if the {@code Frame} is not showing on the screen.
    */
   @RunsInEDT
-  public void normalize(@Nonnull Frame frame) {
+  public void normalize(@NonNull Frame frame) {
     checkInEdtEnabledAndShowing(frame);
     updateFrameExtendedState(frame, NORMAL);
   }
@@ -114,7 +114,7 @@ public class FrameDriver extends WindowDriver {
    *           frames.
    */
   @RunsInEDT
-  public void maximize(@Nonnull Frame frame) {
+  public void maximize(@NonNull Frame frame) {
     moveMouseIgnoringAnyError(frame, maximizeInfo(frame));
     if (!supportsMaximize(ToolkitProvider.instance().defaultToolkit())) {
       throw actionFailure("Platform does not support maximizing frames");
@@ -123,7 +123,7 @@ public class FrameDriver extends WindowDriver {
   }
 
   @RunsInEDT
-  @Nonnull private static Point maximizeInfo(final @Nonnull Frame frame) {
+  @NonNull private static Point maximizeInfo(final @NonNull Frame frame) {
     Point result = execute(() -> {
       checkEnabledAndShowing(frame);
       return maximizeButtonLocation(frame);
@@ -132,12 +132,12 @@ public class FrameDriver extends WindowDriver {
   }
 
   @ThreadSafeAction
-  private void updateFrameExtendedState(@Nonnull Frame frame, int state) {
+  private void updateFrameExtendedState(@NonNull Frame frame, int state) {
     frame.setExtendedState(state);
     robot.waitForIdle();
   }
 
-  private static boolean supportsMaximize(@Nonnull Toolkit toolkit) {
+  private static boolean supportsMaximize(@NonNull Toolkit toolkit) {
     return toolkit.isFrameStateSupported(MAXIMIZED_BOTH);
   }
 
@@ -149,7 +149,7 @@ public class FrameDriver extends WindowDriver {
    * @throws AssertionError if the title of the given {@code Frame} is not equal to the expected one.
    */
   @RunsInEDT
-  public void requireTitle(@Nonnull Frame frame, String expected) {
+  public void requireTitle(@NonNull Frame frame, String expected) {
     String actual = titleOf(frame);
     assertThat(actual).as(propertyName(frame, "title")).isEqualTo(expected);
   }

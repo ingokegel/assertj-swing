@@ -14,7 +14,7 @@ package org.assertj.swing.format;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import java.awt.*;
 
 import static org.assertj.swing.util.Preconditions.checkNotNull;
@@ -35,7 +35,7 @@ public abstract class ComponentFormatterTemplate implements ComponentFormatter {
    */
   @RunsInCurrentThread
   @Override
-  public final @Nonnull String format(@Nonnull Component c) {
+  public final @NonNull String format(@NonNull Component c) {
     checkTypeOf(c);
     return doFormat(c);
   }
@@ -47,9 +47,9 @@ public abstract class ComponentFormatterTemplate implements ComponentFormatter {
    * @return the {@code String} representation of the given {@code Component}.
    */
   @RunsInCurrentThread
-  protected abstract @Nonnull String doFormat(@Nonnull Component c);
+  protected abstract @NonNull String doFormat(@NonNull Component c);
 
-  private void checkTypeOf(@Nonnull Component c) {
+  private void checkTypeOf(@NonNull Component c) {
     checkNotNull(c);
     if (!targetType().isAssignableFrom(c.getClass())) {
       String msg = String.format("This formatter only supports components of type %s", targetType().getName());

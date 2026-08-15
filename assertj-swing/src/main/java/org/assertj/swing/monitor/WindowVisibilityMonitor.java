@@ -18,7 +18,7 @@ import java.awt.event.ComponentListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 
 import org.assertj.swing.annotation.RunsInEDT;
 
@@ -31,7 +31,7 @@ import org.assertj.swing.annotation.RunsInEDT;
 class WindowVisibilityMonitor extends WindowAdapter implements ComponentListener {
   private final Windows windows;
 
-  WindowVisibilityMonitor(@Nonnull Windows windows) {
+  WindowVisibilityMonitor(@NonNull Windows windows) {
     this.windows = windows;
   }
 

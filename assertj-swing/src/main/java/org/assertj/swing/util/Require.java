@@ -12,8 +12,8 @@
  */
 package org.assertj.swing.util;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 import java.util.function.Supplier;
 import java.util.regex.Pattern;
 
@@ -35,7 +35,7 @@ public final class Require {
    * @param actual the value to verify.
    * @return the created assertion.
    */
-  public static @Nonnull Requirement assertThat(@Nullable Object actual) {
+  public static @NonNull Requirement assertThat(@Nullable Object actual) {
     return new Requirement(actual);
   }
 
@@ -46,7 +46,7 @@ public final class Require {
    * @param actual the value to verify.
    * @return the created assertion.
    */
-  public static @Nonnull Requirement verifyThat(@Nullable Object actual) {
+  public static @NonNull Requirement verifyThat(@Nullable Object actual) {
     return assertThat(actual);
   }
 
@@ -71,7 +71,7 @@ public final class Require {
      * @param description the description.
      * @return this verification.
      */
-    public @Nonnull Requirement as(@Nonnull String description) {
+    public @NonNull Requirement as(@NonNull String description) {
       return as(() -> description);
     }
 
@@ -82,7 +82,7 @@ public final class Require {
      * @param description supplies the description.
      * @return this verification.
      */
-    public @Nonnull Requirement as(@Nonnull Supplier<String> description) {
+    public @NonNull Requirement as(@NonNull Supplier<String> description) {
       this.description = description;
       return this;
     }
@@ -93,7 +93,7 @@ public final class Require {
      * @param description supplies the description, may be {@code null}.
      * @return this verification.
      */
-    public @Nonnull Requirement describedAs(@Nullable Supplier<String> description) {
+    public @NonNull Requirement describedAs(@Nullable Supplier<String> description) {
       this.description = description;
       return this;
     }
@@ -199,7 +199,7 @@ public final class Require {
      * @param type the type to check the actual value against.
      * @throws AssertionError if the actual value is not an instance of the given type.
      */
-    public void isInstanceOf(@Nonnull Class<?> type) {
+    public void isInstanceOf(@NonNull Class<?> type) {
       if (type.isInstance(actual))
         return;
       throw failure(prefix() + "\nExpecting actual:\n  " + toStringOf(actual) + "\nto be an instance of:\n  "
@@ -213,7 +213,7 @@ public final class Require {
      * @param pattern the regular expression to match.
      * @throws AssertionError if the actual value does not match the given regular expression.
      */
-    public void matches(@Nonnull Pattern pattern) {
+    public void matches(@NonNull Pattern pattern) {
       if (Strings.match(pattern, (String) actual))
         return;
       throw failure(prefix() + "\nExpecting actual:\n  " + toStringOf(actual) + "\nto match pattern:\n  \""

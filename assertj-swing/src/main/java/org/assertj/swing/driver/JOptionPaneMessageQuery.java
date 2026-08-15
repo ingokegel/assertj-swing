@@ -14,8 +14,8 @@ package org.assertj.swing.driver;
 
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 import javax.swing.JOptionPane;
 
 import org.assertj.swing.annotation.RunsInEDT;
@@ -28,7 +28,7 @@ import org.assertj.swing.annotation.RunsInEDT;
  */
 final class JOptionPaneMessageQuery {
   @RunsInEDT
-  static @Nullable Object messageOf(final @Nonnull JOptionPane optionPane) {
+  static @Nullable Object messageOf(final @NonNull JOptionPane optionPane) {
     return execute(() -> optionPane.getMessage());
   }
 

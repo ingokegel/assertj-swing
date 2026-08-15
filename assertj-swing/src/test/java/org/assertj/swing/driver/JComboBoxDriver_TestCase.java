@@ -24,7 +24,7 @@ import static org.assertj.swing.test.task.ComponentSetEnabledTask.disable;
 
 import java.awt.Component;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.text.JTextComponent;
@@ -146,11 +146,11 @@ public abstract class JComboBoxDriver_TestCase extends RobotBasedTestCase {
     final JComboBox comboBox = new JComboBox(array("first", "second", "third"));
 
     @RunsInEDT
-    static MyWindow createNew(final @Nonnull Class<?> testClass) {
+    static MyWindow createNew(final @NonNull Class<?> testClass) {
       return execute(() -> new MyWindow(testClass));
     }
 
-    private MyWindow(@Nonnull Class<?> testClass) {
+    private MyWindow(@NonNull Class<?> testClass) {
       super(testClass);
       add(comboBox);
     }
@@ -163,7 +163,7 @@ public abstract class JComboBoxDriver_TestCase extends RobotBasedTestCase {
     }
 
     @Override
-    public String valueAt(@Nonnull JComboBox<?> comboBox, int index) {
+    public String valueAt(@NonNull JComboBox<?> comboBox, int index) {
       methodInvocations.invoked("valueAt");
       return super.valueAt(comboBox, index);
     }

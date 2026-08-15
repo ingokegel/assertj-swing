@@ -15,7 +15,7 @@ package org.assertj.swing.driver;
 import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.JTable;
 
 /**
@@ -25,7 +25,7 @@ import javax.swing.JTable;
  * @author Yvonne Wang
  */
 final class JTableSelectedRowCountQuery {
-  static int selectedRowCountOf(final @Nonnull JTable table) {
+  static int selectedRowCountOf(final @NonNull JTable table) {
     Integer result = execute(() -> table.getSelectedRowCount());
     return checkNotNull(result);
   }

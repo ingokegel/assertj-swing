@@ -22,8 +22,8 @@ import org.assertj.swing.internal.annotation.InternalApi;
 import org.assertj.swing.util.Pair;
 import org.assertj.swing.util.Triple;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 import javax.swing.*;
 import javax.swing.JInternalFrame.JDesktopIcon;
 import java.awt.*;
@@ -63,7 +63,7 @@ public class JInternalFrameDriver extends JComponentDriver {
    *
    * @param robot the robot to use to simulate user input.
    */
-  public JInternalFrameDriver(@Nonnull Robot robot) {
+  public JInternalFrameDriver(@NonNull Robot robot) {
     super(robot);
   }
 
@@ -73,7 +73,7 @@ public class JInternalFrameDriver extends JComponentDriver {
    * @param internalFrame the target {@code JInternalFrame}.
    */
   @RunsInEDT
-  public void moveToFront(final @Nonnull JInternalFrame internalFrame) {
+  public void moveToFront(final @NonNull JInternalFrame internalFrame) {
     execute(() -> // it seems that moving to front always works, regardless if the internal frame is invisible and/or
                   // disabled.
     internalFrame.toFront());
@@ -85,7 +85,7 @@ public class JInternalFrameDriver extends JComponentDriver {
    * @param internalFrame the target {@code JInternalFrame}.
    */
   @RunsInEDT
-  public void moveToBack(final @Nonnull JInternalFrame internalFrame) {
+  public void moveToBack(final @NonNull JInternalFrame internalFrame) {
     execute(() -> // it seems that moving to back always works, regardless if the internal frame is invisible and/or
                   // disabled.
     internalFrame.moveToBack());
@@ -100,13 +100,13 @@ public class JInternalFrameDriver extends JComponentDriver {
    * @throws org.assertj.swing.exception.ActionFailedException if the {@code JInternalFrame} vetoes the action.
    */
   @RunsInEDT
-  public void maximize(@Nonnull JInternalFrame internalFrame) {
+  public void maximize(@NonNull JInternalFrame internalFrame) {
     Pair<Container, Point> maximizeLocation = maximizeLocationOf(internalFrame);
     maximizeOrNormalize(internalFrame, MAXIMIZE, maximizeLocation);
   }
 
   @RunsInEDT
-  @Nonnull private static Pair<Container, Point> maximizeLocationOf(final @Nonnull JInternalFrame internalFrame) {
+  @NonNull private static Pair<Container, Point> maximizeLocationOf(final @NonNull JInternalFrame internalFrame) {
     Pair<Container, Point> result = execute(new GuiQuery<Pair<Container, Point>>() {
       @Override
       @Nullable protected Pair<Container, Point> executeInEDT() {
@@ -118,7 +118,7 @@ public class JInternalFrameDriver extends JComponentDriver {
   }
 
   @RunsInCurrentThread
-  private static void checkCanMaximize(@Nonnull JInternalFrame internalFrame) {
+  private static void checkCanMaximize(@NonNull JInternalFrame internalFrame) {
     checkShowingOrIconified(internalFrame);
     if (!internalFrame.isMaximizable()) {
       String msg = String.format("The JInternalFrame <%s> is not maximizable", format(internalFrame));
@@ -134,13 +134,13 @@ public class JInternalFrameDriver extends JComponentDriver {
    * @throws org.assertj.swing.exception.ActionFailedException if the {@code JInternalFrame} vetoes the action.
    */
   @RunsInEDT
-  public void normalize(@Nonnull JInternalFrame internalFrame) {
+  public void normalize(@NonNull JInternalFrame internalFrame) {
     Pair<Container, Point> normalizeLocation = validateAndFindNormalizeLocation(internalFrame);
     maximizeOrNormalize(internalFrame, NORMALIZE, normalizeLocation);
   }
 
   @RunsInEDT
-  private static Pair<Container, Point> validateAndFindNormalizeLocation(final @Nonnull JInternalFrame internalFrame) {
+  private static Pair<Container, Point> validateAndFindNormalizeLocation(final @NonNull JInternalFrame internalFrame) {
     return execute(new GuiQuery<Pair<Container, Point>>() {
       @Override
       protected Pair<Container, Point> executeInEDT() {
@@ -151,28 +151,28 @@ public class JInternalFrameDriver extends JComponentDriver {
   }
 
   @RunsInCurrentThread
-  private static void checkShowingOrIconified(@Nonnull JInternalFrame internalFrame) {
+  private static void checkShowingOrIconified(@NonNull JInternalFrame internalFrame) {
     if (!internalFrame.isIcon()) {
       checkShowing(internalFrame);
     }
   }
 
   @RunsInCurrentThread
-  @Nonnull private static Pair<Container, Point> findMaximizeLocation(@Nonnull JInternalFrame internalFrame) {
+  @NonNull private static Pair<Container, Point> findMaximizeLocation(@NonNull JInternalFrame internalFrame) {
     Container clickTarget = internalFrame.isIcon() ? internalFrame.getDesktopIcon() : internalFrame;
     Point location = maximizeButtonLocation(checkNotNull(clickTarget));
     return Pair.of(clickTarget, location);
   }
 
   @RunsInEDT
-  private void maximizeOrNormalize(@Nonnull JInternalFrame internalFrame, @Nonnull JInternalFrameAction action,
-                                   @Nonnull Pair<Container, Point> toMoveMouseTo) {
+  private void maximizeOrNormalize(@NonNull JInternalFrame internalFrame, @NonNull JInternalFrameAction action,
+                                   @NonNull Pair<Container, Point> toMoveMouseTo) {
     moveMouseIgnoringAnyError(toMoveMouseTo.first, toMoveMouseTo.second);
     setMaximumProperty(internalFrame, action);
   }
 
   @RunsInEDT
-  private void setMaximumProperty(@Nonnull JInternalFrame internalFrame, @Nonnull JInternalFrameAction action) {
+  private void setMaximumProperty(@NonNull JInternalFrame internalFrame, @NonNull JInternalFrameAction action) {
     try {
       setMaximum(internalFrame, action);
       robot.waitForIdle();
@@ -190,7 +190,7 @@ public class JInternalFrameDriver extends JComponentDriver {
    * @throws org.assertj.swing.exception.ActionFailedException if the {@code JInternalFrame} vetoes the action.
    */
   @RunsInEDT
-  public void iconify(@Nonnull JInternalFrame internalFrame) {
+  public void iconify(@NonNull JInternalFrame internalFrame) {
     Pair<Boolean, Point> iconifyInfo = findIconifyInfo(internalFrame);
     if (iconifyInfo.first) {
       return; // internal frame is already iconified
@@ -200,7 +200,7 @@ public class JInternalFrameDriver extends JComponentDriver {
   }
 
   @RunsInEDT
-  @Nonnull private static Pair<Boolean, Point> findIconifyInfo(final @Nonnull JInternalFrame internalFrame) {
+  @NonNull private static Pair<Boolean, Point> findIconifyInfo(final @NonNull JInternalFrame internalFrame) {
     Pair<Boolean, Point> result = execute(new GuiQuery<Pair<Boolean, Point>>() {
       @Override
       @Nullable protected Pair<Boolean, Point> executeInEDT() throws Throwable {
@@ -216,7 +216,7 @@ public class JInternalFrameDriver extends JComponentDriver {
   }
 
   @RunsInCurrentThread
-  @Nonnull private static Pair<Boolean, Point> iconifyInfo(@Nonnull JInternalFrame internalFrame) {
+  @NonNull private static Pair<Boolean, Point> iconifyInfo(@NonNull JInternalFrame internalFrame) {
     boolean iconified = isIconified(internalFrame);
     if (iconified) {
       return Pair.of(true, null);
@@ -232,7 +232,7 @@ public class JInternalFrameDriver extends JComponentDriver {
    * @throws org.assertj.swing.exception.ActionFailedException if the {@code JInternalFrame} vetoes the action.
    */
   @RunsInEDT
-  public void deiconify(@Nonnull JInternalFrame internalFrame) {
+  public void deiconify(@NonNull JInternalFrame internalFrame) {
     Triple<Boolean, Container, Point> deiconifyInfo = validateAndfindDeiconifyInfo(internalFrame);
     if (deiconifyInfo.first) {
       return; // internal frame is already de-iconified
@@ -242,8 +242,8 @@ public class JInternalFrameDriver extends JComponentDriver {
   }
 
   @RunsInEDT
-  @Nonnull private static Triple<Boolean, Container, Point> validateAndfindDeiconifyInfo(
-                                                                                         final @Nonnull JInternalFrame internalFrame) {
+  @NonNull private static Triple<Boolean, Container, Point> validateAndfindDeiconifyInfo(
+                                                                                         final @NonNull JInternalFrame internalFrame) {
     Triple<Boolean, Container, Point> result = execute(new GuiQuery<Triple<Boolean, Container, Point>>() {
       @Override
       @Nullable protected Triple<Boolean, Container, Point> executeInEDT() throws Throwable {
@@ -255,7 +255,7 @@ public class JInternalFrameDriver extends JComponentDriver {
   }
 
   @RunsInCurrentThread
-  @Nonnull private static Triple<Boolean, Container, Point> deiconifyInfo(@Nonnull JInternalFrame internalFrame) {
+  @NonNull private static Triple<Boolean, Container, Point> deiconifyInfo(@NonNull JInternalFrame internalFrame) {
     boolean deiconified = !isIconified(internalFrame);
     if (deiconified) {
       return Triple.of(true, null, null);
@@ -265,13 +265,13 @@ public class JInternalFrameDriver extends JComponentDriver {
   }
 
   @RunsInCurrentThread
-  @Nonnull private static Point findIconifyLocation(JInternalFrame internalFrame) {
+  @NonNull private static Point findIconifyLocation(JInternalFrame internalFrame) {
     JDesktopIcon desktopIcon = checkNotNull(internalFrame.getDesktopIcon());
     return iconifyButtonLocation(desktopIcon);
   }
 
   @RunsInEDT
-  private void setIconProperty(@Nonnull JInternalFrame internalFrame, @Nonnull JInternalFrameAction action) {
+  private void setIconProperty(@NonNull JInternalFrame internalFrame, @NonNull JInternalFrameAction action) {
     try {
       setIcon(internalFrame, action);
       robot.waitForIdle();
@@ -281,8 +281,8 @@ public class JInternalFrameDriver extends JComponentDriver {
   }
 
   @VisibleForTesting
-  void failIfVetoed(@Nonnull JInternalFrame internalFrame, @Nonnull JInternalFrameAction action,
-                    @Nonnull UnexpectedException unexpected) {
+  void failIfVetoed(@NonNull JInternalFrame internalFrame, @NonNull JInternalFrameAction action,
+                    @NonNull UnexpectedException unexpected) {
     PropertyVetoException vetoError = vetoFrom(unexpected);
     if (vetoError == null) {
       return;
@@ -291,7 +291,7 @@ public class JInternalFrameDriver extends JComponentDriver {
     throw actionFailure(msg);
   }
 
-  @Nullable private PropertyVetoException vetoFrom(@Nonnull UnexpectedException unexpected) {
+  @Nullable private PropertyVetoException vetoFrom(@NonNull UnexpectedException unexpected) {
     Throwable cause = unexpected.getCause();
     if (!(cause instanceof PropertyVetoException)) {
       return null;
@@ -308,7 +308,7 @@ public class JInternalFrameDriver extends JComponentDriver {
    * @throws IllegalStateException if the {@code JInternalFrame} is not resizable by the user.
    */
   @RunsInEDT
-  public void resizeWidth(@Nonnull JInternalFrame internalFrame, int width) {
+  public void resizeWidth(@NonNull JInternalFrame internalFrame, int width) {
     doResizeWidth(internalFrame, width);
   }
 
@@ -321,7 +321,7 @@ public class JInternalFrameDriver extends JComponentDriver {
    * @throws IllegalStateException if the {@code JInternalFrame} is not resizable by the user.
    */
   @RunsInEDT
-  public void resizeHeight(@Nonnull JInternalFrame w, int height) {
+  public void resizeHeight(@NonNull JInternalFrame w, int height) {
     doResizeHeight(w, height);
   }
 
@@ -334,7 +334,7 @@ public class JInternalFrameDriver extends JComponentDriver {
    * @throws IllegalStateException if the {@code JInternalFrame} is not resizable by the user.
    */
   @RunsInEDT
-  public void resizeTo(@Nonnull JInternalFrame internalFrame, @Nonnull Dimension size) {
+  public void resizeTo(@NonNull JInternalFrame internalFrame, @NonNull Dimension size) {
     resize(internalFrame, size.width, size.height);
   }
 
@@ -346,7 +346,7 @@ public class JInternalFrameDriver extends JComponentDriver {
    * @throws IllegalStateException if the {@code JInternalFrame} is not showing on the screen.
    */
   @RunsInEDT
-  public void move(@Nonnull JInternalFrame internalFrame, @Nonnull Point where) {
+  public void move(@NonNull JInternalFrame internalFrame, @NonNull Point where) {
     move(internalFrame, where.x, where.y);
   }
 
@@ -358,7 +358,7 @@ public class JInternalFrameDriver extends JComponentDriver {
    * @throws IllegalStateException if the {@code JInternalFrame} is not closable.
    */
   @RunsInEDT
-  public void close(@Nonnull JInternalFrame internalFrame) {
+  public void close(@NonNull JInternalFrame internalFrame) {
     Point closeButtonLocation = findCloseButtonLocation(internalFrame);
     if (closeButtonLocation == null) {
       return; // internal frame is already closed
@@ -369,7 +369,7 @@ public class JInternalFrameDriver extends JComponentDriver {
   }
 
   @RunsInEDT
-  @Nullable private static Point findCloseButtonLocation(final @Nonnull JInternalFrame internalFrame) {
+  @Nullable private static Point findCloseButtonLocation(final @NonNull JInternalFrame internalFrame) {
     return execute(() -> {
       checkShowing(internalFrame);
       if (!internalFrame.isClosable()) {
@@ -391,7 +391,7 @@ public class JInternalFrameDriver extends JComponentDriver {
    * @throws AssertionError if the title of the given {@code JInternalFrame} is not equal to the expected one.
    */
   @RunsInEDT
-  public void requireTitle(@Nonnull JInternalFrame frame, String expected) {
+  public void requireTitle(@NonNull JInternalFrame frame, String expected) {
     String actual = titleOf(frame);
     assertThat(actual).as(propertyName(frame, "title")).isEqualTo(expected);
   }

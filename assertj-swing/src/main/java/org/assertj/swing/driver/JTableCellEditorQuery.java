@@ -14,8 +14,8 @@ package org.assertj.swing.driver;
 
 import java.awt.Component;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 import javax.swing.JTable;
 import javax.swing.table.TableCellEditor;
 
@@ -39,7 +39,7 @@ import org.assertj.swing.annotation.RunsInCurrentThread;
  */
 final class JTableCellEditorQuery {
   @RunsInCurrentThread
-  static @Nullable Component cellEditorIn(final @Nonnull JTable table, final int row, final int column) {
+  static @Nullable Component cellEditorIn(final @NonNull JTable table, final int row, final int column) {
     TableCellEditor cellEditor = table.getCellEditor(row, column);
     return cellEditor.getTableCellEditorComponent(table, table.getValueAt(row, column), false, row, column);
   }

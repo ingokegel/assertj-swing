@@ -16,7 +16,7 @@ import org.assertj.swing.annotation.RunsInCurrentThread;
 import org.assertj.swing.annotation.VisibleForTesting;
 import org.assertj.swing.monitor.WindowMonitor;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import java.awt.*;
 import java.util.Collection;
 import java.util.List;
@@ -41,13 +41,13 @@ public class ExistingHierarchy implements ComponentHierarchy {
   }
 
   @VisibleForTesting
-  ExistingHierarchy(@Nonnull ParentFinder parentFinder, @Nonnull ChildrenFinder childrenFinder) {
+  ExistingHierarchy(@NonNull ParentFinder parentFinder, @NonNull ChildrenFinder childrenFinder) {
     this.parentFinder = parentFinder;
     this.childrenFinder = childrenFinder;
   }
 
   @Override
-  @Nonnull public Collection<Container> roots() {
+  @NonNull public Collection<Container> roots() {
     List<Container> roots = newArrayList();
     for (Window w : windowMonitor.rootWindows()) {
       roots.add(w);
@@ -70,7 +70,7 @@ public class ExistingHierarchy implements ComponentHierarchy {
    */
   @RunsInCurrentThread
   @Override
-  public Container parentOf(@Nonnull Component c) {
+  public Container parentOf(@NonNull Component c) {
     return parentFinder.parentOf(c);
   }
 
@@ -82,7 +82,7 @@ public class ExistingHierarchy implements ComponentHierarchy {
    * @return {@code true}.
    */
   @Override
-  public boolean contains(@Nonnull Component c) {
+  public boolean contains(@NonNull Component c) {
     return true;
   }
 
@@ -101,7 +101,7 @@ public class ExistingHierarchy implements ComponentHierarchy {
    */
   @RunsInCurrentThread
   @Override
-  @Nonnull public Collection<Component> childrenOf(@Nonnull Component c) {
+  @NonNull public Collection<Component> childrenOf(@NonNull Component c) {
     return childrenFinder.childrenOf(c);
   }
 
@@ -119,7 +119,7 @@ public class ExistingHierarchy implements ComponentHierarchy {
    */
   @Override
   @RunsInCurrentThread
-  public void dispose(@Nonnull Window w) {
+  public void dispose(@NonNull Window w) {
     for (Window owned : w.getOwnedWindows()) {
       if (owned != null) {
         dispose(owned);
@@ -131,12 +131,12 @@ public class ExistingHierarchy implements ComponentHierarchy {
     w.dispose();
   }
 
-  @Nonnull
+  @NonNull
   ParentFinder parentFinder() {
     return parentFinder;
   }
 
-  @Nonnull
+  @NonNull
   ChildrenFinder childrenFinder() {
     return childrenFinder;
   }

@@ -14,7 +14,7 @@ package org.assertj.swing.driver;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.*;
 import java.util.List;
 
@@ -35,8 +35,8 @@ import static org.assertj.swing.util.Lists.newArrayList;
  */
 final class KeyStrokes {
   @RunsInCurrentThread
-  static @Nonnull KeyStroke[] findKeyStrokesForAction(@Nonnull String actionName, @Nonnull Object actionKey,
-      @Nonnull InputMap inputMap) {
+  static @NonNull KeyStroke[] findKeyStrokesForAction(@NonNull String actionName, @NonNull Object actionKey,
+      @NonNull InputMap inputMap) {
     List<KeyStroke> keyStrokes = newArrayList();
     for (KeyStroke keyStroke : inputMap.allKeys()) {
       if (actionKey.equals(inputMap.get(keyStroke))) {

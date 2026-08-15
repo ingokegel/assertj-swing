@@ -12,7 +12,7 @@
  */
 package org.assertj.swing.keystroke;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import java.util.Collection;
 import java.util.List;
 
@@ -39,7 +39,7 @@ public class DefaultKeyStrokeMappingProvider implements KeyStrokeMappingProvider
    * @return the default mapping of characters and {@code KeyStroke}s
    */
   @Override
-  @Nonnull public Collection<KeyStrokeMapping> keyStrokeMappings() {
+  @NonNull public Collection<KeyStrokeMapping> keyStrokeMappings() {
     return LazyLoadingSingleton.instance;
   }
 

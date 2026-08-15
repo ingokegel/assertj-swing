@@ -12,7 +12,7 @@
  */
 package org.assertj.swing.fixture;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 
 /**
  * Supports functional testing of single nodes in {@code JTree}s
@@ -31,7 +31,7 @@ public interface JTreeNodeFixture<S> extends ItemFixture<S> {
    * @throws IllegalStateException if the {@code JTree} is not showing on the screen.
    * @throws org.assertj.swing.exception.ActionFailedException if this method fails to expand the row.
    */
-  @Nonnull
+  @NonNull
   S expand();
 
   /**
@@ -42,6 +42,6 @@ public interface JTreeNodeFixture<S> extends ItemFixture<S> {
    * @throws IllegalStateException if the {@code JTree} is not showing on the screen.
    * @throws org.assertj.swing.exception.ActionFailedException if this method fails to collapse the row.
    */
-  @Nonnull
+  @NonNull
   S collapse();
 }

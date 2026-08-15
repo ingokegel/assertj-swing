@@ -12,7 +12,7 @@
  */
 package org.assertj.swing.timing;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import java.util.concurrent.TimeUnit;
 
 import static org.assertj.swing.util.Objects.HASH_CODE_PRIME;
@@ -34,7 +34,7 @@ public final class Timeout {
    * 
    * @return the created {@code Timeout}.
    */
-  @Nonnull public static Timeout timeout() {
+  @NonNull public static Timeout timeout() {
     return timeout(DEFAULT_DELAY);
   }
 
@@ -44,7 +44,7 @@ public final class Timeout {
    * @param duration the duration of the timeout in milliseconds.
    * @return the created {@code Timeout}.
    */
-  @Nonnull public static Timeout timeout(long duration) {
+  @NonNull public static Timeout timeout(long duration) {
     return new Timeout(duration);
   }
 
@@ -56,7 +56,7 @@ public final class Timeout {
    * @return the created {@code Timeout}.
    * @throws NullPointerException if the given time unit is {@code null}.
    */
-  @Nonnull public static Timeout timeout(long duration, @Nonnull TimeUnit timeUnit) {
+  @NonNull public static Timeout timeout(long duration, @NonNull TimeUnit timeUnit) {
     checkNotNull(timeUnit);
     return new Timeout(timeUnit.toMillis(duration));
   }

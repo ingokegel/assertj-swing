@@ -12,8 +12,8 @@
  */
 package org.assertj.swing.timing;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 import java.util.function.Supplier;
 
 import static org.assertj.swing.util.Strings.concat;
@@ -34,7 +34,7 @@ public abstract class Condition {
    *
    * @param description describes this condition.
    */
-  public Condition(@Nonnull String description) {
+  public Condition(@NonNull String description) {
     this(() -> description);
   }
 
@@ -60,7 +60,7 @@ public abstract class Condition {
    * @return the description of this condition.
    */
   @Override
-  public final @Nonnull String toString() {
+  public final @NonNull String toString() {
     String descriptionText = description != null ? description.get() : defaultDescription();
     String addendum = descriptionAddendum();
     return concat(descriptionText, addendum);
@@ -75,7 +75,7 @@ public abstract class Condition {
    * 
    * @return by default, an empty {@code String}.
    */
-  @Nonnull protected String descriptionAddendum() {
+  @NonNull protected String descriptionAddendum() {
     return EMPTY_TEXT;
   }
 

@@ -15,8 +15,8 @@ package org.assertj.swing.fixture;
 import java.awt.Point;
 import java.util.regex.Pattern;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 import javax.swing.JComponent;
 
 import org.assertj.swing.core.Robot;
@@ -47,8 +47,8 @@ public abstract class AbstractSwingContainerFixture<S, C extends JComponent, D e
    * @throws org.assertj.swing.exception.ComponentLookupException if more than one matching component is found.
    * @see org.assertj.swing.core.ComponentFinder#findByType(Class)
    */
-  public AbstractSwingContainerFixture(@Nonnull Class<S> selfType, @Nonnull Robot robot,
-                                       @Nonnull Class<? extends C> type) {
+  public AbstractSwingContainerFixture(@NonNull Class<S> selfType, @NonNull Robot robot,
+                                       @NonNull Class<? extends C> type) {
     super(selfType, robot, type);
   }
 
@@ -65,8 +65,8 @@ public abstract class AbstractSwingContainerFixture<S, C extends JComponent, D e
    * @throws org.assertj.swing.exception.ComponentLookupException if more than one matching component is found.
    * @see org.assertj.swing.core.ComponentFinder#findByName(String, Class)
    */
-  public AbstractSwingContainerFixture(@Nonnull Class<S> selfType, @Nonnull Robot robot, @Nullable String name,
-                                       @Nonnull Class<? extends C> type) {
+  public AbstractSwingContainerFixture(@NonNull Class<S> selfType, @NonNull Robot robot, @Nullable String name,
+                                       @NonNull Class<? extends C> type) {
     super(selfType, robot, name, type);
   }
 
@@ -79,7 +79,7 @@ public abstract class AbstractSwingContainerFixture<S, C extends JComponent, D e
    * @throws NullPointerException if {@code robot} is {@code null}.
    * @throws NullPointerException if {@code target} is {@code null}.
    */
-  public AbstractSwingContainerFixture(@Nonnull Class<S> selfType, @Nonnull Robot robot, @Nonnull C target) {
+  public AbstractSwingContainerFixture(@NonNull Class<S> selfType, @NonNull Robot robot, @NonNull C target) {
     super(selfType, robot, target);
   }
 
@@ -91,7 +91,7 @@ public abstract class AbstractSwingContainerFixture<S, C extends JComponent, D e
    * @throws AssertionError if the toolTip in this fixture's {@code JScrollPane} does not match the given value.
    */
   @Override
-  public final @Nonnull S requireToolTip(@Nullable String expected) {
+  public final @NonNull S requireToolTip(@Nullable String expected) {
     driver().requireToolTip(target(), expected);
     return myself();
   }
@@ -106,7 +106,7 @@ public abstract class AbstractSwingContainerFixture<S, C extends JComponent, D e
    *           expression.
    */
   @Override
-  public final @Nonnull S requireToolTip(@Nonnull Pattern pattern) {
+  public final @NonNull S requireToolTip(@NonNull Pattern pattern) {
     driver().requireToolTip(target(), pattern);
     return myself();
   }
@@ -119,7 +119,7 @@ public abstract class AbstractSwingContainerFixture<S, C extends JComponent, D e
    * @throws NullPointerException if the given key is {@code null}.
    */
   @Override
-  public final @Nullable Object clientProperty(@Nonnull Object key) {
+  public final @Nullable Object clientProperty(@NonNull Object key) {
     return driver().clientProperty(target(), key);
   }
 
@@ -133,7 +133,7 @@ public abstract class AbstractSwingContainerFixture<S, C extends JComponent, D e
    * @throws org.assertj.swing.exception.ComponentLookupException if a pop-up menu cannot be found.
    */
   @Override
-  public final @Nonnull JPopupMenuFixture showPopupMenu() {
+  public final @NonNull JPopupMenuFixture showPopupMenu() {
     return new JPopupMenuFixture(robot(), driver().invokePopupMenu(target()));
   }
 
@@ -148,7 +148,7 @@ public abstract class AbstractSwingContainerFixture<S, C extends JComponent, D e
    * @throws org.assertj.swing.exception.ComponentLookupException if a pop-up menu cannot be found.
    */
   @Override
-  public final @Nonnull JPopupMenuFixture showPopupMenuAt(@Nonnull Point p) {
+  public final @NonNull JPopupMenuFixture showPopupMenuAt(@NonNull Point p) {
     return new JPopupMenuFixture(robot(), driver().invokePopupMenu(target(), p));
   }
 }

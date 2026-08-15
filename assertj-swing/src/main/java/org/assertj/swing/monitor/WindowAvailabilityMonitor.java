@@ -25,7 +25,7 @@ import java.awt.Window;
 import java.awt.event.AWTEventListener;
 import java.awt.event.MouseEvent;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 
 import org.assertj.swing.annotation.RunsInEDT;
 
@@ -39,11 +39,11 @@ final class WindowAvailabilityMonitor implements AWTEventListener {
 
   private final Windows windows;
 
-  WindowAvailabilityMonitor(@Nonnull Windows windows) {
+  WindowAvailabilityMonitor(@NonNull Windows windows) {
     this.windows = windows;
   }
 
-  void attachTo(@Nonnull Toolkit toolkit) {
+  void attachTo(@NonNull Toolkit toolkit) {
     attachAsWeakEventListener(toolkit, this, EVENT_MASK);
   }
 

@@ -12,7 +12,7 @@
  */
 package org.assertj.swing.driver;
 
-import javax.annotation.Nullable;
+import org.jspecify.annotations.Nullable;
 import javax.swing.UIManager;
 
 /**

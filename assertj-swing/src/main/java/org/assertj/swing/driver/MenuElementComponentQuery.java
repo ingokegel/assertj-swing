@@ -14,7 +14,7 @@ package org.assertj.swing.driver;
 
 import org.assertj.swing.annotation.RunsInEDT;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.*;
 import java.awt.*;
 
@@ -30,7 +30,7 @@ import static org.assertj.swing.util.Preconditions.checkNotNull;
  */
 final class MenuElementComponentQuery {
   @RunsInEDT
-  static @Nonnull Component componentIn(final @Nonnull MenuElement menuElement) {
+  static @NonNull Component componentIn(final @NonNull MenuElement menuElement) {
     Component result = execute(() -> menuElement.getComponent());
     return checkNotNull(result);
   }

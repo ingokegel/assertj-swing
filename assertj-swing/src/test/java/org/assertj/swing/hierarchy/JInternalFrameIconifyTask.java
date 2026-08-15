@@ -16,7 +16,7 @@ import static org.assertj.swing.edt.GuiActionRunner.execute;
 import static org.assertj.swing.test.query.JInternalFrameIconifiedQuery.isIconified;
 import static org.assertj.swing.timing.Pause.pause;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.JInternalFrame;
 
 import org.assertj.swing.annotation.RunsInEDT;
@@ -30,7 +30,7 @@ import org.assertj.swing.timing.Condition;
  */
 @RunsInEDT
 final class JInternalFrameIconifyTask {
-  static void iconify(final @Nonnull JInternalFrame internalFrame) {
+  static void iconify(final @NonNull JInternalFrame internalFrame) {
     execute(() -> internalFrame.setIcon(true));
     pause(new Condition("JInternalFrame is iconified") {
       @Override

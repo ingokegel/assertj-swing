@@ -12,7 +12,7 @@
  */
 package org.assertj.swing.format;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.*;
 import java.awt.*;
 
@@ -32,7 +32,7 @@ public class JTableFormatter extends ComponentFormatterTemplate {
    * @return the {@code String} representation of the given {@code JTable}.
    */
   @Override
-  @Nonnull protected String doFormat(@Nonnull Component c) {
+  @NonNull protected String doFormat(@NonNull Component c) {
     JTable table = (JTable) c;
     String format = "%s[name=%s, rowCount=%d, columnCount=%d, enabled=%b, visible=%b, showing=%b]";
     return String.format(format, getRealClassName(c), quote(table.getName()), table.getRowCount(),
@@ -43,7 +43,7 @@ public class JTableFormatter extends ComponentFormatterTemplate {
    * @return {@code JTable.class}.
    */
   @Override
-  @Nonnull public Class<? extends Component> targetType() {
+  @NonNull public Class<? extends Component> targetType() {
     return JTable.class;
   }
 }

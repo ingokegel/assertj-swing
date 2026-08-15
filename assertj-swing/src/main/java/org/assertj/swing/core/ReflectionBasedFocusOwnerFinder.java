@@ -17,7 +17,7 @@ import static org.assertj.swing.util.Reflection.staticFieldValue;
 import java.awt.Component;
 import java.awt.KeyboardFocusManager;
 
-import javax.annotation.Nullable;
+import org.jspecify.annotations.Nullable;
 
 /**
  * Finds the current focus owner using Java reflection.

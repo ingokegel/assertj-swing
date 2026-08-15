@@ -16,8 +16,8 @@ import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.annotation.VisibleForTesting;
 import org.assertj.swing.logging.Logger;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 import java.awt.*;
 import java.util.concurrent.ConcurrentMap;
 
@@ -53,7 +53,7 @@ public class TextReaders {
    * @throws NullPointerException if the supported {@code Component} type in the given {@code TextReader} is
    *           {@code null}.
    */
-  public void register(@Nonnull TextReader<?> reader) {
+  public void register(@NonNull TextReader<?> reader) {
     checkNotNull(reader);
     Class<?> type = checkNotNull(reader.supportedComponent());
     TextReader<?> old = readers.put(type, reader);
@@ -73,7 +73,7 @@ public class TextReaders {
    * @throws NullPointerException if the given text is {@code null}.
    */
   @RunsInEDT
-  public boolean containsText(final @Nonnull Container container, final @Nonnull String text) {
+  public boolean containsText(final @NonNull Container container, final @NonNull String text) {
     checkNotNull(container);
     checkNotNull(text);
     Boolean result = execute(() -> {
@@ -85,7 +85,7 @@ public class TextReaders {
     return checkNotNull(result);
   }
 
-  private boolean anyComponentContainsText(@Nonnull Component[] components, @Nonnull String text) {
+  private boolean anyComponentContainsText(@NonNull Component[] components, @NonNull String text) {
     for (Component c : components) {
       if (c == null) {
         continue;
@@ -101,7 +101,7 @@ public class TextReaders {
     return false;
   }
 
-  private boolean componentContainsText(@Nonnull Component c, @Nonnull String text) {
+  private boolean componentContainsText(@NonNull Component c, @NonNull String text) {
     TextReader<?> reader = readerFor(c);
     if (reader == null) {
       return false;
@@ -109,7 +109,7 @@ public class TextReaders {
     return reader.containsText(c, text);
   }
 
-  @Nullable private TextReader<?> readerFor(@Nonnull Component c) {
+  @Nullable private TextReader<?> readerFor(@NonNull Component c) {
     Class<?> type = c.getClass();
     while (type != null) {
       TextReader<?> reader = readers.get(type);
@@ -127,7 +127,7 @@ public class TextReaders {
   /**
    * @return the singleton instance of this class.
    */
-  @Nonnull public static TextReaders instance() {
+  @NonNull public static TextReaders instance() {
     return SingletonHolder.INSTANCE;
   }
 

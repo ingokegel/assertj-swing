@@ -15,7 +15,7 @@ package org.assertj.swing.driver;
 import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.util.TextMatcher;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.*;
 
 import static org.assertj.swing.edt.GuiActionRunner.execute;
@@ -30,7 +30,7 @@ import static org.assertj.swing.util.Preconditions.checkNotNull;
  */
 final class JTabbedPaneTabIndexQuery {
   @RunsInEDT
-  static int indexOfTab(final @Nonnull JTabbedPane tabbedPane, final @Nonnull TextMatcher matcher) {
+  static int indexOfTab(final @NonNull JTabbedPane tabbedPane, final @NonNull TextMatcher matcher) {
     Integer result = execute(() -> {
       int tabCount = tabbedPane.getTabCount();
       for (int i = 0; i < tabCount; i++) {

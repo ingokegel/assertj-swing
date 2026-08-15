@@ -20,7 +20,7 @@ import org.assertj.swing.internal.annotation.InternalApi;
 import org.assertj.swing.util.GenericRange;
 import org.assertj.swing.util.Pair;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.*;
 import java.awt.*;
 
@@ -51,7 +51,7 @@ public class JSliderDriver extends JComponentDriver {
    * 
    * @param robot the robot to use to simulate user input.
    */
-  public JSliderDriver(@Nonnull Robot robot) {
+  public JSliderDriver(@NonNull Robot robot) {
     super(robot);
     location = new JSliderLocation();
   }
@@ -64,13 +64,13 @@ public class JSliderDriver extends JComponentDriver {
    * @throws IllegalStateException if the {@code JSlider} is not showing on the screen.
    */
   @RunsInEDT
-  public void slideToMaximum(@Nonnull JSlider slider) {
+  public void slideToMaximum(@NonNull JSlider slider) {
     slide(slider, findSlideToMaximumInfo(slider, location()));
   }
 
   @RunsInEDT
-  @Nonnull private static Pair<Integer, GenericRange<Point>> findSlideToMaximumInfo(final @Nonnull JSlider slider,
-      final @Nonnull JSliderLocation location) {
+  @NonNull private static Pair<Integer, GenericRange<Point>> findSlideToMaximumInfo(final @NonNull JSlider slider,
+      final @NonNull JSliderLocation location) {
     Pair<Integer, GenericRange<Point>> result = execute(new GuiQuery<Pair<Integer, GenericRange<Point>>>() {
       @Override
       protected Pair<Integer, GenericRange<Point>> executeInEDT() {
@@ -91,13 +91,13 @@ public class JSliderDriver extends JComponentDriver {
    * @throws IllegalStateException if the {@code JSlider} is not showing on the screen.
    */
   @RunsInEDT
-  public void slideToMinimum(@Nonnull JSlider slider) {
+  public void slideToMinimum(@NonNull JSlider slider) {
     slide(slider, findSlideToMinimumInfo(slider, location()));
   }
 
   @RunsInEDT
-  @Nonnull private static Pair<Integer, GenericRange<Point>> findSlideToMinimumInfo(final @Nonnull JSlider slider,
-      final @Nonnull JSliderLocation location) {
+  @NonNull private static Pair<Integer, GenericRange<Point>> findSlideToMinimumInfo(final @NonNull JSlider slider,
+      final @NonNull JSliderLocation location) {
     Pair<Integer, GenericRange<Point>> result = execute(new GuiQuery<Pair<Integer, GenericRange<Point>>>() {
       @Override
       protected Pair<Integer, GenericRange<Point>> executeInEDT() {
@@ -111,7 +111,7 @@ public class JSliderDriver extends JComponentDriver {
   }
 
   @RunsInEDT
-  private void slide(@Nonnull JSlider slider, @Nonnull Pair<Integer, GenericRange<Point>> slideInfo) {
+  private void slide(@NonNull JSlider slider, @NonNull Pair<Integer, GenericRange<Point>> slideInfo) {
     slide(slider, slideInfo.first, checkNotNull(slideInfo.second));
   }
 
@@ -125,13 +125,13 @@ public class JSliderDriver extends JComponentDriver {
    * @throws IllegalArgumentException if the given position is not within the {@code JSlider} bounds.
    */
   @RunsInEDT
-  public void slide(@Nonnull JSlider slider, int value) {
+  public void slide(@NonNull JSlider slider, int value) {
     GenericRange<Point> slideInfo = findSlideInfo(slider, location(), value);
     slide(slider, value, slideInfo);
   }
 
   @RunsInEDT
-  private void slide(@Nonnull JSlider slider, int value, @Nonnull GenericRange<Point> fromAndTo) {
+  private void slide(@NonNull JSlider slider, int value, @NonNull GenericRange<Point> fromAndTo) {
     moveMouseIgnoringAnyError(slider, fromAndTo.from());
     moveMouseIgnoringAnyError(slider, fromAndTo.to());
     setValue(slider, value);
@@ -139,8 +139,8 @@ public class JSliderDriver extends JComponentDriver {
   }
 
   @RunsInEDT
-  @Nonnull private static GenericRange<Point> findSlideInfo(final @Nonnull JSlider slider,
-      final @Nonnull JSliderLocation location, final int value) {
+  @NonNull private static GenericRange<Point> findSlideInfo(final @NonNull JSlider slider,
+      final @NonNull JSliderLocation location, final int value) {
     GenericRange<Point> result = execute(new GuiQuery<GenericRange<Point>>() {
       @Override
       protected GenericRange<Point> executeInEDT() {
@@ -153,7 +153,7 @@ public class JSliderDriver extends JComponentDriver {
   }
 
   @RunsInCurrentThread
-  private static void checkValueInBounds(@Nonnull JSlider slider, int value) {
+  private static void checkValueInBounds(@NonNull JSlider slider, int value) {
     int min = slider.getMinimum();
     int max = slider.getMaximum();
     if (value >= min && value <= max) {
@@ -164,13 +164,13 @@ public class JSliderDriver extends JComponentDriver {
   }
 
   @RunsInCurrentThread
-  private static GenericRange<Point> slideInfo(@Nonnull JSlider slider, JSliderLocation location, int value) {
+  private static GenericRange<Point> slideInfo(@NonNull JSlider slider, JSliderLocation location, int value) {
     Point from = location.pointAt(slider, slider.getValue());
     Point to = location.pointAt(slider, value);
     return new GenericRange<Point>(from, to);
   }
 
-  @Nonnull private JSliderLocation location() {
+  @NonNull private JSliderLocation location() {
     return location;
   }
 }

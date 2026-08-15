@@ -12,7 +12,7 @@
  */
 package org.assertj.swing.util;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 
 import static org.assertj.swing.util.Objects.HASH_CODE_PRIME;
 
@@ -38,7 +38,7 @@ public final class Range {
    * @param value the starting value of the range.
    * @return the created {@code From}.
    */
-  public static final @Nonnull From from(int value) {
+  public static final @NonNull From from(int value) {
     return new From(value);
   }
 
@@ -48,7 +48,7 @@ public final class Range {
    * @param value the ending value of the range.
    * @return the created {@code To}.
    */
-  public static final @Nonnull To to(int value) {
+  public static final @NonNull To to(int value) {
     return new To(value);
   }
 

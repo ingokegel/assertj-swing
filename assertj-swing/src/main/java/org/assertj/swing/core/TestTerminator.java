@@ -14,7 +14,7 @@ package org.assertj.swing.core;
 
 import static org.assertj.swing.util.AWTExceptionHandlerInstaller.installAWTExceptionHandler;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 
 /**
  * Terminates any running AssertJ-Swing tests.
@@ -30,8 +30,8 @@ class TestTerminator {
     this(new ThreadsSource(), new FrameDisposer(), new MainThreadIdentifier());
   }
 
-  TestTerminator(@Nonnull ThreadsSource threadsSource, @Nonnull FrameDisposer frameDisposer,
-                 @Nonnull MainThreadIdentifier mainThreadIdentifier) {
+  TestTerminator(@NonNull ThreadsSource threadsSource, @NonNull FrameDisposer frameDisposer,
+                 @NonNull MainThreadIdentifier mainThreadIdentifier) {
     this.threadsSource = threadsSource;
     this.frameDisposer = frameDisposer;
     this.mainThreadIdentifier = mainThreadIdentifier;

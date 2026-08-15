@@ -15,8 +15,8 @@ package org.assertj.swing.format;
 import org.assertj.swing.annotation.RunsInCurrentThread;
 import org.assertj.swing.util.Arrays;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 import java.awt.*;
 import java.beans.BeanInfo;
 import java.beans.Introspector;
@@ -52,8 +52,8 @@ public final class IntrospectionComponentFormatter extends ComponentFormatterTem
    * @param propertyNames the property names to show as the {@code String} representation of a given {@code Component}.
    * @throws NullPointerException if {@code targetType} is {@code null}.
    */
-  public IntrospectionComponentFormatter(@Nonnull Class<? extends Component> targetType,
-                                         @Nonnull String... propertyNames) {
+  public IntrospectionComponentFormatter(@NonNull Class<? extends Component> targetType,
+                                         @NonNull String... propertyNames) {
     this.targetType = checkNotNull(targetType);
     this.propertyNames = newArrayList(propertyNames);
     populate();
@@ -71,7 +71,7 @@ public final class IntrospectionComponentFormatter extends ComponentFormatterTem
     }
   }
 
-  private void register(@Nonnull PropertyDescriptor d) {
+  private void register(@NonNull PropertyDescriptor d) {
     String name = d.getName();
     if (!propertyNames.contains(name)) {
       return;
@@ -91,7 +91,7 @@ public final class IntrospectionComponentFormatter extends ComponentFormatterTem
    */
   @RunsInCurrentThread
   @Override
-  @Nonnull protected String doFormat(@Nonnull Component c) {
+  @NonNull protected String doFormat(@NonNull Component c) {
     StringBuilder b = new StringBuilder();
     b.append(getRealClassName(c)).append("[");
     int max = propertyNames.size() - 1;
@@ -105,7 +105,7 @@ public final class IntrospectionComponentFormatter extends ComponentFormatterTem
     return b.toString();
   }
 
-  private void appendProperty(@Nonnull StringBuilder b, @Nonnull String name, @Nonnull Component c) {
+  private void appendProperty(@NonNull StringBuilder b, @NonNull String name, @NonNull Component c) {
     b.append(name).append("=");
     try {
       b.append(propertyValue(c, name));
@@ -114,7 +114,7 @@ public final class IntrospectionComponentFormatter extends ComponentFormatterTem
     }
   }
 
-  @Nullable private Object propertyValue(@Nonnull Component c, @Nonnull String property) throws Exception {
+  @Nullable private Object propertyValue(@NonNull Component c, @NonNull String property) throws Exception {
     if ("showing".equals(property)) {
       return c.isShowing();
     }
@@ -134,7 +134,7 @@ public final class IntrospectionComponentFormatter extends ComponentFormatterTem
    * @return the type of AWT or Swing {@code Component} this formatter supports.
    */
   @Override
-  @Nonnull public Class<? extends Component> targetType() {
+  @NonNull public Class<? extends Component> targetType() {
     return targetType;
   }
 

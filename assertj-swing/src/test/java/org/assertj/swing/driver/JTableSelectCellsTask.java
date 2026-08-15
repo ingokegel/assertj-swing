@@ -14,7 +14,7 @@ package org.assertj.swing.driver;
 
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.JTable;
 
 import org.assertj.swing.data.TableCell;
@@ -26,7 +26,7 @@ import org.assertj.swing.data.TableCell;
  * @author Yvonne Wang
  */
 final class JTableSelectCellsTask {
-  static void selectCells(final @Nonnull JTable table, final @Nonnull TableCell from, final @Nonnull TableCell to) {
+  static void selectCells(final @NonNull JTable table, final @NonNull TableCell from, final @NonNull TableCell to) {
     execute(() -> {
       table.setColumnSelectionInterval(from.column, to.column);
       table.setRowSelectionInterval(from.row, to.row);

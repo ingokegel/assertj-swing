@@ -16,7 +16,7 @@ import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.edt.GuiLazyLoadingDescription;
 import org.assertj.swing.timing.Condition;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import java.awt.*;
 import java.util.function.Supplier;
 
@@ -33,19 +33,19 @@ import static org.assertj.swing.util.Strings.concat;
 class ComponentEnabledCondition extends Condition {
   private Component c;
 
-  static @Nonnull ComponentEnabledCondition untilIsEnabled(@Nonnull Component c) {
+  static @NonNull ComponentEnabledCondition untilIsEnabled(@NonNull Component c) {
     return new ComponentEnabledCondition(c);
   }
 
-  private ComponentEnabledCondition(@Nonnull Component c) {
+  private ComponentEnabledCondition(@NonNull Component c) {
     super(description(c));
     this.c = c;
   }
 
-  @Nonnull private static Supplier<String> description(final @Nonnull Component c) {
+  @NonNull private static Supplier<String> description(final @NonNull Component c) {
     return new GuiLazyLoadingDescription() {
       @Override
-      @Nonnull protected String loadDescription() {
+      @NonNull protected String loadDescription() {
         return concat(format(c), " to be enabled");
       }
     };

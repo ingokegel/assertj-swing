@@ -27,7 +27,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.List;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.JTextField;
 
 import org.junit.Test;
@@ -56,7 +56,7 @@ public class BasicRobot_pressAndReleaseKeyWithModifiers_Test extends BasicRobot_
   private static class KeyPressRecorder extends KeyAdapter {
     final List<KeyAction> actions = newArrayList();
 
-    static KeyPressRecorder attachTo(@Nonnull Component c) {
+    static KeyPressRecorder attachTo(@NonNull Component c) {
       KeyPressRecorder recorder = new KeyPressRecorder();
       c.addKeyListener(recorder);
       return recorder;
@@ -77,7 +77,7 @@ public class BasicRobot_pressAndReleaseKeyWithModifiers_Test extends BasicRobot_
     final int type;
     final int keyCode;
 
-    static @Nonnull KeyAction action(int type, int keyCode) {
+    static @NonNull KeyAction action(int type, int keyCode) {
       return new KeyAction(type, keyCode);
     }
 
@@ -114,7 +114,7 @@ public class BasicRobot_pressAndReleaseKeyWithModifiers_Test extends BasicRobot_
     }
 
     @Override
-    @Nonnull public String toString() {
+    @NonNull public String toString() {
       StringBuilder b = new StringBuilder();
       b.append("[type=").append(type).append(", ");
       b.append("keyCode=").append(keyCode).append("]");

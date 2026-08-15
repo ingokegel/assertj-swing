@@ -15,7 +15,7 @@ package org.assertj.swing.driver;
 import org.assertj.swing.annotation.RunsInCurrentThread;
 import org.assertj.swing.annotation.RunsInEDT;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.*;
 import java.awt.*;
 import java.util.Map;
@@ -41,14 +41,14 @@ final class JSplitPaneLocationCalculator {
     add(new VerticalOrientationLocationFinder(), new HorizontalOrientationLocationFinder());
   }
 
-  private static void add(@Nonnull LocationFinder... finders) {
+  private static void add(@NonNull LocationFinder... finders) {
     for (LocationFinder finder : finders) {
       FINDERS.put(finder.orientation(), finder);
     }
   }
 
   @RunsInEDT
-  static int locationToMoveDividerTo(final @Nonnull JSplitPane splitPane, final int desiredLocation) {
+  static int locationToMoveDividerTo(final @NonNull JSplitPane splitPane, final int desiredLocation) {
     Integer result = execute(() -> FINDERS.get(splitPane.getOrientation()).locationToMoveDividerTo(splitPane,
                                                                                                    desiredLocation));
     return checkNotNull(result);
@@ -58,7 +58,7 @@ final class JSplitPaneLocationCalculator {
   }
 
   private static abstract class LocationFinder {
-    abstract int locationToMoveDividerTo(@Nonnull JSplitPane splitPane, int desiredLocation);
+    abstract int locationToMoveDividerTo(@NonNull JSplitPane splitPane, int desiredLocation);
 
     abstract int orientation();
   }
@@ -66,7 +66,7 @@ final class JSplitPaneLocationCalculator {
   private static class VerticalOrientationLocationFinder extends LocationFinder {
     @RunsInCurrentThread
     @Override
-    int locationToMoveDividerTo(@Nonnull JSplitPane splitPane, int desiredLocation) {
+    int locationToMoveDividerTo(@NonNull JSplitPane splitPane, int desiredLocation) {
       int minimum = calculateMinimum(splitPane);
       int maximum = calculateMaximum(splitPane);
       if (maximum < minimum) {
@@ -76,7 +76,7 @@ final class JSplitPaneLocationCalculator {
     }
 
     @RunsInCurrentThread
-    private int calculateMinimum(@Nonnull JSplitPane splitPane) {
+    private int calculateMinimum(@NonNull JSplitPane splitPane) {
       Component left = splitPane.getLeftComponent();
       if (left == null || !left.isVisible()) {
         return 0;
@@ -90,7 +90,7 @@ final class JSplitPaneLocationCalculator {
     }
 
     @RunsInCurrentThread
-    private int calculateMaximum(@Nonnull JSplitPane splitPane) {
+    private int calculateMaximum(@NonNull JSplitPane splitPane) {
       Component rightComponent = splitPane.getRightComponent();
       if (splitPane.getLeftComponent() == null || rightComponent == null) {
         return -1; // Don't allow dragging.
@@ -114,7 +114,7 @@ final class JSplitPaneLocationCalculator {
   private static class HorizontalOrientationLocationFinder extends LocationFinder {
     @RunsInCurrentThread
     @Override
-    int locationToMoveDividerTo(@Nonnull JSplitPane splitPane, int desiredLocation) {
+    int locationToMoveDividerTo(@NonNull JSplitPane splitPane, int desiredLocation) {
       int minimum = calculateMinimum(splitPane);
       int maximum = calculateMaximum(splitPane);
       if (maximum < minimum) {
@@ -124,7 +124,7 @@ final class JSplitPaneLocationCalculator {
     }
 
     @RunsInCurrentThread
-    private int calculateMinimum(@Nonnull JSplitPane splitPane) {
+    private int calculateMinimum(@NonNull JSplitPane splitPane) {
       Component left = splitPane.getLeftComponent();
       if (left == null || !left.isVisible()) {
         return 0;
@@ -138,7 +138,7 @@ final class JSplitPaneLocationCalculator {
     }
 
     @RunsInCurrentThread
-    private int calculateMaximum(@Nonnull JSplitPane splitPane) {
+    private int calculateMaximum(@NonNull JSplitPane splitPane) {
       Component rightComponent = splitPane.getRightComponent();
       if (splitPane.getLeftComponent() == null || rightComponent == null) {
         return -1; // Don't allow dragging.

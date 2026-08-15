@@ -14,7 +14,7 @@ package org.assertj.swing.query;
 
 import org.assertj.swing.annotation.RunsInEDT;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import java.awt.*;
 
 import static org.assertj.swing.edt.GuiActionRunner.execute;
@@ -37,7 +37,7 @@ public final class ComponentVisibleQuery {
    * @see Component#isVisible()
    */
   @RunsInEDT
-  public static boolean isVisible(final @Nonnull Component component) {
+  public static boolean isVisible(final @NonNull Component component) {
     Boolean result = execute(() -> component.isVisible());
     return checkNotNull(result);
   }

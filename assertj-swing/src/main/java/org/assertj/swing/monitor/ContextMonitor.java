@@ -31,7 +31,7 @@ import java.awt.Window;
 import java.awt.event.AWTEventListener;
 import java.awt.event.ComponentEvent;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 
 import org.assertj.swing.annotation.RunsInEDT;
 
@@ -51,7 +51,7 @@ final class ContextMonitor implements AWTEventListener {
     this.windows = windows;
   }
 
-  void attachTo(@Nonnull Toolkit toolkit) {
+  void attachTo(@NonNull Toolkit toolkit) {
     attachAsWeakEventListener(toolkit, this, EVENT_MASK);
   }
 
@@ -73,7 +73,7 @@ final class ContextMonitor implements AWTEventListener {
     }
   }
 
-  private void processEvent(@Nonnull ComponentEvent event) {
+  private void processEvent(@NonNull ComponentEvent event) {
     Component component = event.getComponent();
     if (component == null) {
       return;
@@ -97,7 +97,7 @@ final class ContextMonitor implements AWTEventListener {
     }
   }
 
-  private void recognizeAsOpenWindow(@Nonnull Component component) {
+  private void recognizeAsOpenWindow(@NonNull Component component) {
     context.addContextFor(component);
     // Attempt to ensure the window is ready for input before recognizing it as "open".
     // There is no Java API for this, so we institute an empirically tested delay.
@@ -112,7 +112,7 @@ final class ContextMonitor implements AWTEventListener {
     }
   }
 
-  private void recognizeAsClosedWindow(@Nonnull Component component) {
+  private void recognizeAsClosedWindow(@NonNull Component component) {
     if (parentOf(component) == null) {
       context.removeContextFor(component);
     }

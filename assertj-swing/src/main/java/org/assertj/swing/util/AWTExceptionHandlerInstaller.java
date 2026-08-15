@@ -16,7 +16,7 @@ import static org.assertj.swing.util.Reflection.hasDefaultConstructor;
 
 import org.assertj.swing.annotation.VisibleForTesting;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 
 /**
  * <p>
@@ -44,12 +44,12 @@ public final class AWTExceptionHandlerInstaller {
    * @param exceptionHandlerType the type of exception handler to be installed in the current JVM.
    * @throws IllegalArgumentException if the given type does not have a default constructor.
    */
-  public static void installAWTExceptionHandler(@Nonnull Class<?> exceptionHandlerType) {
+  public static void installAWTExceptionHandler(@NonNull Class<?> exceptionHandlerType) {
     installAWTExceptionHandler(exceptionHandlerType, WRITER);
   }
 
   @VisibleForTesting
-  static void installAWTExceptionHandler(@Nonnull Class<?> exceptionHandlerType, SystemPropertyWriter writer) {
+  static void installAWTExceptionHandler(@NonNull Class<?> exceptionHandlerType, SystemPropertyWriter writer) {
     if (!hasDefaultConstructor(exceptionHandlerType)) {
       throw new IllegalArgumentException("The exception handler type should have a default constructor");
     }

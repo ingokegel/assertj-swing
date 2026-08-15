@@ -14,8 +14,8 @@ package org.assertj.swing.test.task;
 
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 import javax.swing.JComboBox;
 
 import org.assertj.swing.annotation.RunsInEDT;
@@ -27,7 +27,7 @@ import org.assertj.swing.annotation.RunsInEDT;
  */
 public final class JComboBoxSetSelectedItemTask {
   @RunsInEDT
-  public static void setSelectedItem(final @Nonnull JComboBox comboBox, final @Nullable Object item) {
+  public static void setSelectedItem(final @NonNull JComboBox comboBox, final @Nullable Object item) {
     execute(() -> comboBox.setSelectedItem(item));
   }
 

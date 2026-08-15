@@ -14,8 +14,8 @@ package org.assertj.swing.driver;
 
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 import javax.swing.JInternalFrame;
 
 import org.assertj.swing.annotation.RunsInEDT;
@@ -29,7 +29,7 @@ import org.assertj.swing.annotation.RunsInEDT;
  */
 final class JInternalFrameTitleQuery {
   @RunsInEDT
-  static @Nullable String titleOf(final @Nonnull JInternalFrame f) {
+  static @Nullable String titleOf(final @NonNull JInternalFrame f) {
     return execute(() -> f.getTitle());
   }
 

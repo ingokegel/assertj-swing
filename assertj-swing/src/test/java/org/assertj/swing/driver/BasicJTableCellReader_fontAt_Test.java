@@ -19,7 +19,7 @@ import static org.assertj.swing.edt.GuiActionRunner.execute;
 import java.awt.Component;
 import java.awt.Font;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 
@@ -46,7 +46,7 @@ public class BasicJTableCellReader_fontAt_Test extends BasicJTableCellReader_Tes
   }
 
   @RunsInEDT
-  @Nonnull private static Font fontOf(final @Nonnull Component component) {
+  @NonNull private static Font fontOf(final @NonNull Component component) {
     Font result = execute(() -> component.getFont());
     return checkNotNull(result);
   }

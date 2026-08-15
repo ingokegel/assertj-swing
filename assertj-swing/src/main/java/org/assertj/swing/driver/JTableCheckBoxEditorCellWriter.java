@@ -17,7 +17,7 @@ import org.assertj.swing.core.Robot;
 import org.assertj.swing.edt.GuiQuery;
 import org.assertj.swing.util.Pair;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.*;
 import java.awt.*;
 
@@ -32,13 +32,13 @@ import static org.assertj.swing.util.Preconditions.checkNotNull;
  * @author Yvonne Wang
  */
 public class JTableCheckBoxEditorCellWriter extends AbstractJTableCellWriter {
-  public JTableCheckBoxEditorCellWriter(@Nonnull Robot robot) {
+  public JTableCheckBoxEditorCellWriter(@NonNull Robot robot) {
     super(robot);
   }
 
   @RunsInEDT
   @Override
-  public void enterValue(@Nonnull JTable table, int row, int column, @Nonnull String value) {
+  public void enterValue(@NonNull JTable table, int row, int column, @NonNull String value) {
     boolean realValue = parseBoolean(value);
     Pair<Boolean, Point> editingInfo = doStartCellEditing(table, row, column, location());
     if (editingInfo.first == realValue) {
@@ -49,14 +49,14 @@ public class JTableCheckBoxEditorCellWriter extends AbstractJTableCellWriter {
 
   @RunsInEDT
   @Override
-  public void startCellEditing(@Nonnull JTable table, int row, int column) {
+  public void startCellEditing(@NonNull JTable table, int row, int column) {
     doStartCellEditing(table, row, column, location());
   }
 
   @RunsInEDT
-  @Nonnull private static Pair<Boolean, Point> doStartCellEditing(final @Nonnull JTable table, final int row,
+  @NonNull private static Pair<Boolean, Point> doStartCellEditing(final @NonNull JTable table, final int row,
                                                                   final int column,
-                                                                  final @Nonnull JTableLocation location) {
+                                                                  final @NonNull JTableLocation location) {
     Pair<Boolean, Point> result = execute(new GuiQuery<Pair<Boolean, Point>>() {
       @Override
       protected Pair<Boolean, Point> executeInEDT() {

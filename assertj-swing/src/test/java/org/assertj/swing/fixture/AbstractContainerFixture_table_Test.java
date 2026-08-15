@@ -18,7 +18,7 @@ import static org.assertj.swing.edt.GuiActionRunner.execute;
 import static org.assertj.swing.test.ExpectedException.none;
 import static org.assertj.swing.test.core.NeverMatchingComponentMatcher.neverMatches;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.JTable;
 
 import org.assertj.swing.core.GenericTypeMatcher;
@@ -82,7 +82,7 @@ public class AbstractContainerFixture_table_Test extends RobotBasedTestCase {
     robot.showWindow(window);
     JTableFixture table = fixture.table(new GenericTypeMatcher<JTable>(JTable.class) {
       @Override
-      protected boolean isMatching(@Nonnull JTable t) {
+      protected boolean isMatching(@NonNull JTable t) {
         return t.getRowCount() == 8 && t.getColumnCount() == 6;
       }
     });
@@ -99,11 +99,11 @@ public class AbstractContainerFixture_table_Test extends RobotBasedTestCase {
   private static class MyWindow extends TestWindow {
     final JTable table = new JTable(8, 6);
 
-    static @Nonnull MyWindow createNew(final @Nonnull Class<?> testClass) {
+    static @NonNull MyWindow createNew(final @NonNull Class<?> testClass) {
       return checkNotNull(execute(() -> new MyWindow(testClass)));
     }
 
-    private MyWindow(@Nonnull Class<?> testClass) {
+    private MyWindow(@NonNull Class<?> testClass) {
       super(testClass);
       table.setName("myTable");
       addComponents(table);

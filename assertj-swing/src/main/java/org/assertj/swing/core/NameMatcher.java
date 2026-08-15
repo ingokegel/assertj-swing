@@ -14,8 +14,8 @@ package org.assertj.swing.core;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 import java.awt.*;
 
 import static org.assertj.swing.util.Objects.areEqual;
@@ -63,7 +63,7 @@ public final class NameMatcher extends AbstractComponentMatcher {
    * @throws IllegalArgumentException if the given name is empty.
    * @throws NullPointerException if the given type is {@code null}.
    */
-  public NameMatcher(@Nullable String name, @Nonnull Class<? extends Component> type) {
+  public NameMatcher(@Nullable String name, @NonNull Class<? extends Component> type) {
     this(name, type, false);
   }
 
@@ -77,7 +77,7 @@ public final class NameMatcher extends AbstractComponentMatcher {
    * @throws IllegalArgumentException if the given name is empty.
    * @throws NullPointerException if the given type is {@code null}.
    */
-  public NameMatcher(@Nullable String name, @Nonnull Class<? extends Component> type, boolean requireShowing) {
+  public NameMatcher(@Nullable String name, @NonNull Class<? extends Component> type, boolean requireShowing) {
     super(requireShowing);
     this.name = checkNotNullOrEmpty(name).toString();
     this.type = checkNotNull(type);

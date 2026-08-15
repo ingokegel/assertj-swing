@@ -12,7 +12,7 @@
  */
 package org.assertj.swing.keystroke;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import java.util.Collection;
 import java.util.List;
 
@@ -28,7 +28,7 @@ import static org.assertj.swing.util.Platform.isWindows;
  * @author Alex Ruiz
  */
 final class KeyStrokeMappings {
-  static @Nonnull Collection<KeyStrokeMapping> defaultMappings() {
+  static @NonNull Collection<KeyStrokeMapping> defaultMappings() {
     List<KeyStrokeMapping> mappings = newArrayList();
     mappings.add(mapping('\b', VK_BACK_SPACE, NO_MASK));
     mappings.add(mapping('', VK_DELETE, NO_MASK));

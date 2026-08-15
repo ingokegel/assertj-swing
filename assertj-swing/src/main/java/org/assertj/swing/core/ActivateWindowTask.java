@@ -16,7 +16,7 @@ import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import java.awt.Window;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 
 import org.assertj.swing.annotation.RunsInEDT;
 
@@ -28,7 +28,7 @@ import org.assertj.swing.annotation.RunsInEDT;
  */
 class ActivateWindowTask {
   @RunsInEDT
-  static void activateWindow(final @Nonnull Window w) {
+  static void activateWindow(final @NonNull Window w) {
     execute(() -> {
       w.toFront();
       w.requestFocusInWindow();

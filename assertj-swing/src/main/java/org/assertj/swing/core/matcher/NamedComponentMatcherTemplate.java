@@ -14,8 +14,8 @@ package org.assertj.swing.core.matcher;
 
 import org.assertj.swing.core.GenericTypeMatcher;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 import java.awt.*;
 import java.util.regex.Pattern;
 
@@ -50,7 +50,7 @@ public abstract class NamedComponentMatcherTemplate<T extends Component> extends
    * @param supportedType the type supported by this matcher.
    * @throws NullPointerException if the given type is {@code null}.
    */
-  protected NamedComponentMatcherTemplate(@Nonnull Class<T> supportedType) {
+  protected NamedComponentMatcherTemplate(@NonNull Class<T> supportedType) {
     super(supportedType);
     this.name = ANY;
   }
@@ -62,7 +62,7 @@ public abstract class NamedComponentMatcherTemplate<T extends Component> extends
    * @param name the name to match.
    * @throws NullPointerException if the given type is {@code null}.
    */
-  protected NamedComponentMatcherTemplate(@Nonnull Class<T> supportedType, @Nullable Object name) {
+  protected NamedComponentMatcherTemplate(@NonNull Class<T> supportedType, @Nullable Object name) {
     super(supportedType);
     this.name = name;
   }
@@ -144,7 +144,7 @@ public abstract class NamedComponentMatcherTemplate<T extends Component> extends
     return name;
   }
 
-  protected static final @Nonnull Object anyValue() {
+  protected static final @NonNull Object anyValue() {
     return ANY;
   }
 }

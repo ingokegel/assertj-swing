@@ -14,7 +14,7 @@ package org.assertj.swing.driver;
 
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.JTree;
 
 import org.assertj.swing.annotation.RunsInEDT;
@@ -26,7 +26,7 @@ import org.assertj.swing.annotation.RunsInEDT;
  */
 final class JTreeSelectRowsTask {
   @RunsInEDT
-  static void selectRows(final @Nonnull JTree tree, final int... rows) {
+  static void selectRows(final @NonNull JTree tree, final int... rows) {
     execute(() -> tree.setSelectionRows(rows));
   }
 

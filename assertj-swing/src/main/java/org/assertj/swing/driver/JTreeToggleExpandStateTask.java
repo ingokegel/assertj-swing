@@ -14,7 +14,7 @@ package org.assertj.swing.driver;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.*;
 import javax.swing.plaf.TreeUI;
 import javax.swing.plaf.basic.BasicTreeUI;
@@ -32,7 +32,7 @@ import static org.assertj.swing.util.Reflection.invokeMethod;
  */
 final class JTreeToggleExpandStateTask {
   @RunsInCurrentThread
-  static void toggleExpandState(final @Nonnull JTree tree, final @Nonnull Point pathLocation) {
+  static void toggleExpandState(final @NonNull JTree tree, final @NonNull Point pathLocation) {
     TreePath path = tree.getPathForLocation(pathLocation.x, pathLocation.y);
     TreeUI treeUI = tree.getUI();
     assertThat(treeUI).isInstanceOf(BasicTreeUI.class);

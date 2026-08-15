@@ -16,7 +16,7 @@ import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.core.Robot;
 import org.assertj.swing.internal.annotation.InternalApi;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.*;
 
 import static org.assertj.swing.edt.GuiActionRunner.execute;
@@ -41,7 +41,7 @@ public class JScrollPaneDriver extends JComponentDriver {
    * 
    * @param robot the robot the robot to use to simulate user input.
    */
-  public JScrollPaneDriver(@Nonnull Robot robot) {
+  public JScrollPaneDriver(@NonNull Robot robot) {
     super(robot);
   }
 
@@ -52,12 +52,12 @@ public class JScrollPaneDriver extends JComponentDriver {
    * @return the horizontal scroll bar in the given {@code JScrollBar}.
    */
   @RunsInEDT
-  @Nonnull public JScrollBar horizontalScrollBarIn(@Nonnull JScrollPane scrollPane) {
+  @NonNull public JScrollBar horizontalScrollBarIn(@NonNull JScrollPane scrollPane) {
     return horizontalScrollBar(scrollPane);
   }
 
   @RunsInEDT
-  @Nonnull private static JScrollBar horizontalScrollBar(final @Nonnull JScrollPane scrollPane) {
+  @NonNull private static JScrollBar horizontalScrollBar(final @NonNull JScrollPane scrollPane) {
     JScrollBar result = execute(() -> scrollPane.getHorizontalScrollBar());
     return checkNotNull(result);
   }
@@ -69,12 +69,12 @@ public class JScrollPaneDriver extends JComponentDriver {
    * @return the vertical scroll bar in the given {@code JScrollBar}.
    */
   @RunsInEDT
-  @Nonnull public JScrollBar verticalScrollBarIn(@Nonnull JScrollPane scrollPane) {
+  @NonNull public JScrollBar verticalScrollBarIn(@NonNull JScrollPane scrollPane) {
     return verticalScrollBar(scrollPane);
   }
 
   @RunsInEDT
-  @Nonnull private static JScrollBar verticalScrollBar(final @Nonnull JScrollPane scrollPane) {
+  @NonNull private static JScrollBar verticalScrollBar(final @NonNull JScrollPane scrollPane) {
     JScrollBar result = execute(() -> scrollPane.getVerticalScrollBar());
     return checkNotNull(result);
   }

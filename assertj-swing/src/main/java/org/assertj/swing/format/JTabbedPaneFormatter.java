@@ -14,7 +14,7 @@ package org.assertj.swing.format;
 
 import org.assertj.swing.util.Arrays;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.*;
 import java.awt.*;
 
@@ -35,7 +35,7 @@ public class JTabbedPaneFormatter extends ComponentFormatterTemplate {
    * @return the {@code String} representation of the given {@code JTabbedPane}.
    */
   @Override
-  @Nonnull protected String doFormat(@Nonnull Component c) {
+  @NonNull protected String doFormat(@NonNull Component c) {
     JTabbedPane tabbedPane = (JTabbedPane) c;
     String format = "%s[name=%s, selectedTabIndex=%d, selectedTabTitle=%s, tabCount=%d, tabTitles=%s, enabled=%b, visible=%s, showing=%s";
     return String.format(format, getRealClassName(c), quote(tabbedPane.getName()),
@@ -71,7 +71,7 @@ public class JTabbedPaneFormatter extends ComponentFormatterTemplate {
    * @return {@code JTabbedPane.class}.
    */
   @Override
-  @Nonnull public Class<? extends Component> targetType() {
+  @NonNull public Class<? extends Component> targetType() {
     return JTabbedPane.class;
   }
 }

@@ -15,7 +15,7 @@ package org.assertj.swing.data;
 import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.cell.JTableCellReader;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.*;
 
 import static org.assertj.swing.edt.GuiActionRunner.execute;
@@ -55,7 +55,7 @@ public class TableCellInSelectedRow implements TableCellFinder {
    *
    * @return the created builder.
    */
-  @Nonnull public static TableCellBuilder selectedRow() {
+  @NonNull public static TableCellBuilder selectedRow() {
     return new TableCellBuilder();
   }
 
@@ -71,7 +71,7 @@ public class TableCellInSelectedRow implements TableCellFinder {
      * @param column the column index of the cell to find.
      * @return the created finder.
      */
-    @Nonnull public TableCellInSelectedRow column(int column) {
+    @NonNull public TableCellInSelectedRow column(int column) {
       return new TableCellInSelectedRow(column);
     }
   }
@@ -91,7 +91,7 @@ public class TableCellInSelectedRow implements TableCellFinder {
    * @throws org.assertj.swing.exception.ActionFailedException if a matching cell could not be found.
    */
   @Override
-  @Nonnull public TableCell findCell(@Nonnull JTable table, @Nonnull JTableCellReader cellReader) {
+  @NonNull public TableCell findCell(@NonNull JTable table, @NonNull JTableCellReader cellReader) {
     int selectedRow = selectedRowOf(table);
     if (selectedRow == -1) {
       throw actionFailure("The given JTable does not have any selection");

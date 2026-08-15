@@ -12,7 +12,7 @@
  */
 package org.assertj.swing.exception;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 
 /**
  * Error that occurred when simulation of user input failed.
@@ -29,7 +29,7 @@ public class ActionFailedException extends RuntimeException {
    * @param message the detail message.
    * @return the created exception.
    */
-  @Nonnull public static ActionFailedException actionFailure(@Nonnull String message) {
+  @NonNull public static ActionFailedException actionFailure(@NonNull String message) {
     return new ActionFailedException(message);
   }
 
@@ -40,15 +40,15 @@ public class ActionFailedException extends RuntimeException {
    * @param cause the cause of the error.
    * @return the created exception.
    */
-  public static ActionFailedException actionFailure(@Nonnull String message, @Nonnull Throwable cause) {
+  public static ActionFailedException actionFailure(@NonNull String message, @NonNull Throwable cause) {
     return new ActionFailedException(message, cause);
   }
 
-  private ActionFailedException(@Nonnull String message) {
+  private ActionFailedException(@NonNull String message) {
     super(message);
   }
 
-  private ActionFailedException(@Nonnull String message, @Nonnull Throwable cause) {
+  private ActionFailedException(@NonNull String message, @NonNull Throwable cause) {
     super(message, cause);
   }
 }

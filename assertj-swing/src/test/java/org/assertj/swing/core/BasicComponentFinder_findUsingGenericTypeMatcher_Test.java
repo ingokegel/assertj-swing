@@ -15,7 +15,7 @@ package org.assertj.swing.core;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.swing.test.core.NeverMatchingComponentMatcher.neverMatches;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.JButton;
 
 import org.assertj.swing.exception.ComponentLookupException;
@@ -32,7 +32,7 @@ public class BasicComponentFinder_findUsingGenericTypeMatcher_Test extends Basic
   public void should_Find_Component() {
     JButton foundButton = finder.find(new GenericTypeMatcher<JButton>(JButton.class) {
       @Override
-      protected boolean isMatching(@Nonnull JButton button) {
+      protected boolean isMatching(@NonNull JButton button) {
         return "A Button".equals(button.getText());
       }
     });

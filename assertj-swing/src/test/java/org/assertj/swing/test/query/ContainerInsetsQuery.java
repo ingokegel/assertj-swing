@@ -18,7 +18,7 @@ import static org.assertj.swing.edt.GuiActionRunner.execute;
 import java.awt.Container;
 import java.awt.Insets;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 
 import org.assertj.swing.annotation.RunsInEDT;
 
@@ -37,7 +37,7 @@ public final class ContainerInsetsQuery {
    * @see Container#getInsets()
    */
   @RunsInEDT
-  @Nonnull public static Insets insetsOf(final @Nonnull Container container) {
+  @NonNull public static Insets insetsOf(final @NonNull Container container) {
     Insets result = execute(() -> container.getInsets());
     return checkNotNull(result);
   }

@@ -14,8 +14,8 @@ package org.assertj.swing.hierarchy;
 
 import org.assertj.swing.annotation.RunsInEDT;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 import java.awt.*;
 import java.awt.event.AWTEventListener;
 
@@ -31,7 +31,7 @@ import static org.assertj.swing.util.Preconditions.checkNotNull;
 public final class TransientWindowListener implements AWTEventListener {
   private final WindowFilter filter;
 
-  TransientWindowListener(@Nonnull WindowFilter filter) {
+  TransientWindowListener(@NonNull WindowFilter filter) {
     this.filter = filter;
   }
 
@@ -61,11 +61,11 @@ public final class TransientWindowListener implements AWTEventListener {
     }
   }
 
-  @Nullable private Window sourceOf(@Nonnull AWTEvent e) {
+  @Nullable private Window sourceOf(@NonNull AWTEvent e) {
     return (Window) e.getSource();
   }
 
-  private void filter(@Nonnull Window w) {
+  private void filter(@NonNull Window w) {
     if (filter.isImplicitlyIgnored(w)) {
       filter.recognize(w);
       return;
@@ -74,7 +74,7 @@ public final class TransientWindowListener implements AWTEventListener {
     filterIfParentIsFiltered(w);
   }
 
-  private void filterIfParentIsFiltered(@Nonnull Window w) {
+  private void filterIfParentIsFiltered(@NonNull Window w) {
     if (!filter.isIgnored(w.getParent())) {
       return;
     }

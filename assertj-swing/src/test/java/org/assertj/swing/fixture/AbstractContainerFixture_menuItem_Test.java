@@ -20,7 +20,7 @@ import static org.assertj.swing.test.core.NeverMatchingComponentMatcher.neverMat
 
 import java.awt.Dimension;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -86,7 +86,7 @@ public class AbstractContainerFixture_menuItem_Test extends RobotBasedTestCase {
     robot.showWindow(window);
     JMenuItemFixture menuItem = fixture.menuItem(new GenericTypeMatcher<JMenuItem>(JMenuItem.class) {
       @Override
-      protected boolean isMatching(@Nonnull JMenuItem m) {
+      protected boolean isMatching(@NonNull JMenuItem m) {
         return "New".equals(m.getText());
       }
     });
@@ -104,11 +104,11 @@ public class AbstractContainerFixture_menuItem_Test extends RobotBasedTestCase {
     final JMenuItem menuNew = new JMenuItem("New");
 
     @RunsInEDT
-    static @Nonnull MyWindow createNew(final @Nonnull Class<?> testClass) {
+    static @NonNull MyWindow createNew(final @NonNull Class<?> testClass) {
       return checkNotNull(execute(() -> new MyWindow(testClass)));
     }
 
-    private MyWindow(@Nonnull Class<?> testClass) {
+    private MyWindow(@NonNull Class<?> testClass) {
       super(testClass);
       setJMenuBar(new JMenuBar());
       menuFile.add(menuNew);

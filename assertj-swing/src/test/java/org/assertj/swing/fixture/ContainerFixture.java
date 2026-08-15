@@ -12,7 +12,7 @@
  */
 package org.assertj.swing.fixture;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.JFrame;
 
 import org.assertj.swing.core.Robot;
@@ -29,7 +29,7 @@ public class ContainerFixture extends AbstractContainerFixture<ContainerFixture,
   }
 
   @Override
-  @Nonnull protected FrameDriver createDriver(@Nonnull Robot robot) {
+  @NonNull protected FrameDriver createDriver(@NonNull Robot robot) {
     return new FrameDriver(robot);
   }
 }

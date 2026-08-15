@@ -15,7 +15,7 @@ package org.assertj.swing.driver;
 import org.assertj.swing.annotation.RunsInCurrentThread;
 import org.assertj.swing.data.TableCell;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.*;
 import java.awt.*;
 
@@ -45,7 +45,7 @@ public final class JTableLocation {
    * @return the coordinates of the given row and column.
    */
   @RunsInCurrentThread
-  @Nonnull public Point pointAt(@Nonnull JTable table, int row, int column) {
+  @NonNull public Point pointAt(@NonNull JTable table, int row, int column) {
     Rectangle cellBounds = cellBounds(table, row, column);
     return new Point(cellBounds.x + cellBounds.width / 2, cellBounds.y + cellBounds.height / 2);
   }
@@ -65,7 +65,7 @@ public final class JTableLocation {
    * @return the bounds of the given cell.
    */
   @RunsInCurrentThread
-  @Nonnull public Rectangle cellBounds(@Nonnull JTable table, @Nonnull TableCell cell) {
+  @NonNull public Rectangle cellBounds(@NonNull JTable table, @NonNull TableCell cell) {
     return cellBounds(table, cell.row, cell.column);
   }
 
@@ -85,7 +85,7 @@ public final class JTableLocation {
    * @return the bounds of the given row and column.
    */
   @RunsInCurrentThread
-  @Nonnull public Rectangle cellBounds(JTable table, int row, int column) {
+  @NonNull public Rectangle cellBounds(JTable table, int row, int column) {
     return checkNotNull(table.getCellRect(row, column, false));
   }
 }

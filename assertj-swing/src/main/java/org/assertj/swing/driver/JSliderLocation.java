@@ -14,7 +14,7 @@ package org.assertj.swing.driver;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.*;
 import java.awt.*;
 import java.util.Map;
@@ -53,7 +53,7 @@ public final class JSliderLocation {
    * @return the coordinates of the given value in the given {@code JSlider}.
    */
   @RunsInCurrentThread
-  @Nonnull public Point pointAt(@Nonnull JSlider slider, int value) {
+  @NonNull public Point pointAt(@NonNull JSlider slider, int value) {
     JSliderLocationStrategy strategy = LOCATIONS.get(slider.getOrientation());
     return strategy.locationForValue(slider, value);
   }
@@ -61,14 +61,14 @@ public final class JSliderLocation {
   private static class JSliderHorizontalLocation extends JSliderLocationStrategy {
     @Override
     @RunsInCurrentThread
-    int max(@Nonnull JSlider slider, @Nonnull Insets insets) {
+    int max(@NonNull JSlider slider, @NonNull Insets insets) {
       return slider.getWidth() - insets.left - insets.right - 1;
     }
 
     @Override
     @RunsInCurrentThread
-    @Nonnull
-    Point update(@Nonnull Point center, int coordinate) {
+    @NonNull
+    Point update(@NonNull Point center, int coordinate) {
       return new Point(coordinate, center.y);
     }
   }
@@ -76,21 +76,21 @@ public final class JSliderLocation {
   private static class JSliderVerticalLocation extends JSliderLocationStrategy {
     @RunsInCurrentThread
     @Override
-    int max(@Nonnull JSlider slider, @Nonnull Insets insets) {
+    int max(@NonNull JSlider slider, @NonNull Insets insets) {
       return slider.getHeight() - insets.top - insets.bottom - 1;
     }
 
     @RunsInCurrentThread
     @Override
-    @Nonnull
-    Point update(@Nonnull Point center, int coordinate) {
+    @NonNull
+    Point update(@NonNull Point center, int coordinate) {
       return new Point(center.x, coordinate);
     }
   }
 
   private static abstract class JSliderLocationStrategy {
     @RunsInCurrentThread
-    final @Nonnull Point locationForValue(JSlider slider, int value) {
+    final @NonNull Point locationForValue(JSlider slider, int value) {
       Point center = new Point(slider.getWidth() / 2, slider.getHeight() / 2);
       int max = max(slider, checkNotNull(slider.getInsets()));
       int coordinate = (int) (percent(slider, value) * max);
@@ -101,13 +101,13 @@ public final class JSliderLocation {
     }
 
     @RunsInCurrentThread
-    abstract int max(@Nonnull JSlider slider, @Nonnull Insets insets);
+    abstract int max(@NonNull JSlider slider, @NonNull Insets insets);
 
     @RunsInCurrentThread
-    abstract @Nonnull Point update(@Nonnull Point center, int coordinate);
+    abstract @NonNull Point update(@NonNull Point center, int coordinate);
 
     @RunsInCurrentThread
-    private float percent(@Nonnull JSlider slider, int value) {
+    private float percent(@NonNull JSlider slider, int value) {
       int minimum = slider.getMinimum();
       int range = slider.getMaximum() - minimum;
       return (float) (value - minimum) / range;

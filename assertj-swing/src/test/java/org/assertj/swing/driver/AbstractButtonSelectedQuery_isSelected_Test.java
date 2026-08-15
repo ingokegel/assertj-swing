@@ -19,7 +19,7 @@ import static org.assertj.swing.test.task.AbstractButtonSetSelectedTask.setSelec
 
 import java.util.Collection;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.JCheckBox;
 
 import org.assertj.swing.annotation.RunsInEDT;
@@ -44,7 +44,7 @@ public class AbstractButtonSelectedQuery_isSelected_Test extends RobotBasedTestC
   private final boolean selected;
 
   @Parameters
-  @Nonnull public static Collection<Object[]> booleans() {
+  @NonNull public static Collection<Object[]> booleans() {
     return newArrayList(BooleanProvider.booleans());
   }
 

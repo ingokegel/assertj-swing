@@ -14,8 +14,8 @@ package org.assertj.swing.driver;
 
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 import javax.swing.JComboBox;
 
 import org.assertj.swing.annotation.RunsInEDT;
@@ -27,7 +27,7 @@ import org.assertj.swing.annotation.RunsInEDT;
  */
 final class JComboBoxMakeEditableAndSelectItemTask {
   @RunsInEDT
-  static void makeEditableAndSelectItem(final @Nonnull JComboBox comboBox, final @Nullable Object itemToSelect) {
+  static void makeEditableAndSelectItem(final @NonNull JComboBox comboBox, final @Nullable Object itemToSelect) {
     execute(() -> {
       comboBox.setEditable(true);
       comboBox.setSelectedItem(itemToSelect);
@@ -35,7 +35,7 @@ final class JComboBoxMakeEditableAndSelectItemTask {
   }
 
   @RunsInEDT
-  static void makeEditableAndSelectIndex(final @Nonnull JComboBox comboBox, final int index) {
+  static void makeEditableAndSelectIndex(final @NonNull JComboBox comboBox, final int index) {
     execute(() -> {
       comboBox.setEditable(true);
       comboBox.setSelectedIndex(index);

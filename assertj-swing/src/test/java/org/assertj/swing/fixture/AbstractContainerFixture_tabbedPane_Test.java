@@ -20,7 +20,7 @@ import static org.assertj.swing.test.core.NeverMatchingComponentMatcher.neverMat
 
 import java.awt.Dimension;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
@@ -85,7 +85,7 @@ public class AbstractContainerFixture_tabbedPane_Test extends RobotBasedTestCase
     robot.showWindow(window);
     JTabbedPaneFixture tabbedPane = fixture.tabbedPane(new GenericTypeMatcher<JTabbedPane>(JTabbedPane.class) {
       @Override
-      protected boolean isMatching(@Nonnull JTabbedPane t) {
+      protected boolean isMatching(@NonNull JTabbedPane t) {
         return t.getTabCount() == 1;
       }
     });
@@ -102,11 +102,11 @@ public class AbstractContainerFixture_tabbedPane_Test extends RobotBasedTestCase
   private static class MyWindow extends TestWindow {
     final JTabbedPane tabbedPane = new JTabbedPane();
 
-    static @Nonnull MyWindow createNew(final @Nonnull Class<?> testClass) {
+    static @NonNull MyWindow createNew(final @NonNull Class<?> testClass) {
       return checkNotNull(execute(() -> new MyWindow(testClass)));
     }
 
-    private MyWindow(@Nonnull Class<?> testClass) {
+    private MyWindow(@NonNull Class<?> testClass) {
       super(testClass);
       tabbedPane.setName("selectMeTabbedPane");
       tabbedPane.addTab("Tab 0", panel());

@@ -21,7 +21,7 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.JProgressBar;
 
 import org.assertj.swing.core.Robot;
@@ -35,7 +35,7 @@ import org.assertj.swing.core.Robot;
 class JProgressBarMakeDeterminateAsyncTask {
   private static Logger logger = Logger.getAnonymousLogger();
 
-  static @Nonnull TaskBuilder makeDeterminate(@Nonnull JProgressBar progressBar) {
+  static @NonNull TaskBuilder makeDeterminate(@NonNull JProgressBar progressBar) {
     return new TaskBuilder(progressBar);
   }
 
@@ -47,14 +47,14 @@ class JProgressBarMakeDeterminateAsyncTask {
   private final JProgressBar progressBar;
   private final long periodInMs;
 
-  private JProgressBarMakeDeterminateAsyncTask(@Nonnull Robot robot, @Nonnull JProgressBar progressBar, long periodInMs) {
+  private JProgressBarMakeDeterminateAsyncTask(@NonNull Robot robot, @NonNull JProgressBar progressBar, long periodInMs) {
     this.robot = robot;
     this.progressBar = progressBar;
     this.periodInMs = periodInMs;
     task = createInnerTask();
   }
 
-  @Nonnull private Runnable createInnerTask() {
+  @NonNull private Runnable createInnerTask() {
     return new Runnable() {
       @Override
       public void run() {
@@ -89,18 +89,18 @@ class JProgressBarMakeDeterminateAsyncTask {
     private final JProgressBar progressBar;
     private long periodInMs = 1000;
 
-    TaskBuilder(@Nonnull JProgressBar progressBar) {
+    TaskBuilder(@NonNull JProgressBar progressBar) {
       this.progressBar = progressBar;
     }
 
-    @Nonnull
-    TaskBuilder after(long duration, @Nonnull TimeUnit timeUnit) {
+    @NonNull
+    TaskBuilder after(long duration, @NonNull TimeUnit timeUnit) {
       periodInMs = timeUnit.toMillis(duration);
       return this;
     }
 
-    @Nonnull
-    JProgressBarMakeDeterminateAsyncTask createTask(@Nonnull Robot robot) {
+    @NonNull
+    JProgressBarMakeDeterminateAsyncTask createTask(@NonNull Robot robot) {
       return new JProgressBarMakeDeterminateAsyncTask(robot, progressBar, periodInMs);
     }
   }

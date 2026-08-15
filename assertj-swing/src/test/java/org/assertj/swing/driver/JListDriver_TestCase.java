@@ -21,7 +21,7 @@ import static org.assertj.swing.test.task.ComponentSetEnabledTask.disable;
 import java.awt.Dimension;
 import java.awt.Point;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
 
@@ -168,7 +168,7 @@ public abstract class JListDriver_TestCase extends RobotBasedTestCase {
     }
 
     @Override
-    public String valueAt(@Nonnull JList list, int index) {
+    public String valueAt(@NonNull JList list, int index) {
       methodInvocations.invoked("valueAt");
       return super.valueAt(list, index);
     }

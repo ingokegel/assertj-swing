@@ -12,8 +12,8 @@
  */
 package org.assertj.swing.fixture;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 
 /**
  * Supports functional testing of single items inside {@code JComponents} (e.g. a cell in a {@code JTable} or a row in a
@@ -33,7 +33,7 @@ public interface ItemFixture<S> extends MouseInputSimulationFixture<S> {
    * @throws IllegalStateException if the component containing this fixture's item is disabled.
    * @throws IllegalStateException if the component containing this fixture's item is not showing on the screen.
    */
-  @Nonnull
+  @NonNull
   S select();
 
   /**
@@ -49,7 +49,7 @@ public interface ItemFixture<S> extends MouseInputSimulationFixture<S> {
    * @throws IllegalStateException if the component containing this fixture's item is disabled.
    * @throws IllegalStateException if the component containing this fixture's item is not showing on the screen.
    */
-  @Nonnull
+  @NonNull
   S drag();
 
   /**
@@ -60,7 +60,7 @@ public interface ItemFixture<S> extends MouseInputSimulationFixture<S> {
    * @throws IllegalStateException if the component containing this fixture's item is not showing on the screen.
    * @throws org.assertj.swing.exception.ActionFailedException if there is no drag action in effect.
    */
-  @Nonnull
+  @NonNull
   S drop();
 
   /**
@@ -71,6 +71,6 @@ public interface ItemFixture<S> extends MouseInputSimulationFixture<S> {
    * @throws IllegalStateException if the component containing this fixture's item is not showing on the screen.
    * @throws org.assertj.swing.exception.ComponentLookupException if a pop-up menu cannot be found.
    */
-  @Nonnull
+  @NonNull
   JPopupMenuFixture showPopupMenu();
 }

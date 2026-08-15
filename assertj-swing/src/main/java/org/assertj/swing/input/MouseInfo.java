@@ -27,8 +27,8 @@ import java.awt.event.MouseEvent;
 import java.lang.ref.WeakReference;
 import java.util.Stack;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 
 /**
  * A description mouse-related operations.
@@ -59,7 +59,7 @@ class MouseInfo {
     screenLocationStack.clear();
   }
 
-  void update(@Nonnull MouseEvent event, @Nullable Point eventScreenLocation) {
+  void update(@NonNull MouseEvent event, @Nullable Point eventScreenLocation) {
     // When a button is released, only that button appears in the modifier mask
     clickCount(event.getClickCount());
     updateOnMousePressed(event);
@@ -74,7 +74,7 @@ class MouseInfo {
     }
   }
 
-  private void updateOnMousePressed(@Nonnull MouseEvent event) {
+  private void updateOnMousePressed(@NonNull MouseEvent event) {
     if (event.getID() != MOUSE_PRESSED) {
       return;
     }
@@ -83,7 +83,7 @@ class MouseInfo {
     modifiers |= buttonUsed;
   }
 
-  private void updateOnMouseReleased(@Nonnull MouseEvent event) {
+  private void updateOnMouseReleased(@NonNull MouseEvent event) {
     if (event.getID() != MOUSE_RELEASED) {
       return;
     }
@@ -92,11 +92,11 @@ class MouseInfo {
     modifiers &= ~buttonUsed;
   }
 
-  private int buttonUsed(@Nonnull MouseEvent event) {
+  private int buttonUsed(@NonNull MouseEvent event) {
     return event.getModifiers() & BUTTON_MASK;
   }
 
-  private void updateOnMouseEntered(@Nonnull MouseEvent event, @Nullable Point eventScreenLocation) {
+  private void updateOnMouseEntered(@NonNull MouseEvent event, @Nullable Point eventScreenLocation) {
     if (event.getID() != MOUSE_ENTERED) {
       return;
     }
@@ -106,7 +106,7 @@ class MouseInfo {
     screenLocationStack.push(eventScreenLocation != null ? eventScreenLocation : eventPoint);
   }
 
-  private void updateOnMouseExited(@Nonnull MouseEvent event) {
+  private void updateOnMouseExited(@NonNull MouseEvent event) {
     if (event.getID() != MOUSE_EXITED || componentStack.empty()) {
       return;
     }

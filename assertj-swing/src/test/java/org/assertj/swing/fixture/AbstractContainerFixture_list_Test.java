@@ -18,7 +18,7 @@ import static org.assertj.swing.edt.GuiActionRunner.execute;
 import static org.assertj.swing.test.ExpectedException.none;
 import static org.assertj.swing.test.core.NeverMatchingComponentMatcher.neverMatches;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.JList;
 
 import org.assertj.swing.core.GenericTypeMatcher;
@@ -82,7 +82,7 @@ public class AbstractContainerFixture_list_Test extends RobotBasedTestCase {
     robot.showWindow(window);
     JListFixture list = fixture.list(new GenericTypeMatcher<JList>(JList.class) {
       @Override
-      protected boolean isMatching(@Nonnull JList l) {
+      protected boolean isMatching(@NonNull JList l) {
         return l.getModel().getSize() == 3;
       }
     });

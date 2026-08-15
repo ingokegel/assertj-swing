@@ -17,7 +17,7 @@ import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import java.awt.Container;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.JFrame;
 
 import org.assertj.swing.annotation.RunsInEDT;
@@ -30,7 +30,7 @@ import org.assertj.swing.annotation.RunsInEDT;
  */
 @RunsInEDT
 final class JFrameContentPaneQuery {
-  static @Nonnull Container contentPaneOf(final @Nonnull JFrame frame) {
+  static @NonNull Container contentPaneOf(final @NonNull JFrame frame) {
     Container result = execute(() -> frame.getContentPane());
     return checkNotNull(result);
   }

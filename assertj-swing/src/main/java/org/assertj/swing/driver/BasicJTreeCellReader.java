@@ -15,8 +15,8 @@ package org.assertj.swing.driver;
 import org.assertj.swing.annotation.RunsInCurrentThread;
 import org.assertj.swing.cell.JTreeCellReader;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 import javax.swing.*;
 import javax.swing.tree.TreeCellRenderer;
 import java.awt.*;
@@ -47,7 +47,7 @@ public class BasicJTreeCellReader implements JTreeCellReader {
    * @param reader knows how to read values from the cell renderer component in a {@code JTree}.
    * @throws NullPointerException if {@code reader} is {@code null}.
    */
-  public BasicJTreeCellReader(@Nonnull CellRendererReader reader) {
+  public BasicJTreeCellReader(@NonNull CellRendererReader reader) {
     this.rendererReader = checkNotNull(reader);
   }
 
@@ -67,7 +67,7 @@ public class BasicJTreeCellReader implements JTreeCellReader {
    */
   @Override
   @RunsInCurrentThread
-  @Nullable public String valueAt(@Nonnull JTree tree, @Nullable Object modelValue) {
+  @Nullable public String valueAt(@NonNull JTree tree, @Nullable Object modelValue) {
     TreeCellRenderer r = tree.getCellRenderer();
     Component c = r.getTreeCellRendererComponent(tree, modelValue, false, false, false, 0, false);
     String value = (c != null) ? rendererReader.valueFrom(c) : null;

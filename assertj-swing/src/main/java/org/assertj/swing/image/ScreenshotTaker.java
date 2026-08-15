@@ -18,8 +18,8 @@ import org.assertj.swing.internal.annotation.IORuntimeException;
 import org.assertj.swing.util.Preconditions;
 import org.assertj.swing.util.RobotFactory;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 import javax.swing.text.Caret;
 import javax.swing.text.JTextComponent;
 import java.awt.*;
@@ -53,7 +53,7 @@ public class ScreenshotTaker implements ScreenshotTakerIF {
   }
 
   @VisibleForTesting
-  ScreenshotTaker(@Nonnull ImageFileWriter writer, @Nonnull RobotFactory robotFactory) {
+  ScreenshotTaker(@NonNull ImageFileWriter writer, @NonNull RobotFactory robotFactory) {
     this.writer = writer;
     try {
       robot = robotFactory.newRobotInLeftScreen();
@@ -74,19 +74,19 @@ public class ScreenshotTaker implements ScreenshotTakerIF {
   }
 
   @Override
-  public void saveComponentAsPng(@Nonnull Component c, @Nonnull String imageFilePath) {
+  public void saveComponentAsPng(@NonNull Component c, @NonNull String imageFilePath) {
     saveImage(takeScreenshotOf(c), imageFilePath);
   }
 
   @Override
-  @Nonnull public BufferedImage takeScreenshotOf(@Nonnull Component c) {
+  @NonNull public BufferedImage takeScreenshotOf(@NonNull Component c) {
     Point locationOnScreen = locationOnScreen(c);
     Dimension size = sizeOf(c);
     Rectangle r = new Rectangle(locationOnScreen.x, locationOnScreen.y, size.width, size.height);
     return takeScreenshot(r);
   }
 
-  @Nonnull private BufferedImage takeScreenshot(Rectangle r) {
+  @NonNull private BufferedImage takeScreenshot(Rectangle r) {
     JTextComponent textComponent = findFocusOwnerAndHideItsCaret();
     robot.waitForIdle();
     try {
@@ -114,7 +114,7 @@ public class ScreenshotTaker implements ScreenshotTakerIF {
   }
 
   // TODO(Alex): Verify that this method really needs to be executed in the EDT.
-  @Nonnull private static BufferedImage takeScreenshot(final @Nonnull Robot robot, final @Nonnull Rectangle r) {
+  @NonNull private static BufferedImage takeScreenshot(final @NonNull Robot robot, final @NonNull Rectangle r) {
     BufferedImage result = execute(() -> robot.createScreenCapture(r));
     return checkNotNull(result);
   }
@@ -128,7 +128,7 @@ public class ScreenshotTaker implements ScreenshotTakerIF {
   }
 
   @RunsInEDT
-  private static void showCaretOf(final @Nonnull JTextComponent textComponent) {
+  private static void showCaretOf(final @NonNull JTextComponent textComponent) {
     execute(() -> {
       Caret caret = textComponent.getCaret();
       if (caret != null) {
@@ -138,7 +138,7 @@ public class ScreenshotTaker implements ScreenshotTakerIF {
   }
 
   @Override
-  public void saveImage(@Nonnull BufferedImage image, @Nonnull String filePath) {
+  public void saveImage(@NonNull BufferedImage image, @NonNull String filePath) {
     Preconditions.checkNotNullOrEmpty(filePath);
     if (!filePath.endsWith(PNG)) {
       String format = String.format("The file in path '%s' should have extension 'png'", filePath);

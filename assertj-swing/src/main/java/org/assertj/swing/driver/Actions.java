@@ -12,8 +12,8 @@
  */
 package org.assertj.swing.driver;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 import javax.swing.*;
 import java.util.List;
 
@@ -31,7 +31,7 @@ import static org.assertj.swing.util.Strings.quote;
  * @author Alex Ruiz
  */
 final class Actions {
-  static @Nonnull Object findActionKey(@Nonnull String name, @Nonnull ActionMap actionMap) {
+  static @NonNull Object findActionKey(@NonNull String name, @NonNull ActionMap actionMap) {
     Action action = actionMap.get(name);
     if (action != null) {
       return name;
@@ -52,7 +52,7 @@ final class Actions {
     throw actionFailure(message);
   }
 
-  @Nonnull private static List<String> formatAllActionKeys(@Nonnull Object[] keys) {
+  @NonNull private static List<String> formatAllActionKeys(@NonNull Object[] keys) {
     List<String> formattedKeys = newArrayList();
     for (Object key : keys) {
       String keyAsString = keyAsString(key);

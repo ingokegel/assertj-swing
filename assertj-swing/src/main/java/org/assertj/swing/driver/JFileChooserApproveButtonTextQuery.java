@@ -15,8 +15,8 @@ package org.assertj.swing.driver;
 import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.util.Strings;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 import javax.swing.*;
 
 import static org.assertj.swing.edt.GuiActionRunner.execute;
@@ -33,7 +33,7 @@ import static org.assertj.swing.edt.GuiActionRunner.execute;
  */
 final class JFileChooserApproveButtonTextQuery {
   @RunsInEDT
-  static @Nullable String approveButtonTextFrom(final @Nonnull JFileChooser fileChooser) {
+  static @Nullable String approveButtonTextFrom(final @NonNull JFileChooser fileChooser) {
     return execute(() -> {
       String text = fileChooser.getApproveButtonText();
       if (!Strings.isNullOrEmpty(text)) {

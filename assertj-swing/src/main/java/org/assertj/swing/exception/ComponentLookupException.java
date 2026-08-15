@@ -12,7 +12,7 @@
  */
 package org.assertj.swing.exception;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import java.awt.*;
 import java.util.Collection;
 
@@ -35,7 +35,7 @@ public class ComponentLookupException extends RuntimeException {
    * @param message the detail message.
    * @param found the AWT and Swing {@code Component}s found by the lookup (if any).
    */
-  public ComponentLookupException(@Nonnull String message, @Nonnull Collection<? extends Component> found) {
+  public ComponentLookupException(@NonNull String message, @NonNull Collection<? extends Component> found) {
     this(message);
     this.found.addAll(found);
   }
@@ -45,14 +45,14 @@ public class ComponentLookupException extends RuntimeException {
    *
    * @param message the detail message.
    */
-  public ComponentLookupException(@Nonnull String message) {
+  public ComponentLookupException(@NonNull String message) {
     super(message);
   }
 
   /**
    * @return the AWT and Swing {@code Component}s found by the lookup (if any).
    */
-  public final @Nonnull Collection<Component> found() {
+  public final @NonNull Collection<Component> found() {
     return unmodifiableCollection(found);
   }
 }

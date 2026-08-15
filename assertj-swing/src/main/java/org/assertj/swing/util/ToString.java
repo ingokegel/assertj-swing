@@ -12,8 +12,8 @@
  */
 package org.assertj.swing.util;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 import java.lang.reflect.Array;
 
 /**
@@ -30,7 +30,7 @@ public final class ToString {
    * @param o the object to format.
    * @return a text representation of the given object.
    */
-  public static @Nonnull String toStringOf(@Nullable Object o) {
+  public static @NonNull String toStringOf(@Nullable Object o) {
     if (o == null)
       return "null";
     if (o instanceof String)

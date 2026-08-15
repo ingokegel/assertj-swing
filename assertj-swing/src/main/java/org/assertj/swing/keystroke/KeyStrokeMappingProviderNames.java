@@ -14,7 +14,7 @@ package org.assertj.swing.keystroke;
 
 import org.assertj.swing.util.OSFamily;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import java.util.Iterator;
 import java.util.Locale;
 import java.util.NoSuchElementException;
@@ -31,11 +31,11 @@ class KeyStrokeMappingProviderNames implements Iterable<String> {
   private final String language;
   private final String country;
 
-  static KeyStrokeMappingProviderNames generateNamesFrom(@Nonnull OSFamily osFamily, @Nonnull Locale locale) {
+  static KeyStrokeMappingProviderNames generateNamesFrom(@NonNull OSFamily osFamily, @NonNull Locale locale) {
     return new KeyStrokeMappingProviderNames(osFamily, locale);
   }
 
-  private KeyStrokeMappingProviderNames(@Nonnull OSFamily osFamily, @Nonnull Locale locale) {
+  private KeyStrokeMappingProviderNames(@NonNull OSFamily osFamily, @NonNull Locale locale) {
     this.osFamily = osFamily.key();
     language = locale.getLanguage();
     country = locale.getCountry();

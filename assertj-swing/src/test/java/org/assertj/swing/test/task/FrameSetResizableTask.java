@@ -16,7 +16,7 @@ import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import java.awt.Frame;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 
 import org.assertj.swing.annotation.RunsInEDT;
 
@@ -27,7 +27,7 @@ import org.assertj.swing.annotation.RunsInEDT;
  */
 public final class FrameSetResizableTask {
   @RunsInEDT
-  public static void setResizable(final @Nonnull Frame frame, final boolean resizable) {
+  public static void setResizable(final @NonNull Frame frame, final boolean resizable) {
     execute(() -> frame.setResizable(resizable));
   }
 

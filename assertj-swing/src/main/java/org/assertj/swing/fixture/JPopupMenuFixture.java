@@ -12,8 +12,8 @@
  */
 package org.assertj.swing.fixture;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 
@@ -37,13 +37,13 @@ public class JPopupMenuFixture extends AbstractJComponentFixture<JPopupMenuFixtu
    * @throws NullPointerException if {@code robot} is {@code null}.
    * @throws NullPointerException if {@code target} is {@code null}.
    */
-  public JPopupMenuFixture(@Nonnull Robot robot, @Nonnull JPopupMenu target) {
+  public JPopupMenuFixture(@NonNull Robot robot, @NonNull JPopupMenu target) {
     super(JPopupMenuFixture.class, robot, target);
     menuItemFinder = new JMenuItemFinder(robot, target);
   }
 
   @Override
-  @Nonnull protected JPopupMenuDriver createDriver(@Nonnull Robot robot) {
+  @NonNull protected JPopupMenuDriver createDriver(@NonNull Robot robot) {
     return new JPopupMenuDriver(robot);
   }
 
@@ -57,7 +57,7 @@ public class JPopupMenuFixture extends AbstractJComponentFixture<JPopupMenuFixtu
    * @throws org.assertj.swing.exception.ComponentLookupException if more than one {@code JMenuItem} having a matching
    *           name is found.
    */
-  @Nonnull public JMenuItemFixture menuItem(@Nullable String name) {
+  @NonNull public JMenuItemFixture menuItem(@Nullable String name) {
     return new JMenuItemFixture(robot(), driver().menuItem(target(), name));
   }
 
@@ -73,7 +73,7 @@ public class JPopupMenuFixture extends AbstractJComponentFixture<JPopupMenuFixtu
    *           given search criteria is
    *           found.
    */
-  @Nonnull public JMenuItemFixture menuItem(@Nonnull GenericTypeMatcher<? extends JMenuItem> matcher) {
+  @NonNull public JMenuItemFixture menuItem(@NonNull GenericTypeMatcher<? extends JMenuItem> matcher) {
     return new JMenuItemFixture(robot(), driver().menuItem(target(), matcher));
   }
 
@@ -97,14 +97,14 @@ public class JPopupMenuFixture extends AbstractJComponentFixture<JPopupMenuFixtu
    *           be found.
    * @throws AssertionError if the {@code Component} found under the given path is not a {@code JMenuItem}.
    */
-  @Nonnull public JMenuItemFixture menuItemWithPath(@Nonnull String... path) {
+  @NonNull public JMenuItemFixture menuItemWithPath(@NonNull String... path) {
     return new JMenuItemFixture(robot(), menuItemFinder.menuItemWithPath(path));
   }
 
   /**
    * @return a {@code String} array representing the contents of this fixture's {@code JPopupMenu}.
    */
-  @Nonnull public String[] menuLabels() {
+  @NonNull public String[] menuLabels() {
     return driver().menuLabelsOf(target());
   }
 }

@@ -12,7 +12,7 @@
  */
 package org.assertj.swing.driver;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.JTable;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
@@ -32,7 +32,7 @@ import org.assertj.swing.annotation.RunsInCurrentThread;
  */
 final class JTableHasSelectionQuery {
   @RunsInCurrentThread
-  static boolean hasSelection(@Nonnull JTable table) {
+  static boolean hasSelection(@NonNull JTable table) {
     return table.getSelectedRowCount() > 0 || table.getSelectedColumnCount() > 0;
   }
 

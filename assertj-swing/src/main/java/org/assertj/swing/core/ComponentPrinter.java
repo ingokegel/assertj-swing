@@ -16,8 +16,8 @@ import java.awt.Component;
 import java.awt.Container;
 import java.io.PrintStream;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 
 /**
  * Sends the {@code String} representation of AWT and Swing {@code Component}s to a {@code java.io.PrintStream}, to
@@ -33,7 +33,7 @@ public interface ComponentPrinter {
    * @throws NullPointerException if the output stream is {@code null}.
    * @see org.assertj.swing.format.Formatting#format(Component)
    */
-  void printComponents(@Nonnull PrintStream out);
+  void printComponents(@NonNull PrintStream out);
 
   /**
    * Prints all the AWT and Swing {@code Component}s in the hierarchy under the given root.
@@ -43,7 +43,7 @@ public interface ComponentPrinter {
    * @throws NullPointerException if the output stream is {@code null}.
    * @see org.assertj.swing.format.Formatting#format(Component)
    */
-  void printComponents(@Nonnull PrintStream out, @Nullable Container root);
+  void printComponents(@NonNull PrintStream out, @Nullable Container root);
 
   /**
    * Prints only the AWT and Swing {@code Component}s of the given type in the hierarchy.
@@ -54,7 +54,7 @@ public interface ComponentPrinter {
    * @throws NullPointerException if {@code type} is {@code null}.
    * @see org.assertj.swing.format.Formatting#format(Component)
    */
-  void printComponents(@Nonnull PrintStream out, @Nonnull Class<? extends Component> type);
+  void printComponents(@NonNull PrintStream out, @NonNull Class<? extends Component> type);
 
   /**
    * Prints all the AWT and Swing {@code Component}s of the given type in the hierarchy under the given root.
@@ -66,7 +66,7 @@ public interface ComponentPrinter {
    * @throws NullPointerException if {@code type} is {@code null}.
    * @see org.assertj.swing.format.Formatting#format(Component)
    */
-  void printComponents(@Nonnull PrintStream out, @Nonnull Class<? extends Component> type, @Nullable Container root);
+  void printComponents(@NonNull PrintStream out, @NonNull Class<? extends Component> type, @Nullable Container root);
 
   /**
    * Prints only the AWT and Swing {@code Component}s that match the given search criteria in the hierarchy.
@@ -77,7 +77,7 @@ public interface ComponentPrinter {
    * @throws NullPointerException if {@code matcher} is {@code null}.
    * @see org.assertj.swing.format.Formatting#format(Component)
    */
-  void printComponents(@Nonnull PrintStream out, @Nonnull ComponentMatcher matcher);
+  void printComponents(@NonNull PrintStream out, @NonNull ComponentMatcher matcher);
 
   /**
    * Prints all the AWT and Swing {@code Component}s that match the given search criteria under the given root.
@@ -89,5 +89,5 @@ public interface ComponentPrinter {
    * @throws NullPointerException if {@code matcher} is {@code null}.
    * @see org.assertj.swing.format.Formatting#format(Component)
    */
-  void printComponents(@Nonnull PrintStream out, @Nonnull ComponentMatcher matcher, @Nullable Container root);
+  void printComponents(@NonNull PrintStream out, @NonNull ComponentMatcher matcher, @Nullable Container root);
 }

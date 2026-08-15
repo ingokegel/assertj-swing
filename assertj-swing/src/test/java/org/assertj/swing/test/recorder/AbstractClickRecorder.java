@@ -22,7 +22,7 @@ import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.util.Map;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 
 import org.assertj.swing.core.MouseButton;
 
@@ -46,49 +46,49 @@ public class AbstractClickRecorder {
   private int clickCount;
   private Point pointClicked;
 
-  protected void record(@Nonnull MouseEvent e) {
+  protected void record(@NonNull MouseEvent e) {
     clickedButton = MOUSE_BUTTON_MAP.get(e.getButton());
     clickCount = e.getClickCount();
     pointClicked = e.getPoint();
   }
 
-  public final @Nonnull AbstractClickRecorder wasNotClicked() {
+  public final @NonNull AbstractClickRecorder wasNotClicked() {
     assertThat(clickedButton).isNull();
     return this;
   }
 
-  public final @Nonnull AbstractClickRecorder timesClicked(int times) {
+  public final @NonNull AbstractClickRecorder timesClicked(int times) {
     assertThat(clickCount).isEqualTo(times);
     return this;
   }
 
-  public final @Nonnull AbstractClickRecorder wasClicked() {
+  public final @NonNull AbstractClickRecorder wasClicked() {
     return clicked(LEFT_BUTTON).timesClicked(1);
   }
 
-  public final @Nonnull AbstractClickRecorder wasDoubleClicked() {
+  public final @NonNull AbstractClickRecorder wasDoubleClicked() {
     return clicked(LEFT_BUTTON).timesClicked(2);
   }
 
-  public final @Nonnull AbstractClickRecorder wasRightClicked() {
+  public final @NonNull AbstractClickRecorder wasRightClicked() {
     return clicked(RIGHT_BUTTON).timesClicked(1);
   }
 
-  public final @Nonnull AbstractClickRecorder clicked(@Nonnull MouseButton button) {
+  public final @NonNull AbstractClickRecorder clicked(@NonNull MouseButton button) {
     return wasClickedWith(button);
   }
 
-  public final @Nonnull AbstractClickRecorder wasClickedWith(@Nonnull MouseButton button) {
+  public final @NonNull AbstractClickRecorder wasClickedWith(@NonNull MouseButton button) {
     assertThat(clickedButton).isEqualTo(button);
     return this;
   }
 
-  public final @Nonnull AbstractClickRecorder clickedAt(@Nonnull Point p) {
+  public final @NonNull AbstractClickRecorder clickedAt(@NonNull Point p) {
     assertThat(pointClicked).isEqualTo(p);
     return this;
   }
 
-  public final @Nonnull Point pointClicked() {
+  public final @NonNull Point pointClicked() {
     return pointClicked;
   }
 }

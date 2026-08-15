@@ -12,7 +12,7 @@
  */
 package org.assertj.swing.core;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 
 /**
  * Utility methods related to threads.
@@ -20,7 +20,7 @@ import javax.annotation.Nonnull;
  * @author Alex Ruiz
  */
 class ThreadsSource {
-  @Nonnull
+  @NonNull
   Thread[] allThreads() {
     Thread[] all = new Thread[Thread.activeCount()];
     Thread.enumerate(all);

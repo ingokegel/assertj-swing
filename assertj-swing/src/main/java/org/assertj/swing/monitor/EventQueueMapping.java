@@ -14,8 +14,8 @@ package org.assertj.swing.monitor;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 import java.awt.*;
 import java.lang.ref.WeakReference;
 import java.util.Collection;
@@ -35,14 +35,14 @@ class EventQueueMapping {
   final Map<Component, WeakReference<EventQueue>> queueMap = newWeakHashMap();
 
   @RunsInCurrentThread
-  void addQueueFor(@Nonnull Component c) {
+  void addQueueFor(@NonNull Component c) {
     EventQueue queue = c.getToolkit().getSystemEventQueue();
     queueMap.put(c, new WeakReference<EventQueue>(queue));
   }
 
   @RunsInCurrentThread
   @Nullable
-  EventQueue queueFor(@Nonnull Component c) {
+  EventQueue queueFor(@NonNull Component c) {
     EventQueue queue = storedQueueFor(c);
     if (queue == null) {
       return c.getToolkit().getSystemEventQueue();
@@ -51,11 +51,11 @@ class EventQueueMapping {
   }
 
   @Nullable
-  EventQueue storedQueueFor(@Nonnull Component c) {
+  EventQueue storedQueueFor(@NonNull Component c) {
     return queueFrom(queueMap.get(c));
   }
 
-  @Nonnull
+  @NonNull
   Collection<EventQueue> eventQueues() {
     Set<EventQueue> eventQueues = newHashSet();
     for (WeakReference<EventQueue> reference : queueMap.values()) {

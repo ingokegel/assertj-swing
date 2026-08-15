@@ -16,7 +16,7 @@ import java.awt.Insets;
 import java.awt.Point;
 import java.awt.Window;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
 
@@ -25,7 +25,7 @@ import org.assertj.swing.annotation.RunsInCurrentThread;
  */
 final class WindowMetrics {
   @RunsInCurrentThread
-  static @Nonnull Point absoluteCenterOf(@Nonnull Window window) {
+  static @NonNull Point absoluteCenterOf(@NonNull Window window) {
     Insets insets = window.getInsets();
     int w = window.getWidth() - (insets.left + insets.right);
     int h = window.getHeight() - (insets.top + insets.bottom);

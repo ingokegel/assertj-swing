@@ -14,7 +14,7 @@ package org.assertj.swing.driver;
 
 import org.assertj.swing.annotation.RunsInEDT;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.*;
 import javax.swing.tree.TreePath;
 
@@ -28,7 +28,7 @@ import static org.assertj.swing.util.Preconditions.checkNotNull;
  */
 final class JTreeChildOfPathCountQuery {
   @RunsInEDT
-  static int childCount(final @Nonnull JTree tree, final @Nonnull TreePath path) {
+  static int childCount(final @NonNull JTree tree, final @NonNull TreePath path) {
     return checkNotNull(execute(() -> tree.getModel().getChildCount(path.getLastPathComponent())));
   }
 

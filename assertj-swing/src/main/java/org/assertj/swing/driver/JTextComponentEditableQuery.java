@@ -14,7 +14,7 @@ package org.assertj.swing.driver;
 
 import org.assertj.swing.annotation.RunsInEDT;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.text.JTextComponent;
 
 import static org.assertj.swing.edt.GuiActionRunner.execute;
@@ -27,7 +27,7 @@ import static org.assertj.swing.util.Preconditions.checkNotNull;
  */
 final class JTextComponentEditableQuery {
   @RunsInEDT
-  static boolean isEditable(final @Nonnull JTextComponent textBox) {
+  static boolean isEditable(final @NonNull JTextComponent textBox) {
     Boolean result = execute(() -> textBox.isEditable());
     return checkNotNull(result);
   }

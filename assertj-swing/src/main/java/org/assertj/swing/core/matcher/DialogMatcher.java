@@ -15,8 +15,8 @@ package org.assertj.swing.core.matcher;
 import java.awt.Dialog;
 import java.util.regex.Pattern;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
 
@@ -81,7 +81,7 @@ public final class DialogMatcher extends NamedComponentMatcherTemplate<Dialog> {
    * @param title the title to match. It can be a regular expression.
    * @return the created matcher.
    */
-  @Nonnull public static DialogMatcher withTitle(@Nullable String title) {
+  @NonNull public static DialogMatcher withTitle(@Nullable String title) {
     return new DialogMatcher(anyValue(), title);
   }
 
@@ -110,7 +110,7 @@ public final class DialogMatcher extends NamedComponentMatcherTemplate<Dialog> {
    * @param pattern the regular expression pattern to match.
    * @return the created matcher.
    */
-  @Nonnull public static DialogMatcher withTitle(@Nonnull Pattern pattern) {
+  @NonNull public static DialogMatcher withTitle(@NonNull Pattern pattern) {
     return new DialogMatcher(anyValue(), pattern);
   }
 
@@ -119,7 +119,7 @@ public final class DialogMatcher extends NamedComponentMatcherTemplate<Dialog> {
    *
    * @return the created matcher.
    */
-  @Nonnull public static DialogMatcher any() {
+  @NonNull public static DialogMatcher any() {
     return new DialogMatcher(anyValue(), anyValue());
   }
 
@@ -135,7 +135,7 @@ public final class DialogMatcher extends NamedComponentMatcherTemplate<Dialog> {
    * @param newTitle the new title to match. It can be a regular expression.
    * @return this matcher.
    */
-  @Nonnull public DialogMatcher andTitle(@Nullable String newTitle) {
+  @NonNull public DialogMatcher andTitle(@Nullable String newTitle) {
     title = newTitle;
     return this;
   }
@@ -147,7 +147,7 @@ public final class DialogMatcher extends NamedComponentMatcherTemplate<Dialog> {
    * @param titlePattern the regular expression pattern to match.
    * @return this matcher.
    */
-  public DialogMatcher andTitle(@Nonnull Pattern titlePattern) {
+  public DialogMatcher andTitle(@NonNull Pattern titlePattern) {
     title = titlePattern;
     return this;
   }
@@ -157,7 +157,7 @@ public final class DialogMatcher extends NamedComponentMatcherTemplate<Dialog> {
    *
    * @return this matcher.
    */
-  @Nonnull public DialogMatcher andShowing() {
+  @NonNull public DialogMatcher andShowing() {
     requireShowing(true);
     return this;
   }
@@ -177,7 +177,7 @@ public final class DialogMatcher extends NamedComponentMatcherTemplate<Dialog> {
    */
   @RunsInCurrentThread
   @Override
-  protected boolean isMatching(@Nonnull Dialog dialog) {
+  protected boolean isMatching(@NonNull Dialog dialog) {
     return isNameMatching(dialog.getName()) && arePropertyValuesMatching(title, dialog.getTitle());
   }
 

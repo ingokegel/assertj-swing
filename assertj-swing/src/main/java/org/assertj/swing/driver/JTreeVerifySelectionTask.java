@@ -15,7 +15,7 @@ package org.assertj.swing.driver;
 import org.assertj.swing.annotation.RunsInCurrentThread;
 import org.assertj.swing.annotation.RunsInEDT;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.*;
 import javax.swing.tree.TreePath;
 import java.util.Arrays;
@@ -36,13 +36,13 @@ import static org.assertj.swing.util.Preconditions.checkNotNull;
  */
 final class JTreeVerifySelectionTask {
   @RunsInEDT
-  static void checkHasSelection(final @Nonnull JTree tree, final @Nonnull int[] selection,
-                                final @Nonnull Supplier<String> errMsg) {
+  static void checkHasSelection(final @NonNull JTree tree, final @NonNull int[] selection,
+                                final @NonNull Supplier<String> errMsg) {
     execute(() -> checkSelection(tree, selection, errMsg));
   }
 
   @RunsInCurrentThread
-  private static void checkSelection(@Nonnull JTree tree, @Nonnull int[] selection, @Nonnull Supplier<String> errMsg) {
+  private static void checkSelection(@NonNull JTree tree, @NonNull int[] selection, @NonNull Supplier<String> errMsg) {
     int[] selectionRows = tree.getSelectionRows();
     if (selectionRows == null || selectionRows.length == 0) {
       failNoSelection(errMsg);
@@ -55,21 +55,21 @@ final class JTreeVerifySelectionTask {
     failNotEqualSelection(errMsg, selection, selectionRows);
   }
 
-  private static void failNotEqualSelection(@Nonnull Supplier<String> errMsg, @Nonnull int[] expected, @Nonnull int[] actual) {
+  private static void failNotEqualSelection(@NonNull Supplier<String> errMsg, @NonNull int[] expected, @NonNull int[] actual) {
     String format = "[%s] expecting selection:<%s> but was:<%s>";
     String msg = String.format(format, errMsg.get(), format(expected), format(actual));
     fail(msg);
   }
 
   @RunsInEDT
-  static void checkHasSelection(final @Nonnull JTree tree, final @Nonnull String[] selection,
-                                final @Nonnull JTreePathFinder pathFinder, final @Nonnull Supplier<String> errMsg) {
+  static void checkHasSelection(final @NonNull JTree tree, final @NonNull String[] selection,
+                                final @NonNull JTreePathFinder pathFinder, final @NonNull Supplier<String> errMsg) {
     execute(() -> checkSelection(tree, selection, pathFinder, errMsg));
   }
 
   @RunsInCurrentThread
-  private static void checkSelection(@Nonnull JTree tree, @Nonnull String[] selection,
-                                     @Nonnull JTreePathFinder pathFinder, @Nonnull Supplier<String> errMsg) {
+  private static void checkSelection(@NonNull JTree tree, @NonNull String[] selection,
+                                     @NonNull JTreePathFinder pathFinder, @NonNull Supplier<String> errMsg) {
     TreePath[] selectionPaths = tree.getSelectionPaths();
     if (selectionPaths == null || selectionPaths.length == 0) {
       failNoSelection(errMsg);
@@ -88,19 +88,19 @@ final class JTreeVerifySelectionTask {
     }
   }
 
-  private static void failNotEqualSelection(@Nonnull Supplier<String> errMsg, @Nonnull String[] expected,
-                                            @Nonnull TreePath[] actual) {
+  private static void failNotEqualSelection(@NonNull Supplier<String> errMsg, @NonNull String[] expected,
+                                            @NonNull TreePath[] actual) {
     String format = "[%s] expecting selection:<%s> but was:<%s>";
     String msg = String.format(format, errMsg.get(), format(expected), format(actual));
     fail(msg);
   }
 
-  private static void failNoSelection(final @Nonnull Supplier<String> errMessage) {
+  private static void failNoSelection(final @NonNull Supplier<String> errMessage) {
     fail(String.format("[%s] No selection", errMessage.get()));
   }
 
   @RunsInEDT
-  static void checkNoSelection(final @Nonnull JTree tree, final @Nonnull Supplier<String> errMsg) {
+  static void checkNoSelection(final @NonNull JTree tree, final @NonNull Supplier<String> errMsg) {
     execute(() -> {
       if (tree.getSelectionCount() == 0) {
         return;

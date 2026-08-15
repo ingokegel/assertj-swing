@@ -18,8 +18,8 @@ import org.assertj.swing.hierarchy.ComponentHierarchy;
 import org.assertj.swing.hierarchy.ExistingHierarchy;
 import org.assertj.swing.hierarchy.SingleComponentHierarchy;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 import java.awt.*;
 import java.io.PrintStream;
 
@@ -41,7 +41,7 @@ public final class BasicComponentPrinter implements ComponentPrinter {
 
   private static final ComponentMatcher ALWAYS_MATCHES = alwaysMatches();
 
-  @Nonnull private static ComponentMatcher alwaysMatches() {
+  @NonNull private static ComponentMatcher alwaysMatches() {
     return new ComponentMatcher() {
       @Override
       public boolean matches(@Nullable Component c) {
@@ -58,7 +58,7 @@ public final class BasicComponentPrinter implements ComponentPrinter {
    *
    * @return the created finder.
    */
-  @Nonnull public static ComponentPrinter printerWithNewAwtHierarchy() {
+  @NonNull public static ComponentPrinter printerWithNewAwtHierarchy() {
     return new BasicComponentPrinter(ignoreExistingComponents());
   }
 
@@ -68,7 +68,7 @@ public final class BasicComponentPrinter implements ComponentPrinter {
    *
    * @return the created printer.
    */
-  @Nonnull public static ComponentPrinter printerWithCurrentAwtHierarchy() {
+  @NonNull public static ComponentPrinter printerWithCurrentAwtHierarchy() {
     return new BasicComponentPrinter(new ExistingHierarchy());
   }
 
@@ -77,59 +77,59 @@ public final class BasicComponentPrinter implements ComponentPrinter {
    *
    * @param hierarchy the component hierarchy to use.
    */
-  protected BasicComponentPrinter(@Nonnull ComponentHierarchy hierarchy) {
+  protected BasicComponentPrinter(@NonNull ComponentHierarchy hierarchy) {
     this.hierarchy = hierarchy;
   }
 
   /**
    * @return the component hierarchy used by this printer.
    */
-  protected final @Nonnull ComponentHierarchy hierarchy() {
+  protected final @NonNull ComponentHierarchy hierarchy() {
     return hierarchy;
   }
 
   @RunsInEDT
   @Override
-  public void printComponents(@Nonnull PrintStream out) {
+  public void printComponents(@NonNull PrintStream out) {
     printComponents(out, ALWAYS_MATCHES);
   }
 
   @RunsInEDT
   @Override
-  public void printComponents(@Nonnull PrintStream out, @Nullable Container root) {
+  public void printComponents(@NonNull PrintStream out, @Nullable Container root) {
     printComponents(out, ALWAYS_MATCHES, root);
   }
 
   @RunsInEDT
   @Override
-  public void printComponents(@Nonnull PrintStream out, @Nonnull Class<? extends Component> type) {
+  public void printComponents(@NonNull PrintStream out, @NonNull Class<? extends Component> type) {
     printComponents(out, type, null);
   }
 
   @RunsInEDT
   @Override
-  public void printComponents(@Nonnull PrintStream out, @Nonnull Class<? extends Component> type,
+  public void printComponents(@NonNull PrintStream out, @NonNull Class<? extends Component> type,
                               @Nullable Container root) {
     print(hierarchy(root), new TypeMatcher(checkNotNull(type)), checkNotNull(out));
   }
 
   @Override
-  public void printComponents(@Nonnull PrintStream out, @Nonnull ComponentMatcher matcher) {
+  public void printComponents(@NonNull PrintStream out, @NonNull ComponentMatcher matcher) {
     printComponents(out, matcher, null);
   }
 
   @Override
-  public void printComponents(@Nonnull PrintStream out, @Nonnull ComponentMatcher matcher, @Nullable Container root) {
+  public void printComponents(@NonNull PrintStream out, @NonNull ComponentMatcher matcher, @Nullable Container root) {
     print(hierarchy(root), checkNotNull(matcher), checkNotNull(out));
   }
 
-  @Nonnull private ComponentHierarchy hierarchy(@Nullable Container root) {
+  @NonNull private ComponentHierarchy hierarchy(@Nullable Container root) {
     return root != null ? new SingleComponentHierarchy(root, hierarchy) : hierarchy;
   }
 
   @RunsInEDT
-  private static void print(@Nonnull final ComponentHierarchy hierarchy, @Nonnull final ComponentMatcher matcher,
-                            @Nonnull final PrintStream out) {
+  private static void print(@NonNull final ComponentHierarchy hierarchy, @NonNull final ComponentMatcher matcher,
+                            @NonNull final PrintStream out) {
     execute(() -> {
       for (Component c : hierarchy.roots()) {
         print(checkNotNull(c), hierarchy, matcher, 0, out);
@@ -138,8 +138,8 @@ public final class BasicComponentPrinter implements ComponentPrinter {
   }
 
   @RunsInCurrentThread
-  private static void print(@Nonnull Component c, @Nonnull ComponentHierarchy h, @Nonnull ComponentMatcher matcher,
-                            int level, @Nonnull PrintStream out) {
+  private static void print(@NonNull Component c, @NonNull ComponentHierarchy h, @NonNull ComponentMatcher matcher,
+                            int level, @NonNull PrintStream out) {
     if (matcher.matches(c)) {
       print(c, level, out);
     }
@@ -149,7 +149,7 @@ public final class BasicComponentPrinter implements ComponentPrinter {
   }
 
   @RunsInCurrentThread
-  private static void print(@Nonnull Component c, int level, @Nonnull PrintStream out) {
+  private static void print(@NonNull Component c, int level, @NonNull PrintStream out) {
     for (int i = 0; i < level; i++) {
       out.print(INDENTATION);
     }

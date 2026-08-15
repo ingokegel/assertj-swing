@@ -16,7 +16,7 @@ import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import java.awt.Component;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 
 import org.assertj.swing.annotation.RunsInEDT;
 
@@ -28,17 +28,17 @@ import org.assertj.swing.annotation.RunsInEDT;
  */
 public final class ComponentSetVisibleTask {
   @RunsInEDT
-  public static void show(@Nonnull Component c) {
+  public static void show(@NonNull Component c) {
     setVisible(c, true);
   }
 
   @RunsInEDT
-  public static void hide(@Nonnull Component c) {
+  public static void hide(@NonNull Component c) {
     setVisible(c, false);
   }
 
   @RunsInEDT
-  public static void setVisible(final @Nonnull Component c, final boolean visible) {
+  public static void setVisible(final @NonNull Component c, final boolean visible) {
     execute(() -> c.setVisible(visible));
   }
 

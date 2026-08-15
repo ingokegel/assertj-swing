@@ -15,7 +15,7 @@ package org.assertj.swing.driver;
 import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.JProgressBar;
 
 import org.assertj.swing.annotation.RunsInEDT;
@@ -27,7 +27,7 @@ import org.assertj.swing.annotation.RunsInEDT;
  */
 final class JProgressBarIncrementValueTask {
   @RunsInEDT
-  static int incrementValue(final @Nonnull JProgressBar progressBar, final int increment) {
+  static int incrementValue(final @NonNull JProgressBar progressBar, final int increment) {
     Integer result = execute(() -> {
       int value = progressBar.getValue();
       value += increment;

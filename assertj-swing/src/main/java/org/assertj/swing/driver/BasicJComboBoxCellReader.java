@@ -16,8 +16,8 @@ import org.assertj.swing.annotation.RunsInCurrentThread;
 import org.assertj.swing.cell.JComboBoxCellReader;
 import org.assertj.swing.edt.GuiQuery;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 import javax.swing.*;
 import java.awt.*;
 
@@ -34,7 +34,7 @@ import static org.assertj.swing.util.Preconditions.checkNotNull;
 public class BasicJComboBoxCellReader implements JComboBoxCellReader {
   private static final JList<?> REFERENCE_JLIST = newJList();
 
-  @Nonnull private static <T> JList<T> newJList() {
+  @NonNull private static <T> JList<T> newJList() {
     JList<T> result = execute(new GuiQuery<JList<T>>() {
       @Override
       protected JList<T> executeInEDT() {
@@ -61,7 +61,7 @@ public class BasicJComboBoxCellReader implements JComboBoxCellReader {
    * @param rendererReader knows how to read values from the cell renderer {@code Component} in a {@code JComboBox}.
    * @throws NullPointerException if the given {@link CellRendererReader} is {@code null}.
    */
-  public BasicJComboBoxCellReader(@Nonnull CellRendererReader rendererReader) {
+  public BasicJComboBoxCellReader(@NonNull CellRendererReader rendererReader) {
     this.rendererReader = checkNotNull(rendererReader);
   }
 
@@ -82,7 +82,7 @@ public class BasicJComboBoxCellReader implements JComboBoxCellReader {
    */
   @Override
   @RunsInCurrentThread
-  @Nullable public String valueAt(@Nonnull JComboBox<?> comboBox, int index) {
+  @Nullable public String valueAt(@NonNull JComboBox<?> comboBox, int index) {
     Component c = cellRendererComponent(comboBox, index);
     String value = (c != null) ? rendererReader.valueFrom(c) : null;
     if (value != null) {
@@ -92,7 +92,7 @@ public class BasicJComboBoxCellReader implements JComboBoxCellReader {
   }
 
   @RunsInCurrentThread
-  @Nullable private Component cellRendererComponent(@Nonnull JComboBox comboBox, int index) {
+  @Nullable private Component cellRendererComponent(@NonNull JComboBox comboBox, int index) {
     Object item = comboBox.getItemAt(index);
     ListCellRenderer renderer = comboBox.getRenderer();
     return renderer.getListCellRendererComponent(REFERENCE_JLIST, item, index, true, true);

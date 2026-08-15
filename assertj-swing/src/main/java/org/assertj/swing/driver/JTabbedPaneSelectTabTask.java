@@ -14,7 +14,7 @@ package org.assertj.swing.driver;
 
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.JTabbedPane;
 
 import org.assertj.swing.annotation.RunsInEDT;
@@ -28,7 +28,7 @@ import org.assertj.swing.annotation.RunsInEDT;
  */
 final class JTabbedPaneSelectTabTask {
   @RunsInEDT
-  static void setSelectedTab(final @Nonnull JTabbedPane tabbedPane, final int index) {
+  static void setSelectedTab(final @NonNull JTabbedPane tabbedPane, final int index) {
     execute(() -> tabbedPane.setSelectedIndex(index));
   }
 

@@ -15,7 +15,7 @@ package org.assertj.swing.driver;
 import org.assertj.swing.annotation.RunsInCurrentThread;
 import org.assertj.swing.annotation.RunsInEDT;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.*;
 import javax.swing.table.TableCellEditor;
 
@@ -32,17 +32,17 @@ import static org.assertj.swing.util.Preconditions.checkNotNull;
  */
 final class JTableStopCellEditingTask {
   @RunsInEDT
-  static void stopEditing(final @Nonnull TableCellEditor cellEditor) {
+  static void stopEditing(final @NonNull TableCellEditor cellEditor) {
     execute(() -> doStopCellEditing(cellEditor));
   }
 
   @RunsInEDT
-  static void stopEditing(final @Nonnull JTable table, final int row, final int column) {
+  static void stopEditing(final @NonNull JTable table, final int row, final int column) {
     execute(() -> doStopCellEditing(table, row, column));
   }
 
   @RunsInEDT
-  static void checkStateAndStopEditing(final @Nonnull JTable table, final int row, final int column) {
+  static void checkStateAndStopEditing(final @NonNull JTable table, final int row, final int column) {
     execute(() -> {
       checkCellIndicesInBounds(table, row, column);
       validateCellIsEditable(table, row, column);
@@ -51,13 +51,13 @@ final class JTableStopCellEditingTask {
   }
 
   @RunsInCurrentThread
-  private static void doStopCellEditing(@Nonnull JTable table, int row, int column) {
+  private static void doStopCellEditing(@NonNull JTable table, int row, int column) {
     TableCellEditor editor = checkNotNull(table.getCellEditor(row, column));
     doStopCellEditing(editor);
   }
 
   @RunsInCurrentThread
-  private static void doStopCellEditing(@Nonnull TableCellEditor cellEditor) {
+  private static void doStopCellEditing(@NonNull TableCellEditor cellEditor) {
     checkNotNull(cellEditor);
     cellEditor.stopCellEditing();
   }

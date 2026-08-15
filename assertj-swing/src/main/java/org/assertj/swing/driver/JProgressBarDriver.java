@@ -18,8 +18,8 @@ import org.assertj.swing.internal.annotation.InternalApi;
 import org.assertj.swing.timing.Timeout;
 import org.assertj.swing.util.Pair;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 import javax.swing.*;
 import java.util.regex.Pattern;
 
@@ -56,7 +56,7 @@ public class JProgressBarDriver extends JComponentDriver implements TextDisplayD
    *
    * @param robot the robot to use to simulate user input.
    */
-  public JProgressBarDriver(@Nonnull Robot robot) {
+  public JProgressBarDriver(@NonNull Robot robot) {
     super(robot);
   }
 
@@ -70,7 +70,7 @@ public class JProgressBarDriver extends JComponentDriver implements TextDisplayD
    */
   @RunsInEDT
   @Override
-  public void requireText(@Nonnull JProgressBar progressBar, @Nullable String expected) {
+  public void requireText(@NonNull JProgressBar progressBar, @Nullable String expected) {
     verifyThat(stringOf(progressBar)).as(propertyName(progressBar, TEXT_PROPERTY)).isEqualOrMatches(expected);
   }
 
@@ -85,7 +85,7 @@ public class JProgressBarDriver extends JComponentDriver implements TextDisplayD
    */
   @RunsInEDT
   @Override
-  public void requireText(@Nonnull JProgressBar progressBar, @Nonnull Pattern pattern) {
+  public void requireText(@NonNull JProgressBar progressBar, @NonNull Pattern pattern) {
     verifyThat(stringOf(progressBar)).as(propertyName(progressBar, TEXT_PROPERTY)).matches(pattern);
   }
 
@@ -97,7 +97,7 @@ public class JProgressBarDriver extends JComponentDriver implements TextDisplayD
    * @throws AssertionError if the value of the {@code JProgressBar} is not equal to the given one.
    */
   @RunsInEDT
-  public void requireValue(@Nonnull JProgressBar progressBar, int value) {
+  public void requireValue(@NonNull JProgressBar progressBar, int value) {
     assertThat(valueOf(progressBar)).as(propertyName(progressBar, "value")).isEqualTo(value);
   }
 
@@ -108,7 +108,7 @@ public class JProgressBarDriver extends JComponentDriver implements TextDisplayD
    * @throws AssertionError if the given {@code JProgressBar} is not in indeterminate mode.
    */
   @RunsInEDT
-  public void requireIndeterminate(@Nonnull JProgressBar progressBar) {
+  public void requireIndeterminate(@NonNull JProgressBar progressBar) {
     requireIndeterminate(progressBar, true);
   }
 
@@ -119,12 +119,12 @@ public class JProgressBarDriver extends JComponentDriver implements TextDisplayD
    * @throws AssertionError if the given {@code JProgressBar} is not in determinate mode.
    */
   @RunsInEDT
-  public void requireDeterminate(@Nonnull JProgressBar progressBar) {
+  public void requireDeterminate(@NonNull JProgressBar progressBar) {
     requireIndeterminate(progressBar, false);
   }
 
   @RunsInEDT
-  private void requireIndeterminate(@Nonnull JProgressBar progressBar, boolean indeterminate) {
+  private void requireIndeterminate(@NonNull JProgressBar progressBar, boolean indeterminate) {
     assertThat(isIndeterminate(progressBar)).as(propertyName(progressBar, "indeterminate")).isEqualTo(indeterminate);
   }
 
@@ -140,7 +140,7 @@ public class JProgressBarDriver extends JComponentDriver implements TextDisplayD
    *           seconds.
    */
   @RunsInEDT
-  public void waitUntilValueIs(@Nonnull JProgressBar progressBar, int value) {
+  public void waitUntilValueIs(@NonNull JProgressBar progressBar, int value) {
     waitUntilValueIs(progressBar, value, DEFAULT_TIMEOUT);
   }
 
@@ -158,14 +158,14 @@ public class JProgressBarDriver extends JComponentDriver implements TextDisplayD
    *           specified timeout.
    */
   @RunsInEDT
-  public void waitUntilValueIs(@Nonnull JProgressBar progressBar, int value, @Nonnull Timeout timeout) {
+  public void waitUntilValueIs(@NonNull JProgressBar progressBar, int value, @NonNull Timeout timeout) {
     checkInBetweenMinAndMax(progressBar, value);
     checkNotNull(timeout);
     waitUntilValueIsEqualToExpected(progressBar, value, timeout);
   }
 
   @RunsInEDT
-  private void checkInBetweenMinAndMax(@Nonnull JProgressBar progressBar, int value) {
+  private void checkInBetweenMinAndMax(@NonNull JProgressBar progressBar, int value) {
     Pair<Integer, Integer> minAndMax = minimumAndMaximumOf(progressBar);
     assertIsInBetweenMinAndMax(value, minAndMax.first, minAndMax.second);
   }
@@ -186,7 +186,7 @@ public class JProgressBarDriver extends JComponentDriver implements TextDisplayD
    *           within 30 seconds.
    */
   @RunsInEDT
-  public void waitUntilIsDeterminate(@Nonnull JProgressBar progressBar) {
+  public void waitUntilIsDeterminate(@NonNull JProgressBar progressBar) {
     waitUntilIsDeterminate(progressBar, DEFAULT_TIMEOUT);
   }
 
@@ -200,7 +200,7 @@ public class JProgressBarDriver extends JComponentDriver implements TextDisplayD
    *           within the specified timeout.
    */
   @RunsInEDT
-  public void waitUntilIsDeterminate(@Nonnull JProgressBar progressBar, @Nonnull Timeout timeout) {
+  public void waitUntilIsDeterminate(@NonNull JProgressBar progressBar, @NonNull Timeout timeout) {
     checkNotNull(timeout);
     waitUntilValueIsDeterminate(progressBar, timeout);
   }
@@ -213,7 +213,7 @@ public class JProgressBarDriver extends JComponentDriver implements TextDisplayD
    */
   @Override
   @RunsInEDT
-  @Nullable public String textOf(@Nonnull JProgressBar progressBar) {
+  @Nullable public String textOf(@NonNull JProgressBar progressBar) {
     return stringOf(progressBar);
   }
 }

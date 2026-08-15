@@ -14,7 +14,7 @@ package org.assertj.swing.format;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.*;
 import java.awt.*;
 
@@ -49,7 +49,7 @@ public class JOptionPaneFormatter extends ComponentFormatterTemplate {
    */
   @RunsInCurrentThread
   @Override
-  @Nonnull protected String doFormat(@Nonnull Component c) {
+  @NonNull protected String doFormat(@NonNull Component c) {
     JOptionPane optionPane = (JOptionPane) c;
     String format = "%s[message=%s, messageType=%s, optionType=%s, enabled=%b, visible=%b, showing=%b]";
     return String.format(format, getRealClassName(c), quote(optionPane.getMessage()),
@@ -61,7 +61,7 @@ public class JOptionPaneFormatter extends ComponentFormatterTemplate {
    * @return {@code JOptionPane.class}.
    */
   @Override
-  @Nonnull public Class<? extends Component> targetType() {
+  @NonNull public Class<? extends Component> targetType() {
     return JOptionPane.class;
   }
 }

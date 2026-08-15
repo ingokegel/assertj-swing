@@ -15,7 +15,7 @@ package org.assertj.swing.input;
 import org.assertj.swing.annotation.VisibleForTesting;
 import org.assertj.swing.logging.Logger;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import java.awt.*;
 import java.awt.event.AWTEventListener;
 import java.util.EmptyStackException;
@@ -35,7 +35,7 @@ class DragAwareEventNormalizer extends EventNormalizer {
   private DragAwareEventQueue dragAwareEventQueue;
 
   @Override
-  public void startListening(@Nonnull Toolkit toolkit, @Nonnull AWTEventListener delegate, long mask) {
+  public void startListening(@NonNull Toolkit toolkit, @NonNull AWTEventListener delegate, long mask) {
     super.startListening(toolkit, delegate, mask);
     try {
       dragAwareEventQueue = createEventQueue(toolkit, mask);
@@ -48,7 +48,7 @@ class DragAwareEventNormalizer extends EventNormalizer {
   }
 
   @VisibleForTesting
-  DragAwareEventQueue createEventQueue(@Nonnull Toolkit toolkit, long mask) {
+  DragAwareEventQueue createEventQueue(@NonNull Toolkit toolkit, long mask) {
     return new DragAwareEventQueue(toolkit, mask, this);
   }
 

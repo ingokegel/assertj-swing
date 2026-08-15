@@ -14,8 +14,8 @@ package org.assertj.swing.fixture;
 
 import java.awt.Point;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 import javax.swing.JComponent;
 
 import org.assertj.swing.core.Robot;
@@ -44,8 +44,8 @@ public abstract class AbstractJPopupMenuInvokerFixture<S, T extends JComponent, 
    * @throws org.assertj.swing.exception.ComponentLookupException if a matching component could not be found.
    * @throws org.assertj.swing.exception.ComponentLookupException if more than one matching component is found.
    */
-  public AbstractJPopupMenuInvokerFixture(@Nonnull Class<S> selfType, @Nonnull Robot robot,
-                                          @Nonnull Class<? extends T> type) {
+  public AbstractJPopupMenuInvokerFixture(@NonNull Class<S> selfType, @NonNull Robot robot,
+                                          @NonNull Class<? extends T> type) {
     super(selfType, robot, type);
   }
 
@@ -61,8 +61,8 @@ public abstract class AbstractJPopupMenuInvokerFixture<S, T extends JComponent, 
    * @throws org.assertj.swing.exception.ComponentLookupException if a matching component could not be found.
    * @throws org.assertj.swing.exception.ComponentLookupException if more than one matching component is found.
    */
-  public AbstractJPopupMenuInvokerFixture(@Nonnull Class<S> selfType, @Nonnull Robot robot, @Nullable String name,
-                                          @Nonnull Class<? extends T> type) {
+  public AbstractJPopupMenuInvokerFixture(@NonNull Class<S> selfType, @NonNull Robot robot, @Nullable String name,
+                                          @NonNull Class<? extends T> type) {
     super(selfType, robot, name, type);
   }
 
@@ -75,7 +75,7 @@ public abstract class AbstractJPopupMenuInvokerFixture<S, T extends JComponent, 
    * @throws NullPointerException if {@code robot} is {@code null}.
    * @throws NullPointerException if {@code target} is {@code null}.
    */
-  public AbstractJPopupMenuInvokerFixture(@Nonnull Class<S> selfType, @Nonnull Robot robot, @Nonnull T target) {
+  public AbstractJPopupMenuInvokerFixture(@NonNull Class<S> selfType, @NonNull Robot robot, @NonNull T target) {
     super(selfType, robot, target);
   }
 
@@ -89,7 +89,7 @@ public abstract class AbstractJPopupMenuInvokerFixture<S, T extends JComponent, 
    * @throws org.assertj.swing.exception.ComponentLookupException if a pop-up menu cannot be found.
    */
   @Override
-  @Nonnull public JPopupMenuFixture showPopupMenu() {
+  @NonNull public JPopupMenuFixture showPopupMenu() {
     return new JPopupMenuFixture(robot(), driver().invokePopupMenu(target()));
   }
 
@@ -104,7 +104,7 @@ public abstract class AbstractJPopupMenuInvokerFixture<S, T extends JComponent, 
    * @throws org.assertj.swing.exception.ComponentLookupException if a pop-up menu cannot be found.
    */
   @Override
-  @Nonnull public JPopupMenuFixture showPopupMenuAt(@Nonnull Point p) {
+  @NonNull public JPopupMenuFixture showPopupMenuAt(@NonNull Point p) {
     return new JPopupMenuFixture(robot(), driver().invokePopupMenu(target(), p));
   }
 }

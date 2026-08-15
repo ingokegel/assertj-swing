@@ -12,7 +12,7 @@
  */
 package org.assertj.swing.data;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 
 import static org.assertj.swing.util.Objects.HASH_CODE_PRIME;
 
@@ -28,7 +28,7 @@ public final class Index {
    * @param value the value of the index to create.
    * @return the created index.
    */
-  @Nonnull public static Index atIndex(int value) {
+  @NonNull public static Index atIndex(int value) {
     return new Index(value);
   }
 

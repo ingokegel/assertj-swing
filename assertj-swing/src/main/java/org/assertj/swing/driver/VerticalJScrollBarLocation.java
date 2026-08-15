@@ -14,7 +14,7 @@ package org.assertj.swing.driver;
 
 import java.awt.Point;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.JScrollBar;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
@@ -35,16 +35,16 @@ import org.assertj.swing.annotation.RunsInCurrentThread;
 class VerticalJScrollBarLocation extends JScrollBarLocationStrategy {
   @RunsInCurrentThread
   @Override
-  @Nonnull
-  Point thumbLocation(@Nonnull JScrollBar scrollBar, double fraction) {
+  @NonNull
+  Point thumbLocation(@NonNull JScrollBar scrollBar, double fraction) {
     int arrow = arrow(scrollBar);
     return new Point(arrow / 2, arrow + (int) (fraction * (scrollBar.getHeight() - 2 * arrow)));
   }
 
   @RunsInCurrentThread
   @Override
-  @Nonnull
-  Point blockLocation(@Nonnull JScrollBar scrollBar, @Nonnull Point unitLocation, int offset) {
+  @NonNull
+  Point blockLocation(@NonNull JScrollBar scrollBar, @NonNull Point unitLocation, int offset) {
     Point p = new Point(unitLocation);
     p.y += offset;
     return p;
@@ -52,15 +52,15 @@ class VerticalJScrollBarLocation extends JScrollBarLocationStrategy {
 
   @RunsInCurrentThread
   @Override
-  @Nonnull
-  Point unitLocationToScrollDown(@Nonnull JScrollBar scrollBar) {
+  @NonNull
+  Point unitLocationToScrollDown(@NonNull JScrollBar scrollBar) {
     int arrow = arrow(scrollBar);
     return new Point(arrow / 2, scrollBar.getHeight() - arrow / 2);
   }
 
   @RunsInCurrentThread
   @Override
-  int arrow(@Nonnull JScrollBar scrollBar) {
+  int arrow(@NonNull JScrollBar scrollBar) {
     return scrollBar.getWidth();
   }
 }

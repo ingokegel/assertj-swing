@@ -15,7 +15,7 @@ package org.assertj.swing.hierarchy;
 import org.assertj.swing.annotation.RunsInCurrentThread;
 import org.assertj.swing.annotation.VisibleForTesting;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import java.awt.*;
 import java.util.Collection;
 import java.util.List;
@@ -34,8 +34,8 @@ class ChildrenFinder {
       new JMenuChildrenFinder(), new WindowChildrenFinder());
 
   @RunsInCurrentThread
-  @Nonnull
-  Collection<Component> childrenOf(@Nonnull Component c) {
+  @NonNull
+  Collection<Component> childrenOf(@NonNull Component c) {
     if (!(c instanceof Container)) {
       return emptyList();
     }
@@ -45,7 +45,7 @@ class ChildrenFinder {
     return children;
   }
 
-  @Nonnull private Collection<Component> nonExplicitChildrenOf(@Nonnull Container c) {
+  @NonNull private Collection<Component> nonExplicitChildrenOf(@NonNull Container c) {
     Collection<Component> children = newArrayList();
     for (ChildrenFinderStrategy s : strategies) {
       children.addAll(s.nonExplicitChildrenOf(c));
@@ -54,12 +54,12 @@ class ChildrenFinder {
   }
 
   @VisibleForTesting
-  static @Nonnull List<ChildrenFinderStrategy> strategies() {
+  static @NonNull List<ChildrenFinderStrategy> strategies() {
     return newArrayList(strategies);
   }
 
   @VisibleForTesting
-  static void replaceStrategiesWith(@Nonnull List<ChildrenFinderStrategy> newStrategies) {
+  static void replaceStrategiesWith(@NonNull List<ChildrenFinderStrategy> newStrategies) {
     strategies = newArrayList(newStrategies);
   }
 }

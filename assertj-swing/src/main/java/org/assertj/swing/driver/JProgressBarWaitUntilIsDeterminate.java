@@ -17,7 +17,7 @@ import org.assertj.swing.edt.GuiLazyLoadingDescription;
 import org.assertj.swing.timing.Condition;
 import org.assertj.swing.timing.Timeout;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.*;
 import java.util.function.Supplier;
 
@@ -32,7 +32,7 @@ import static org.assertj.swing.timing.Pause.pause;
  */
 final class JProgressBarWaitUntilIsDeterminate {
   @RunsInEDT
-  static void waitUntilValueIsDeterminate(final @Nonnull JProgressBar progressBar, final @Nonnull Timeout timeout) {
+  static void waitUntilValueIsDeterminate(final @NonNull JProgressBar progressBar, final @NonNull Timeout timeout) {
     pause(new Condition(untilIsDeterminate(progressBar)) {
       @Override
       public boolean test() {
@@ -41,10 +41,10 @@ final class JProgressBarWaitUntilIsDeterminate {
     }, timeout);
   }
 
-  private static Supplier<String> untilIsDeterminate(final @Nonnull JProgressBar progressBar) {
+  private static Supplier<String> untilIsDeterminate(final @NonNull JProgressBar progressBar) {
     return new GuiLazyLoadingDescription() {
       @Override
-      @Nonnull protected String loadDescription() {
+      @NonNull protected String loadDescription() {
         return format(progressBar) + " to be in determinate mode";
       }
     };

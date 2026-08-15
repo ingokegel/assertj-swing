@@ -14,8 +14,8 @@ package org.assertj.swing.util;
 
 import org.assertj.swing.internal.annotation.InternalApi;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 import java.lang.reflect.Array;
 
 import static java.lang.System.lineSeparator;
@@ -104,7 +104,7 @@ public final class Arrays {
    * @param array the array to format.
    * @return the data of the given array formatted to make it easier to read.
    */
-  @Nonnull public static String format(@Nullable String[][] array) {
+  @NonNull public static String format(@Nullable String[][] array) {
     if (array == null) {
       return NULL;
     }
@@ -130,7 +130,7 @@ public final class Arrays {
     return b.toString();
   }
 
-  private static void addLine(@Nullable String[] line, @Nonnull StringBuilder b) {
+  private static void addLine(@Nullable String[] line, @NonNull StringBuilder b) {
     if (line == null) {
       b.append(NULL);
       return;
@@ -153,7 +153,7 @@ public final class Arrays {
    * @return the created copy.
    * @throws NullPointerException if the array to copy is {@code null}.
    */
-  @Nonnull public static int[] copyOf(@Nonnull int[] array) {
+  @NonNull public static int[] copyOf(@NonNull int[] array) {
     checkNotNull(array);
     int arraySize = array.length;
     int[] copy = new int[arraySize];
@@ -172,7 +172,7 @@ public final class Arrays {
    * @throws NullPointerException if the array to copy is {@code null}.
    */
   @SuppressWarnings("unchecked")
-  public static <T> T[] copyOf(@Nonnull T[] array) {
+  public static <T> T[] copyOf(@NonNull T[] array) {
     checkNotNull(array);
     int arraySize = array.length;
     T[] copy = (T[]) Array.newInstance(array.getClass().getComponentType(), arraySize);

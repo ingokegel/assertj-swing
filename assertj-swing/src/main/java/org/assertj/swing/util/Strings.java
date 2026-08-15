@@ -12,8 +12,8 @@
  */
 package org.assertj.swing.util;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
@@ -84,7 +84,7 @@ public final class Strings {
    *         otherwise. It also returns {@code false} if the given {@code String} is {@code null}.
    * @throws NullPointerException if the given regular expression pattern is {@code null}.
    */
-  public static boolean match(@Nonnull Pattern p, @Nullable String s) {
+  public static boolean match(@NonNull Pattern p, @Nullable String s) {
     return match(p, (CharSequence) s);
   }
 
@@ -97,7 +97,7 @@ public final class Strings {
    *         otherwise. It also returns {@code false} if the given {@code CharSequence} is {@code null}.
    * @throws NullPointerException if the given regular expression pattern is {@code null}.
    */
-  public static boolean match(@Nonnull Pattern p, @Nullable CharSequence s) {
+  public static boolean match(@NonNull Pattern p, @Nullable CharSequence s) {
     Preconditions.checkNotNull(p);
     if (s == null) {
       return false;

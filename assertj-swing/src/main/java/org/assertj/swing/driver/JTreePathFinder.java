@@ -16,8 +16,8 @@ import org.assertj.swing.annotation.RunsInCurrentThread;
 import org.assertj.swing.cell.JTreeCellReader;
 import org.assertj.swing.exception.LocationUnavailableException;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 import javax.swing.*;
 import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
@@ -44,8 +44,8 @@ class JTreePathFinder {
   }
 
   @RunsInCurrentThread
-  @Nonnull
-  TreePath findMatchingPath(@Nonnull JTree tree, @Nonnull String path) {
+  @NonNull
+  TreePath findMatchingPath(@NonNull JTree tree, @NonNull String path) {
     String[] pathStrings = splitPath(path);
     TreeModel model = tree.getModel();
     List<Object> newPathValues = newArrayList();
@@ -80,11 +80,11 @@ class JTreePathFinder {
     return new TreePath(newPathValues.toArray());
   }
 
-  @Nonnull private LocationUnavailableException pathNotFound(@Nonnull String path) {
+  @NonNull private LocationUnavailableException pathNotFound(@NonNull String path) {
     throw new LocationUnavailableException(String.format("Unable to find path %s", quote(path)));
   }
 
-  @Nonnull private String[] splitPath(@Nonnull String path) {
+  @NonNull private String[] splitPath(@NonNull String path) {
     List<String> result = newArrayList();
     int separatorSize = separator.length();
     int index = 0;
@@ -100,30 +100,30 @@ class JTreePathFinder {
     return result.toArray(new String[result.size()]);
   }
 
-  @Nonnull private LocationUnavailableException multipleMatchingNodes(@Nonnull String matchingText,
+  @NonNull private LocationUnavailableException multipleMatchingNodes(@NonNull String matchingText,
       @Nullable Object parentText) {
     String msg = String.format("There is more than one node with value '%s' under", matchingText, quote(parentText));
     throw new LocationUnavailableException(msg);
   }
 
-  @Nullable private String value(@Nonnull JTree tree, @Nullable Object modelValue) {
+  @Nullable private String value(@NonNull JTree tree, @Nullable Object modelValue) {
     return cellReader.valueAt(tree, modelValue);
   }
 
-  @Nonnull
+  @NonNull
   String separator() {
     return separator;
   }
 
-  void replaceSeparator(@Nonnull String newSeparator) {
+  void replaceSeparator(@NonNull String newSeparator) {
     separator = newSeparator;
   }
 
-  void replaceCellReader(@Nonnull JTreeCellReader newCellReader) {
+  void replaceCellReader(@NonNull JTreeCellReader newCellReader) {
     cellReader = newCellReader;
   }
 
-  @Nonnull
+  @NonNull
   JTreeCellReader cellReader() {
     return cellReader;
   }

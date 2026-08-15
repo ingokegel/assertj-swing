@@ -12,7 +12,7 @@
  */
 package org.assertj.swing.exception;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 
 /**
  * Error thrown when an unexpected error occurs while parsing a file.
@@ -28,7 +28,7 @@ public class ParsingException extends RuntimeException {
    *
    * @param message the detail message.
    */
-  public ParsingException(@Nonnull String message) {
+  public ParsingException(@NonNull String message) {
     super(message);
   }
 
@@ -38,7 +38,7 @@ public class ParsingException extends RuntimeException {
    * @param message the detail message.
    * @param cause the cause of the error.
    */
-  public ParsingException(@Nonnull String message, @Nonnull Throwable cause) {
+  public ParsingException(@NonNull String message, @NonNull Throwable cause) {
     super(message, cause);
   }
 }

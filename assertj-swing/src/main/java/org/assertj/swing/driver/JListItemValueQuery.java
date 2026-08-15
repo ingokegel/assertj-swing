@@ -15,8 +15,8 @@ package org.assertj.swing.driver;
 import static org.assertj.swing.driver.JListItemPreconditions.checkIndexInBounds;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 import javax.swing.JList;
 
 import org.assertj.swing.annotation.RunsInEDT;
@@ -29,8 +29,8 @@ import org.assertj.swing.cell.JListCellReader;
  */
 final class JListItemValueQuery {
   @RunsInEDT
-  static @Nullable String itemValue(final @Nonnull JList<?> list, final int index,
-                                    final @Nonnull JListCellReader cellReader) {
+  static @Nullable String itemValue(final @NonNull JList<?> list, final int index,
+                                    final @NonNull JListCellReader cellReader) {
     return execute(() -> {
       checkIndexInBounds(list, index);
       return cellReader.valueAt(list, index);

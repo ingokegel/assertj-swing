@@ -16,8 +16,8 @@ import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.core.Robot;
 import org.assertj.swing.internal.annotation.InternalApi;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 import javax.swing.*;
 import java.io.File;
 
@@ -49,7 +49,7 @@ public class JFileChooserDriver extends JComponentDriver {
    *
    * @param robot the robot to use to simulate user input.
    */
-  public JFileChooserDriver(@Nonnull Robot robot) {
+  public JFileChooserDriver(@NonNull Robot robot) {
     super(robot);
   }
 
@@ -67,7 +67,7 @@ public class JFileChooserDriver extends JComponentDriver {
    *           directory.
    */
   @RunsInEDT
-  public void selectFile(@Nonnull JFileChooser fileChooser, @Nonnull File file) {
+  public void selectFile(@NonNull JFileChooser fileChooser, @NonNull File file) {
     setSelectedFile(fileChooser, checkNotNull(file));
   }
 
@@ -87,7 +87,7 @@ public class JFileChooserDriver extends JComponentDriver {
    * @throws IllegalArgumentException if this fixture's {@code JFileChooser} cannot select directories and any of the
    *           files to select is a directory.
    */
-  public void selectFiles(@Nonnull JFileChooser fileChooser, @Nonnull File[] files) {
+  public void selectFiles(@NonNull JFileChooser fileChooser, @NonNull File[] files) {
     checkNotNull(files);
     for (File file : checkNotNullOrEmpty(files)) {
       checkNotNull(file);
@@ -104,7 +104,7 @@ public class JFileChooserDriver extends JComponentDriver {
    * @throws IllegalStateException if the {@code JFileChooser} is not showing on the screen.
    */
   @RunsInEDT
-  public void setCurrentDirectory(@Nonnull final JFileChooser fileChooser, @Nonnull final File dir) {
+  public void setCurrentDirectory(@NonNull final JFileChooser fileChooser, @NonNull final File dir) {
     execute(() -> {
       checkEnabledAndShowing(fileChooser);
       fileChooser.setCurrentDirectory(dir);
@@ -119,7 +119,7 @@ public class JFileChooserDriver extends JComponentDriver {
    * @throws org.assertj.swing.exception.ComponentLookupException if a matching text field could not be found.
    */
   @RunsInEDT
-  public JTextField fileNameTextBox(@Nonnull JFileChooser fileChooser) {
+  public JTextField fileNameTextBox(@NonNull JFileChooser fileChooser) {
     return robot.finder().findByType(fileChooser, JTextField.class);
   }
 
@@ -132,7 +132,7 @@ public class JFileChooserDriver extends JComponentDriver {
    * @throws IllegalStateException if the "Cancel" button is not showing on the screen.
    */
   @RunsInEDT
-  public void clickCancelButton(@Nonnull JFileChooser fileChooser) {
+  public void clickCancelButton(@NonNull JFileChooser fileChooser) {
     checkInEdtEnabledAndShowing(fileChooser);
     click(cancelButton(fileChooser));
   }
@@ -145,7 +145,7 @@ public class JFileChooserDriver extends JComponentDriver {
    * @throws org.assertj.swing.exception.ComponentLookupException if the "Cancel" button cannot be found.
    */
   @RunsInEDT
-  @Nonnull public JButton cancelButton(@Nonnull JFileChooser fileChooser) {
+  @NonNull public JButton cancelButton(@NonNull JFileChooser fileChooser) {
     return findButton(fileChooser, cancelButtonText());
   }
 
@@ -158,7 +158,7 @@ public class JFileChooserDriver extends JComponentDriver {
    * @throws IllegalStateException if the "Approve" button is not showing on the screen.
    */
   @RunsInEDT
-  public void clickApproveButton(@Nonnull JFileChooser fileChooser) {
+  public void clickApproveButton(@NonNull JFileChooser fileChooser) {
     checkInEdtEnabledAndShowing(fileChooser);
     click(approveButton(fileChooser));
   }
@@ -171,12 +171,12 @@ public class JFileChooserDriver extends JComponentDriver {
    * @throws org.assertj.swing.exception.ComponentLookupException if the "Approve" button cannot be found.
    */
   @RunsInEDT
-  @Nonnull public JButton approveButton(@Nonnull JFileChooser fileChooser) {
+  @NonNull public JButton approveButton(@NonNull JFileChooser fileChooser) {
     return findButton(fileChooser, approveButtonTextFrom(fileChooser));
   }
 
   @RunsInEDT
-  @Nonnull private JButton findButton(@Nonnull JFileChooser fileChooser,
+  @NonNull private JButton findButton(@NonNull JFileChooser fileChooser,
                                       @Nullable String text) {
     return robot.finder().find(fileChooser, withText(text).andShowing());
   }

@@ -14,8 +14,8 @@ package org.assertj.swing.driver;
 
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 import javax.swing.JTable;
 import javax.swing.table.JTableHeader;
 
@@ -30,7 +30,7 @@ import org.assertj.swing.annotation.RunsInEDT;
  */
 final class JTableHeaderQuery {
   @RunsInEDT
-  static @Nullable JTableHeader tableHeader(final @Nonnull JTable table) {
+  static @Nullable JTableHeader tableHeader(final @NonNull JTable table) {
     return execute(() -> table.getTableHeader());
   }
 

@@ -21,7 +21,7 @@ import static org.assertj.swing.timing.Pause.pause;
 import java.awt.Point;
 import java.util.Collection;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 
 import org.assertj.swing.test.recorder.ClickRecorder;
 import org.assertj.swing.test.recorder.ClickRecorderManager;
@@ -46,11 +46,11 @@ public abstract class InputEventGenerator_pressMouseOnComponent_TestCase extends
   private final int buttonMask;
 
   @Parameters
-  @Nonnull public static Collection<Object[]> mouseButtons() {
+  @NonNull public static Collection<Object[]> mouseButtons() {
     return newArrayList(MouseButtonProvider.mouseButtons());
   }
 
-  public InputEventGenerator_pressMouseOnComponent_TestCase(@Nonnull MouseButton button) {
+  public InputEventGenerator_pressMouseOnComponent_TestCase(@NonNull MouseButton button) {
     this.button = checkNotNull(button);
     buttonMask = button.mask;
   }

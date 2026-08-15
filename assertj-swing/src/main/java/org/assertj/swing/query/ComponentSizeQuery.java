@@ -14,7 +14,7 @@ package org.assertj.swing.query;
 
 import org.assertj.swing.annotation.RunsInEDT;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import java.awt.*;
 
 import static org.assertj.swing.edt.GuiActionRunner.execute;
@@ -38,7 +38,7 @@ public final class ComponentSizeQuery {
    * @see Component#getSize()
    */
   @RunsInEDT
-  @Nonnull public static Dimension sizeOf(final @Nonnull Component component) {
+  @NonNull public static Dimension sizeOf(final @NonNull Component component) {
     Dimension result = execute(() -> component.getSize());
     return checkNotNull(result);
   }

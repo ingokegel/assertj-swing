@@ -16,7 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Collection;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.JButton;
 
 import org.junit.Test;
@@ -35,7 +35,7 @@ public class BasicComponentFinder_findAllUsingGenericTypeMatcherInRoot_Test exte
     windowTwo = MyWindow.createNew(getClass());
     Collection<JButton> found = finder.findAll(windowTwo, new GenericTypeMatcher<JButton>(JButton.class) {
       @Override
-      public boolean isMatching(@Nonnull JButton c) {
+      public boolean isMatching(@NonNull JButton c) {
         return true;
       }
     });

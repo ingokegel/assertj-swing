@@ -14,7 +14,7 @@ package org.assertj.swing.keystroke;
 
 import java.util.Collection;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 
 /**
  * Provides a mapping between characters and {@code KeyStroke}s.
@@ -28,6 +28,6 @@ public interface KeyStrokeMappingProvider {
   /**
    * @return the {@code KeyStrokeMapping}s to be used by {@link KeyStrokeMap}.
    */
-  @Nonnull
+  @NonNull
   Collection<KeyStrokeMapping> keyStrokeMappings();
 }

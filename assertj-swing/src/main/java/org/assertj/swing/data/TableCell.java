@@ -12,7 +12,7 @@
  */
 package org.assertj.swing.data;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 
 import static org.assertj.swing.util.Objects.HASH_CODE_PRIME;
 
@@ -45,7 +45,7 @@ public class TableCell {
    * @param row the row index of the table cell to create.
    * @return the created builder.
    */
-  @Nonnull public static TableCellBuilder row(int row) {
+  @NonNull public static TableCellBuilder row(int row) {
     return new TableCellBuilder(row);
   }
 
@@ -68,7 +68,7 @@ public class TableCell {
      * @param column the column index of the table cell to create.
      * @return the created table cell.
      */
-    @Nonnull public TableCell column(int column) {
+    @NonNull public TableCell column(int column) {
       return new TableCell(row, column);
     }
   }

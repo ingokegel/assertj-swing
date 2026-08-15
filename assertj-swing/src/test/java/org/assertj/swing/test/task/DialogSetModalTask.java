@@ -16,7 +16,7 @@ import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import java.awt.Dialog;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 
 import org.assertj.swing.annotation.RunsInEDT;
 
@@ -27,7 +27,7 @@ import org.assertj.swing.annotation.RunsInEDT;
  */
 public final class DialogSetModalTask {
   @RunsInEDT
-  public static void makeModal(final @Nonnull Dialog d, final boolean modal) {
+  public static void makeModal(final @NonNull Dialog d, final boolean modal) {
     execute(() -> d.setModal(modal));
   }
 

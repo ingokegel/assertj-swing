@@ -20,7 +20,7 @@ import org.assertj.swing.test.swing.TestWindow;
 import org.junit.Rule;
 import org.junit.Test;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.JInternalFrame;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -82,7 +82,7 @@ public class AbstractContainerFixture_internalFrame_Test extends RobotBasedTestC
     JInternalFrameFixture internalFrame =
       fixture.internalFrame(new GenericTypeMatcher<JInternalFrame>(JInternalFrame.class, true) {
         @Override
-        protected boolean isMatching(@Nonnull JInternalFrame j) {
+        protected boolean isMatching(@NonNull JInternalFrame j) {
           return "Test Internal Frame Title".equals(j.getTitle()) && requireShowingMatches(j);
         }
       });

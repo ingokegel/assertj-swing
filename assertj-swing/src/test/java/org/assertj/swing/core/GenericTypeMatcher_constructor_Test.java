@@ -12,7 +12,7 @@
  */
 package org.assertj.swing.core;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.JButton;
 
 import org.junit.Test;
@@ -27,7 +27,7 @@ public class GenericTypeMatcher_constructor_Test {
   public void should_Throw_Error_If_Supported_Type_Is_Null() {
     new GenericTypeMatcher<JButton>(null) {
       @Override
-      protected boolean isMatching(@Nonnull JButton component) {
+      protected boolean isMatching(@NonNull JButton component) {
         return true;
       }
     };

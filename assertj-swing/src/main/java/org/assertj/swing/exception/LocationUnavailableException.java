@@ -12,7 +12,7 @@
  */
 package org.assertj.swing.exception;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 
 /**
  * Error raised when the location of an AWT or Swing {@code Component} cannot be provided.
@@ -28,7 +28,7 @@ public class LocationUnavailableException extends RuntimeException {
    *
    * @param message the detail message.
    */
-  public LocationUnavailableException(@Nonnull String message) {
+  public LocationUnavailableException(@NonNull String message) {
     super(message);
   }
 
@@ -38,7 +38,7 @@ public class LocationUnavailableException extends RuntimeException {
    * @param message the detail message.
    * @param cause the cause of the error.
    */
-  public LocationUnavailableException(@Nonnull String message, @Nonnull Throwable cause) {
+  public LocationUnavailableException(@NonNull String message, @NonNull Throwable cause) {
     super(message, cause);
   }
 }

@@ -15,7 +15,7 @@ package org.assertj.swing.driver;
 import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.JTree;
 import javax.swing.tree.TreePath;
 
@@ -30,7 +30,7 @@ import org.assertj.swing.annotation.RunsInEDT;
  */
 final class JTreeExpandedPathQuery {
   @RunsInEDT
-  static boolean isExpanded(final @Nonnull JTree tree, final @Nonnull TreePath path) {
+  static boolean isExpanded(final @NonNull JTree tree, final @NonNull TreePath path) {
     Boolean result = execute(() -> tree.isExpanded(path));
     return checkNotNull(result);
   }

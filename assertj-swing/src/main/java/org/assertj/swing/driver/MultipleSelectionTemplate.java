@@ -16,7 +16,7 @@ import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.core.Robot;
 import org.assertj.swing.util.Fail;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import java.util.function.Consumer;
 
 import static org.assertj.swing.util.Platform.controlOrCommandKey;
@@ -30,7 +30,7 @@ import static org.assertj.swing.util.Platform.controlOrCommandKey;
 abstract class MultipleSelectionTemplate {
   private final Robot robot;
 
-  MultipleSelectionTemplate(@Nonnull Robot robot) {
+  MultipleSelectionTemplate(@NonNull Robot robot) {
     this.robot = robot;
   }
 

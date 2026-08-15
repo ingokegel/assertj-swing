@@ -23,7 +23,7 @@ import java.awt.Point;
 import java.awt.Robot;
 import java.awt.Window;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
 import org.assertj.swing.annotation.RunsInEDT;
@@ -45,11 +45,11 @@ class WindowStatus {
 
   final Robot robot;
 
-  WindowStatus(@Nonnull Windows windows) {
+  WindowStatus(@NonNull Windows windows) {
     this(windows, new RobotFactory());
   }
 
-  WindowStatus(@Nonnull Windows windows, @Nonnull RobotFactory robotFactory) {
+  WindowStatus(@NonNull Windows windows, @NonNull RobotFactory robotFactory) {
     this.windows = windows;
     Robot r = null;
     try {
@@ -60,7 +60,7 @@ class WindowStatus {
     robot = r;
   }
 
-  @Nonnull
+  @NonNull
   Windows windows() {
     return windows;
   }
@@ -71,7 +71,7 @@ class WindowStatus {
    * @param w the given window.
    */
   @RunsInEDT
-  void checkIfReady(@Nonnull Window w) {
+  void checkIfReady(@NonNull Window w) {
     if (robot == null) {
       return;
     }
@@ -85,7 +85,7 @@ class WindowStatus {
   }
 
   @RunsInEDT
-  private void checkSafelyIfReady(final @Nonnull Window w) {
+  private void checkSafelyIfReady(final @NonNull Window w) {
     if (!windows.isShowingButNotReady(w)) {
       return;
     }
@@ -94,12 +94,12 @@ class WindowStatus {
   }
 
   @RunsInEDT
-  private static Point centerOf(final @Nonnull Window w) {
+  private static Point centerOf(final @NonNull Window w) {
     return execute(() -> absoluteCenterOf(w));
   }
 
   @RunsInEDT
-  private void mouseMove(@Nonnull Window w, @Nonnull Point point) {
+  private void mouseMove(@NonNull Window w, @NonNull Point point) {
     int x = point.x;
     int y = point.y;
     if (x == 0 || y == 0) {
@@ -116,7 +116,7 @@ class WindowStatus {
   }
 
   @RunsInCurrentThread
-  private void makeLargeEnoughToReceiveEvents(@Nonnull Window window) {
+  private void makeLargeEnoughToReceiveEvents(@NonNull Window window) {
     if (!shouldResize(window)) {
       return;
     }
@@ -124,7 +124,7 @@ class WindowStatus {
   }
 
   @RunsInCurrentThread
-  private boolean shouldResize(@Nonnull Window window) {
+  private boolean shouldResize(@NonNull Window window) {
     Insets insets = window.getInsets();
     int w = window.getWidth() - (insets.left + insets.right);
     if (w < MINIMUM_WINDOW_SIZE.width) {

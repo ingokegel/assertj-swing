@@ -16,7 +16,7 @@ import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.core.Robot;
 import org.assertj.swing.edt.GuiQuery;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.*;
 import java.awt.*;
 
@@ -46,8 +46,8 @@ public final class Containers {
    * @see #frameFor(Container)
    */
   @RunsInEDT
-  @Nonnull public static
-  FrameFixture showInFrame(@Nonnull Container contentPane) {
+  @NonNull public static
+  FrameFixture showInFrame(@NonNull Container contentPane) {
 	FrameFixture frameFixture = frameFixtureFor(contentPane);
 	frameFixture.show();
 	return frameFixture;
@@ -64,8 +64,8 @@ public final class Containers {
    * @see #frameFor(Container)
    */
   @RunsInEDT
-  @Nonnull public static
-  FrameFixture showInFrame(@Nonnull Robot robot, @Nonnull Container contentPane) {
+  @NonNull public static
+  FrameFixture showInFrame(@NonNull Robot robot, @NonNull Container contentPane) {
 	FrameFixture frameFixture = frameFixtureFor(robot, contentPane);
 	frameFixture.show();
 	return frameFixture;
@@ -87,8 +87,8 @@ public final class Containers {
    * @see #frameFor(Container)
    */
   @RunsInEDT
-  @Nonnull public static
-  FrameFixture frameFixtureFor(@Nonnull Container contentPane) {
+  @NonNull public static
+  FrameFixture frameFixtureFor(@NonNull Container contentPane) {
 	return new FrameFixture(frameFor(contentPane));
   }
 
@@ -104,8 +104,8 @@ public final class Containers {
    * @see #frameFor(Container)
    */
   @RunsInEDT
-  @Nonnull public static
-  FrameFixture frameFixtureFor(@Nonnull Robot robot, @Nonnull Container contentPane) {
+  @NonNull public static
+  FrameFixture frameFixtureFor(@NonNull Robot robot, @NonNull Container contentPane) {
 	return new FrameFixture(robot, frameFor(contentPane));
   }
 
@@ -117,8 +117,8 @@ public final class Containers {
    * @return the created {@code JFrame}.
    */
   @RunsInEDT
-  @Nonnull public static
-  JFrame frameFor(final @Nonnull Container contentPane) {
+  @NonNull public static
+  JFrame frameFor(final @NonNull Container contentPane) {
 	JFrame result = execute(new GuiQuery<JFrame>() {
 	  @Override
 	  protected JFrame executeInEDT() throws Throwable {

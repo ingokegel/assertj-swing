@@ -14,7 +14,7 @@ package org.assertj.swing.keystroke;
 
 import org.assertj.swing.util.Lists;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import java.util.Collection;
 import java.util.List;
 
@@ -35,7 +35,7 @@ public class KeyStrokeMappingProvider_de implements KeyStrokeMappingProvider {
    * @return the mapping between characters and {@code KeyStroke}s for locale {@code Locale.GERMAN}.
    */
   @Override
-  @Nonnull public Collection<KeyStrokeMapping> keyStrokeMappings() {
+  @NonNull public Collection<KeyStrokeMapping> keyStrokeMappings() {
     List<KeyStrokeMapping> mappings = Lists.newArrayList(defaultMappings());
     mappings.add(mapping('0', VK_0, NO_MASK));
     mappings.add(mapping('=', VK_0, SHIFT_MASK));

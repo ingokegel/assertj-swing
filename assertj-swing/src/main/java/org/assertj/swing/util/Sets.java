@@ -12,7 +12,7 @@
  */
 package org.assertj.swing.util;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -31,7 +31,7 @@ public final class Sets {
    * @param <T> the type of elements of the set to create.
    * @return the created {@code HashSet}.
    */
-  public static <T> @Nonnull Set<T> newHashSet() {
+  public static <T> @NonNull Set<T> newHashSet() {
     return new LinkedHashSet<>();
   }
 
@@ -43,7 +43,7 @@ public final class Sets {
    * @return the created {@code HashSet}.
    */
   @SafeVarargs
-  public static <T> @Nonnull Set<T> newHashSet(T... elements) {
+  public static <T> @NonNull Set<T> newHashSet(T... elements) {
     Set<T> set = newHashSet();
     Collections.addAll(set, elements);
     return set;
@@ -55,7 +55,7 @@ public final class Sets {
    * @param <T> the type of elements of the set to create.
    * @return the created {@code LinkedHashSet}.
    */
-  public static <T> @Nonnull Set<T> newLinkedHashSet() {
+  public static <T> @NonNull Set<T> newLinkedHashSet() {
     return new LinkedHashSet<>();
   }
 

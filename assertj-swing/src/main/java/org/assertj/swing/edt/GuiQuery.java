@@ -15,7 +15,7 @@ package org.assertj.swing.edt;
 import static javax.swing.SwingUtilities.isEventDispatchThread;
 import static org.assertj.swing.exception.ActionFailedException.actionFailure;
 
-import javax.annotation.Nullable;
+import org.jspecify.annotations.Nullable;
 
 /**
  * Executes in the event dispatch thread (EDT) an action that returns a value.

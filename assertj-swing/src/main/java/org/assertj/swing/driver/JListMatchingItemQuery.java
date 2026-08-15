@@ -19,8 +19,8 @@ import org.assertj.swing.edt.GuiQuery;
 import org.assertj.swing.util.StringTextMatcher;
 import org.assertj.swing.util.TextMatcher;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
@@ -42,8 +42,8 @@ import static org.assertj.swing.util.Sets.newHashSet;
  */
 final class JListMatchingItemQuery {
   @RunsInEDT
-  static @Nonnull Point centerOfMatchingItemCell(final @Nonnull JList<?> list, final @Nullable String value,
-                                                 final @Nonnull JListCellReader cellReader) {
+  static @NonNull Point centerOfMatchingItemCell(final @NonNull JList<?> list, final @Nullable String value,
+                                                 final @NonNull JListCellReader cellReader) {
     Point result = execute(() -> {
       int itemIndex = matchingItemIndex(list, new StringTextMatcher(value), cellReader);
       Rectangle cellBounds = checkNotNull(cellBounds(list, itemIndex));
@@ -53,7 +53,7 @@ final class JListMatchingItemQuery {
   }
 
   @RunsInCurrentThread
-  static int matchingItemIndex(@Nonnull JList<?> list, @Nonnull TextMatcher matcher, @Nonnull JListCellReader cellReader) {
+  static int matchingItemIndex(@NonNull JList<?> list, @NonNull TextMatcher matcher, @NonNull JListCellReader cellReader) {
     int size = list.getModel().getSize();
     for (int i = 0; i < size; i++) {
       if (matcher.isMatching(cellReader.valueAt(list, i))) {
@@ -64,8 +64,8 @@ final class JListMatchingItemQuery {
   }
 
   @RunsInEDT
-  static @Nonnull List<Integer> matchingItemIndices(final @Nonnull JList<?> list, final @Nonnull TextMatcher matcher,
-                                                    final @Nonnull JListCellReader cellReader) {
+  static @NonNull List<Integer> matchingItemIndices(final @NonNull JList<?> list, final @NonNull TextMatcher matcher,
+                                                    final @NonNull JListCellReader cellReader) {
     List<Integer> result = execute(new GuiQuery<List<Integer>>() {
       @Override
       protected List<Integer> executeInEDT() {
@@ -85,8 +85,8 @@ final class JListMatchingItemQuery {
   }
 
   @RunsInEDT
-  static @Nonnull List<String> matchingItemValues(final @Nonnull JList<?> list, final @Nonnull TextMatcher matcher,
-                                                  final @Nonnull JListCellReader cellReader) {
+  static @NonNull List<String> matchingItemValues(final @NonNull JList<?> list, final @NonNull TextMatcher matcher,
+                                                  final @NonNull JListCellReader cellReader) {
     List<String> result = execute(new GuiQuery<List<String>>() {
       @Override
       protected List<String> executeInEDT() {

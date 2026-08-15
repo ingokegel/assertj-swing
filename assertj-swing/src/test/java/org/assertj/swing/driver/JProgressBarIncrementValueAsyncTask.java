@@ -21,7 +21,7 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.JProgressBar;
 
 import org.assertj.swing.core.Robot;
@@ -35,7 +35,7 @@ import org.assertj.swing.core.Robot;
 class JProgressBarIncrementValueAsyncTask {
   private static Logger logger = Logger.getAnonymousLogger();
 
-  static @Nonnull TaskBuilder with(@Nonnull JProgressBar progressBar) {
+  static @NonNull TaskBuilder with(@NonNull JProgressBar progressBar) {
     return new TaskBuilder(progressBar);
   }
 
@@ -50,7 +50,7 @@ class JProgressBarIncrementValueAsyncTask {
   private final int increment;
   private final long periodInMs;
 
-  private JProgressBarIncrementValueAsyncTask(@Nonnull Robot robot, @Nonnull JProgressBar progressBar, int increment,
+  private JProgressBarIncrementValueAsyncTask(@NonNull Robot robot, @NonNull JProgressBar progressBar, int increment,
       long periodInMs) {
     this.robot = robot;
     this.progressBar = progressBar;
@@ -59,7 +59,7 @@ class JProgressBarIncrementValueAsyncTask {
     task = createInnerTask();
   }
 
-  @Nonnull private Runnable createInnerTask() {
+  @NonNull private Runnable createInnerTask() {
     return new Runnable() {
       @Override
       public void run() {
@@ -97,24 +97,24 @@ class JProgressBarIncrementValueAsyncTask {
     private int increment = 10;
     private long periodInMs = 1000;
 
-    TaskBuilder(@Nonnull JProgressBar progressBar) {
+    TaskBuilder(@NonNull JProgressBar progressBar) {
       this.progressBar = progressBar;
     }
 
-    @Nonnull
+    @NonNull
     TaskBuilder increment(int value) {
       increment = value;
       return this;
     }
 
-    @Nonnull
+    @NonNull
     TaskBuilder every(long duration, TimeUnit timeUnit) {
       periodInMs = timeUnit.toMillis(duration);
       return this;
     }
 
-    @Nonnull
-    JProgressBarIncrementValueAsyncTask createTask(@Nonnull Robot robot) {
+    @NonNull
+    JProgressBarIncrementValueAsyncTask createTask(@NonNull Robot robot) {
       return new JProgressBarIncrementValueAsyncTask(robot, progressBar, increment, periodInMs);
     }
   }

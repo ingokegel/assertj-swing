@@ -12,7 +12,7 @@
  */
 package org.assertj.swing.util;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import java.awt.*;
 
 import static org.assertj.swing.util.Preconditions.checkNotNull;
@@ -26,11 +26,11 @@ public class ToolkitProvider {
   /**
    * @return the singleton instance of this class.
    */
-  @Nonnull public static ToolkitProvider instance() {
+  @NonNull public static ToolkitProvider instance() {
     return SingletonHolder.instance;
   }
 
-  @Nonnull public Toolkit defaultToolkit() {
+  @NonNull public Toolkit defaultToolkit() {
     return checkNotNull(Toolkit.getDefaultToolkit());
   }
 

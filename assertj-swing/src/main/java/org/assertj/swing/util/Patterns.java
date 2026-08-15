@@ -12,7 +12,7 @@
  */
 package org.assertj.swing.util;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import java.util.regex.Pattern;
 
 import static org.assertj.swing.util.Preconditions.checkNotNull;
@@ -49,7 +49,7 @@ public final class Patterns {
    * @throws NullPointerException if the given array of patterns is {@code null}.
    * @throws NullPointerException if any of the patterns in the given array is {@code null}.
    */
-  @Nonnull public static String format(@Nonnull Pattern[] patterns) {
+  @NonNull public static String format(@NonNull Pattern[] patterns) {
     checkNotNull(patterns);
     int patternCount = patterns.length;
     String[] patternsAsText = new String[patternCount];

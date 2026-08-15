@@ -12,7 +12,7 @@
  */
 package org.assertj.swing.text;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.text.JTextComponent;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
@@ -27,7 +27,7 @@ public class JTextComponentTextReader extends TextReader<JTextComponent> {
    * @return {@code JTextComponent.class}.
    */
   @Override
-  @Nonnull public Class<JTextComponent> supportedComponent() {
+  @NonNull public Class<JTextComponent> supportedComponent() {
     return JTextComponent.class;
   }
 
@@ -40,7 +40,7 @@ public class JTextComponentTextReader extends TextReader<JTextComponent> {
    */
   @RunsInCurrentThread
   @Override
-  protected boolean checkContainsText(@Nonnull JTextComponent textComponent, @Nonnull String text) {
+  protected boolean checkContainsText(@NonNull JTextComponent textComponent, @NonNull String text) {
     String componentText = textComponent.getText();
     if (componentText == null) {
       return false;

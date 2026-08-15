@@ -15,8 +15,8 @@ package org.assertj.swing.cell;
 import java.awt.Color;
 import java.awt.Font;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 import javax.swing.JTable;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
@@ -51,7 +51,7 @@ public interface JTableCellReader {
    * @return the internal value of a cell in a {@code JTable} as expected in a test.
    */
   @Nullable
-  String valueAt(@Nonnull JTable table, int row, int column);
+  String valueAt(@NonNull JTable table, int row, int column);
 
   /**
    * <p>
@@ -69,7 +69,7 @@ public interface JTableCellReader {
    * @return the font of the cell renderer for the given table cell.
    */
   @Nullable
-  Font fontAt(@Nonnull JTable table, int row, int column);
+  Font fontAt(@NonNull JTable table, int row, int column);
 
   /**
    * <p>
@@ -87,7 +87,7 @@ public interface JTableCellReader {
    * @return the background color of the cell renderer for the given table cell.
    */
   @Nullable
-  Color backgroundAt(@Nonnull JTable table, int row, int column);
+  Color backgroundAt(@NonNull JTable table, int row, int column);
 
   /**
    * <p>
@@ -105,5 +105,5 @@ public interface JTableCellReader {
    * @return the foreground color of the cell renderer for the given table cell.
    */
   @Nullable
-  Color foregroundAt(@Nonnull JTable table, int row, int column);
+  Color foregroundAt(@NonNull JTable table, int row, int column);
 }

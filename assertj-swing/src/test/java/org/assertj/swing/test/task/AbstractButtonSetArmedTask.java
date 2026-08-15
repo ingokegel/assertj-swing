@@ -14,7 +14,7 @@ package org.assertj.swing.test.task;
 
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.AbstractButton;
 
 import org.assertj.swing.annotation.RunsInEDT;
@@ -26,7 +26,7 @@ import org.assertj.swing.annotation.RunsInEDT;
  */
 public final class AbstractButtonSetArmedTask {
   @RunsInEDT
-  public static void setArmed(final @Nonnull AbstractButton button, final boolean armed) {
+  public static void setArmed(final @NonNull AbstractButton button, final boolean armed) {
     execute(() -> button.getModel().setArmed(armed));
   }
 

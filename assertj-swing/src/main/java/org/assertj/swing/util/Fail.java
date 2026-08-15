@@ -12,7 +12,7 @@
  */
 package org.assertj.swing.util;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 
 /**
  * Fails a test with the given message.
@@ -29,7 +29,7 @@ public final class Fail {
    * @return never returns, the declared return type only allows {@code throw Fail.fail(...)}.
    * @throws AssertionError always.
    */
-  public static @Nonnull AssertionError fail(@Nonnull String format, Object... args) {
+  public static @NonNull AssertionError fail(@NonNull String format, Object... args) {
     throw new AssertionError(String.format(format, args));
   }
 

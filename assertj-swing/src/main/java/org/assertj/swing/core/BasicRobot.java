@@ -29,9 +29,8 @@ import org.assertj.swing.util.RobotFactory;
 import org.assertj.swing.util.TimeoutWatch;
 import org.assertj.swing.util.ToolkitProvider;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import javax.annotation.concurrent.GuardedBy;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.InvocationEvent;
@@ -94,7 +93,6 @@ public class BasicRobot implements Robot {
 
   private static final ComponentMatcher POPUP_MATCHER = new TypeMatcher(JPopupMenu.class, true);
 
-  @GuardedBy("this")
   private volatile boolean active;
 
   private static final Runnable EMPTY_RUNNABLE = new Runnable() {
@@ -138,12 +136,12 @@ public class BasicRobot implements Robot {
    *
    * @return the created {@code Robot}.
    */
-  @Nonnull public static Robot robotWithNewAwtHierarchy() {
+  @NonNull public static Robot robotWithNewAwtHierarchy() {
     Object screenLockOwner = acquireScreenLock();
     return new BasicRobot(screenLockOwner, ignoreExistingComponents());
   }
 
-  @Nonnull public static Robot robotWithNewAwtHierarchyWithoutScreenLock() {
+  @NonNull public static Robot robotWithNewAwtHierarchyWithoutScreenLock() {
     return new BasicRobot(null, ignoreExistingComponents());
   }
 
@@ -152,24 +150,24 @@ public class BasicRobot implements Robot {
    *
    * @return the created {@code Robot}.
    */
-  @Nonnull public static Robot robotWithCurrentAwtHierarchy() {
+  @NonNull public static Robot robotWithCurrentAwtHierarchy() {
     Object screenLockOwner = acquireScreenLock();
     return new BasicRobot(screenLockOwner, new ExistingHierarchy());
   }
 
   // TODO document
-  @Nonnull public static Robot robotWithCurrentAwtHierarchyWithoutScreenLock() {
+  @NonNull public static Robot robotWithCurrentAwtHierarchyWithoutScreenLock() {
     return new BasicRobot(null, new ExistingHierarchy());
   }
 
-  @Nonnull private static Object acquireScreenLock() {
+  @NonNull private static Object acquireScreenLock() {
     Object screenLockOwner = new Object();
     ScreenLock.instance().acquire(screenLockOwner);
     return screenLockOwner;
   }
 
   @VisibleForTesting
-  BasicRobot(@Nullable Object screenLockOwner, @Nonnull ComponentHierarchy hierarchy) {
+  BasicRobot(@Nullable Object screenLockOwner, @NonNull ComponentHierarchy hierarchy) {
     this.screenLockOwner = screenLockOwner;
     this.hierarchy = hierarchy;
     settings = new Settings();
@@ -181,18 +179,18 @@ public class BasicRobot implements Robot {
   }
 
   @Override
-  @Nonnull public ComponentPrinter printer() {
+  @NonNull public ComponentPrinter printer() {
     return finder().printer();
   }
 
   @Override
-  @Nonnull public ComponentFinder finder() {
+  @NonNull public ComponentFinder finder() {
     return finder;
   }
 
   @RunsInEDT
   @Override
-  public void showWindow(@Nonnull Window w) {
+  public void showWindow(@NonNull Window w) {
     try {
       new java.awt.Robot(RobotFactory.DEFAULT_SCREEN_DEVICE).mouseMove(RobotFactory.DEFAULT_WINDOW_LOCATION.x, RobotFactory.DEFAULT_WINDOW_LOCATION.y);
     } catch (AWTException e) {
@@ -203,13 +201,13 @@ public class BasicRobot implements Robot {
 
   @RunsInEDT
   @Override
-  public void showWindow(@Nonnull Window w, @Nonnull Dimension size) {
+  public void showWindow(@NonNull Window w, @NonNull Dimension size) {
     showWindow(w, size, true);
   }
 
   @RunsInEDT
   @Override
-  public void showWindow(@Nonnull final Window w, @Nullable final Dimension size, final boolean pack) {
+  public void showWindow(@NonNull final Window w, @Nullable final Dimension size, final boolean pack) {
     EventQueue.invokeLater(new Runnable() {
       @Override
       public void run() {
@@ -226,13 +224,13 @@ public class BasicRobot implements Robot {
   }
 
   @RunsInCurrentThread
-  private void packAndEnsureSafePosition(@Nonnull Window w) {
+  private void packAndEnsureSafePosition(@NonNull Window w) {
     w.pack();
     w.setLocation(RobotFactory.DEFAULT_WINDOW_LOCATION);
   }
 
   @RunsInEDT
-  private void waitForWindow(@Nonnull Window w) {
+  private void waitForWindow(@NonNull Window w) {
     long start = currentTimeMillis();
     while (!windowMonitor.isWindowReady(w) || !isShowing(w)) {
       long elapsed = currentTimeMillis() - start;
@@ -245,7 +243,7 @@ public class BasicRobot implements Robot {
 
   @RunsInEDT
   @Override
-  public void close(@Nonnull Window w) {
+  public void close(@NonNull Window w) {
     WindowEvent event = new WindowEvent(w, WINDOW_CLOSING);
     EventQueue eventQueue = windowMonitor.eventQueueFor(w);
     checkNotNull(eventQueue).postEvent(event);
@@ -254,18 +252,18 @@ public class BasicRobot implements Robot {
 
   @RunsInEDT
   @Override
-  public void focusAndWaitForFocusGain(@Nonnull Component c) {
+  public void focusAndWaitForFocusGain(@NonNull Component c) {
     focus(c, true);
   }
 
   @RunsInEDT
   @Override
-  public void focus(@Nonnull Component c) {
+  public void focus(@NonNull Component c) {
     focus(c, false);
   }
 
   @RunsInEDT
-  private void focus(@Nonnull Component target, boolean wait) {
+  private void focus(@NonNull Component target, boolean wait) {
     Component currentOwner = inEdtFocusOwner();
     if (currentOwner == target) {
       return;
@@ -329,7 +327,7 @@ public class BasicRobot implements Robot {
    * @param w the window to activate.
    */
   @RunsInEDT
-  private void activate(@Nonnull Window w) {
+  private void activate(@NonNull Window w) {
     activateWindow(w);
     moveMouse(w); // For pointer-focus systems
   }
@@ -367,7 +365,7 @@ public class BasicRobot implements Robot {
   }
 
   @RunsInEDT
-  private static void disposeWindows(final @Nonnull ComponentHierarchy hierarchy) {
+  private static void disposeWindows(final @NonNull ComponentHierarchy hierarchy) {
     execute(() -> {
       for (Container c : hierarchy.roots()) {
         if (c instanceof Window) {
@@ -378,7 +376,7 @@ public class BasicRobot implements Robot {
   }
 
   @RunsInCurrentThread
-  private static void dispose(final @Nonnull ComponentHierarchy hierarchy, @Nonnull Window w) {
+  private static void dispose(final @NonNull ComponentHierarchy hierarchy, @NonNull Window w) {
     hierarchy.dispose(w);
     w.setVisible(false);
     w.dispose();
@@ -386,31 +384,31 @@ public class BasicRobot implements Robot {
 
   @RunsInEDT
   @Override
-  public void click(@Nonnull Component c) {
+  public void click(@NonNull Component c) {
     click(c, LEFT_BUTTON);
   }
 
   @RunsInEDT
   @Override
-  public void rightClick(@Nonnull Component c) {
+  public void rightClick(@NonNull Component c) {
     click(c, RIGHT_BUTTON);
   }
 
   @RunsInEDT
   @Override
-  public void click(@Nonnull Component c, @Nonnull MouseButton button) {
+  public void click(@NonNull Component c, @NonNull MouseButton button) {
     click(c, button, 1);
   }
 
   @RunsInEDT
   @Override
-  public void doubleClick(@Nonnull Component c) {
+  public void doubleClick(@NonNull Component c) {
     click(c, LEFT_BUTTON, 2);
   }
 
   @RunsInEDT
   @Override
-  public void click(@Nonnull Component c, @Nonnull MouseButton button, int times) {
+  public void click(@NonNull Component c, @NonNull MouseButton button, int times) {
     Point where = visibleCenterOf(c);
     if (c instanceof JComponent) {
       where = scrollIfNecessary((JComponent) c);
@@ -418,30 +416,30 @@ public class BasicRobot implements Robot {
     click(c, where, button, times);
   }
 
-  @Nonnull private Point scrollIfNecessary(@Nonnull JComponent c) {
+  @NonNull private Point scrollIfNecessary(@NonNull JComponent c) {
     scrollToVisible(this, c);
     return visibleCenterOf(c);
   }
 
   @RunsInEDT
   @Override
-  public void click(@Nonnull Component c, @Nonnull Point where) {
+  public void click(@NonNull Component c, @NonNull Point where) {
     click(c, where, LEFT_BUTTON, 1);
   }
 
   @RunsInEDT
   @Override
-  public void click(@Nonnull Point where, @Nonnull MouseButton button, int times) {
+  public void click(@NonNull Point where, @NonNull MouseButton button, int times) {
     doClick(null, where, button, times);
   }
 
   @RunsInEDT
   @Override
-  public void click(@Nonnull Component c, @Nonnull Point where, @Nonnull MouseButton button, int times) {
+  public void click(@NonNull Component c, @NonNull Point where, @NonNull MouseButton button, int times) {
     doClick(c, where, button, times);
   }
 
-  private void doClick(@Nullable Component c, @Nonnull Point where, @Nonnull MouseButton button, int times) {
+  private void doClick(@Nullable Component c, @NonNull Point where, @NonNull MouseButton button, int times) {
     int mask = button.mask;
     int modifierMask = mask & ~BUTTON_MASK;
     mask &= BUTTON_MASK;
@@ -506,19 +504,19 @@ public class BasicRobot implements Robot {
 
   @RunsInEDT
   @Override
-  public void moveMouse(@Nonnull Component c) {
+  public void moveMouse(@NonNull Component c) {
     moveMouse(c, visibleCenterOf(c));
   }
 
   @RunsInEDT
   @Override
-  public void moveMouse(@Nonnull Component c, @Nonnull Point p) {
+  public void moveMouse(@NonNull Component c, @NonNull Point p) {
     moveMouse(c, p.x, p.y);
   }
 
   @RunsInEDT
   @Override
-  public void moveMouse(@Nonnull Component c, int x, int y) {
+  public void moveMouse(@NonNull Component c, int x, int y) {
     if (!waitForComponentToBeReady(c, settings.timeoutToBeVisible())) {
       throw actionFailure(concat("Could not obtain position of component ", format(c)));
     }
@@ -527,7 +525,7 @@ public class BasicRobot implements Robot {
   }
 
   @Override
-  public void moveMouse(@Nonnull Point p) {
+  public void moveMouse(@NonNull Point p) {
     moveMouse(p.x, p.y);
   }
 
@@ -537,12 +535,12 @@ public class BasicRobot implements Robot {
   }
 
   @Override
-  public void pressMouse(@Nonnull MouseButton button) {
+  public void pressMouse(@NonNull MouseButton button) {
     eventGenerator.pressMouse(button.mask);
   }
 
   @Override
-  public void pressMouseWhileRunning(@Nonnull MouseButton button, @Nonnull Runnable runnable) {
+  public void pressMouseWhileRunning(@NonNull MouseButton button, @NonNull Runnable runnable) {
     pressMouse(button);
     try {
       runnable.run();
@@ -552,25 +550,25 @@ public class BasicRobot implements Robot {
   }
 
   @Override
-  public void pressMouse(@Nonnull Component c, @Nonnull Point where) {
+  public void pressMouse(@NonNull Component c, @NonNull Point where) {
     pressMouse(c, where, LEFT_BUTTON);
   }
 
   @Override
-  public void pressMouseWhileRunning(@Nonnull Component c, @Nonnull Point where, @Nonnull Runnable runnable) {
+  public void pressMouseWhileRunning(@NonNull Component c, @NonNull Point where, @NonNull Runnable runnable) {
     pressMouseWhileRunning(c, where, LEFT_BUTTON, runnable);
   }
 
   @Override
-  public void pressMouse(@Nonnull Component c, @Nonnull Point where, @Nonnull MouseButton button) {
+  public void pressMouse(@NonNull Component c, @NonNull Point where, @NonNull MouseButton button) {
     jitter(c, where);
     moveMouse(c, where.x, where.y);
     eventGenerator.pressMouse(c, where, button.mask);
   }
 
   @Override
-  public void pressMouseWhileRunning(@Nonnull Component c, @Nonnull Point where, @Nonnull MouseButton button,
-                                     @Nonnull Runnable runnable) {
+  public void pressMouseWhileRunning(@NonNull Component c, @NonNull Point where, @NonNull MouseButton button,
+                                     @NonNull Runnable runnable) {
     pressMouse(c, where, button);
     try {
       runnable.run();
@@ -580,12 +578,12 @@ public class BasicRobot implements Robot {
   }
 
   @Override
-  public void pressMouse(@Nonnull Point where, @Nonnull MouseButton button) {
+  public void pressMouse(@NonNull Point where, @NonNull MouseButton button) {
     eventGenerator.pressMouse(where, button.mask);
   }
 
   @Override
-  public void pressMouseWhileRunning(@Nonnull Point where, @Nonnull MouseButton button, @Nonnull Runnable runnable) {
+  public void pressMouseWhileRunning(@NonNull Point where, @NonNull MouseButton button, @NonNull Runnable runnable) {
     pressMouse(where, button);
     try {
       runnable.run();
@@ -596,7 +594,7 @@ public class BasicRobot implements Robot {
 
   @RunsInEDT
   @Override
-  public void releaseMouse(@Nonnull MouseButton button) {
+  public void releaseMouse(@NonNull MouseButton button) {
     mouseRelease(button.mask);
   }
 
@@ -611,7 +609,7 @@ public class BasicRobot implements Robot {
   }
 
   @Override
-  public void rotateMouseWheel(@Nonnull Component c, int amount) {
+  public void rotateMouseWheel(@NonNull Component c, int amount) {
     moveMouse(c);
     rotateMouseWheel(amount);
   }
@@ -624,13 +622,13 @@ public class BasicRobot implements Robot {
 
   @RunsInEDT
   @Override
-  public void jitter(@Nonnull Component c) {
+  public void jitter(@NonNull Component c) {
     jitter(c, visibleCenterOf(c));
   }
 
   @RunsInEDT
   @Override
-  public void jitter(@Nonnull Component c, @Nonnull Point where) {
+  public void jitter(@NonNull Component c, @NonNull Point where) {
     int x = where.x;
     int y = where.y;
     moveMouse(c, (x > 0 ? x - 1 : x + 1), y);
@@ -638,7 +636,7 @@ public class BasicRobot implements Robot {
 
   /** Wait the given number of milliseconds for the component to be showing and ready. */
   @RunsInEDT
-  private boolean waitForComponentToBeReady(@Nonnull Component c, long timeout) {
+  private boolean waitForComponentToBeReady(@NonNull Component c, long timeout) {
     if (isReadyForInput(c)) {
       return true;
     }
@@ -661,7 +659,7 @@ public class BasicRobot implements Robot {
   }
 
   @RunsInEDT
-  @Nonnull private static Pair<Component, Point> invokerAndCenterOfInvoker(final @Nonnull JPopupMenu popupMenu) {
+  @NonNull private static Pair<Component, Point> invokerAndCenterOfInvoker(final @NonNull JPopupMenu popupMenu) {
     Pair<Component, Point> result = execute(new GuiQuery<Pair<Component, Point>>() {
       @Override
       protected Pair<Component, Point> executeInEDT() {
@@ -674,7 +672,7 @@ public class BasicRobot implements Robot {
 
   @RunsInEDT
   @Override
-  public void enterText(@Nonnull String text) {
+  public void enterText(@NonNull String text) {
     checkNotNull(text);
     if (text.isEmpty()) {
       return;
@@ -710,14 +708,14 @@ public class BasicRobot implements Robot {
 
   @RunsInEDT
   @Override
-  public void pressAndReleaseKey(int keyCode, @Nonnull int... modifiers) {
+  public void pressAndReleaseKey(int keyCode, @NonNull int... modifiers) {
     keyPressAndRelease(keyCode, unify(modifiers));
     waitForIdle();
   }
 
   @RunsInEDT
   @Override
-  public void pressAndReleaseKeys(@Nonnull int... keyCodes) {
+  public void pressAndReleaseKeys(@NonNull int... keyCodes) {
     for (int keyCode : keyCodes) {
       keyPressAndRelease(keyCode, 0);
       waitForIdle();
@@ -811,7 +809,7 @@ public class BasicRobot implements Robot {
 
   // Without filtering orphaned queues, every waitForIdle after a heavyweight popup interaction from a submenu blocks
   // for the full idleTimeout on an idle probe to a queue that no thread is dispatching to.
-  private boolean isOrphanedQueue(@Nonnull EventQueue eventQueue) {
+  private boolean isOrphanedQueue(@NonNull EventQueue eventQueue) {
     EventQueue systemQueue = toolkit.getSystemEventQueue();
     if (eventQueue == systemQueue) {
       return false;
@@ -833,7 +831,7 @@ public class BasicRobot implements Robot {
     }
   }
 
-  private void waitForIdle(@Nonnull EventQueue eventQueue) {
+  private void waitForIdle(@NonNull EventQueue eventQueue) {
     if (EventQueue.isDispatchThread()) {
       throw new IllegalThreadStateException("Cannot call method from the event dispatcher thread");
     }
@@ -862,7 +860,7 @@ public class BasicRobot implements Robot {
 
   /** Indicates whether we timed out waiting for the invocation to run. */
   @RunsInEDT
-  private boolean postInvocationEvent(@Nonnull EventQueue eventQueue, long timeout) {
+  private boolean postInvocationEvent(@NonNull EventQueue eventQueue, long timeout) {
     Object lock = new RobotIdleLock();
     synchronized (lock) {
       InvocationEvent event = new InvocationEvent(toolkit, EMPTY_RUNNABLE, lock, true);
@@ -891,13 +889,13 @@ public class BasicRobot implements Robot {
 
   @RunsInEDT
   @Override
-  @Nonnull public JPopupMenu showPopupMenu(@Nonnull Component invoker) {
+  @NonNull public JPopupMenu showPopupMenu(@NonNull Component invoker) {
     return showPopupMenu(invoker, visibleCenterOf(invoker));
   }
 
   @RunsInEDT
   @Override
-  @Nonnull public JPopupMenu showPopupMenu(@Nonnull Component invoker, @Nonnull Point location) {
+  @NonNull public JPopupMenu showPopupMenu(@NonNull Component invoker, @NonNull Point location) {
     if (isFocusable(invoker)) {
       focusAndWaitForFocusGain(invoker);
     }
@@ -935,7 +933,7 @@ public class BasicRobot implements Robot {
    */
   @Override
   @RunsInCurrentThread
-  public boolean isReadyForInput(@Nonnull Component c) {
+  public boolean isReadyForInput(@NonNull Component c) {
     Window w = windowAncestorOf(c);
     if (w == null) {
       throw actionFailure(concat("Component ", format(c), " does not have a Window ancestor"));
@@ -995,7 +993,7 @@ public class BasicRobot implements Robot {
   }
 
   @RunsInEDT
-  @Nonnull private static ComponentLookupException multiplePopupMenusFound(@Nonnull Collection<Component> found) {
+  @NonNull private static ComponentLookupException multiplePopupMenusFound(@NonNull Collection<Component> found) {
     StringBuilder message = new StringBuilder();
     String format = "Found more than one popup menu.%n%nFound:";
     message.append(String.format(format));
@@ -1007,7 +1005,7 @@ public class BasicRobot implements Robot {
   }
 
   @RunsInEDT
-  private static void appendComponents(final @Nonnull StringBuilder message, final @Nonnull Collection<Component> found) {
+  private static void appendComponents(final @NonNull StringBuilder message, final @NonNull Collection<Component> found) {
     execute(() -> {
       for (Component c : found) {
         message.append(String.format("%n%s", format(c)));
@@ -1086,12 +1084,12 @@ public class BasicRobot implements Robot {
   }
 
   @Override
-  @Nonnull public Settings settings() {
+  @NonNull public Settings settings() {
     return settings;
   }
 
   @Override
-  @Nonnull public ComponentHierarchy hierarchy() {
+  @NonNull public ComponentHierarchy hierarchy() {
     return hierarchy;
   }
 

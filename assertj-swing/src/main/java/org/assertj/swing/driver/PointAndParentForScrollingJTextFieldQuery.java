@@ -15,7 +15,7 @@ package org.assertj.swing.driver;
 import org.assertj.swing.annotation.RunsInCurrentThread;
 import org.assertj.swing.util.Pair;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.*;
 import java.awt.*;
 
@@ -36,7 +36,7 @@ import static org.assertj.swing.util.Preconditions.checkNotNull;
  */
 final class PointAndParentForScrollingJTextFieldQuery {
   @RunsInCurrentThread
-  static @Nonnull Pair<Point, Container> pointAndParentForScrolling(final @Nonnull JTextField textField) {
+  static @NonNull Pair<Point, Container> pointAndParentForScrolling(final @NonNull JTextField textField) {
     Point origin = new Point(textField.getX(), textField.getY());
     Container parent = textField.getParent();
     while (parent != null && !(parent instanceof JComponent) && !(parent instanceof CellRendererPane)) {
@@ -46,7 +46,7 @@ final class PointAndParentForScrollingJTextFieldQuery {
     return Pair.of(origin, parent);
   }
 
-  @Nonnull private static Point addRectangleToPoint(@Nonnull Rectangle r, @Nonnull Point p) {
+  @NonNull private static Point addRectangleToPoint(@NonNull Rectangle r, @NonNull Point p) {
     Point newPoint = new Point(p);
     newPoint.x += r.x;
     newPoint.y += r.y;

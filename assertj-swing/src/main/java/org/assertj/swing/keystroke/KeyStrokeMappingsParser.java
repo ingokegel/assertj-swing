@@ -16,7 +16,7 @@ import org.assertj.swing.annotation.VisibleForTesting;
 import org.assertj.swing.exception.ParsingException;
 import org.assertj.swing.logging.Logger;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.io.*;
@@ -111,7 +111,7 @@ public class KeyStrokeMappingsParser {
    * @throws ParsingException if any error occurs during parsing.
    * @see #parse(File)
    */
-  @Nonnull public KeyStrokeMappingProvider parse(@Nonnull String fileName) {
+  @NonNull public KeyStrokeMappingProvider parse(@NonNull String fileName) {
     checkNotNullOrEmpty(fileName);
     try {
       return parse(fileAsStream(fileName));
@@ -120,7 +120,7 @@ public class KeyStrokeMappingsParser {
     }
   }
 
-  @Nonnull private InputStream fileAsStream(String file) {
+  @NonNull private InputStream fileAsStream(String file) {
     InputStream stream = currentThread().getContextClassLoader().getResourceAsStream(file);
     if (stream == null) {
       throw new ParsingException(String.format("Unable to open file %s", file));
@@ -138,7 +138,7 @@ public class KeyStrokeMappingsParser {
    * @throws AssertionError if the given file does not represent an existing file.
    * @throws ParsingException if any error occurs during parsing.
    */
-  @Nonnull public KeyStrokeMappingProvider parse(@Nonnull File file) {
+  @NonNull public KeyStrokeMappingProvider parse(@NonNull File file) {
     if (file == null || !file.isFile()) {
       throw new AssertionError(concat("The file ", quote(String.valueOf(file)), " is not an existing file"));
     }
@@ -149,7 +149,7 @@ public class KeyStrokeMappingsParser {
     }
   }
 
-  @Nonnull private InputStream fileAsStream(@Nonnull File file) {
+  @NonNull private InputStream fileAsStream(@NonNull File file) {
     try {
       return new FileInputStream(file);
     } catch (FileNotFoundException e) {
@@ -158,7 +158,7 @@ public class KeyStrokeMappingsParser {
     }
   }
 
-  @Nonnull private KeyStrokeMappingProvider parse(@Nonnull InputStream input) throws IOException {
+  @NonNull private KeyStrokeMappingProvider parse(@NonNull InputStream input) throws IOException {
     List<KeyStrokeMapping> mappings = newArrayList();
     BufferedReader reader = new BufferedReader(new InputStreamReader(input));
     try {
@@ -178,8 +178,8 @@ public class KeyStrokeMappingsParser {
   }
 
   @VisibleForTesting
-  @Nonnull
-  KeyStrokeMapping mappingFrom(@Nonnull String line) {
+  @NonNull
+  KeyStrokeMapping mappingFrom(@NonNull String line) {
     String[] parts = line.trim().split(",");
     if (parts.length != 3) {
       String msg = String.format("Line '%s' does not conform with pattern '{char}, {keycode}, {modifiers}'", line);
@@ -191,7 +191,7 @@ public class KeyStrokeMappingsParser {
     return mapping(character, keyCode, modifiers);
   }
 
-  private static char characterFrom(@Nonnull String s) {
+  private static char characterFrom(@NonNull String s) {
     if (SPECIAL_MAPPINGS.containsKey(s)) {
       return SPECIAL_MAPPINGS.get(s);
     }
@@ -201,7 +201,7 @@ public class KeyStrokeMappingsParser {
     throw new ParsingException(String.format("The text '%s' should have a single character", s));
   }
 
-  private static int keyCodeFrom(@Nonnull String s) {
+  private static int keyCodeFrom(@NonNull String s) {
     try {
       return KeyEvent.class.getField("VK_" + s).getInt(null);
     } catch (ReflectiveOperationException e) {
@@ -209,7 +209,7 @@ public class KeyStrokeMappingsParser {
     }
   }
 
-  private static int modifiersFrom(@Nonnull String s) {
+  private static int modifiersFrom(@NonNull String s) {
     if ("NO_MASK".equals(s)) {
       return NO_MASK;
     }

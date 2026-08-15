@@ -14,8 +14,8 @@ package org.assertj.swing.fixture;
 
 import java.util.regex.Pattern;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 
 /**
  * Supports functional testing of {@code JComponent}s.
@@ -34,7 +34,7 @@ public interface JComponentFixture<S> {
    * @throws NullPointerException if the given key is {@code null}.
    */
   @Nullable
-  Object clientProperty(@Nonnull Object key);
+  Object clientProperty(@NonNull Object key);
 
   /**
    * Asserts that the toolTip in this fixture's {@code JComponent} matches the given value.
@@ -43,7 +43,7 @@ public interface JComponentFixture<S> {
    * @return this fixture.
    * @throws AssertionError if the toolTip in this fixture's {@code JComponent} does not match the given value.
    */
-  @Nonnull
+  @NonNull
   S requireToolTip(@Nullable String expected);
 
   /**
@@ -54,6 +54,6 @@ public interface JComponentFixture<S> {
    * @throws NullPointerException if the given regular expression pattern is {@code null}.
    * @throws AssertionError if the toolTip in this fixture's {@code JComponent} does not match the given value.
    */
-  @Nonnull
-  S requireToolTip(@Nonnull Pattern pattern);
+  @NonNull
+  S requireToolTip(@NonNull Pattern pattern);
 }

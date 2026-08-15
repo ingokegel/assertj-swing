@@ -16,7 +16,7 @@ import static org.assertj.swing.core.MouseButton.LEFT_BUTTON;
 import static org.assertj.swing.core.MouseButton.MIDDLE_BUTTON;
 import static org.assertj.swing.core.MouseButton.RIGHT_BUTTON;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 
 /**
  * Provider of {@link MouseButton} values.
@@ -24,7 +24,7 @@ import javax.annotation.Nonnull;
  * @author Alex Ruiz
  */
 final class MouseButtonProvider {
-  static @Nonnull Object[][] mouseButtons() {
+  static @NonNull Object[][] mouseButtons() {
     return new Object[][] { { LEFT_BUTTON }, { MIDDLE_BUTTON }, { RIGHT_BUTTON } };
   }
 

@@ -12,7 +12,7 @@
  */
 package org.assertj.swing.edt;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.*;
 import java.lang.ref.WeakReference;
 
@@ -72,7 +72,7 @@ abstract class CheckThreadViolationRepaintManager extends RepaintManager {
    * (4) (exception from rule 3) it is not OK if swing code calls repaint() outside the EDT, because swing code should be called on the EDT.
    * (5) (exception from rule 4) using SwingWorker subclasses should not be considered swing code.
    */
-  private void checkThreadViolations(@Nonnull JComponent c) {
+  private void checkThreadViolations(@NonNull JComponent c) {
     if (!isEventDispatchThread() && (completeCheck || c.isShowing())) {
       boolean imageUpdate = false;
       boolean repaint = false;
@@ -110,5 +110,5 @@ abstract class CheckThreadViolationRepaintManager extends RepaintManager {
     }
   }
 
-  abstract void violationFound(@Nonnull JComponent c, @Nonnull StackTraceElement[] stackTrace);
+  abstract void violationFound(@NonNull JComponent c, @NonNull StackTraceElement[] stackTrace);
 }

@@ -20,8 +20,8 @@ import org.assertj.swing.internal.annotation.InternalApi;
 import org.assertj.swing.util.Pair;
 import org.assertj.swing.util.Platform;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 import javax.swing.*;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.JTextComponent;
@@ -69,7 +69,7 @@ public class JTextComponentDriver extends JComponentDriver implements TextDispla
    *
    * @param robot the robot to use to simulate user input.
    */
-  public JTextComponentDriver(@Nonnull Robot robot) {
+  public JTextComponentDriver(@NonNull Robot robot) {
     super(robot);
   }
 
@@ -81,7 +81,7 @@ public class JTextComponentDriver extends JComponentDriver implements TextDispla
    * @throws IllegalStateException if the {@code JTextComponent} is not showing on the screen.
    */
   @RunsInEDT
-  public void deleteText(@Nonnull JTextComponent textBox) {
+  public void deleteText(@NonNull JTextComponent textBox) {
     selectAll(textBox);
     invokeAction(textBox, deletePrevCharAction);
   }
@@ -97,7 +97,7 @@ public class JTextComponentDriver extends JComponentDriver implements TextDispla
    * @throws IllegalStateException if the {@code JTextComponent} is not showing on the screen.
    */
   @RunsInEDT
-  public void replaceText(@Nonnull JTextComponent textBox, @Nonnull String text) {
+  public void replaceText(@NonNull JTextComponent textBox, @NonNull String text) {
     checkNotNull(text);
     if (text.isEmpty()) {
       deleteText(textBox);
@@ -115,7 +115,7 @@ public class JTextComponentDriver extends JComponentDriver implements TextDispla
    * @throws IllegalStateException if the {@code JTextComponent} is not showing on the screen.
    */
   @RunsInEDT
-  public void selectAll(@Nonnull JTextComponent textBox) {
+  public void selectAll(@NonNull JTextComponent textBox) {
     checkStateAndScrollToPosition(textBox, 0);
     selectAllText(textBox);
   }
@@ -129,7 +129,7 @@ public class JTextComponentDriver extends JComponentDriver implements TextDispla
    * @throws IllegalStateException if the {@code JTextComponent} is not showing on the screen.
    */
   @RunsInEDT
-  public void enterText(@Nonnull JTextComponent textBox, @Nonnull String text) {
+  public void enterText(@NonNull JTextComponent textBox, @NonNull String text) {
     focusAndWaitForFocusGain(textBox);
     robot.enterText(text);
   }
@@ -149,7 +149,7 @@ public class JTextComponentDriver extends JComponentDriver implements TextDispla
    * @throws IllegalStateException if the {@code JTextComponent} is not showing on the screen.
    */
   @RunsInEDT
-  public void setText(@Nonnull JTextComponent textBox, @Nullable String text) {
+  public void setText(@NonNull JTextComponent textBox, @Nullable String text) {
     focusAndWaitForFocusGain(textBox);
     setTextIn(textBox, text);
     robot.waitForIdle();
@@ -166,7 +166,7 @@ public class JTextComponentDriver extends JComponentDriver implements TextDispla
    * @throws ActionFailedException if selecting the text fails.
    */
   @RunsInEDT
-  public void selectText(@Nonnull JTextComponent textBox, @Nonnull String text) {
+  public void selectText(@NonNull JTextComponent textBox, @NonNull String text) {
     int indexFound = indexOfText(textBox, text);
     if (indexFound == -1) {
       throw new IllegalArgumentException(String.format("The text %s was not found", quote(text)));
@@ -175,7 +175,7 @@ public class JTextComponentDriver extends JComponentDriver implements TextDispla
   }
 
   @RunsInEDT
-  private static int indexOfText(final @Nonnull JTextComponent textBox, final @Nonnull String text) {
+  private static int indexOfText(final @NonNull JTextComponent textBox, final @NonNull String text) {
     Integer result = execute(() -> {
       checkEnabledAndShowing(textBox);
       String actualText = textBox.getText();
@@ -198,14 +198,14 @@ public class JTextComponentDriver extends JComponentDriver implements TextDispla
    * @throws ActionFailedException if selecting the text in the given range fails.
    */
   @RunsInEDT
-  public void selectText(@Nonnull JTextComponent textBox, int start, int end) {
+  public void selectText(@NonNull JTextComponent textBox, int start, int end) {
     robot.moveMouse(textBox, checkStateAndScrollToPosition(textBox, start));
     robot.moveMouse(textBox, scrollToPosition(textBox, end));
     performAndValidateTextSelection(textBox, start, end);
   }
 
   @RunsInEDT
-  @Nonnull private static Point checkStateAndScrollToPosition(final @Nonnull JTextComponent textBox, final int index) {
+  @NonNull private static Point checkStateAndScrollToPosition(final @NonNull JTextComponent textBox, final int index) {
     Point result = execute(() -> {
       checkEnabledAndShowing(textBox);
       return scrollToVisible(textBox, index);
@@ -214,7 +214,7 @@ public class JTextComponentDriver extends JComponentDriver implements TextDispla
   }
 
   @RunsInEDT
-  @Nonnull private static Point scrollToPosition(final @Nonnull JTextComponent textBox, final int index) {
+  @NonNull private static Point scrollToPosition(final @NonNull JTextComponent textBox, final int index) {
     Point result = execute(() -> scrollToVisible(textBox, index));
     return checkNotNull(result);
   }
@@ -228,7 +228,7 @@ public class JTextComponentDriver extends JComponentDriver implements TextDispla
    * @throws ActionFailedException if it was not possible to scroll to the location of the given index.
    */
   @RunsInCurrentThread
-  @Nonnull private static Point scrollToVisible(@Nonnull JTextComponent textBox, int index) {
+  @NonNull private static Point scrollToVisible(@NonNull JTextComponent textBox, int index) {
     Rectangle indexLocation = locationOf(textBox, index);
     if (isRectangleVisible(textBox, indexLocation)) {
       return centerOf(indexLocation);
@@ -244,7 +244,7 @@ public class JTextComponentDriver extends JComponentDriver implements TextDispla
   }
 
   @RunsInCurrentThread
-  @Nonnull private static Rectangle locationOf(@Nonnull JTextComponent textBox, int index) {
+  @NonNull private static Rectangle locationOf(@NonNull JTextComponent textBox, int index) {
     Rectangle r = null;
     try {
       r = textBox.modelToView(index);
@@ -260,13 +260,13 @@ public class JTextComponentDriver extends JComponentDriver implements TextDispla
     throw cannotGetLocation(textBox, index);
   }
 
-  private static ActionFailedException cannotGetLocation(@Nonnull JTextComponent textBox, int index) {
+  private static ActionFailedException cannotGetLocation(@NonNull JTextComponent textBox, int index) {
     String msg = String.format("Unable to get location for index <%d> in %s", index, format(textBox));
     throw actionFailure(msg);
   }
 
   @RunsInCurrentThread
-  private static boolean isRectangleVisible(@Nonnull JTextComponent textBox, @Nonnull Rectangle r) {
+  private static boolean isRectangleVisible(@NonNull JTextComponent textBox, @NonNull Rectangle r) {
     Rectangle visible = textBox.getVisibleRect();
     return visible.contains(r.x, r.y);
   }
@@ -276,7 +276,7 @@ public class JTextComponentDriver extends JComponentDriver implements TextDispla
   }
 
   @RunsInCurrentThread
-  private static void scrollToVisible(@Nonnull JTextComponent textBox, @Nonnull Rectangle r) {
+  private static void scrollToVisible(@NonNull JTextComponent textBox, @NonNull Rectangle r) {
     textBox.scrollRectToVisible(r);
     if (isVisible(textBox, r)) {
       return;
@@ -285,7 +285,7 @@ public class JTextComponentDriver extends JComponentDriver implements TextDispla
   }
 
   @RunsInCurrentThread
-  private static void scrollToVisibleIfIsTextField(@Nonnull JTextComponent textBox, @Nonnull Rectangle r) {
+  private static void scrollToVisibleIfIsTextField(@NonNull JTextComponent textBox, @NonNull Rectangle r) {
     if (!(textBox instanceof JTextField)) {
       return;
     }
@@ -297,19 +297,19 @@ public class JTextComponentDriver extends JComponentDriver implements TextDispla
     ((JComponent) parent).scrollRectToVisible(addPointToRectangle(checkNotNull(pointAndParent.first), r));
   }
 
-  @Nonnull private static Rectangle addPointToRectangle(@Nonnull Point p, @Nonnull Rectangle r) {
+  @NonNull private static Rectangle addPointToRectangle(@NonNull Point p, @NonNull Rectangle r) {
     Rectangle destination = new Rectangle(r);
     destination.x += p.x;
     destination.y += p.y;
     return destination;
   }
 
-  @Nonnull private static Point centerOf(@Nonnull Rectangle r) {
+  @NonNull private static Point centerOf(@NonNull Rectangle r) {
     return new Point(r.x + r.width / 2, r.y + r.height / 2);
   }
 
   @RunsInEDT
-  private static void performAndValidateTextSelection(final @Nonnull JTextComponent textBox, final int start,
+  private static void performAndValidateTextSelection(final @NonNull JTextComponent textBox, final int start,
                                                       final int end) {
     execute(() -> {
       selectTextInRange(textBox, start, end);
@@ -318,7 +318,7 @@ public class JTextComponentDriver extends JComponentDriver implements TextDispla
   }
 
   @RunsInCurrentThread
-  private static void verifyTextWasSelected(@Nonnull JTextComponent textBox, int start, int end) {
+  private static void verifyTextWasSelected(@NonNull JTextComponent textBox, int start, int end) {
     int actualStart = textBox.getSelectionStart();
     int actualEnd = textBox.getSelectionEnd();
     if (actualStart == min(start, end) && actualEnd == max(start, end)) {
@@ -338,7 +338,7 @@ public class JTextComponentDriver extends JComponentDriver implements TextDispla
    */
   @RunsInEDT
   @Override
-  public void requireText(@Nonnull JTextComponent textBox, @Nullable String expected) {
+  public void requireText(@NonNull JTextComponent textBox, @Nullable String expected) {
     verifyThat(textOf(textBox)).as(textProperty(textBox)).isEqualOrMatches(expected);
   }
 
@@ -352,7 +352,7 @@ public class JTextComponentDriver extends JComponentDriver implements TextDispla
    */
   @Override
   @RunsInEDT
-  public void requireText(@Nonnull JTextComponent textBox, @Nonnull Pattern pattern) {
+  public void requireText(@NonNull JTextComponent textBox, @NonNull Pattern pattern) {
     verifyThat(textOf(textBox)).as(textProperty(textBox)).matches(pattern);
   }
 
@@ -363,12 +363,12 @@ public class JTextComponentDriver extends JComponentDriver implements TextDispla
    * @throws AssertionError if the {@code JTextComponent} is not empty.
    */
   @RunsInEDT
-  public void requireEmpty(@Nonnull JTextComponent textBox) {
+  public void requireEmpty(@NonNull JTextComponent textBox) {
     assertThat(textOf(textBox)).as(textProperty(textBox)).isEmpty();
   }
 
   @RunsInEDT
-  @Nonnull private static Supplier<String> textProperty(@Nonnull JTextComponent textBox) {
+  @NonNull private static Supplier<String> textProperty(@NonNull JTextComponent textBox) {
     return propertyName(textBox, TEXT_PROPERTY);
   }
 
@@ -379,7 +379,7 @@ public class JTextComponentDriver extends JComponentDriver implements TextDispla
    * @throws AssertionError if the {@code JTextComponent} is not editable.
    */
   @RunsInEDT
-  public void requireEditable(@Nonnull JTextComponent textBox) {
+  public void requireEditable(@NonNull JTextComponent textBox) {
     assertEditable(textBox, true);
   }
 
@@ -390,17 +390,17 @@ public class JTextComponentDriver extends JComponentDriver implements TextDispla
    * @throws AssertionError if the {@code JTextComponent} is editable.
    */
   @RunsInEDT
-  public void requireNotEditable(@Nonnull JTextComponent textBox) {
+  public void requireNotEditable(@NonNull JTextComponent textBox) {
     assertEditable(textBox, false);
   }
 
   @RunsInEDT
-  private void assertEditable(@Nonnull JTextComponent textBox, boolean editable) {
+  private void assertEditable(@NonNull JTextComponent textBox, boolean editable) {
     assertThat(isEditable(textBox)).as(editableProperty(textBox)).isEqualTo(editable);
   }
 
   @RunsInEDT
-  @Nonnull private static Supplier<String> editableProperty(@Nonnull JTextComponent textBox) {
+  @NonNull private static Supplier<String> editableProperty(@NonNull JTextComponent textBox) {
     return propertyName(textBox, EDITABLE_PROPERTY);
   }
 
@@ -412,7 +412,7 @@ public class JTextComponentDriver extends JComponentDriver implements TextDispla
    */
   @RunsInEDT
   @Override
-  @Nullable public String textOf(@Nonnull JTextComponent textBox) {
+  @Nullable public String textOf(@NonNull JTextComponent textBox) {
     return JTextComponentTextQuery.textOf(textBox);
   }
 }

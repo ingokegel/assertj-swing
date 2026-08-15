@@ -26,7 +26,7 @@ import static org.mockito.Mockito.when;
 import java.awt.Component;
 import java.awt.Font;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 
 import org.assertj.swing.core.KeyPressInfo;
 import org.assertj.swing.core.MouseClickInfo;
@@ -190,7 +190,7 @@ public class AbstractComponentFixture_withMocks_Test {
     }
 
     @Override
-    @Nonnull protected ComponentDriver createDriver(@Nonnull Robot robot) {
+    @NonNull protected ComponentDriver createDriver(@NonNull Robot robot) {
       return mock(ComponentDriver.class);
     }
   }

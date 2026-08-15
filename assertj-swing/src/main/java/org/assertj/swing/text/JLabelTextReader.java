@@ -12,7 +12,7 @@
  */
 package org.assertj.swing.text;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.JLabel;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
@@ -27,7 +27,7 @@ public class JLabelTextReader extends TextReader<JLabel> {
    * @return {@code JLabel.class}.
    */
   @Override
-  @Nonnull public Class<JLabel> supportedComponent() {
+  @NonNull public Class<JLabel> supportedComponent() {
     return JLabel.class;
   }
 
@@ -40,7 +40,7 @@ public class JLabelTextReader extends TextReader<JLabel> {
    */
   @RunsInCurrentThread
   @Override
-  protected boolean checkContainsText(@Nonnull JLabel label, @Nonnull String text) {
+  protected boolean checkContainsText(@NonNull JLabel label, @NonNull String text) {
     String labelText = label.getText();
     if (labelText == null) {
       return false;

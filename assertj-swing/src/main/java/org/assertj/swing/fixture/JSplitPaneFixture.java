@@ -12,8 +12,8 @@
  */
 package org.assertj.swing.fixture;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 import javax.swing.JSplitPane;
 
 import org.assertj.swing.core.Robot;
@@ -35,7 +35,7 @@ public class JSplitPaneFixture extends
    * @throws NullPointerException if {@code robot} is {@code null}.
    * @throws NullPointerException if {@code target} is {@code null}.
    */
-  public JSplitPaneFixture(@Nonnull Robot robot, @Nonnull JSplitPane target) {
+  public JSplitPaneFixture(@NonNull Robot robot, @NonNull JSplitPane target) {
     super(JSplitPaneFixture.class, robot, target);
   }
 
@@ -47,12 +47,12 @@ public class JSplitPaneFixture extends
    * @throws org.assertj.swing.exception.ComponentLookupException if a matching {@code JSplitPane} could not be found.
    * @throws org.assertj.swing.exception.ComponentLookupException if more than one matching {@code JSplitPane} is found.
    */
-  public JSplitPaneFixture(@Nonnull Robot robot, @Nullable String spinnerName) {
+  public JSplitPaneFixture(@NonNull Robot robot, @Nullable String spinnerName) {
     super(JSplitPaneFixture.class, robot, spinnerName, JSplitPane.class);
   }
 
   @Override
-  @Nonnull protected JSplitPaneDriver createDriver(@Nonnull Robot robot) {
+  @NonNull protected JSplitPaneDriver createDriver(@NonNull Robot robot) {
     return new JSplitPaneDriver(robot);
   }
 
@@ -70,7 +70,7 @@ public class JSplitPaneFixture extends
    * @throws IllegalStateException if this fixture's {@code JSplitPane} is disabled.
    * @throws IllegalStateException if this fixture's {@code JSplitPane} is not showing on the screen.
    */
-  @Nonnull public JSplitPaneFixture moveDividerTo(int location) {
+  @NonNull public JSplitPaneFixture moveDividerTo(int location) {
     driver().moveDividerTo(target(), location);
     return this;
   }

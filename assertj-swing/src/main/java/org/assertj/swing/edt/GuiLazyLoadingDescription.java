@@ -14,7 +14,7 @@ package org.assertj.swing.edt;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import java.util.function.Supplier;
 
 import static org.assertj.swing.edt.GuiActionRunner.execute;
@@ -34,7 +34,7 @@ public abstract class GuiLazyLoadingDescription implements Supplier<String> {
    * @return the text loaded in the event dispatch thread (EDT).
    */
   @Override
-  public final @Nonnull String get() {
+  public final @NonNull String get() {
     String result = execute(() -> loadDescription());
     return checkNotNull(result);
   }
@@ -52,5 +52,5 @@ public abstract class GuiLazyLoadingDescription implements Supplier<String> {
    * @return the lazily-loaded text.
    */
   @RunsInCurrentThread
-  protected abstract @Nonnull String loadDescription();
+  protected abstract @NonNull String loadDescription();
 }

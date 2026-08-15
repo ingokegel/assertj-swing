@@ -12,8 +12,8 @@
  */
 package org.assertj.swing.fixture;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 import javax.swing.JRadioButton;
 
 import org.assertj.swing.core.Robot;
@@ -33,7 +33,7 @@ public class JRadioButtonFixture extends AbstractTwoStateButtonFixture<JRadioBut
    * @throws NullPointerException if {@code robot} is {@code null}.
    * @throws NullPointerException if {@code target} is {@code null}.
    */
-  public JRadioButtonFixture(@Nonnull Robot robot, @Nonnull JRadioButton target) {
+  public JRadioButtonFixture(@NonNull Robot robot, @NonNull JRadioButton target) {
     super(JRadioButtonFixture.class, robot, target);
   }
 
@@ -47,7 +47,7 @@ public class JRadioButtonFixture extends AbstractTwoStateButtonFixture<JRadioBut
    * @throws org.assertj.swing.exception.ComponentLookupException if more than one matching {@code JRadioButton} is
    *           found.
    */
-  public JRadioButtonFixture(@Nonnull Robot robot, @Nullable String buttonName) {
+  public JRadioButtonFixture(@NonNull Robot robot, @Nullable String buttonName) {
     super(JRadioButtonFixture.class, robot, buttonName, JRadioButton.class);
   }
 }

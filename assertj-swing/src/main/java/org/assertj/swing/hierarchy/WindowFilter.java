@@ -20,8 +20,8 @@ import java.awt.Window;
 import java.util.Collection;
 import java.util.Map;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
 
@@ -38,7 +38,7 @@ class WindowFilter {
     this(new ParentFinder(), new ChildrenFinder());
   }
 
-  WindowFilter(@Nonnull ParentFinder parentFinder, @Nonnull ChildrenFinder childrenFinder) {
+  WindowFilter(@NonNull ParentFinder parentFinder, @NonNull ChildrenFinder childrenFinder) {
     this.parentFinder = parentFinder;
     this.childrenFinder = childrenFinder;
   }
@@ -49,7 +49,7 @@ class WindowFilter {
   // Map of components implicitly ignored; these will be removed if they are re-shown.
   final Map<Component, Boolean> implicitlyIgnored = newWeakHashMap();
 
-  boolean isImplicitlyIgnored(@Nonnull Component c) {
+  boolean isImplicitlyIgnored(@NonNull Component c) {
     return implicitlyIgnored.containsKey(c);
   }
 
@@ -73,26 +73,26 @@ class WindowFilter {
     return w != null && isIgnored(w);
   }
 
-  void implicitlyIgnore(@Nonnull Component c) {
+  void implicitlyIgnore(@NonNull Component c) {
     implicitlyIgnored.put(c, true);
   }
 
   @RunsInCurrentThread
-  void ignore(@Nonnull Component c) {
+  void ignore(@NonNull Component c) {
     filter(c, true);
   }
 
   @RunsInCurrentThread
-  void recognize(@Nonnull Component c) {
+  void recognize(@NonNull Component c) {
     filter(c, false);
   }
 
-  @Nonnull
+  @NonNull
   Collection<Component> filtered() {
     return ignored.keySet();
   }
 
-  private void filter(@Nonnull Component c, boolean ignore) {
+  private void filter(@NonNull Component c, boolean ignore) {
     // Never filter the shared frame
     if (isSharedInvisibleFrame(c)) {
       for (Component child : childrenFinder.childrenOf(c)) {
@@ -115,7 +115,7 @@ class WindowFilter {
     }
   }
 
-  private void doFilter(@Nonnull Component c, boolean ignore) {
+  private void doFilter(@NonNull Component c, boolean ignore) {
     if (ignore) {
       ignored.put(c, true);
       return;

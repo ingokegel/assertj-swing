@@ -15,7 +15,7 @@ package org.assertj.swing.driver;
 import org.assertj.swing.annotation.RunsInCurrentThread;
 
 import javax.accessibility.AccessibleAction;
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import java.awt.*;
 
 import static org.assertj.swing.exception.ActionFailedException.actionFailure;
@@ -37,7 +37,7 @@ class ComponentPerformDefaultAccessibleActionTask {
   private static final int DEFAULT_ACTION_INDEX = 0;
 
   @RunsInCurrentThread
-  static void performDefaultAccessibleAction(final @Nonnull Component c) {
+  static void performDefaultAccessibleAction(final @NonNull Component c) {
     AccessibleAction action = c.getAccessibleContext().getAccessibleAction();
     if (action == null || action.getAccessibleActionCount() == 0) {
       throw actionFailure(concat("Unable to perform accessible action for ", format(c)));

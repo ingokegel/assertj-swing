@@ -14,7 +14,7 @@ package org.assertj.swing.hierarchy;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.*;
 import java.awt.*;
 import java.util.Collection;
@@ -37,7 +37,7 @@ import static org.assertj.swing.util.Lists.newArrayList;
 final class JMenuChildrenFinder implements ChildrenFinderStrategy {
   @RunsInCurrentThread
   @Override
-  @Nonnull public Collection<Component> nonExplicitChildrenOf(@Nonnull Container c) {
+  @NonNull public Collection<Component> nonExplicitChildrenOf(@NonNull Container c) {
     if (!(c instanceof JMenu)) {
       return emptyList();
     }

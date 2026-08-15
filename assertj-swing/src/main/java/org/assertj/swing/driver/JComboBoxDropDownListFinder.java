@@ -18,8 +18,8 @@ import org.assertj.swing.core.Robot;
 import org.assertj.swing.core.TypeMatcher;
 import org.assertj.swing.util.TimeoutWatch;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
@@ -65,7 +65,7 @@ final class JComboBoxDropDownListFinder {
     return findListIn(popup);
   }
 
-  @Nullable private JList<?> findListIn(@Nonnull Container parent) {
+  @Nullable private JList<?> findListIn(@NonNull Container parent) {
     List<Component> found = newArrayList(robot.finder().findAll(parent, LIST_MATCHER));
     if (found.size() != 1) {
       return null;

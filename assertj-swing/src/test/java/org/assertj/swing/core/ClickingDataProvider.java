@@ -16,7 +16,7 @@ import static org.assertj.swing.core.MouseButton.LEFT_BUTTON;
 import static org.assertj.swing.core.MouseButton.MIDDLE_BUTTON;
 import static org.assertj.swing.core.MouseButton.RIGHT_BUTTON;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 
 /**
  * Provider of the mouse button to click and how many times to click.
@@ -24,7 +24,7 @@ import javax.annotation.Nonnull;
  * @author Alex Ruiz
  */
 public final class ClickingDataProvider {
-  @Nonnull public static Object[][] clickingData() {
+  @NonNull public static Object[][] clickingData() {
     return new Object[][] { { LEFT_BUTTON, 1 }, { LEFT_BUTTON, 2 }, { MIDDLE_BUTTON, 1 }, { MIDDLE_BUTTON, 2 },
         { RIGHT_BUTTON, 1 }, { RIGHT_BUTTON, 2 }, };
   }

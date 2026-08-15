@@ -12,15 +12,15 @@
  */
 package org.assertj.swing.util;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 
 /**
  * @author Alex Ruiz
  */
 class SystemPropertyReader {
   @Nullable
-  String systemProperty(@Nonnull String propertyName) {
+  String systemProperty(@NonNull String propertyName) {
     return System.getProperty(propertyName);
   }
 }

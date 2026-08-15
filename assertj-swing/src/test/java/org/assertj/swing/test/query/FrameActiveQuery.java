@@ -16,7 +16,7 @@ import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import java.awt.Frame;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 
 import org.assertj.swing.annotation.RunsInEDT;
 
@@ -31,7 +31,7 @@ public final class FrameActiveQuery {
    * @return <code>true</code> if the given {@link Frame} is currently active.
    */
   @RunsInEDT
-  @Nonnull public static Boolean isActive(final @Nonnull Frame frame) {
+  @NonNull public static Boolean isActive(final @NonNull Frame frame) {
     return execute(() -> frame.isActive());
   }
 

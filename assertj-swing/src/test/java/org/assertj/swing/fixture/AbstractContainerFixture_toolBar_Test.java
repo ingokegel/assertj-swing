@@ -21,7 +21,7 @@ import static org.assertj.swing.test.core.NeverMatchingComponentMatcher.neverMat
 
 import java.awt.BorderLayout;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.JLabel;
 import javax.swing.JToolBar;
 
@@ -86,7 +86,7 @@ public class AbstractContainerFixture_toolBar_Test extends RobotBasedTestCase {
     robot.showWindow(window);
     JToolBarFixture toolBar = fixture.toolBar(new GenericTypeMatcher<JToolBar>(JToolBar.class) {
       @Override
-      protected boolean isMatching(@Nonnull JToolBar t) {
+      protected boolean isMatching(@NonNull JToolBar t) {
         return "myToolBar".equals(t.getName());
       }
     });
@@ -103,11 +103,11 @@ public class AbstractContainerFixture_toolBar_Test extends RobotBasedTestCase {
   private static class MyWindow extends TestWindow {
     final JToolBar toolBar = new JToolBar();
 
-    static @Nonnull MyWindow createNew(final @Nonnull Class<?> testClass) {
+    static @NonNull MyWindow createNew(final @NonNull Class<?> testClass) {
       return checkNotNull(execute(() -> new MyWindow(testClass)));
     }
 
-    private MyWindow(@Nonnull Class<?> testClass) {
+    private MyWindow(@NonNull Class<?> testClass) {
       super(testClass);
       toolBar.setName("myToolBar");
       setLayout(new BorderLayout());

@@ -19,8 +19,8 @@ import org.assertj.swing.internal.annotation.InternalApi;
 import org.assertj.swing.util.StringTextMatcher;
 import org.assertj.swing.util.TextMatcher;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 import javax.swing.*;
 import java.awt.*;
 
@@ -50,7 +50,7 @@ public class JTabbedPaneLocation {
    * @throws LocationUnavailableException if a tab matching the given title could not be found.
    */
   @RunsInCurrentThread
-  public int indexOf(@Nonnull JTabbedPane tabbedPane, @Nullable String title) {
+  public int indexOf(@NonNull JTabbedPane tabbedPane, @Nullable String title) {
     return indexOf(tabbedPane, new StringTextMatcher(title));
   }
 
@@ -70,7 +70,7 @@ public class JTabbedPaneLocation {
    * @throws LocationUnavailableException if a tab matching the given title could not be found.
    */
   @RunsInCurrentThread
-  public int indexOf(final @Nonnull JTabbedPane tabbedPane, final @Nonnull TextMatcher matcher) {
+  public int indexOf(final @NonNull JTabbedPane tabbedPane, final @NonNull TextMatcher matcher) {
     int index = indexOfTab(tabbedPane, matcher);
     if (index >= 0) {
       return index;
@@ -97,7 +97,7 @@ public class JTabbedPaneLocation {
    * @throws LocationUnavailableException if the tab under the given index is not visible.
    */
   @RunsInCurrentThread
-  @Nonnull public Point pointAt(final @Nonnull JTabbedPane tabbedPane, final int index) {
+  @NonNull public Point pointAt(final @NonNull JTabbedPane tabbedPane, final int index) {
     checkIndexInBounds(tabbedPane, index);
     Rectangle rect = tabbedPane.getUI().getTabBounds(tabbedPane, index);
     // From Abbot: TODO figure out the effects of tab layout policy sometimes tabs are not directly visible

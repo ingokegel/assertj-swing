@@ -17,8 +17,8 @@ import static org.assertj.swing.edt.GuiActionRunner.execute;
 import java.awt.Component;
 import java.awt.Container;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 
 import org.assertj.swing.annotation.RunsInEDT;
 
@@ -40,7 +40,7 @@ public final class ComponentParentQuery {
    * @see Component#getParent()
    */
   @RunsInEDT
-  @Nullable public static Container parentOf(final @Nonnull Component component) {
+  @Nullable public static Container parentOf(final @NonNull Component component) {
     return execute(() -> component.getParent());
   }
 

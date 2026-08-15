@@ -17,7 +17,7 @@ import static org.assertj.swing.util.Arrays.format;
 import java.awt.Point;
 import java.awt.Rectangle;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.JTree;
 import javax.swing.tree.TreePath;
 
@@ -52,7 +52,7 @@ public final class JTreeLocation {
    * @throws LocationUnavailableException if a tree path for the given row cannot be found.
    */
   @RunsInCurrentThread
-  @Nonnull public Pair<Rectangle, Point> rowBoundsAndCoordinates(@Nonnull JTree tree, int row) {
+  @NonNull public Pair<Rectangle, Point> rowBoundsAndCoordinates(@NonNull JTree tree, int row) {
     Rectangle rowBounds = tree.getRowBounds(checkRowInBounds(tree, row));
     if (rowBounds != null) {
       return Pair.of(rowBounds, pointAt(rowBounds));
@@ -78,7 +78,7 @@ public final class JTreeLocation {
    * @throws LocationUnavailableException if a tree path for the given row cannot be found.
    */
   @RunsInCurrentThread
-  @Nonnull public TreePath pathFor(@Nonnull JTree tree, int row) {
+  @NonNull public TreePath pathFor(@NonNull JTree tree, int row) {
     TreePath path = tree.getPathForRow(checkRowInBounds(tree, row));
     if (path != null) {
       return path;
@@ -103,7 +103,7 @@ public final class JTreeLocation {
    *           visible rows in the {@code JTree}.
    */
   @RunsInCurrentThread
-  public int checkRowInBounds(@Nonnull JTree tree, int row) {
+  public int checkRowInBounds(@NonNull JTree tree, int row) {
     int rowCount = tree.getRowCount();
     if (row >= 0 && row < rowCount) {
       return row;
@@ -128,7 +128,7 @@ public final class JTreeLocation {
    * @throws LocationUnavailableException if any part of the path is not visible.
    */
   @RunsInCurrentThread
-  @Nonnull public Pair<Rectangle, Point> pathBoundsAndCoordinates(@Nonnull JTree tree, @Nonnull TreePath path) {
+  @NonNull public Pair<Rectangle, Point> pathBoundsAndCoordinates(@NonNull JTree tree, @NonNull TreePath path) {
     Rectangle pathBounds = tree.getPathBounds(path);
     if (pathBounds != null) {
       return Pair.of(pathBounds, pointAt(pathBounds));
@@ -136,7 +136,7 @@ public final class JTreeLocation {
     throw new LocationUnavailableException(String.format("The tree path %s is not visible", format(path.getPath())));
   }
 
-  @Nonnull private Point pointAt(@Nonnull Rectangle cellBounds) {
+  @NonNull private Point pointAt(@NonNull Rectangle cellBounds) {
     return new Point(cellBounds.x + cellBounds.width / 2, cellBounds.y + cellBounds.height / 2);
   }
 }

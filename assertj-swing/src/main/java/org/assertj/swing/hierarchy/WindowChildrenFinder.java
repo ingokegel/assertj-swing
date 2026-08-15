@@ -14,7 +14,7 @@ package org.assertj.swing.hierarchy;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import java.awt.*;
 import java.util.Collection;
 
@@ -30,7 +30,7 @@ import static org.assertj.swing.util.Lists.newArrayList;
 final class WindowChildrenFinder implements ChildrenFinderStrategy {
   @RunsInCurrentThread
   @Override
-  @Nonnull public Collection<Component> nonExplicitChildrenOf(@Nonnull Container c) {
+  @NonNull public Collection<Component> nonExplicitChildrenOf(@NonNull Container c) {
     if (!(c instanceof Window)) {
       return emptyList();
     }
@@ -38,11 +38,11 @@ final class WindowChildrenFinder implements ChildrenFinderStrategy {
   }
 
   @RunsInCurrentThread
-  @Nonnull private Collection<Component> ownedWindows(Window w) {
+  @NonNull private Collection<Component> ownedWindows(Window w) {
     return windows(w.getOwnedWindows());
   }
 
-  @Nonnull private Collection<Component> windows(@Nonnull Component[] windows) {
+  @NonNull private Collection<Component> windows(@NonNull Component[] windows) {
     if (isNullOrEmpty(windows)) {
       return emptyList();
     }

@@ -17,7 +17,7 @@ import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import java.io.File;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.JFileChooser;
 
 import org.assertj.swing.annotation.RunsInEDT;
@@ -37,7 +37,7 @@ public final class JFileChooserCurrentDirectoryQuery {
    * @return the current directory of the given {@code JFileChooser}.
    */
   @RunsInEDT
-  @Nonnull public static File currentDirectoryOf(final @Nonnull JFileChooser fileChooser) {
+  @NonNull public static File currentDirectoryOf(final @NonNull JFileChooser fileChooser) {
     File result = execute(() -> fileChooser.getCurrentDirectory());
     return checkNotNull(result);
   }

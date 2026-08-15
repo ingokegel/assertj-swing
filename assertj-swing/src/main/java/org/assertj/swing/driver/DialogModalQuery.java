@@ -14,7 +14,7 @@ package org.assertj.swing.driver;
 
 import org.assertj.swing.annotation.RunsInEDT;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import java.awt.*;
 
 import static org.assertj.swing.edt.GuiActionRunner.execute;
@@ -29,7 +29,7 @@ import static org.assertj.swing.util.Preconditions.checkNotNull;
  */
 final class DialogModalQuery {
   @RunsInEDT
-  static boolean isModal(final @Nonnull Dialog dialog) {
+  static boolean isModal(final @NonNull Dialog dialog) {
     Boolean result = execute(() -> dialog.isModal());
     return checkNotNull(result);
   }

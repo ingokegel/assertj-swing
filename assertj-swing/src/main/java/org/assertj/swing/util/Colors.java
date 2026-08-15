@@ -12,7 +12,7 @@
  */
 package org.assertj.swing.util;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import java.awt.*;
 
 import static org.assertj.swing.util.Preconditions.checkNotNullOrEmpty;
@@ -34,7 +34,7 @@ public final class Colors {
    * @throws IllegalArgumentException if the hexadecimal code is empty.
    * @throws NumberFormatException if the hexadecimal code is empty.
    */
-  @Nonnull public static Color colorFromHexString(@Nonnull String hexString) {
+  @NonNull public static Color colorFromHexString(@NonNull String hexString) {
     checkNotNullOrEmpty(hexString);
     try {
       return new Color(Integer.parseInt(hexString, 16));

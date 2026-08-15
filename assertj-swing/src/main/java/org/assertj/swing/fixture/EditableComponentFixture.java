@@ -12,7 +12,7 @@
  */
 package org.assertj.swing.fixture;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 
 /**
  * Verifies the state of editable {@code Component}s.
@@ -30,7 +30,7 @@ public interface EditableComponentFixture<S> {
    * @throws AssertionError if the {@code Component} is not editable.
    * @return this fixture.
    */
-  @Nonnull
+  @NonNull
   S requireEditable();
 
   /**
@@ -39,7 +39,7 @@ public interface EditableComponentFixture<S> {
    * @throws AssertionError if the {@code Component} is editable.
    * @return this fixture.
    */
-  @Nonnull
+  @NonNull
   S requireNotEditable();
 
 }

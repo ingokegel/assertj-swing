@@ -14,7 +14,7 @@ package org.assertj.swing.driver;
 
 import org.assertj.swing.annotation.RunsInEDT;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.*;
 
 import static org.assertj.swing.edt.GuiActionRunner.execute;
@@ -29,7 +29,7 @@ import static org.assertj.swing.util.Preconditions.checkNotNull;
  */
 final class AbstractButtonSelectedQuery {
   @RunsInEDT
-  static boolean isSelected(final @Nonnull AbstractButton button) {
+  static boolean isSelected(final @NonNull AbstractButton button) {
     Boolean result = execute(() -> button.isSelected());
     return checkNotNull(result);
   }

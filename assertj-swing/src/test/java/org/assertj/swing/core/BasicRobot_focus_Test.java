@@ -17,7 +17,7 @@ import static org.assertj.swing.test.task.ComponentRequestFocusAndWaitForFocusGa
 
 import java.awt.Component;
 
-import javax.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 import javax.swing.JButton;
 
 import org.assertj.swing.annotation.RunsInEDT;
@@ -47,7 +47,7 @@ public class BasicRobot_focus_Test extends BasicRobot_TestCase {
     giveFocusAndVerifyThatHasFocus(window().textField());
   }
 
-  private void giveFocusAndVerifyThatHasFocus(@Nonnull Component c) {
+  private void giveFocusAndVerifyThatHasFocus(@NonNull Component c) {
     robot().focus(c);
     waitTillHasFocus(c);
   }
