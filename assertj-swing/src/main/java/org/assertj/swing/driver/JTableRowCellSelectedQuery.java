@@ -12,26 +12,30 @@
  */
 package org.assertj.swing.driver;
 
-import org.assertj.swing.annotation.RunsInEDT;
-
+import org.assertj.swing.annotation.RunsInCurrentThread;
 import org.jspecify.annotations.NonNull;
+
 import javax.swing.*;
 
-import static org.assertj.swing.edt.GuiActionRunner.execute;
-import static org.assertj.swing.util.Preconditions.checkNotNull;
-
 /**
- * Returns the maximum value of a {@code JProgressBar}. This query is executed in the event dispatch thread (EDT).
+ * <p>
+ * Indicates whether a cell in a {@code JTable} is selected.
+ * </p>
+ *
+ * <p>
+ * <b>Note:</b> Methods in this class are accessed in the current executing thread. Such thread may or may not be the
+ * event dispatch thread (EDT). Client code must call methods in this class from the EDT.
+ * </p>
  *
  * @author Alex Ruiz
+ * @author Christian Rösch
  */
-final class JProgressBarMaximumQuery {
-  @RunsInEDT
-  static int maximumOf(final @NonNull JProgressBar progressBar) {
-    Integer result = execute(() -> progressBar.getMaximum());
-    return checkNotNull(result);
+final class JTableRowCellSelectedQuery {
+  @RunsInCurrentThread
+  static boolean isCellSelected(final @NonNull JTable table, final int row, final int column) {
+    return table.isCellSelected(row, column);
   }
 
-  private JProgressBarMaximumQuery() {
+  private JTableRowCellSelectedQuery() {
   }
 }
