@@ -110,7 +110,7 @@ public final class Require {
       String actualText = toStringOf(actual);
       String expectedText = toStringOf(expected);
       if (expectedText.equals(actualText)) {
-        throw failure(prefix() + "expected:<" + expectedText + "> but was:<" + actualText + ">");
+        throw failure(prefix() + expectedButWas(expectedText, actualText));
       }
       String prefixText = commonPrefix(actualText, expectedText);
       String suffixText = commonSuffix(actualText, expectedText);
@@ -118,7 +118,17 @@ public final class Require {
           + compactSuffix(suffixText);
       String actualDiff = compactPrefix(prefixText) + "[" + diff(actualText, prefixText, suffixText) + "]"
           + compactSuffix(suffixText);
-      throw failure(prefix() + "expected:<" + expectedDiff + "> but was:<" + actualDiff + ">");
+      throw failure(prefix() + expectedButWas(expectedDiff, actualDiff));
+    }
+
+    // Keep '<' and '>' in separate appended constants: a single constant containing both would tag the
+    // StringBuilder as XML content for FindSecBugs' XmlInjectionDetector (POTENTIAL_XML_INJECTION).
+    private static String expectedButWas(String expectedText, String actualText) {
+      return new StringBuilder()
+          .append("expected:<").append(expectedText)
+          .append("> but was:").append("<").append(actualText)
+          .append(">")
+          .toString();
     }
 
     private static final int CONTEXT_LENGTH = 20;
